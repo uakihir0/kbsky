@@ -11,8 +11,8 @@ class RepoStrongRef(
     var cid: String,
 ) {
 
-    override fun equals(obj: Any?): Boolean {
-        val ref = obj as RepoStrongRef? ?: return false
+    override fun equals(other: Any?): Boolean {
+        val ref = other as RepoStrongRef? ?: return false
         return (ref.uri == uri) && (ref.cid == cid)
     }
 

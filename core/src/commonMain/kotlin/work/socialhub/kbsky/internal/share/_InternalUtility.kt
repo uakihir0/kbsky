@@ -4,13 +4,20 @@ import kotlinx.datetime.TimeZone
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.contextual
 import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.model.bsky.actor.ActorDefsPreferencesUnion
+import work.socialhub.kbsky.model.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewUnion
 import work.socialhub.kbsky.model.bsky.embed.EmbedUnion
 import work.socialhub.kbsky.model.bsky.embed.EmbedViewUnion
 import work.socialhub.kbsky.model.bsky.feed.FeedDefsThreadUnion
+import work.socialhub.kbsky.model.bsky.feed.FeedLike
+import work.socialhub.kbsky.model.bsky.feed.FeedPost
+import work.socialhub.kbsky.model.bsky.feed.FeedRepost
+import work.socialhub.kbsky.model.bsky.graph.GraphBlock
+import work.socialhub.kbsky.model.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetFeatureUnion
 import work.socialhub.kbsky.model.share.RecordUnion
 import work.socialhub.kbsky.util.DateFormatter
@@ -30,7 +37,6 @@ object _InternalUtility {
             contextual(EmbedViewUnion::class, EmbedViewSerializer)
             contextual(EmbedRecordViewUnion::class, EmbedRecordViewSerializer)
 
-            contextual(RecordUnion::class, RecordSerializer)
             contextual(FeedDefsThreadUnion::class, FeedDefsThreadSerializer)
             contextual(RichtextFacetFeatureUnion::class, RichtextFacetFeatureSerializer)
             contextual(ActorDefsPreferencesUnion::class, ActorDefsPreferencesSerializer)
@@ -54,10 +60,10 @@ object _InternalUtility {
         try {
             val response: HttpResponse = function()
             if (response.status == 200) {
-                return Response(Unit)
+                return Response(Unit, "")
             }
             // TODO: include error response in exception
-            throw ATProtocolException(null)
+            throw ATProtocolException(response.stringBody())
         } catch (e: Exception) {
             throw handleError(e)
         }
@@ -67,22 +73,27 @@ object _InternalUtility {
         try {
             val response: HttpResponse = function()
             if (response.status == 200) {
-                println(response.stringBody())
-                return Response(response.typedBody(json))
+                return Response(
+                    response.typedBody(json),
+                    response.stringBody(),
+                )
             }
             // TODO: include error response in exception
-            throw ATProtocolException(null)
+            throw ATProtocolException(response.stringBody())
         } catch (e: Exception) {
             throw handleError(e)
         }
     }
 
-    fun xrpc(uri: String): String {
+    fun xrpc(uri: String, path: String? = null): String {
         var url = uri
         if (!uri.endsWith("/")) {
             url += "/"
         }
         url += "xrpc/"
+        if (path != null) {
+            url += path
+        }
         return url
     }
 

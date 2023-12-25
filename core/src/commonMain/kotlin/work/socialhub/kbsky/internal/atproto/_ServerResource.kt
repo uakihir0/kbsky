@@ -37,8 +37,7 @@ class _ServerResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ServerCreateSession)
+                    .url(xrpc(uri, ServerCreateSession))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .post()
@@ -57,10 +56,9 @@ class _ServerResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ServerDeleteSession)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, ServerDeleteSession))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .post()
             }
         }
@@ -77,10 +75,9 @@ class _ServerResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ServerGetSession)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, ServerGetSession))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .get()
             }
         }
@@ -93,10 +90,9 @@ class _ServerResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ServerRefreshSession)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, ServerRefreshSession))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .get()
             }
         }

@@ -1,11 +1,11 @@
 package work.socialhub.kbsky.internal.atproto
 
 import kotlinx.coroutines.runBlocking
-import work.socialhub.kbsky.ATProtocolTypes
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoGetRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoListRecords
+import work.socialhub.kbsky.ATProtocolTypes.RepoUploadBlob
 import work.socialhub.kbsky.api.atproto.RepoResource
 import work.socialhub.kbsky.api.entity.atproto.repo.*
 import work.socialhub.kbsky.api.entity.share.Response
@@ -31,8 +31,7 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoCreateRecord)
+                    .url(xrpc(uri, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -48,8 +47,7 @@ class _RepoResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoDeleteRecord)
+                    .url(xrpc(uri, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -69,10 +67,9 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoGetRecord)
+                    .url(xrpc(uri, RepoGetRecord))
                     .accept(MediaType.JSON)
-                    .params(request.toMap())
+                    .queries(request.toMap())
                     .get()
             }
         }
@@ -85,10 +82,9 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoListRecords)
+                    .url(xrpc(uri, RepoListRecords))
                     .accept(MediaType.JSON)
-                    .params(request.toMap())
+                    .queries(request.toMap())
                     .get()
             }
         }
@@ -105,8 +101,7 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ATProtocolTypes.RepoUploadBlob)
+                    .url(xrpc(uri, RepoUploadBlob))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .file(

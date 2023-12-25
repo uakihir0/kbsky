@@ -24,8 +24,7 @@ class _NotificationResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(NotificationGetUnreadCount)
+                    .url(xrpc(uri, NotificationGetUnreadCount))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .get()
@@ -40,8 +39,7 @@ class _NotificationResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(NotificationListNotifications)
+                    .url(xrpc(uri, NotificationListNotifications))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -57,8 +55,7 @@ class _NotificationResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(NotificationUpdateSeen)
+                    .url(xrpc(uri, NotificationUpdateSeen))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())

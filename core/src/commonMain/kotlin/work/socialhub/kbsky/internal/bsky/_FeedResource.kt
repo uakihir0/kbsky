@@ -1,7 +1,6 @@
 package work.socialhub.kbsky.internal.bsky
 
 import kotlinx.coroutines.runBlocking
-import work.socialhub.kbsky.ATProtocolTypes
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorFeeds
@@ -39,10 +38,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetAuthorFeed)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetAuthorFeed))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -56,10 +54,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetLikes)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetLikes))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -73,10 +70,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetPostThread)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetPostThread))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -90,10 +86,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetPosts)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetPosts))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .also { req ->
                         request.uris?.forEach {
@@ -112,10 +107,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetRepostedBy)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetRepostedBy))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -129,10 +123,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetTimeline)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetTimeline))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -146,10 +139,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetFeed)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetFeed))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -163,10 +155,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetActorFeeds)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetActorFeeds))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -180,10 +171,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetFeedGenerator)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetFeedGenerator))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -197,10 +187,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(FeedGetFeedGenerators)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, FeedGetFeedGenerators))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .also { req ->
                         request.feeds?.forEach {
@@ -226,8 +215,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ATProtocolTypes.RepoCreateRecord)
+                    .url(xrpc(uri, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -250,8 +238,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoDeleteRecord)
+                    .url(xrpc(uri, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -274,8 +261,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoCreateRecord)
+                    .url(xrpc(uri, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -298,8 +284,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoDeleteRecord)
+                    .url(xrpc(uri, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -322,8 +307,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoCreateRecord)
+                    .url(xrpc(uri, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -346,8 +330,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoDeleteRecord)
+                    .url(xrpc(uri, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)

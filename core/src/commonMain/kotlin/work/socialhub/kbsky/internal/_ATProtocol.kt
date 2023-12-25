@@ -10,15 +10,9 @@ import work.socialhub.kbsky.internal.atproto._ServerResource
 
 open class _ATProtocol(uri: String) : ATProtocol {
 
-    protected val identity: IdentityResource
-    protected val server: ServerResource
-    protected val repo: RepoResource
-
-    init {
-        identity = _IdentityResource(uri)
-        server = _ServerResource(uri)
-        repo = _RepoResource(uri)
-    }
+    protected val identity: IdentityResource = _IdentityResource(uri)
+    protected val server: ServerResource = _ServerResource(uri)
+    protected val repo: RepoResource = _RepoResource(uri)
 
     /**
      * {@inheritDoc}

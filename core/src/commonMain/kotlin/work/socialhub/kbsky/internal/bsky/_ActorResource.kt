@@ -24,10 +24,9 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ActorSearchActors)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, ActorSearchActors))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -41,10 +40,9 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ActorGetProfile)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, ActorGetProfile))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }
@@ -58,12 +56,14 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ActorGetProfiles)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, ActorGetProfiles))
                     .header("Authorization", request.bearerToken)
-                    // TODO: implement
-                    // request.getActors().forEach(java.util.function.Consumer<String> { actor: String? -> builder.param("actors", actor) })
+                    .accept(MediaType.JSON)
+                    .also {
+                        request.actors?.forEach { actor ->
+                            it.query("actors", actor)
+                        }
+                    }
                     .get()
             }
         }
@@ -76,10 +76,9 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(ActorGetPreferences)
-                    .accept(MediaType.JSON)
+                    .url(xrpc(uri, ActorGetPreferences))
                     .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
             }

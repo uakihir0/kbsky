@@ -40,8 +40,7 @@ class _GraphResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoCreateRecord)
+                    .url(xrpc(uri, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -64,8 +63,7 @@ class _GraphResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoDeleteRecord)
+                    .url(xrpc(uri, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -81,8 +79,7 @@ class _GraphResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(GraphGetFollowers)
+                    .url(xrpc(uri, GraphGetFollowers))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -98,8 +95,7 @@ class _GraphResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(GraphGetFollows)
+                    .url(xrpc(uri, GraphGetFollows))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -115,8 +111,7 @@ class _GraphResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(GraphGetMutes)
+                    .url(xrpc(uri, GraphGetMutes))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -132,8 +127,7 @@ class _GraphResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(GraphMuteActor)
+                    .url(xrpc(uri, GraphMuteActor))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -149,8 +143,7 @@ class _GraphResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(GraphUnmuteActor)
+                    .url(xrpc(uri, GraphUnmuteActor))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -173,8 +166,7 @@ class _GraphResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoCreateRecord)
+                    .url(xrpc(uri, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -197,8 +189,7 @@ class _GraphResource(
                 )
 
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(RepoDeleteRecord)
+                    .url(xrpc(uri, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -214,8 +205,7 @@ class _GraphResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(GraphGetBlocks)
+                    .url(xrpc(uri, GraphGetBlocks))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

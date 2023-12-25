@@ -33,7 +33,7 @@ class _UndocumentedResource(
                             "/search/"
 
                 HttpRequest()
-                    .host(target)
+                    .url(target)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -48,8 +48,7 @@ class _UndocumentedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(UnspeccedGetPopular)
+                    .url(xrpc(uri, UnspeccedGetPopular))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

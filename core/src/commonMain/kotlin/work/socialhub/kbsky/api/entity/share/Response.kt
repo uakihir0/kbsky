@@ -5,4 +5,5 @@ package work.socialhub.kbsky.api.entity.share
  */
 class Response<T>(
     val data: T,
+    val json: String,
 )

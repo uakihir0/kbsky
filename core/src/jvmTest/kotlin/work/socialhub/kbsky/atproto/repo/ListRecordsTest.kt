@@ -28,7 +28,7 @@ class ListRecordsTest : AbstractTest() {
             )
 
         response.data.records?.forEach {
-            println(it.value)
+            print(checkNotNull(it.value))
         }
     }
 

@@ -12,9 +12,28 @@ class _Bluesky(uri: String) : _ATProtocol(uri), Bluesky {
     protected val notification: NotificationResource = _NotificationResource(uri)
     protected val undoc: UndocumentedResource = _UndocumentedResource(uri)
 
+    /**
+     * {@inheritDoc}
+     */
     override fun actor() = actor
+
+    /**
+     * {@inheritDoc}
+     */
     override fun feed() = feed
+
+    /**
+     * {@inheritDoc}
+     */
     override fun graph() = graph
+
+    /**
+     * {@inheritDoc}
+     */
     override fun notification() = notification
+
+    /**
+     * {@inheritDoc}
+     */
     override fun undoc() = undoc
 }

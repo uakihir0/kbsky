@@ -1,8 +1,12 @@
 package work.socialhub.kbsky
 
 open class ATProtocolException(
-    e: Exception?
-) : RuntimeException(e) {
-    var error: String? = null
-    var errorMessage: String? = null
+    message: String?,
+    exception: Exception?,
+) : RuntimeException(
+    message,
+    exception,
+) {
+    constructor(message: String?) : this(message, null)
+    constructor(exception: Exception?) : this(null, exception)
 }

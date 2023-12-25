@@ -52,6 +52,10 @@ open class AbstractTest {
 
     fun print(record: RecordUnion) {
         println("TYPE> " + record.type)
+
+        if (record is FeedPost) {
+            println("TEXT> " + record.text)
+        }
     }
 
     fun print(post: FeedDefsPostView) {

@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.model.share
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.util.json.RecordPolymorphicSerializer
 
 /**
  * @see work.socialhub.kbsky.model.bsky.actor.ActorProfile
@@ -10,7 +12,8 @@ import kotlinx.serialization.SerialName
  * @see work.socialhub.kbsky.model.bsky.feed.FeedPost
  * @see work.socialhub.kbsky.model.bsky.feed.FeedRepost
  */
-interface RecordUnion {
+@Serializable(with = RecordPolymorphicSerializer::class)
+abstract class RecordUnion {
     @SerialName("\$type")
-    var type: String
+    abstract var type: String
 }

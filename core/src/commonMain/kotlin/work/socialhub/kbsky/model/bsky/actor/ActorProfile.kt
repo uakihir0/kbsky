@@ -1,17 +1,19 @@
 package work.socialhub.kbsky.model.bsky.actor
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.share.Blob
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class ActorProfile : RecordUnion {
+class ActorProfile : RecordUnion() {
 
     companion object {
         val TYPE = BlueskyTypes.ActorProfile
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     var displayName: String? = null

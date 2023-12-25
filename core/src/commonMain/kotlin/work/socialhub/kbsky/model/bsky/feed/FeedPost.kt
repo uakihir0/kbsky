@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.feed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.bsky.embed.EmbedUnion
@@ -7,12 +8,13 @@ import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class FeedPost : RecordUnion {
+class FeedPost : RecordUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.FeedPost
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     var text: String? = null

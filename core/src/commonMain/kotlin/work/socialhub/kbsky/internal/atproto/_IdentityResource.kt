@@ -22,8 +22,7 @@ class _IdentityResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .host(xrpc(uri))
-                    .path(IdentifyResolveHandle)
+                    .url(xrpc(uri, IdentifyResolveHandle))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
