@@ -2,7 +2,6 @@ package work.socialhub.kbsky.api.entity.bsky.feed
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
-import work.socialhub.kbsky.internal.share._InternalUtility
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.bsky.feed.FeedLike

@@ -2,7 +2,6 @@ package work.socialhub.kbsky.api.entity.bsky.feed
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.RKeyRequest
-import work.socialhub.kbsky.util.ATUriParser
 
 /**
  * Uri includes the rkey.
