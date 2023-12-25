@@ -1,0 +1,8 @@
+*.iml
+.idea
+.gradle
+target/
+build/
+out/
+secrets.json
+jwt.txt
