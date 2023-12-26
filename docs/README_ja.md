@@ -23,6 +23,45 @@ dependencies {
 }
 ```
 
+### CreateSession
+
+```kotlin
+val response = BlueskyFactory
+    .instance(BSKY_SOCIAL.uri)
+    .server()
+    .createSession(
+        ServerCreateSessionRequest().also {
+            it.identifier = HANDLE
+            it.password = PASSWORD
+        }
+    )
+
+println(response.data.accessJwt)
+```
+
+### SendFeed
+
+```kotlin
+BlueskyFactory
+    .instance(BSKY_SOCIAL.uri)
+    .feed()
+    .post(
+        FeedPostRequest(accessJwt).also {
+            it.text = "Hello World!"
+        }
+    )
+```
+
+### PLC Directory
+
+```kotlin
+val response = PLCDirectoryFactory
+    .instance()
+    .DIDDetails(did)
+
+println(checkNotNull(response.data.alsoKnownAs)[0])
+```
+
 ## ライセンス
 
 MIT License
@@ -30,8 +69,6 @@ MIT License
 ## 作者
 
 [Akihiro Urushihara](https://github.com/uakihir0)
-
-
 
 [khttpclient]: https://github.com/uakihir0/khttpclient
 [badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg
