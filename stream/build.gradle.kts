@@ -15,13 +15,15 @@ kotlin {
     macosArm64()
 
     sourceSets {
-        val kotlinxVersion = "1.6.2"
         val kotestVersion = "5.8.0"
 
         commonMain.dependencies {
             implementation(project(":core"))
+            implementation("io.ktor:ktor-client-core:2.3.7")
             implementation("work.socialhub:khttpclient:0.0.1-SNAPSHOT")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxVersion")
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.6.2")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
         }
 
         // for test (kotlin/jvm)
