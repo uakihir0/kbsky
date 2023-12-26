@@ -21,6 +21,7 @@ repositories {
 dependencies {
 +   implementation("work.socialhub:kbsky:0.0.1-SNAPSHOT")
 }
+```
 
 ### CreateSession
 
