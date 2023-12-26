@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedRecordWithMedia : EmbedUnion {
+class EmbedRecordWithMedia : EmbedUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecordWithMedia

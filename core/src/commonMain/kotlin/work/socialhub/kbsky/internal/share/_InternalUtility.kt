@@ -4,24 +4,10 @@ import kotlinx.datetime.TimeZone
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.modules.contextual
 import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.api.entity.share.Response
-import work.socialhub.kbsky.model.bsky.actor.ActorDefsPreferencesUnion
-import work.socialhub.kbsky.model.bsky.actor.ActorProfile
-import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewUnion
-import work.socialhub.kbsky.model.bsky.embed.EmbedUnion
-import work.socialhub.kbsky.model.bsky.embed.EmbedViewUnion
-import work.socialhub.kbsky.model.bsky.feed.FeedDefsThreadUnion
-import work.socialhub.kbsky.model.bsky.feed.FeedLike
-import work.socialhub.kbsky.model.bsky.feed.FeedPost
-import work.socialhub.kbsky.model.bsky.feed.FeedRepost
-import work.socialhub.kbsky.model.bsky.graph.GraphBlock
-import work.socialhub.kbsky.model.bsky.graph.GraphFollow
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetFeatureUnion
-import work.socialhub.kbsky.model.share.RecordUnion
 import work.socialhub.kbsky.util.DateFormatter
-import work.socialhub.kbsky.util.json.*
+import work.socialhub.kbsky.util.json.AnySerializer
 import work.socialhub.khttpclient.HttpResponse
 
 /**
@@ -33,13 +19,6 @@ object _InternalUtility {
         ignoreUnknownKeys = true
         serializersModule = SerializersModule {
             contextual(Any::class, AnySerializer)
-            contextual(EmbedUnion::class, EmbedSerializer)
-            contextual(EmbedViewUnion::class, EmbedViewSerializer)
-            contextual(EmbedRecordViewUnion::class, EmbedRecordViewSerializer)
-
-            contextual(FeedDefsThreadUnion::class, FeedDefsThreadSerializer)
-            contextual(RichtextFacetFeatureUnion::class, RichtextFacetFeatureSerializer)
-            contextual(ActorDefsPreferencesUnion::class, ActorDefsPreferencesSerializer)
         }
     }
 

@@ -24,6 +24,6 @@ class GetRecordTest : AbstractTest() {
                 )
             )
 
-        println(response.data.value?.type)
+        print(checkNotNull(response.data.value))
     }
 }

@@ -5,7 +5,7 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
 
 @Serializable
-class EmbedRecord : EmbedUnion {
+class EmbedRecord : EmbedUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecord

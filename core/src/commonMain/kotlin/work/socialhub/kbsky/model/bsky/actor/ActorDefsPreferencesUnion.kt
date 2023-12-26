@@ -1,13 +1,16 @@
 package work.socialhub.kbsky.model.bsky.actor
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.util.json.ActorDefsPreferencesPolymorphicSerializer
 
 /**
  * @see ActorDefsAdultContentPref
  * @see ActorDefsContentLabelPref
  * @see ActorDefsSavedFeedsPref
  */
-interface ActorDefsPreferencesUnion {
+@Serializable(with = ActorDefsPreferencesPolymorphicSerializer::class)
+abstract class ActorDefsPreferencesUnion {
     @SerialName("\$type")
-    val type: String
+    abstract var type: String
 }

@@ -7,13 +7,13 @@ import work.socialhub.kbsky.BlueskyTypes
  * A facet feature for links.
  */
 @Serializable
-class RichtextFacetLink : RichtextFacetFeatureUnion {
+class RichtextFacetLink : RichtextFacetFeatureUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.RichtextFacet + "#link"
     }
 
-    override val type = TYPE
+    override var type = TYPE
 
     var uri: String? = null
 }

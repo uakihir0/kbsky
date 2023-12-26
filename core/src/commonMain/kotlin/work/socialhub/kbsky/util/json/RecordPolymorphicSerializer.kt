@@ -13,9 +13,11 @@ import work.socialhub.kbsky.model.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.share.RecordUnion
 
-object RecordPolymorphicSerializer : JsonContentPolymorphicSerializer<RecordUnion>(
-    RecordUnion::class
-) {
+object RecordPolymorphicSerializer :
+    JsonContentPolymorphicSerializer<RecordUnion>(
+        RecordUnion::class
+    ) {
+
     override fun selectDeserializer(
         element: JsonElement
     ): DeserializationStrategy<RecordUnion> {

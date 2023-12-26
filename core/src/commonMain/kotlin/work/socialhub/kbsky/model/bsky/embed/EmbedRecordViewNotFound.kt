@@ -4,13 +4,13 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedRecordViewNotFound : EmbedRecordViewUnion {
+class EmbedRecordViewNotFound : EmbedRecordViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecord + "#viewNotFound"
     }
 
-    override val type = TYPE
+    override var type = TYPE
 
     var uri: String? = null
 }

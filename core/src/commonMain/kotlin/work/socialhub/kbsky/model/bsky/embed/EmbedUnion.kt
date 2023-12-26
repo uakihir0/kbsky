@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.model.bsky.embed
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.util.json.EmbedPolymorphicSerializer
 
 /**
  * @see EmbedExternal
@@ -8,7 +10,8 @@ import kotlinx.serialization.SerialName
  * @see EmbedRecord
  * @see EmbedRecordWithMedia
  */
-interface EmbedUnion {
+@Serializable(with = EmbedPolymorphicSerializer::class)
+abstract class EmbedUnion {
     @SerialName("\$type")
-    var type: String
+    abstract var type: String
 }
