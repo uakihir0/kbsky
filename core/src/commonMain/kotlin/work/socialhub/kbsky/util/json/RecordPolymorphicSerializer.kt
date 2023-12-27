@@ -27,7 +27,7 @@ object RecordPolymorphicSerializer :
             GraphBlock.TYPE -> GraphBlock.serializer()
             FeedLike.TYPE -> FeedLike.serializer()
             FeedPost.TYPE -> FeedPost.serializer()
-            FeedRepost.TYPE -> FeedPost.serializer()
+            FeedRepost.TYPE -> FeedRepost.serializer()
             else -> throw Exception("Unknown Item type")
         }
     }

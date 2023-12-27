@@ -6,12 +6,13 @@ import work.socialhub.kbsky.internal._ATProtocol
 import work.socialhub.kbsky.stream.ATProtocolStream
 
 class _ATProtocolStream(
-    uri: String
+    apiUri: String,
+    streamUri: String,
 ) : ATProtocolStream {
 
-    protected val atproto: ATProtocol = _ATProtocol(uri)
+    protected val atproto: ATProtocol = _ATProtocol(apiUri)
 
-    protected val sync: SyncResource = _SyncResource(this.atproto, uri)
+    protected val sync: SyncResource = _SyncResource(this.atproto, streamUri)
 
     /**
      * {@inheritDoc}

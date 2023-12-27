@@ -17,7 +17,6 @@ class _SyncResource internal constructor(
     ): StreamClient {
         val url = ("wss://" + Url(this.uri).host
                 + "/xrpc/" + SyncSubscribeRepos)
-        println(url)
-        return StreamClient(atproto, url)
+        return StreamClient(atproto, url, request.filter)
     }
 }
