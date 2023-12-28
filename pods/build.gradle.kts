@@ -31,8 +31,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core"))
-            implementation(project(":stream"))
+            api(project(":core"))
+            api(project(":stream"))
         }
     }
 }
@@ -41,7 +41,7 @@ tasks.podPublishXCFramework {
     doLast {
         exec {
             executable = "sh"
-            args = listOf("./tool/rename_podfile.sh")
+            args = listOf("../tool/rename_podfile.sh")
         }
     }
 }

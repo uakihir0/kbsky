@@ -1,0 +1,29 @@
+name: Make XCFramework
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Pods XCFramework
+        run: make pods
+
+      - name: Commit Pods to GitHub
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config --global user.email "a.urusihara@gmail.com"
+          git config --global user.name "Akihiro Urushihara"
+          cd ./pods/build/cocoapods/repository/
+          git init
+          git add --all
+          git commit -m "by GitHub Action CI (SHA ${GITHUB_SHA})"
+          git remote add origin https://github.com/uakihir0/kbsky-cocoapods.git
+          git push -f origin main
