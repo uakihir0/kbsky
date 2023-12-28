@@ -1,7 +1,5 @@
 package work.socialhub.kbsky.stream.util
 
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.cbor.Cbor
 import kotlinx.serialization.decodeFromHexString
@@ -48,10 +46,8 @@ class StreamClient(
         }
     }
 
-    fun open() {
-        runBlocking {
-            client.startGet()
-        }
+    suspend fun open() {
+        client.open()
     }
 
     fun close() {
@@ -62,7 +58,7 @@ class StreamClient(
         ExperimentalSerializationApi::class,
         ExperimentalStdlibApi::class
     )
-    fun onMessage(data: ByteArray) {
+    private fun onMessage(data: ByteArray) {
         val cbor = Cbor { ignoreUnknownKeys = true }
         val hex = data.toHexString()
 
@@ -98,38 +94,34 @@ class StreamClient(
                         .dropLastWhile { it.isEmpty() }
                         .toTypedArray()
 
-                    runBlocking {
-                        launch {
-                            try {
-                                // 特定のコレクションのみを取得対象にしている場合はここでフィルタ実行
-                                if (filter.isNotEmpty() && !filter.contains(elements[0])) {
-                                    return@launch
-                                }
-
-                                val response = atproto
-                                    .repo()
-                                    .getRecord(
-                                        RepoGetRecordRequest(
-                                            repo = repo!!,
-                                            collection = elements[0],
-                                            rkey = elements[1]
-                                        )
-                                    )
-
-                                eventCallback?.onEvent(
-                                    response.data.cid,
-                                    response.data.uri,
-                                    response.data.value!!
-                                )
-
-                            } catch (e: Exception) {
-                                println(
-                                    "[Record Deleted?]"
-                                            + " repo: " + repo
-                                            + " path: " + path
-                                )
-                            }
+                    try {
+                        // 特定のコレクションのみを取得対象にしている場合はここでフィルタ実行
+                        if (filter.isNotEmpty() && !filter.contains(elements[0])) {
+                            return
                         }
+
+                        val response = atproto
+                            .repo()
+                            .getRecord(
+                                RepoGetRecordRequest(
+                                    repo = repo!!,
+                                    collection = elements[0],
+                                    rkey = elements[1]
+                                )
+                            )
+
+                        eventCallback?.onEvent(
+                            response.data.cid,
+                            response.data.uri,
+                            response.data.value!!
+                        )
+
+                    } catch (e: Exception) {
+                        println(
+                            "[Record Deleted?]"
+                                    + " repo: " + repo
+                                    + " path: " + path
+                        )
                     }
                 }
 

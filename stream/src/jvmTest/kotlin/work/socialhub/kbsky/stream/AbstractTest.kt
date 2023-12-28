@@ -50,6 +50,7 @@ open class AbstractTest {
         saveFile(accessJwt, "../jwt.txt")
     }
 
+    @Synchronized
     fun print(record: RecordUnion) {
         println("TYPE> " + record.type)
 
