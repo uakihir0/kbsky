@@ -19,7 +19,8 @@ repositories {
 }
 
 dependencies {
-+   implementation("work.socialhub:kbsky:0.0.1-SNAPSHOT")
++   implementation("work.socialhub:kbsky:core:0.0.1-SNAPSHOT")
++   implementation("work.socialhub:kbsky:stream:0.0.1-SNAPSHOT")
 }
 ```
 
@@ -60,6 +61,35 @@ val response = PLCDirectoryFactory
     .DIDDetails(did)
 
 println(checkNotNull(response.data.alsoKnownAs)[0])
+```
+
+### SubscribeRepos (stream)
+
+```kotlin
+val stream = ATProtocolStreamFactory
+    .instance(
+        apiUri = BSKY_SOCIAL.uri,
+        streamUri = BSKY_NETWORK.uri
+    )
+    .sync()
+    .subscribeRepos(
+        SyncSubscribeReposRequest().also {
+            it.filter = listOf(
+                "app.bsky.feed.post"
+            )
+        }
+    )
+
+stream.eventCallback(
+    object : EventCallback {
+        override fun onEvent(
+            cid: String?,
+            uri: String?,
+            record: RecordUnion
+        ) {
+            print(record)
+        }
+    })
 ```
 
 ## License
