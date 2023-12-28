@@ -1,5 +1,5 @@
 allprojects {
-    group = "work.socialhub"
+    group = "work.socialhub.kbsky"
     version = "0.0.1-SNAPSHOT"
 
     repositories {
