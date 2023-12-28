@@ -14,7 +14,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Pods XCFramework
-        run: make pods
+        uses: gradle/gradle-build-action@v2.6.0
+        with:
+          arguments: pods:podPublishXCFramework -x test
 
       - name: Commit Pods to GitHub
         if: github.ref == 'refs/heads/main'
