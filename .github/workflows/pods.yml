@@ -4,6 +4,8 @@ on: [push]
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -27,5 +29,5 @@ jobs:
           git init
           git add --all
           git commit -m "by GitHub Action CI (SHA ${GITHUB_SHA})"
-          git remote add origin https://github.com/uakihir0/kbsky-cocoapods.git
+          git remote add origin https://${GH_TOKEN}@github.com/uakihir0/kbsky-cocoapods.git
           git push -f origin main
