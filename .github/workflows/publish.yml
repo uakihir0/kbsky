@@ -13,6 +13,8 @@ jobs:
         target:
           - core
           - stream
+    env:
+      RUN_TARGET: ${{ matrix.target }}
 
     permissions:
       contents: read
@@ -27,17 +29,9 @@ jobs:
         distribution: 'temurin'
 
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@v2.6.0
-      with:
-        arguments: ${RUN_TARGET}:build -x core:jvmTest
-      env:
-        RUN_TARGET: ${{ matrix.target }}
+      run: |
+        ./gradlew ${RUN_TARGET}:build -x core:jvmTest
 
     - name: Publish to Repsy
-      uses: gradle/gradle-build-action@v2.6.0
-      with:
-        arguments: ${RUN_TARGET}:publish -x core:jvmTest
-      env:
-        USERNAME: ${{ secrets.REPSY_USERNAME }}
-        PASSWORD: ${{ secrets.REPSY_PASSWORD }}
-        RUN_TARGET: ${{ matrix.target }}
+      run: |
+        ./gradlew ${RUN_TARGET}:publish -x core:jvmTest
