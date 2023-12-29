@@ -5,4 +5,7 @@ build:
 pods:
 	./gradlew pods:assembleXCFramework pods:podPublishXCFramework -x test --refresh-dependencies
 
-.PHONY: build pods
+version:
+	 ./gradlew printVersion --no-daemon --console=plain -q
+
+.PHONY: build pods version

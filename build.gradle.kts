@@ -12,3 +12,7 @@ tasks.wrapper {
     gradleVersion = "8.5"
     distributionType = Wrapper.DistributionType.ALL
 }
+
+tasks.create("printVersion") {
+    doLast { println(project.version) }
+}
