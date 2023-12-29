@@ -30,4 +30,4 @@ jobs:
           git add --all
           git commit -m "by GitHub Action CI (SHA ${GITHUB_SHA})"
           git remote add origin https://${GH_TOKEN}@github.com/uakihir0/kbsky-cocoapods.git
-          git push -f origin main
+          git push -f origin HEAD:main
