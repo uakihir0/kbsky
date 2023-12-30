@@ -22,7 +22,7 @@ jobs:
 
       - name: Set Project Version
         run: |
-          project_version=$(./gradlew printVersion --no-daemon --console=plain -q)
+          project_version=$(./gradlew version --no-daemon --console=plain -q)
           echo "PROJECT_VERSION=$project_version" >> $GITHUB_ENV
 
       - name: Commit Pods to GitHub

@@ -13,6 +13,6 @@ tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
-tasks.create("printVersion") {
+tasks.create("version") {
     doLast { println(project.version) }
 }
