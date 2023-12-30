@@ -15,15 +15,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set Project Version
-        run: |
-          project_version=$(./gradlew printVersion --no-daemon --console=plain -q)
-          echo "PROJECT_VERSION=$project_version" >> $GITHUB_ENV
-
       - name: Pods XCFramework
         uses: gradle/gradle-build-action@v2.6.0
         with:
           arguments: pods:podPublishXCFramework -x test
+
+      - name: Set Project Version
+        run: |
+          project_version=$(./gradlew printVersion --no-daemon --console=plain -q)
+          echo "PROJECT_VERSION=$project_version" >> $GITHUB_ENV
 
       - name: Commit Pods to GitHub
         if: github.ref == 'refs/heads/main'
