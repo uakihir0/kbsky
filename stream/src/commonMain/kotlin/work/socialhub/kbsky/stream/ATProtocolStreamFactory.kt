@@ -6,7 +6,7 @@ object ATProtocolStreamFactory {
     fun instance(
         apiUri: String,
         streamUri: String,
-    ): _ATProtocolStream {
+    ): ATProtocolStream {
         return _ATProtocolStream(apiUri, streamUri)
     }
 }

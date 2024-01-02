@@ -1,6 +1,5 @@
 package work.socialhub.kbsky
 
-import work.socialhub.kbsky.stream.ATProtocolStream
 import work.socialhub.kbsky.stream.ATProtocolStreamFactory
 
 class BskyFactory {
@@ -10,13 +9,13 @@ class BskyFactory {
         streamUri: String
     ) = ATProtocolStreamFactory.instance(apiUri, streamUri)
 
-    fun bluesky(
-        apiUri: String
-    ) = BlueskyFactory.instance(apiUri)
+    fun bluesky(uri: String) = BlueskyFactory.instance(uri)
 
-    fun atproto(
-        apiUri: String,
-    ) = ATProtocolFactory.instance(apiUri)
+    fun atproto(uri: String) = ATProtocolFactory.instance(uri)
+
+    fun plc() = PLCDirectoryFactory.instance()
+
+    fun plc(uri: String) = PLCDirectoryFactory.instance(uri)
 
     companion object {
 
@@ -24,15 +23,12 @@ class BskyFactory {
          * 参照を行わないとフレームワーク内でオミットされるため。
          * Because it is omitted in the framework if no reference is made.
          */
-        val references = listOf<Any>(
-            ATProtocolStreamFactory::class,
-            ATProtocolStream::class,
-            ATProtocolFactory::class,
-            ATProtocolTypes::class,
-            BlueskyFactory::class,
-            BlueskyTypes::class,
-            PLCDirectoryFactory::class,
-            PLCDirectory::class,
-        )
+        fun getPLCDirectoryFactory() = PLCDirectoryFactory
+        fun getATProtocolStreamFactory() = ATProtocolStreamFactory
+        fun getATProtocolFactory() = ATProtocolFactory
+        fun getBlueskyFactory() = BlueskyFactory
+
+        fun getATProtocolTypes() = ATProtocolTypes
+        fun getBlueSkyTypes() = BlueskyTypes
     }
 }
