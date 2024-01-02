@@ -6,7 +6,11 @@ import kotlin.native.ObjCName
 
 @Serializable
 @OptIn(ExperimentalObjCName::class)
-@ObjCName(swiftName = "KBskyIdentityResolveHandleResponse")
+@ObjCName(
+    name = "KBskyIdentityResolveHandleResponse",
+    swiftName = "KBskyIdentityResolveHandleResponse",
+    exact = true
+)
 class IdentityResolveHandleResponse {
     var did: String? = null
 }

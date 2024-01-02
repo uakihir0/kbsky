@@ -34,8 +34,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(project(":core"))
-            api(project(":stream"))
+            implementation(project(":core"))
+            implementation(project(":stream"))
         }
     }
 }
