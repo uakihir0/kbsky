@@ -17,6 +17,7 @@ kotlin {
         macosArm64(),
     ).forEach {
         it.binaries.framework {
+            freeCompilerArgs += listOf("-module-name", "KBsky")
             baseName = "kbsky"
             xcf.add(this)
         }
