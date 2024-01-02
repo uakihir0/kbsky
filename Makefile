@@ -3,7 +3,7 @@ build:
 	./gradlew stream:clean stream:build  -x test --refresh-dependencies
 
 pods:
-	./gradlew pods:assembleXCFramework pods:podPublishXCFramework -x test --refresh-dependencies
+	./gradlew pods:assembleKbskyXCFramework pods:podPublishXCFramework -x test --refresh-dependencies
 
 version:
 	 ./gradlew printVersion --no-daemon --console=plain -q
