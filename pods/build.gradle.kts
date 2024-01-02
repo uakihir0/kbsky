@@ -8,7 +8,7 @@ plugins {
 
 kotlin {
 
-    val xcf = XCFramework()
+    val xcf = XCFramework("kbsky")
     listOf(
         iosX64(),
         iosArm64(),
