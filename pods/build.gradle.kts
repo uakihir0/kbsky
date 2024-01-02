@@ -17,6 +17,7 @@ kotlin {
         macosArm64(),
     ).forEach {
         it.binaries.framework {
+            baseName = "kbsky"
             xcf.add(this)
         }
     }
