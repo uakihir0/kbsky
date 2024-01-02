@@ -1,3 +1,5 @@
+> [日本語](./docs/README_ja.md)
+
 # kbsky
 
 ![badge][badge-js]
@@ -11,6 +13,9 @@ Therefore, this library is available on platforms supported by Kotlin Multiplatf
 The behavior on each platform depends on [khttpclient].
 
 ## Usage
+
+The following is how to use Gradle with Kotlin on supported platforms.
+**For Apple platform, please refer to [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods).**
 
 ```kotlin:build.gradle.kts
 repositories {

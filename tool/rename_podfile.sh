@@ -32,3 +32,9 @@ cd "$BASE_PATH" || exit
 cd $BUILD_PATH/cocoapods/publish/release || exit
 cp -r kbsky.xcframework ../../repository/release/kbsky.xcframework
 
+# Copy README
+cd "$BASE_PATH" || exit
+cd ../ || exit
+cp ./LICENSE ./pods/build/cocoapods/repository/LICENSE
+cp ./docs/pods/README.md ./pods/build/cocoapods/repository/README.md
+cp ./docs/pods/README_ja.md ./pods/build/cocoapods/repository/README_ja.md

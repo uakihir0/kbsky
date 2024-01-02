@@ -16,8 +16,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Pods XCFramework
-        run: |
-          make pods
+        uses: gradle/gradle-build-action@v2.6.0
+        with:
+          arguments: pods:assembleKbskyXCFramework pods:podPublishXCFramework -x test
 
       - name: Set Project Version
         run: |
