@@ -29,6 +29,9 @@ kotlin {
         homepage = "https://github.com/uakihir0/kbsky"
         authors = "Akihiro Urushihara"
         license = "MIT"
+        framework {
+            baseName = "kbsky"
+        }
     }
 
     sourceSets {

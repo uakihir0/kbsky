@@ -1,5 +1,6 @@
 package work.socialhub.kbsky
 
+import work.socialhub.kbsky.stream.ATProtocolStream
 import work.socialhub.kbsky.stream.ATProtocolStreamFactory
 
 class BskyFactory {
@@ -25,6 +26,7 @@ class BskyFactory {
          */
         val references = listOf<Any>(
             ATProtocolStreamFactory::class,
+            ATProtocolStream::class,
             ATProtocolFactory::class,
             ATProtocolTypes::class,
             BlueskyFactory::class,
