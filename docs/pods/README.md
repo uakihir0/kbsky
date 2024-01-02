@@ -1,6 +1,6 @@
 > [日本語](./README_ja.md)
 
-# Bsky Cocoapods
+# kbsky cocoapods
 
 This repository is the Cocoapods repository for [kbsky].
 [kbsky] is a Bluesky/ATProtocol client library created using Kotlin Multiplatform.

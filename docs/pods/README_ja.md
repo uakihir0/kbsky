@@ -1,4 +1,4 @@
-# Bsky Cocoapods
+# kbsky cocoapods
 
 本レポジトリは、[kbsky] の Cocoapods レポジトリです。[kbsky] は Kotlin Multiplatform を用いて作成された Bluesky/ATProtocol クライアントライブラリです。
 そのため、iOS 等の Apple Device でも使用でもビルドして使用することができます。ここでは、XCFramework としてビルドしたものを Cocoapods 経由で配布しています。
