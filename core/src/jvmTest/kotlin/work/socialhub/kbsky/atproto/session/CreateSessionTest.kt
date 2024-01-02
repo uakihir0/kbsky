@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.atproto.session
 
+import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.atproto.server.ServerCreateSessionRequest
@@ -10,7 +11,7 @@ class CreateSessionTest : AbstractTest() {
 
     @Test
     fun testCreateSession() {
-        val response = BlueskyFactory
+        val response = ATProtocolFactory
             .instance(BSKY_SOCIAL.uri)
             .server()
             .createSession(

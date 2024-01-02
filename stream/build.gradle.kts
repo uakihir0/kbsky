@@ -8,11 +8,21 @@ kotlin {
     jvmToolchain(17)
 
     jvm { withJava() }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-    macosX64()
-    macosArm64()
+    iosX64 {
+        binaries.framework { baseName = "KBskyStream" }
+    }
+    iosArm64 {
+        binaries.framework { baseName = "KBskyStream" }
+    }
+    iosSimulatorArm64 {
+        binaries.framework { baseName = "KBskyStream" }
+    }
+    macosX64 {
+        binaries.framework { baseName = "KBskyStream" }
+    }
+    macosArm64 {
+        binaries.framework { baseName = "KBskyStream" }
+    }
 
     sourceSets {
         val kotestVersion = "5.8.0"

@@ -17,11 +17,13 @@ kotlin {
         macosArm64(),
     ).forEach {
         it.binaries.framework {
+            baseName = "kbsky"
             xcf.add(this)
         }
     }
 
     cocoapods {
+        name = "kbsky"
         version = "0.0.1"
         summary = "kbsky is Bluesky/ATProtocol library for Kotlin Multiplatform."
         homepage = "https://github.com/uakihir0/kbsky"

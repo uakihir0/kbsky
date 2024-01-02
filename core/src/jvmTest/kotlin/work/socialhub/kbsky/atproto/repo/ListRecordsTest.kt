@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.atproto.repo
 
+import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
@@ -14,7 +15,7 @@ class ListRecordsTest : AbstractTest() {
     @Test
     fun testListRecords() {
 
-        val response = BlueskyFactory
+        val response = ATProtocolFactory
             .instance(BSKY_SOCIAL.uri)
             .repo()
             .listRecords(

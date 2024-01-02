@@ -8,11 +8,21 @@ kotlin {
     jvmToolchain(17)
 
     jvm { withJava() }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-    macosX64()
-    macosArm64()
+    iosX64 {
+        binaries.framework { baseName = "KBsky" }
+    }
+    iosArm64 {
+        binaries.framework { baseName = "KBsky" }
+    }
+    iosSimulatorArm64 {
+        binaries.framework { baseName = "KBsky" }
+    }
+    macosX64 {
+        binaries.framework { baseName = "KBsky" }
+    }
+    macosArm64 {
+        binaries.framework { baseName = "KBsky" }
+    }
 
     sourceSets {
         val kotestVersion = "5.8.0"

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.atproto.repo
 
+import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
@@ -13,7 +14,7 @@ class GetRecordTest : AbstractTest() {
     fun testGetRecord() {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jqcyfp3zt22s"
 
-        val response = BlueskyFactory
+        val response = ATProtocolFactory
             .instance(BSKY_SOCIAL.uri)
             .repo()
             .getRecord(
