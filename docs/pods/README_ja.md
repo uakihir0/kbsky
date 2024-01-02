@@ -35,7 +35,19 @@ Objective-C でも使用可能ですが、以下に Swift での使用方法を�
 詳しい使い方については、[kbsky] の README も合わせて確認してください。
 
 ```swift
+let response = BskyFactory()
+  .atproto(apiUri: "https://bsky.social/")
+  .repo()
+  .getRecord(request:
+    CoreRepoGetRecordRequest(
+      repo: "uakihir0.com",
+      collection: "app.bsky.feed.post",
+      rkey: nil,
+      uri: "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jqcyfp3zt22s"
+    )
+  )
 
+print(response.data?.uri ?? "nil") 
 ```
 
 ## ライセンス
