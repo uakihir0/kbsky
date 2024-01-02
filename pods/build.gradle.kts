@@ -17,6 +17,8 @@ kotlin {
         macosArm64(),
     ).forEach {
         it.binaries.framework {
+            export(project(":core"))
+            export(project(":stream"))
             baseName = "kbsky"
             xcf.add(this)
         }
@@ -34,8 +36,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core"))
-            implementation(project(":stream"))
+            api(project(":core"))
+            api(project(":stream"))
         }
     }
 }
