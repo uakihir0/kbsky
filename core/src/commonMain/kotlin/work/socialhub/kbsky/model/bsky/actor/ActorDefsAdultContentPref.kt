@@ -2,7 +2,6 @@ package work.socialhub.kbsky.model.bsky.actor
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
-import kotlin.properties.Delegates.notNull
 
 @Serializable
 class ActorDefsAdultContentPref : ActorDefsPreferencesUnion() {
@@ -13,5 +12,5 @@ class ActorDefsAdultContentPref : ActorDefsPreferencesUnion() {
 
     override var type = TYPE
 
-    var enabled by notNull<Boolean>()
+    var enabled: Boolean = false
 }

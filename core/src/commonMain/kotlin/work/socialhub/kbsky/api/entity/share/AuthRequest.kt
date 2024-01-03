@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
-import kotlin.properties.Delegates
 
 open class AuthRequest(
     val accessJwt: String
@@ -29,8 +28,8 @@ open class AuthRequest(
         lateinit var scope: String
         lateinit var sub: String
         lateinit var aud: String
-        var iat by Delegates.notNull<Int>()
-        var exp by Delegates.notNull<Int>()
+        var iat: Int = -1
+        var exp: Int = -1
     }
 }
 

@@ -17,11 +17,10 @@ class ListNotificationsTest : AbstractTest() {
                 NotificationListNotificationsRequest(accessJwt)
             )
 
-        checkNotNull(response.data.notifications)
-            .forEach { it ->
-                println("|NOTIFICATION|-----------------------------------------")
-                println("REASON> " + it.reason)
-                print(it.record)
-            }
+        response.data.notifications.forEach {
+            println("|NOTIFICATION|-----------------------------------------")
+            println("REASON> " + it.reason)
+            print(it.record)
+        }
     }
 }

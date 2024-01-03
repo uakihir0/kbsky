@@ -6,17 +6,20 @@ import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
 class NotificationListNotificationsNotification {
-    var uri: String? = null
-    var cid: String? = null
-    var author: ActorDefsProfileView? = null
+    lateinit var uri: String
+    lateinit var cid: String
+    lateinit var author: ActorDefsProfileView
 
     /**
      * Expected values are 'like', 'repost', 'follow
      * (like, repost, follow, mention, reply, quote)
      */
-    var reason: String? = null
+    lateinit var reason: String
     var reasonSubject: String? = null
-    var record: RecordUnion? = null
-    var isRead: Boolean? = null
-    var indexedAt: String? = null
+
+    lateinit var record: RecordUnion
+    var isRead: Boolean = false
+    lateinit var indexedAt: String
+
+    // TODO: labels
 }
