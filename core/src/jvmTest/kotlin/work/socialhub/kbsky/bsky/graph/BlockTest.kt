@@ -12,30 +12,26 @@ class BlockTest : AbstractTest() {
     @Test
     fun testBlock() {
         val did = "did:plc:oc6vwdlmk2kqyida5i74d3p5"
-        var uri: String
 
-        run {
-            // Block
-            val response = BlueskyFactory
-                .instance(Service.BSKY_SOCIAL.uri)
-                .graph()
-                .block(
-                    GraphBlockRequest(accessJwt).also {
-                        it.subject = did
-                    }
-                )
-            uri = checkNotNull(response.data.uri)
-        }
+        // Block
+        val response = BlueskyFactory
+            .instance(Service.BSKY_SOCIAL.uri)
+            .graph()
+            .block(
+                GraphBlockRequest(accessJwt).also {
+                    it.subject = did
+                }
+            )
 
-        run { // DeleteBlock
-            BlueskyFactory
-                .instance(Service.BSKY_SOCIAL.uri)
-                .graph()
-                .deleteBlock(
-                    GraphDeleteBlockRequest(accessJwt).also {
-                        it.uri = uri
-                    }
-                );
-        }
+        val uri = checkNotNull(response.data.uri)
+
+        BlueskyFactory
+            .instance(Service.BSKY_SOCIAL.uri)
+            .graph()
+            .deleteBlock(
+                GraphDeleteBlockRequest(accessJwt).also {
+                    it.uri = uri
+                }
+            )
     }
 }

@@ -4,9 +4,8 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 import work.socialhub.kbsky.model.bsky.actor.*
+import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object ActorDefsPreferencesPolymorphicSerializer :
     JsonContentPolymorphicSerializer<ActorDefsPreferencesUnion>(
@@ -16,7 +15,7 @@ object ActorDefsPreferencesPolymorphicSerializer :
     override fun selectDeserializer(
         element: JsonElement
     ): DeserializationStrategy<ActorDefsPreferencesUnion> {
-        return when (element.jsonObject["\$type"]?.jsonPrimitive?.content) {
+        return when (val type = element.type()) {
             ActorDefsPersonalDetailsPref.TYPE -> ActorDefsPersonalDetailsPref.serializer()
             ActorDefsAdultContentPref.TYPE -> ActorDefsAdultContentPref.serializer()
             ActorDefsContentLabelPref.TYPE -> ActorDefsContentLabelPref.serializer()
@@ -24,9 +23,8 @@ object ActorDefsPreferencesPolymorphicSerializer :
             ActorDefsFeedViewPref.TYPE -> ActorDefsFeedViewPref.serializer()
             ActorDefsThreadViewPref.TYPE -> ActorDefsThreadViewPref.serializer()
             else -> {
-                val type = element.jsonObject["\$type"]?.jsonPrimitive?.content
                 println("[Warning] Unknown Item type: $type (ActorDefsPreferencesUnion)")
-                return Unknown.serializer()
+                Unknown.serializer()
             }
         }
     }

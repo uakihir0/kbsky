@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.util.json
 
 import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.jsonObject
@@ -22,6 +23,9 @@ object DidDocPolymorphicSerializer :
         }
 
         println("[Warning] Unknown Item type (DidDocPolymorphicSerializer)")
-        return DidDocUnion.serializer()
+        return Unknown.serializer()
     }
+
+    @Serializable
+    class Unknown : DidDocUnion()
 }

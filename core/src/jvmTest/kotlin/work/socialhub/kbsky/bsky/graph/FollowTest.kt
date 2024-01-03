@@ -12,32 +12,27 @@ class FollowTest : AbstractTest() {
     @Test
     fun testFollow() {
         val did = "did:plc:oc6vwdlmk2kqyida5i74d3p5"
-        var uri: String
 
-        run {
+        // Follow
+        val response = BlueskyFactory
+            .instance(BSKY_SOCIAL.uri)
+            .graph().follow(
+                GraphFollowRequest(accessJwt).also {
+                    it.subject = did
+                }
+            )
 
-            // Follow
-            val response = BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
-                .graph().follow(
-                    GraphFollowRequest(accessJwt).also {
-                        it.subject = did
-                    }
-                )
+        val uri = checkNotNull(response.data.uri)
+        println(uri)
 
-            uri = checkNotNull(response.data.uri)
-            println(uri)
-        }
-
-        run { // DeleteFollow
-            BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
-                .graph()
-                .deleteFollow(
-                    GraphDeleteFollowRequest(accessJwt).also {
-                        it.uri = uri
-                    }
-                )
-        }
+        // DeleteFollow
+        BlueskyFactory
+            .instance(BSKY_SOCIAL.uri)
+            .graph()
+            .deleteFollow(
+                GraphDeleteFollowRequest(accessJwt).also {
+                    it.uri = uri
+                }
+            )
     }
 }
