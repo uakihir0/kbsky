@@ -130,8 +130,8 @@ class _GraphResource(
                     .url(xrpc(uri, GraphMuteActor))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .get()
+                    .json(request.toMappedJson())
+                    .post()
             }
         }
     }
@@ -146,8 +146,8 @@ class _GraphResource(
                     .url(xrpc(uri, GraphUnmuteActor))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .get()
+                    .json(request.toMappedJson())
+                    .post()
             }
         }
     }

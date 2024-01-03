@@ -17,7 +17,7 @@ class GetMutesTest : AbstractTest() {
                 GraphGetMutesRequest(accessJwt)
             )
 
-        checkNotNull(response.data.mutes)
+        response.data.mutes
             .forEach(this::print)
     }
 }

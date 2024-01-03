@@ -1,12 +1,11 @@
 package work.socialhub.kbsky.api.entity.bsky.graph
 
+import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
 
+@Serializable
 class GraphGetFollowersResponse {
-    // region
-    var subject: ActorDefsProfileView? = null
     var cursor: String? = null
-
-    // endregion
-    var followers: List<ActorDefsProfileView>? = null
+    lateinit var subject: ActorDefsProfileView
+    lateinit var followers: List<ActorDefsProfileView>
 }

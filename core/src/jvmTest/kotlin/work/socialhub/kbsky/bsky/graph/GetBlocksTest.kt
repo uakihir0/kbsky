@@ -17,7 +17,7 @@ class GetBlocksTest : AbstractTest() {
                 GraphGetBlocksRequest(accessJwt)
             )
 
-        checkNotNull(response.data.blocks)
+        response.data.blocks
             .forEach { print(it) }
     }
 }

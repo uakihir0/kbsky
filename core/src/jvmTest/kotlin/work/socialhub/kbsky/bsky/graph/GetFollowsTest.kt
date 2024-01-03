@@ -15,11 +15,11 @@ class GetFollowsTest : AbstractTest() {
             .graph()
             .getFollows(
                 GraphGetFollowsRequest(accessJwt).also {
-                    it.actor = "uakihir0.bsky.social"
+                    it.actor = "uakihir0.com"
                 }
             )
 
-        checkNotNull(response.data.follows)
+        response.data.follows
             .forEach { print(it) }
     }
 }

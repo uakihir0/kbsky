@@ -5,7 +5,7 @@ import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
 
 @Serializable
 class GraphGetFollowsResponse {
-    var subject: ActorDefsProfileView? = null
     var cursor: String? = null
-    var follows: List<ActorDefsProfileView>? = null
+    lateinit var subject: ActorDefsProfileView
+    lateinit var follows: List<ActorDefsProfileView>
 }
