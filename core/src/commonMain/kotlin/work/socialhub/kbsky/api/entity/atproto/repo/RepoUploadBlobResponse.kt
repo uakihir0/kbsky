@@ -5,5 +5,5 @@ import work.socialhub.kbsky.model.share.Blob
 
 @Serializable
 class RepoUploadBlobResponse {
-    var blob: Blob? = null
+    lateinit var blob: Blob
 }

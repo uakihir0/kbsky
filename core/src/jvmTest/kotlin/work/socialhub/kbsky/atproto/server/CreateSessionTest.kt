@@ -1,8 +1,7 @@
-package work.socialhub.kbsky.atproto.session
+package work.socialhub.kbsky.atproto.server
 
 import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.atproto.server.ServerCreateSessionRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
@@ -25,6 +24,10 @@ class CreateSessionTest : AbstractTest() {
         println(response.data.refreshJwt)
         println(response.data.handle)
         println(response.data.did)
+
+        println(response.data.email)
+        println(response.data.emailConfirmed)
+        println(response.data.didDoc?.DIDDetails()?.id)
 
         // Save the accessJwt for testing other APIs
         accessJwt = checkNotNull(response.data.accessJwt)

@@ -45,13 +45,14 @@ class PostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .repo()
             .uploadBlob(
-                RepoUploadBlobRequest(accessJwt).also {
-                    it.name = "icon.png"
-                    it.bytes = stream.readBytes()
-                }
+                RepoUploadBlobRequest(
+                    accessJwt = accessJwt,
+                    name = "icon.png",
+                    bytes = stream.readBytes(),
+                )
             )
 
-        val link = checkNotNull(response1.data.blob?.ref?.link)
+        val link = checkNotNull(response1.data.blob.ref?.link)
         println(link)
 
 

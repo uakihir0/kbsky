@@ -5,7 +5,7 @@ import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
 class RepoGetRecordResponse {
-    var uri: String? = null
+    lateinit var uri: String
     var cid: String? = null
-    var value: RecordUnion? = null
+    lateinit var value: RecordUnion
 }

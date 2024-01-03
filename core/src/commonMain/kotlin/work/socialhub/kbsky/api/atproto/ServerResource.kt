@@ -9,15 +9,18 @@ import work.socialhub.kbsky.api.entity.share.Response
 
 /**
  * ATProtocol/Server
- * [Reference](https://atproto.com/lexicons/com-atproto-server)
+ * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/com/atproto/server)
  */
 interface ServerResource {
+
     /**
+     * TODO:
      * Create an account.
      */
     fun createAccount()
 
     /**
+     * TODO:
      * Create an invite code.
      */
     fun createInviteCode()
@@ -30,6 +33,7 @@ interface ServerResource {
     ): Response<ServerCreateSessionResponse>
 
     /**
+     * TODO:
      * Delete a user account with a token and password.
      */
     fun deleteAccount()
@@ -47,6 +51,7 @@ interface ServerResource {
     fun describeServer()
 
     /**
+     * TODO:
      * Get information about the current session.
      */
     fun getSession(
@@ -61,16 +66,19 @@ interface ServerResource {
     ): Response<ServerRefreshSessionResponse>
 
     /**
+     * TODO:
      * Initiate a user account deletion via email.
      */
     fun requestAccountDelete()
 
     /**
+     * TODO:
      * Initiate a user account password reset via email.
      */
     fun requestPasswordReset()
 
     /**
+     * TODO:
      * Reset a user account password using a token.
      */
     fun resetPassword()

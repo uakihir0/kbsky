@@ -28,7 +28,7 @@ class ListRecordsTest : AbstractTest() {
                 }
             )
 
-        response.data.records?.forEach {
+        response.data.records.forEach {
             print(checkNotNull(it.value))
         }
     }
@@ -46,7 +46,7 @@ class ListRecordsTest : AbstractTest() {
                 )
             )
 
-        response.data.records?.forEach {
+        response.data.records.forEach {
             print(checkNotNull(it.value))
         }
     }
@@ -64,7 +64,7 @@ class ListRecordsTest : AbstractTest() {
                 )
             )
 
-        response.data.records?.forEach {
+        response.data.records.forEach {
             print(checkNotNull(it.value))
         }
     }

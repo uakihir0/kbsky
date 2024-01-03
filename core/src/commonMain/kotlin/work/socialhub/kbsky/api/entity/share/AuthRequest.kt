@@ -4,7 +4,7 @@ import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-open class AuthRequest protected constructor(
+open class AuthRequest(
     val accessJwt: String
 ) {
     val bearerToken: String

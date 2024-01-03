@@ -5,11 +5,12 @@ import work.socialhub.kbsky.api.entity.share.Response
 
 /**
  * ATProtocol/Repo
- * [Reference](https://atproto.com/lexicons/com-atproto-repo)
+ * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/com/atproto/repo)
  */
 interface RepoResource {
 
     /**
+     * TODO:
      * Apply a batch transaction of creates, updates, and deletes.
      */
     fun applyWrites()
@@ -29,6 +30,7 @@ interface RepoResource {
     ): Response<Unit>
 
     /**
+     * TODO:
      * Get information about the repo, including the list of collections.
      */
     fun describeRepo()
@@ -48,6 +50,7 @@ interface RepoResource {
     ): Response<RepoListRecordsResponse>
 
     /**
+     * TODO:
      * Write a record, creating or updating it as needed.
      */
     fun putRecord()

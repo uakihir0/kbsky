@@ -6,9 +6,10 @@ import work.socialhub.kbsky.api.entity.share.Response
 
 /**
  * ATProtocol/Identity
- * [Reference](https://atproto.com/lexicons/com-atproto-identity)
+ * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/com/atproto/identity)
  */
 interface IdentityResource {
+
     /**
      * Provides the DID of a repo.
      */

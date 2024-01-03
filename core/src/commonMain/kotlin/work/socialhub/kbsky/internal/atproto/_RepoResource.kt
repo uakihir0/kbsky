@@ -106,8 +106,8 @@ class _RepoResource(
                     .accept(MediaType.JSON)
                     .file(
                         key = "file",
-                        fileName = request.name!!,
-                        fileBody = request.bytes!!
+                        fileName = request.name,
+                        fileBody = request.bytes
                     )
                     .post()
             }

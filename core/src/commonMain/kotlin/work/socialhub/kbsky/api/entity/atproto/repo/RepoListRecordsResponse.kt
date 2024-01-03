@@ -6,5 +6,5 @@ import work.socialhub.kbsky.model.atproto.repo.RepoListRecordsRecord
 @Serializable
 class RepoListRecordsResponse {
     var cursor: String? = null
-    var records: List<RepoListRecordsRecord>? = null
+    lateinit var records: List<RepoListRecordsRecord>
 }

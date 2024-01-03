@@ -18,10 +18,11 @@ class UploadBlobTest : AbstractTest() {
             .instance(Service.BSKY_SOCIAL.uri)
             .repo()
             .uploadBlob(
-                RepoUploadBlobRequest(accessJwt).also {
-                    it.name = "icon.png"
-                    it.bytes = stream.readBytes()
-                }
+                RepoUploadBlobRequest(
+                    accessJwt = accessJwt,
+                    name = "icon.png",
+                    bytes = stream.readBytes(),
+                )
             )
 
         println(response.data.blob)
