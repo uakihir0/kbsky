@@ -1,8 +1,8 @@
-package work.socialhub.kbsky.api.entity.bsky.undoc
+package work.socialhub.kbsky.api.entity.bsky.unspecced
 
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class UndocSearchFeedsRequest : MapRequest {
+class UnspeccedSearchFeedsRequest : MapRequest {
     var q: String? = null
 
     override fun toMap(): Map<String, Any> {

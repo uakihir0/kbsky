@@ -1,8 +1,8 @@
-package work.socialhub.kbsky.bsky.undoc
+package work.socialhub.kbsky.bsky.unspecced
 
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
-import work.socialhub.kbsky.api.entity.bsky.undoc.UndocSearchFeedsRequest
+import work.socialhub.kbsky.api.entity.bsky.unspecced.UnspeccedSearchFeedsRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
@@ -12,9 +12,9 @@ class SearchFeedsTest : AbstractTest() {
     fun testSearchFeeds() {
         val feeds = BlueskyFactory
             .instance(BSKY_SOCIAL.uri)
-            .undoc()
+            .unspecced()
             .searchFeeds(
-                UndocSearchFeedsRequest().also {
+                UnspeccedSearchFeedsRequest().also {
                     it.q = "SocialHub"
                 }
             )

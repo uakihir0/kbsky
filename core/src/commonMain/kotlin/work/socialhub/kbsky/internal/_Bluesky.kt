@@ -10,7 +10,7 @@ class _Bluesky(uri: String) : _ATProtocol(uri), Bluesky {
     protected val feed: FeedResource = _FeedResource(uri)
     protected val graph: GraphResource = _GraphResource(uri)
     protected val notification: NotificationResource = _NotificationResource(uri)
-    protected val undoc: UndocumentedResource = _UndocumentedResource(uri)
+    protected val undoc: UnspeccedResource = _UnspeccedResource(uri)
 
     /**
      * {@inheritDoc}
@@ -35,5 +35,5 @@ class _Bluesky(uri: String) : _ATProtocol(uri), Bluesky {
     /**
      * {@inheritDoc}
      */
-    override fun undoc() = undoc
+    override fun unspecced() = undoc
 }

@@ -3,24 +3,24 @@ package work.socialhub.kbsky.internal.bsky
 import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.BlueskyTypes.UnspeccedGetPopular
-import work.socialhub.kbsky.api.bsky.UndocumentedResource
-import work.socialhub.kbsky.api.entity.bsky.undoc.UndocGetPopularRequest
-import work.socialhub.kbsky.api.entity.bsky.undoc.UndocGetPopularResponse
-import work.socialhub.kbsky.api.entity.bsky.undoc.UndocSearchFeedsRequest
-import work.socialhub.kbsky.api.entity.bsky.undoc.UndocSearchFeedsResponse
+import work.socialhub.kbsky.api.bsky.UnspeccedResource
+import work.socialhub.kbsky.api.entity.bsky.unspecced.UnspeccedGetPopularRequest
+import work.socialhub.kbsky.api.entity.bsky.unspecced.UnspeccedGetPopularResponse
+import work.socialhub.kbsky.api.entity.bsky.unspecced.UnspeccedSearchFeedsRequest
+import work.socialhub.kbsky.api.entity.bsky.unspecced.UnspeccedSearchFeedsResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
-class _UndocumentedResource(
+class _UnspeccedResource(
     private val uri: String
-) : UndocumentedResource {
+) : UnspeccedResource {
 
     override fun searchFeeds(
-        request: UndocSearchFeedsRequest
-    ): Response<List<UndocSearchFeedsResponse>> {
+        request: UnspeccedSearchFeedsRequest
+    ): Response<List<UnspeccedSearchFeedsResponse>> {
 
         return proceed {
             runBlocking {
@@ -42,8 +42,8 @@ class _UndocumentedResource(
     }
 
     override fun getPopular(
-        request: UndocGetPopularRequest
-    ): Response<UndocGetPopularResponse> {
+        request: UnspeccedGetPopularRequest
+    ): Response<UnspeccedGetPopularResponse> {
 
         return proceed {
             runBlocking {

@@ -1,10 +1,10 @@
-package work.socialhub.kbsky.api.entity.bsky.undoc
+package work.socialhub.kbsky.api.entity.bsky.unspecced
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.bsky.feed.FeedDefsFeedViewPost
 
 @Serializable
-class UndocGetPopularResponse {
+class UnspeccedGetPopularResponse {
     var cursor: String? = null
-    var feed: List<FeedDefsFeedViewPost>? = null
+    lateinit var feed: List<FeedDefsFeedViewPost>
 }

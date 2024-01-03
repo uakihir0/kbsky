@@ -7,5 +7,5 @@ interface Bluesky : ATProtocol {
     fun feed(): FeedResource
     fun graph(): GraphResource
     fun notification(): NotificationResource
-    fun undoc(): UndocumentedResource
+    fun unspecced(): UnspeccedResource
 }
