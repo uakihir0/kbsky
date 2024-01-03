@@ -5,6 +5,7 @@ import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedDeleteLikeRequest
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedLikeRequest
 import work.socialhub.kbsky.domain.Service
+import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
 import kotlin.test.Test
 
@@ -17,7 +18,7 @@ class LikeTest : AbstractTest() {
 
         val ref = RepoStrongRef(uri, cid)
         val response = BlueskyFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+            .instance(BSKY_SOCIAL.uri)
             .feed()
             .like(
                 FeedLikeRequest(accessJwt).also {
@@ -35,7 +36,7 @@ class LikeTest : AbstractTest() {
 
         val ref = RepoStrongRef(uri, cid)
         val response = BlueskyFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+            .instance(BSKY_SOCIAL.uri)
             .feed()
             .like(
                 FeedLikeRequest(accessJwt).also {
@@ -46,7 +47,7 @@ class LikeTest : AbstractTest() {
         println(response.data.uri)
 
         BlueskyFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+            .instance(BSKY_SOCIAL.uri)
             .feed()
             .deleteLike(
                 FeedDeleteLikeRequest(accessJwt).also {

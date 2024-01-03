@@ -31,7 +31,7 @@ object _InternalUtility {
     }
 
     val dateFormat = DateFormatter(
-        format = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+        format = "yyyy-MM-ddTHH:mm:ss.SSSZ",
         timezone = TimeZone.UTC,
     )
 
@@ -42,6 +42,7 @@ object _InternalUtility {
                 return Response(Unit, "")
             }
             // TODO: include error response in exception
+            println(response.stringBody())
             throw ATProtocolException(response.stringBody())
         } catch (e: Exception) {
             throw handleError(e)

@@ -89,7 +89,6 @@ class _FeedResource(
                     .url(xrpc(uri, FeedGetPosts))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .queries(request.toMap())
                     .also { req ->
                         request.uris?.forEach {
                             req.query("uris", it)
@@ -190,7 +189,6 @@ class _FeedResource(
                     .url(xrpc(uri, FeedGetFeedGenerators))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .queries(request.toMap())
                     .also { req ->
                         request.feeds?.forEach {
                             req.query("feeds", it)
@@ -228,13 +226,13 @@ class _FeedResource(
         request: FeedDeleteLikeRequest
     ): Response<Unit> {
 
-        return proceed {
+        return proceedUnit {
             runBlocking {
                 val record = RepoDeleteRecordRequest(
                     accessJwt = request.accessJwt,
                     repo = request.did!!,
                     collection = FeedLike,
-                    rkey = request.rkey!!,
+                    rkey = request.rkey()!!,
                 )
 
                 HttpRequest()
@@ -280,7 +278,7 @@ class _FeedResource(
                     accessJwt = request.accessJwt,
                     repo = request.did!!,
                     collection = FeedPost,
-                    rkey = request.rkey!!,
+                    rkey = request.rkey()!!,
                 )
 
                 HttpRequest()
@@ -326,7 +324,7 @@ class _FeedResource(
                     accessJwt = request.accessJwt,
                     repo = request.did!!,
                     collection = FeedRepost,
-                    rkey = request.rkey!!,
+                    rkey = request.rkey()!!,
                 )
 
                 HttpRequest()

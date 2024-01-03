@@ -6,5 +6,5 @@ import work.socialhub.kbsky.model.bsky.feed.FeedDefsGeneratorView
 @Serializable
 class FeedGetActorFeedsResponse {
     var cursor: String? = null
-    var feeds: List<FeedDefsGeneratorView>? = null
+    lateinit var feeds: List<FeedDefsGeneratorView>
 }

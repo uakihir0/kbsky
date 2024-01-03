@@ -1,13 +1,14 @@
 package work.socialhub.kbsky.util.json
 
 import kotlinx.serialization.DeserializationStrategy
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetFeatureUnion
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetLink
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetMention
+import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetTag
+import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object RichtextFacetFeaturePolymorphicSerializer :
     JsonContentPolymorphicSerializer<RichtextFacetFeatureUnion>(
@@ -17,10 +18,19 @@ object RichtextFacetFeaturePolymorphicSerializer :
     override fun selectDeserializer(
         element: JsonElement
     ): DeserializationStrategy<RichtextFacetFeatureUnion> {
-        return when (element.jsonObject["\$type"]?.jsonPrimitive?.content) {
+        return when (val type = element.type()) {
             RichtextFacetLink.TYPE -> RichtextFacetLink.serializer()
             RichtextFacetMention.TYPE -> RichtextFacetMention.serializer()
-            else -> throw Exception("Unknown Item type")
+            RichtextFacetTag.TYPE -> RichtextFacetTag.serializer()
+            else -> {
+                println("[Warning] Unknown Item type: $type (RichtextFacetFeatureUnion)")
+                Unknown.serializer()
+            }
         }
+    }
+
+    @Serializable
+    class Unknown : RichtextFacetFeatureUnion() {
+        override var type: String = "Unknown"
     }
 }

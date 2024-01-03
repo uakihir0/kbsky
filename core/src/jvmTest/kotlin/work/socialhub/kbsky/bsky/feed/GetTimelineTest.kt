@@ -19,7 +19,7 @@ class GetTimelineTest : AbstractTest() {
                 }
             )
 
-        checkNotNull(response.data.feed).forEach {
+        response.data.feed.forEach {
             print(it.post)
         }
 
@@ -33,7 +33,7 @@ class GetTimelineTest : AbstractTest() {
                 }
             )
 
-        checkNotNull(response2.data.feed).forEach {
+        response2.data.feed.forEach {
             print(it.post)
         }
     }

@@ -16,11 +16,13 @@ class GetActorFeedsTest : AbstractTest() {
             .getActorFeeds(
                 FeedGetActorFeedsRequest(accessJwt).also {
                     it.actor = "uakihir0.com"
+                    it.limit = 10
                 }
             )
 
-        checkNotNull(feeds.data.feeds).forEach {
-            println(it.displayName)
+        println(feeds.data.feeds.size)
+        feeds.data.feeds.forEach {
+            print(it.displayName)
         }
     }
 }

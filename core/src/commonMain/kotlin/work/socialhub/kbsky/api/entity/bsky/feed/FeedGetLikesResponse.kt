@@ -5,8 +5,8 @@ import work.socialhub.kbsky.model.bsky.feed.FeedGetLikesLike
 
 @Serializable
 class FeedGetLikesResponse {
-    var uri: String? = null
+    lateinit var uri: String
     var cid: String? = null
     var cursor: String? = null
-    var likes: List<FeedGetLikesLike>? = null
+    lateinit var likes: List<FeedGetLikesLike>
 }

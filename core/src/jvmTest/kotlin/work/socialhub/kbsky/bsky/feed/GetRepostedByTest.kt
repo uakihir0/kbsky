@@ -21,7 +21,7 @@ class GetRepostedByTest : AbstractTest() {
                 }
             )
 
-        checkNotNull(response.data.repostedBy).forEach {
+        response.data.repostedBy.forEach {
             println("------------------------------")
             println(it.displayName)
             println(it.handle)

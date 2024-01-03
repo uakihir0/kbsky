@@ -29,34 +29,31 @@ class RepostTest : AbstractTest() {
 
     @Test
     fun testDeleteRepost() {
-        var repostUri: String
 
-        run {
-            // Create
-            val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b"
-            val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
+        // Create
+        val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b"
+        val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
-            val ref = RepoStrongRef(uri, cid)
-            val response = BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
-                .feed()
-                .repost(
-                    FeedRepostRequest(accessJwt).also {
-                        it.subject = ref
-                    }
-                )
-            repostUri = checkNotNull(response.data.uri)
-        }
+        val ref = RepoStrongRef(uri, cid)
+        val response = BlueskyFactory
+            .instance(BSKY_SOCIAL.uri)
+            .feed()
+            .repost(
+                FeedRepostRequest(accessJwt).also {
+                    it.subject = ref
+                }
+            )
 
-        run { // Delete
-            BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
-                .feed()
-                .deleteRepost(
-                    FeedDeleteRepostRequest(accessJwt).also {
-                        it.uri = repostUri
-                    }
-                )
-        }
+        val repostUri = checkNotNull(response.data.uri)
+
+        // Delete
+        BlueskyFactory
+            .instance(BSKY_SOCIAL.uri)
+            .feed()
+            .deleteRepost(
+                FeedDeleteRepostRequest(accessJwt).also {
+                    it.uri = repostUri
+                }
+            )
     }
 }

@@ -5,7 +5,7 @@ import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
 
 @Serializable
 class FeedGetLikesLike {
-    var indexedAt: String? = null
-    var createdAt: String? = null
-    var actor: ActorDefsProfileView? = null
+    lateinit var indexedAt: String
+    lateinit var createdAt: String
+    lateinit var actor: ActorDefsProfileView
 }

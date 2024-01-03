@@ -5,6 +5,6 @@ import work.socialhub.kbsky.model.bsky.feed.FeedDefsFeedViewPost
 
 @Serializable
 class FeedGetTimelineResponse {
-    lateinit var feed: List<FeedDefsFeedViewPost>
     var cursor: String? = null
+    lateinit var feed: List<FeedDefsFeedViewPost>
 }

@@ -14,6 +14,7 @@ open class AbstractTest {
     protected lateinit var handle: String
     protected lateinit var password: String
     protected lateinit var accessJwt: String
+    protected lateinit var refreshJwt: String
 
     @BeforeTest
     fun setupTest() {
@@ -74,6 +75,16 @@ open class AbstractTest {
         val record = post.record
         if (record is FeedPost) {
             println("TEXT> " + record.text)
+
+            record.facets?.forEach { r ->
+                println("FACET> " + r.type)
+                r.features?.forEach { f ->
+                    println("FEATURE> " + f.type)
+                    f.tag()?.let { t ->
+                        println("TAG> " + t.tag)
+                    }
+                }
+            }
         }
     }
 

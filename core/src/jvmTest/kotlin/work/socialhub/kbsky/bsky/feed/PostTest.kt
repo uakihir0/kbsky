@@ -7,8 +7,6 @@ import work.socialhub.kbsky.api.entity.atproto.identity.IdentityResolveHandleReq
 import work.socialhub.kbsky.api.entity.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedPostRequest
-import work.socialhub.kbsky.api.entity.bsky.feed.FeedPostResponse
-import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
@@ -192,28 +190,27 @@ class PostTest : AbstractTest() {
 
     @Test
     fun testDeleteFeed() {
-        var uri: String
 
-        run {
-            // Create
-            val response: Response<FeedPostResponse> = BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
-                .feed().post(
-                    FeedPostRequest(accessJwt).also {
-                        it.text = "テスト（すぐ消す）"
-                    }
-                )
-            uri = checkNotNull(response.data.uri)
-        }
+        // Create
+        val response = BlueskyFactory
+            .instance(BSKY_SOCIAL.uri)
+            .feed()
+            .post(
+                FeedPostRequest(accessJwt).also {
+                    it.text = "テスト（すぐ消す）"
+                }
+            )
 
-        run { // Delete
-            BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
-                .feed().deletePost(
-                    FeedDeletePostRequest(accessJwt).also {
-                        it.uri = uri
-                    }
-                )
-        }
+        val uri = checkNotNull(response.data.uri)
+
+        // Delete
+        BlueskyFactory
+            .instance(BSKY_SOCIAL.uri)
+            .feed()
+            .deletePost(
+                FeedDeletePostRequest(accessJwt).also {
+                    it.uri = uri
+                }
+            )
     }
 }

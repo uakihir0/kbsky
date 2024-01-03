@@ -7,9 +7,14 @@ import work.socialhub.kbsky.util.json.RichtextFacetFeaturePolymorphicSerializer
 /**
  * @see RichtextFacetLink
  * @see RichtextFacetMention
+ * @see RichtextFacetTag
  */
 @Serializable(with = RichtextFacetFeaturePolymorphicSerializer::class)
 abstract class RichtextFacetFeatureUnion {
     @SerialName("\$type")
     abstract var type: String
+
+    fun link() = this as? RichtextFacetLink
+    fun mention() = this as? RichtextFacetMention
+    fun tag() = this as? RichtextFacetTag
 }

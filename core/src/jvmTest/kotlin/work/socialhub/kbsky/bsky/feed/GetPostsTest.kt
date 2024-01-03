@@ -24,7 +24,7 @@ class GetPostsTest : AbstractTest() {
                 }
             )
 
-        checkNotNull(feeds.data.posts).forEach {
+        feeds.data.posts.forEach {
             print(it)
         }
     }

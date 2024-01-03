@@ -23,7 +23,7 @@ class GetFeedGeneratorsTest : AbstractTest() {
                 }
             )
 
-        checkNotNull(feeds.data.feeds).forEach {
+        feeds.data.feeds.forEach {
             println(it.displayName)
         }
     }

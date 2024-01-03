@@ -5,5 +5,5 @@ import work.socialhub.kbsky.model.bsky.feed.FeedDefsGeneratorView
 
 @Serializable
 class FeedGetFeedGeneratorsResponse {
-    var feeds: List<FeedDefsGeneratorView>? = null
+    lateinit var feeds: List<FeedDefsGeneratorView>
 }

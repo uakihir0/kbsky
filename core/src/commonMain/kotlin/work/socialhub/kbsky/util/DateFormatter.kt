@@ -13,7 +13,7 @@ class DateFormatter(
         val local = instant.toLocalDateTime(timezone)
         val date = local.date
 
-        val year = date.dayOfYear
+        val year = date.year
         val day = date.dayOfMonth
         val month = date.monthNumber
 

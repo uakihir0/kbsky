@@ -1,17 +1,20 @@
 package work.socialhub.kbsky.api.entity.bsky.feed
 
+import kotlinx.datetime.Clock
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.api.entity.share.RecordRequest
+import work.socialhub.kbsky.internal.share._InternalUtility
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.bsky.feed.FeedLike
 
 class FeedLikeRequest internal constructor(
     accessJwt: String
-) : AuthRequest(accessJwt), MapRequest {
+) : AuthRequest(accessJwt), MapRequest, RecordRequest {
 
     var subject: RepoStrongRef? = null
-    var createdAt: String? = null
+    override var createdAt: String? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
@@ -25,10 +28,5 @@ class FeedLikeRequest internal constructor(
         like.subject = subject
         like.createdAt = createdAt()
         return like
-    }
-
-    fun createdAt(): String {
-        return createdAt ?: ""
-        //_InternalUtility.dateFormat.format(java.util.Date())
     }
 }

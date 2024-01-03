@@ -93,7 +93,7 @@ class _ServerResource(
                     .url(xrpc(uri, ServerRefreshSession))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .get()
+                    .post()
             }
         }
     }

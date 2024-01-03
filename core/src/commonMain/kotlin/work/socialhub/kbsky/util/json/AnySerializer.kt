@@ -6,6 +6,12 @@ import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.*
+import work.socialhub.kbsky.model.bsky.actor.ActorProfile
+import work.socialhub.kbsky.model.bsky.feed.FeedLike
+import work.socialhub.kbsky.model.bsky.feed.FeedPost
+import work.socialhub.kbsky.model.bsky.feed.FeedRepost
+import work.socialhub.kbsky.model.bsky.graph.GraphBlock
+import work.socialhub.kbsky.model.bsky.graph.GraphFollow
 
 object AnySerializer : KSerializer<Any> {
 
@@ -52,7 +58,20 @@ object AnySerializer : KSerializer<Any> {
             is String -> encoder.encodeString(value)
             is Boolean -> encoder.encodeBoolean(value)
             is Enum<*> -> encoder.encodeString(this.toString())
-            else -> throw IllegalStateException("Can't serialize unknown type: $this")
+
+            // KMP のリフレクションが full に対応した時に修正
+            // ここでこのライブラリで必要なクラスをひたすら列挙
+            // 標準ライブラリはどうやってアノテーションを見ている？
+            is ActorProfile -> encoder.encodeSerializableValue(ActorProfile.serializer(), value)
+            is GraphFollow -> encoder.encodeSerializableValue(GraphFollow.serializer(), value)
+            is GraphBlock -> encoder.encodeSerializableValue(GraphBlock.serializer(), value)
+            is FeedLike -> encoder.encodeSerializableValue(FeedLike.serializer(), value)
+            is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)
+            is FeedRepost -> encoder.encodeSerializableValue(FeedRepost.serializer(), value)
+
+            else -> {
+                println("Can't serialize unknown type: ${value::class}")
+            }
         }
     }
 }

@@ -5,5 +5,5 @@ import work.socialhub.kbsky.model.bsky.feed.FeedDefsThreadUnion
 
 @Serializable
 class FeedGetPostThreadResponse {
-    var thread: FeedDefsThreadUnion? = null
+    lateinit var thread: FeedDefsThreadUnion
 }

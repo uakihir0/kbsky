@@ -3,7 +3,7 @@ package work.socialhub.kbsky.bsky.feed
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedGetLikesRequest
-import work.socialhub.kbsky.domain.Service
+import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class GetLikesTest : AbstractTest() {
@@ -13,7 +13,7 @@ class GetLikesTest : AbstractTest() {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jt5ao4gpxc2u"
 
         val feeds = BlueskyFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+            .instance(BSKY_SOCIAL.uri)
             .feed()
             .getLikes(
                 FeedGetLikesRequest(accessJwt).also {
@@ -21,8 +21,8 @@ class GetLikesTest : AbstractTest() {
                 }
             )
 
-        checkNotNull(feeds.data.likes).forEach {
-            print(checkNotNull(it.actor))
+        feeds.data.likes.forEach {
+            print(it.actor)
         }
     }
 }
