@@ -15,11 +15,10 @@ class SearchActorsTest : AbstractTest() {
             .actor()
             .searchActors(
                 ActorSearchActorsRequest(accessJwt).also {
-                    it.term = "uakihir0"
+                    it.q = "uakihir0"
                 }
             )
 
-        checkNotNull(actors.data.actors)
-            .forEach { print(it) }
+        actors.data.actors.forEach { print(it) }
     }
 }

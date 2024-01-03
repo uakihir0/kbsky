@@ -13,14 +13,14 @@ interface ActorResource {
     ): Response<ActorSearchActorsResponse>
 
     /**
-     *
+     * Get detailed profile view of an actor.
      */
     fun getProfile(
         request: ActorGetProfileRequest
     ): Response<ActorGetProfileResponse>
 
     /**
-     *
+     * Get detailed profile views of multiple actors.
      */
     fun getProfiles(
         request: ActorGetProfilesRequest

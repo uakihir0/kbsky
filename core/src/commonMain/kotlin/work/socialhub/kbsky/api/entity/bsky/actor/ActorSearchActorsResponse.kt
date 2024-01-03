@@ -6,5 +6,5 @@ import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
 @Serializable
 class ActorSearchActorsResponse {
     var cursor: String? = null
-    var actors: List<ActorDefsProfileView>? = null
+    lateinit var actors: List<ActorDefsProfileView>
 }

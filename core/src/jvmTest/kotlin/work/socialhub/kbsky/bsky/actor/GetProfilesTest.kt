@@ -25,6 +25,6 @@ class GetProfilesTest : AbstractTest() {
                 }
             )
 
-        actors.data.profiles?.forEach { print(it) }
+        actors.data.profiles.forEach { print(it) }
     }
 }

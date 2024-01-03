@@ -5,5 +5,5 @@ import work.socialhub.kbsky.model.bsky.actor.ActorDefsPreferencesUnion
 
 @Serializable
 class ActorGetPreferencesResponse {
-    var preferences: List<ActorDefsPreferencesUnion>? = null
+    lateinit var preferences: List<ActorDefsPreferencesUnion>
 }

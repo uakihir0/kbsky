@@ -13,8 +13,8 @@ class ActorDefsSavedFeedsPref : ActorDefsPreferencesUnion() {
     override var type = TYPE
 
     /** at-url  */
-    var pinned: List<String>? = null
+    lateinit var pinned: List<String>
 
     /** at-url  */
-    var saved: List<String>? = null
+    lateinit var saved: List<String>
 }

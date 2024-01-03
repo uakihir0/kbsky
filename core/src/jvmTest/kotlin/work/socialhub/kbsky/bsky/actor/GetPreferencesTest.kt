@@ -4,6 +4,7 @@ import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.bsky.actor.ActorGetPreferencesRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
+import work.socialhub.kbsky.model.bsky.actor.ActorDefsAdultContentPref
 import work.socialhub.kbsky.model.bsky.actor.ActorDefsSavedFeedsPref
 import kotlin.test.Test
 
@@ -18,9 +19,14 @@ class GetPreferencesTest : AbstractTest() {
                 ActorGetPreferencesRequest(accessJwt)
             )
 
-        setting.data.preferences?.forEach { s ->
+        setting.data.preferences.forEach { s ->
+            if (s is ActorDefsAdultContentPref) {
+                println("> ActorDefsAdultContentPref")
+                println("> enabled: ${s.enabled}")
+            }
+
             if (s is ActorDefsSavedFeedsPref) {
-                s.saved?.forEach { println(it) }
+                s.saved.forEach { println(it) }
             }
         }
     }

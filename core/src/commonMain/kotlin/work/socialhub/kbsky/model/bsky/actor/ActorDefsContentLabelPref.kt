@@ -12,8 +12,8 @@ class ActorDefsContentLabelPref : ActorDefsPreferencesUnion() {
 
     override var type = TYPE
 
-    var label: String? = null
+    lateinit var label: String
 
     /** ["show", "warn", "hide"] */
-    var visibility: String? = null
+    lateinit var visibility: String
 }
