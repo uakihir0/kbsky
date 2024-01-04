@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.feed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
@@ -10,6 +11,7 @@ class FeedDefsNotFoundPost : FeedDefsThreadUnion() {
         val TYPE = BlueskyTypes.FeedDefs + "#notFoundPost"
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     var uri: String? = null

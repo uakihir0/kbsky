@@ -113,7 +113,7 @@ class StreamClient(
                         eventCallback?.onEvent(
                             response.data.cid,
                             response.data.uri,
-                            response.data.value!!
+                            response.data.value
                         )
 
                     } catch (e: Exception) {

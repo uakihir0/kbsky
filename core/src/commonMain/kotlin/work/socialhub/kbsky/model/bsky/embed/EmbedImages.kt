@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.embed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
@@ -13,6 +14,7 @@ class EmbedImages : EmbedUnion() {
         const val TYPE = BlueskyTypes.EmbedImages
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     var images: List<EmbedImagesImage>? = null

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.embed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
@@ -13,7 +14,8 @@ class EmbedExternal : EmbedUnion() {
         const val TYPE = BlueskyTypes.EmbedExternal
     }
 
-    override var type: String = TYPE
+    @SerialName("\$type")
+    override var type = TYPE
 
     var external: EmbedExternalExternal? = null
 }

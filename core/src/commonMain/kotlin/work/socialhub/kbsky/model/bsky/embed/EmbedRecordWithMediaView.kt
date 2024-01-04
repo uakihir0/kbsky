@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.embed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
@@ -10,6 +11,7 @@ class EmbedRecordWithMediaView : EmbedViewUnion() {
         const val TYPE = BlueskyTypes.EmbedRecordWithMedia + "#view"
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     var record: EmbedRecordView? = null

@@ -1,7 +1,7 @@
 build:
 	./gradlew \
 	core:clean stream:clean \
-	core:build stream:build \
+	core:assemble stream:assemble \
 	-x test --refresh-dependencies
 
 pods:

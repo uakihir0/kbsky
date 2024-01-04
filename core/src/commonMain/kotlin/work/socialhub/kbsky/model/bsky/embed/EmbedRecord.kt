@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.embed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
@@ -11,6 +12,7 @@ class EmbedRecord : EmbedUnion() {
         const val TYPE = BlueskyTypes.EmbedRecord
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     var record: RepoStrongRef? = null

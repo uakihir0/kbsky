@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.actor
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
@@ -10,6 +11,7 @@ class ActorDefsContentLabelPref : ActorDefsPreferencesUnion() {
         const val TYPE = BlueskyTypes.ActorDefs + "#contentLabelPref"
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     lateinit var label: String

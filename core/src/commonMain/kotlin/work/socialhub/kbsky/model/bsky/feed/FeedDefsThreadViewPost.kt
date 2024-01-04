@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.feed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
@@ -10,6 +11,7 @@ class FeedDefsThreadViewPost : FeedDefsThreadUnion() {
         val TYPE = BlueskyTypes.FeedDefs + "#threadViewPost"
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     lateinit var post: FeedDefsPostView

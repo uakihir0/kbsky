@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.share
 
 import kotlinx.datetime.TimeZone
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -16,7 +17,10 @@ import work.socialhub.khttpclient.HttpResponse
  */
 object _InternalUtility {
 
+    @OptIn(ExperimentalSerializationApi::class)
     val json = Json {
+        explicitNulls = false
+        encodeDefaults = true
         ignoreUnknownKeys = true
         serializersModule = SerializersModule {
             contextual(Any::class, AnySerializer)

@@ -10,7 +10,7 @@ import work.socialhub.kbsky.model.share.RecordUnion
 class ActorProfile : RecordUnion() {
 
     companion object {
-        val TYPE = BlueskyTypes.ActorProfile
+        const val TYPE = BlueskyTypes.ActorProfile
     }
 
     @SerialName("\$type")

@@ -53,7 +53,6 @@ class PostTest : AbstractTest() {
         val link = checkNotNull(response1.data.blob.ref?.link)
         println(link)
 
-
         // Setup Image
         val imagesMain = EmbedImages()
         run {
@@ -71,7 +70,8 @@ class PostTest : AbstractTest() {
         // Post With Image
         val response2 = BlueskyFactory
             .instance(BSKY_SOCIAL.uri)
-            .feed().post(
+            .feed()
+            .post(
                 FeedPostRequest(accessJwt).also {
                     it.text = "画像投稿テスト"
                     it.embed = imagesMain

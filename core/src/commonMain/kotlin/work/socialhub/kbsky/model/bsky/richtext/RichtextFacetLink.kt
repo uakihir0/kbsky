@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.richtext
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
@@ -13,6 +14,7 @@ class RichtextFacetLink : RichtextFacetFeatureUnion() {
         const val TYPE = BlueskyTypes.RichtextFacet + "#link"
     }
 
+    @SerialName("\$type")
     override var type = TYPE
 
     var uri: String? = null

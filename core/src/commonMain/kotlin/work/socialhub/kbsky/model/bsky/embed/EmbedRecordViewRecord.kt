@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.bsky.embed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.atproto.label.LabelDefsLabel
@@ -13,7 +14,8 @@ class EmbedRecordViewRecord : EmbedRecordViewUnion() {
         const val TYPE = BlueskyTypes.EmbedRecord + "#viewRecord"
     }
 
-    override var type: String = TYPE
+    @SerialName("\$type")
+    override var type = TYPE
 
     var uri: String? = null
     var cid: String? = null
