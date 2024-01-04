@@ -14,4 +14,9 @@ import work.socialhub.kbsky.util.json.EmbedPolymorphicSerializer
 abstract class EmbedUnion {
     @SerialName("\$type")
     abstract var type: String
+
+    fun `external`() = this as? EmbedExternal
+    fun images() = this as? EmbedImages
+    fun record() = this as? EmbedRecord
+    fun recordWithMedia() = this as? EmbedRecordWithMedia
 }

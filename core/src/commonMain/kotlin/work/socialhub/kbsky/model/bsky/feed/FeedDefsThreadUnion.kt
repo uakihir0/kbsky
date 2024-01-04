@@ -12,4 +12,7 @@ import work.socialhub.kbsky.util.json.FeedDefsThreadPolymorphicSerializer
 abstract class FeedDefsThreadUnion {
     @SerialName("\$type")
     abstract var type: String
+
+    fun viewPost() = this as? FeedDefsThreadViewPost
+    fun notFoundPost() = this as? FeedDefsNotFoundPost
 }

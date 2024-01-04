@@ -13,4 +13,8 @@ import work.socialhub.kbsky.util.json.EmbedRecordViewPolymorphicSerializer
 abstract class EmbedRecordViewUnion {
     @SerialName("\$type")
     abstract var type: String
+
+    fun record() = this as? EmbedRecordViewRecord
+    fun notFound() = this as? EmbedRecordViewNotFound
+    fun blocked() = this as? EmbedRecordViewBlocked
 }
