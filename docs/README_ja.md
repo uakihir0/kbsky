@@ -16,6 +16,7 @@
 
 以下は対応するプラットフォームにおいて Gradle を用いて Kotlin で使用する際の使い方になります。
 **Apple プラットフォームで使用する場合は、 [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods) を参照してください。**
+また、テストコードも合わせて確認してください。
 
 ```kotlin:build.gradle.kts
 repositories {

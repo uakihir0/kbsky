@@ -18,6 +18,7 @@ The behavior on each platform depends on [khttpclient].
 
 The following is how to use Gradle with Kotlin on supported platforms.
 **For Apple platform, please refer to [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods).**
+Also, please check the test code as well.
 
 ```kotlin:build.gradle.kts
 repositories {
