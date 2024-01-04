@@ -4,6 +4,7 @@ import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorFeeds
+import work.socialhub.kbsky.BlueskyTypes.FeedGetActorLikes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetAuthorFeed
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeed
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedGenerator
@@ -156,6 +157,22 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(uri, FeedGetActorFeeds))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun getActorLikes(
+        request: FeedGetActorLikesRequest
+    ): Response<FeedGetActorLikesResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, FeedGetActorLikes))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

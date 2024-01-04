@@ -35,6 +35,7 @@ object BlueskyTypes {
     const val FeedRepost = "app.bsky.feed.repost"
     const val FeedGetFeed = "app.bsky.feed.getFeed"
     const val FeedGetActorFeeds = "app.bsky.feed.getActorFeeds"
+    const val FeedGetActorLikes = "app.bsky.feed.getActorLikes"
     const val FeedGetFeedSearchPosts = "app.bsky.feed.searchPosts"
     const val FeedGetFeedGenerator = "app.bsky.feed.getFeedGenerator"
     const val FeedGetFeedGenerators = "app.bsky.feed.getFeedGenerators"

@@ -66,6 +66,13 @@ interface FeedResource {
     ): Response<FeedGetActorFeedsResponse>
 
     /**
+     * Get a list of posts liked by an actor.
+     */
+    fun getActorLikes(
+        request: FeedGetActorLikesRequest
+    ): Response<FeedGetActorLikesResponse>
+
+    /**
      * Find posts matching search criteria.
      */
     fun searchPosts(
