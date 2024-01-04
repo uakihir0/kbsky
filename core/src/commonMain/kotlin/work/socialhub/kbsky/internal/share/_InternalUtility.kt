@@ -42,8 +42,8 @@ object _InternalUtility {
                 return Response(Unit, "")
             }
             // TODO: include error response in exception
-            println(response.stringBody())
-            throw ATProtocolException(response.stringBody())
+            println(response.stringBody)
+            throw ATProtocolException(response.stringBody)
         } catch (e: Exception) {
             throw handleError(e)
         }
@@ -55,11 +55,11 @@ object _InternalUtility {
             if (response.status == 200) {
                 return Response(
                     response.typedBody(json),
-                    response.stringBody(),
+                    response.stringBody,
                 )
             }
             // TODO: include error response in exception
-            throw ATProtocolException(response.stringBody())
+            throw ATProtocolException(response.stringBody)
         } catch (e: Exception) {
             throw handleError(e)
         }
