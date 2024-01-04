@@ -5,6 +5,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import work.socialhub.kbsky.ATProtocolException
+import work.socialhub.kbsky.api.entity.share.ErrorResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.util.DateFormatter
 import work.socialhub.kbsky.util.json.AnySerializer
@@ -41,9 +42,11 @@ object _InternalUtility {
             if (response.status == 200) {
                 return Response(Unit, "")
             }
-            // TODO: include error response in exception
-            println(response.stringBody)
-            throw ATProtocolException(response.stringBody)
+
+            throw handleError(
+                exception = null,
+                body = response.stringBody
+            )
         } catch (e: Exception) {
             throw handleError(e)
         }
@@ -58,8 +61,11 @@ object _InternalUtility {
                     response.stringBody,
                 )
             }
-            // TODO: include error response in exception
-            throw ATProtocolException(response.stringBody)
+
+            throw handleError(
+                exception = null,
+                body = response.stringBody
+            )
         } catch (e: Exception) {
             throw handleError(e)
         }
@@ -77,22 +83,24 @@ object _InternalUtility {
         return url
     }
 
-    fun handleError(e: Exception): RuntimeException {
-        /*
-        return try {
-            val message: String = e.getResponse().asString()
-            val error: Map<String, Any> = gson.fromJson(
-                message,
-                object : TypeToken<Map<String?, Any?>?>() {}.getType()
-            )
-            val exception = ATProtocolException(e)
-            exception.setErrorMessage(error["message"].toString())
-            exception.setError(error["error"].toString())
-            exception
-        } catch (t: java.lang.Exception) {
-            ATProtocolException(e)
+    fun handleError(
+        exception: Exception?,
+        body: String? = null,
+    ): RuntimeException {
+
+        // ATProtocolException is already handled.
+        if (exception is ATProtocolException) {
+            return exception
         }
-        */
-        return ATProtocolException(e)
+
+        if (body != null) {
+            val response = fromJson<ErrorResponse>(body)
+            return ATProtocolException(
+                message = response.message,
+                exception = exception,
+            ).also { it.response = response }
+        }
+
+        return ATProtocolException(exception)
     }
 }
