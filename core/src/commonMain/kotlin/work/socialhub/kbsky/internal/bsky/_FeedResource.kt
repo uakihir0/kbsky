@@ -8,6 +8,7 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetAuthorFeed
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeed
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedGenerator
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedGenerators
+import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedSearchPosts
 import work.socialhub.kbsky.BlueskyTypes.FeedGetLikes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetPostThread
 import work.socialhub.kbsky.BlueskyTypes.FeedGetPosts
@@ -155,6 +156,22 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(uri, FeedGetActorFeeds))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun searchPosts(
+        request: FeedSearchPostsRequest
+    ): Response<FeedSearchPostsResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, FeedGetFeedSearchPosts))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

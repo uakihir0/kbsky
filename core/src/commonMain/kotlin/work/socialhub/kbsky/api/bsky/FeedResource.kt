@@ -66,6 +66,13 @@ interface FeedResource {
     ): Response<FeedGetActorFeedsResponse>
 
     /**
+     * Find posts matching search criteria.
+     */
+    fun searchPosts(
+        request: FeedSearchPostsRequest
+    ): Response<FeedSearchPostsResponse>
+
+    /**
      * Get information about a specific feed offered by a feed generator, such as its online status.
      */
     fun getFeedGenerator(
