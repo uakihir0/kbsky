@@ -8,6 +8,7 @@ import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewBlocked
 import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewNotFound
 import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewRecord
 import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewUnion
+import work.socialhub.kbsky.model.bsky.feed.FeedDefsGeneratorView
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object EmbedRecordViewPolymorphicSerializer :
@@ -22,6 +23,7 @@ object EmbedRecordViewPolymorphicSerializer :
             EmbedRecordViewRecord.TYPE -> EmbedRecordViewRecord.serializer()
             EmbedRecordViewNotFound.TYPE -> EmbedRecordViewNotFound.serializer()
             EmbedRecordViewBlocked.TYPE -> EmbedRecordViewBlocked.serializer()
+            FeedDefsGeneratorView.TYPE -> FeedDefsGeneratorView.serializer()
             else -> {
                 println("[Warning] Unknown Item type: $type (EmbedRecordViewUnion)")
                 Unknown.serializer()
