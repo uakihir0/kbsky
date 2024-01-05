@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.feed
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class FeedSearchPostsRequest internal constructor(
+class FeedSearchPostsRequest(
     accessJwt: String,
     /** Search query string; syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended. */
     var q: String,
