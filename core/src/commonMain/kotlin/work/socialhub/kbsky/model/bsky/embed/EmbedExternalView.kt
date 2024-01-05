@@ -14,5 +14,5 @@ class EmbedExternalView : EmbedViewUnion() {
     @SerialName("\$type")
     override var type = TYPE
 
-    private var external: EmbedExternalViewExternal? = null
+    var external: EmbedExternalViewExternal? = null
 }
