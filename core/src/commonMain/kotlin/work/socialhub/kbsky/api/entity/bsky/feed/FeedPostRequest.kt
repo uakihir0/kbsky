@@ -9,7 +9,7 @@ import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.bsky.feed.FeedPostReplyRef
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 
-class FeedPostRequest internal constructor(
+class FeedPostRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest, RecordRequest {
 

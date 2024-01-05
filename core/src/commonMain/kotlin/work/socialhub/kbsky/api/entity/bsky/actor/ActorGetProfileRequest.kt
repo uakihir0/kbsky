@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.actor
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class ActorGetProfileRequest internal constructor(
+class ActorGetProfileRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 

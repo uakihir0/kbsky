@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.feed
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class FeedGetRepostedByRequest internal constructor(
+class FeedGetRepostedByRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 

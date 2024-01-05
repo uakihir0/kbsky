@@ -7,7 +7,7 @@ import work.socialhub.kbsky.api.entity.share.RKeyRequest
  * Uri includes the rkey.
  * so, uri or rkey is enough.
  */
-class FeedDeleteRepostRequest internal constructor(
+class FeedDeleteRepostRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), RKeyRequest {
 

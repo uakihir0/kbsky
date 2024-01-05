@@ -5,7 +5,7 @@ import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.model.bsky.graph.GraphFollow
 
-class GraphFollowRequest internal constructor(
+class GraphFollowRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest, RecordRequest {
 
