@@ -1,11 +1,22 @@
 package work.socialhub.kbsky.model.bsky.feed
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
+import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewUnion
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 
 @Serializable
-class FeedDefsGeneratorView {
+class FeedDefsGeneratorView : EmbedRecordViewUnion() {
+
+    companion object {
+        const val TYPE = BlueskyTypes.EmbedRecord + "#generatorView"
+    }
+
+    @SerialName("\$type")
+    override var type = TYPE
+
     var uri: String? = null
     var cid: String? = null
     var did: String? = null
