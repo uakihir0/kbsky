@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.notification
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class NotificationListNotificationsRequest internal constructor(
+class NotificationListNotificationsRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 

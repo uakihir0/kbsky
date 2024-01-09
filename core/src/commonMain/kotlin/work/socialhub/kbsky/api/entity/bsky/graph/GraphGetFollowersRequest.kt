@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.graph
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class GraphGetFollowersRequest internal constructor(
+class GraphGetFollowersRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 
