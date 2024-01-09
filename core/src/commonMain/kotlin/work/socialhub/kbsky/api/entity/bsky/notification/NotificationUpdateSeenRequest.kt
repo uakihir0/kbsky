@@ -5,7 +5,7 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.internal.share._InternalUtility
 
-class NotificationUpdateSeenRequest internal constructor(
+class NotificationUpdateSeenRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 

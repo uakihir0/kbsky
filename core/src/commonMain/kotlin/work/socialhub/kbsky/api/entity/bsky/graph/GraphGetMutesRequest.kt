@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.graph
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class GraphGetMutesRequest internal constructor(
+class GraphGetMutesRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 

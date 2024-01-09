@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.graph
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class GraphGetBlocksRequest internal constructor(
+class GraphGetBlocksRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 

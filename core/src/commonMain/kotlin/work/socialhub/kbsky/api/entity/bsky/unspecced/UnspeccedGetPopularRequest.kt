@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.bsky.unspecced
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class UnspeccedGetPopularRequest internal constructor(
+class UnspeccedGetPopularRequest(
     accessJwt: String
 ) : AuthRequest(accessJwt), MapRequest {
 
