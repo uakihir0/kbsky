@@ -4,7 +4,7 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.model.share.RecordUnion
 
-class RepoCreateRecordRequest internal constructor(
+class RepoCreateRecordRequest (
     accessJwt: String,
     /** The handle or DID of the repo. */
     var repo: String,

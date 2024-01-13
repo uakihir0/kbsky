@@ -7,7 +7,7 @@ import work.socialhub.kbsky.ATProtocolTypes.SyncSubscribeRepos
 import work.socialhub.kbsky.stream.api.entity.atproto.sync.SyncSubscribeReposRequest
 import work.socialhub.kbsky.stream.util.StreamClient
 
-class _SyncResource internal constructor(
+class _SyncResource (
     private val atproto: ATProtocol,
     private val uri: String
 ) : SyncResource {

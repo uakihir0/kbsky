@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.atproto.repo
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class RepoDeleteRecordRequest internal constructor(
+class RepoDeleteRecordRequest(
     accessJwt: String,
     /** The handle or DID of the repo. */
     var repo: String,
