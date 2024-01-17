@@ -11,7 +11,7 @@ import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 class FeedDefsGeneratorView : EmbedRecordViewUnion() {
 
     companion object {
-        const val TYPE = BlueskyTypes.EmbedRecord + "#generatorView"
+        const val TYPE = BlueskyTypes.FeedDefs + "#generatorView"
     }
 
     @SerialName("\$type")
