@@ -7,7 +7,8 @@ import work.socialhub.kbsky.model.bsky.embed.EmbedImagesView
 import work.socialhub.kbsky.model.bsky.feed.FeedDefsPostView
 import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.share.RecordUnion
-import java.io.*
+import java.io.FileReader
+import java.io.FileWriter
 import kotlin.test.BeforeTest
 
 open class AbstractTest {
@@ -107,59 +108,24 @@ open class AbstractTest {
     /**
      * Read File
      */
-    private fun readFile(fileName: String): String? {
-        try {
-            val fr = FileReader(fileName)
-            val br = BufferedReader(fr)
-            val b = StringBuilder()
-
-            var line: String?
-            val ls = System.lineSeparator()
-            while ((br.readLine().also { line = it }) != null) {
-                b.append(line)
-                b.append(ls)
-            }
-
-            b.deleteCharAt(b.length - 1)
-            br.close()
-
-            return b.toString()
+    private fun readFile(file: String): String? {
+        return try {
+            FileReader(file).readText()
         } catch (e: Exception) {
-            return null
+            null
         }
     }
 
     /**
      * Save File
      */
-    private fun saveFile(str: String?, fileName: String) {
+    private fun saveFile(str: String?, file: String) {
         try {
-            val fw = FileWriter(fileName)
+            val fw = FileWriter(file)
             fw.write(str!!)
             fw.close()
         } catch (e: Exception) {
             e.printStackTrace()
-        }
-    }
-
-    companion object {
-        /**
-         * File to ImageBytes
-         */
-        fun convertFile(stream: InputStream): ByteArray {
-            try {
-                ByteArrayOutputStream().use { bout ->
-                    var len: Int
-                    val buffer = ByteArray(1024)
-
-                    while ((stream.read(buffer).also { len = it }) != -1) {
-                        bout.write(buffer, 0, len)
-                    }
-                    return bout.toByteArray()
-                }
-            } catch (e: Exception) {
-                throw RuntimeException(e)
-            }
         }
     }
 }
