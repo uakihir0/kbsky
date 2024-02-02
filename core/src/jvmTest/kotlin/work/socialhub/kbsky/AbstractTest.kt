@@ -7,6 +7,7 @@ import work.socialhub.kbsky.model.bsky.embed.EmbedImagesView
 import work.socialhub.kbsky.model.bsky.feed.FeedDefsPostView
 import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.share.RecordUnion
+import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
 import kotlin.test.BeforeTest
@@ -110,7 +111,7 @@ open class AbstractTest {
      */
     private fun readFile(file: String): String? {
         return try {
-            FileReader(file).readText()
+            File(file).readText()
         } catch (e: Exception) {
             null
         }
@@ -121,9 +122,7 @@ open class AbstractTest {
      */
     private fun saveFile(str: String?, file: String) {
         try {
-            val fw = FileWriter(file)
-            fw.write(str!!)
-            fw.close()
+            File(file).writeText(str!!)
         } catch (e: Exception) {
             e.printStackTrace()
         }
