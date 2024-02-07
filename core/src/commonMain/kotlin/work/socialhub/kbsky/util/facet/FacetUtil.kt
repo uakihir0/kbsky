@@ -48,7 +48,7 @@ object FacetUtil {
 
             // 前後の文字列を切り出す
             val before = str.substring(0, start)
-            str = str.substring(end)
+            str = str.substring(end + 1)
 
             // 前の部分について Text として登録
             if (before.isNotEmpty()) {
