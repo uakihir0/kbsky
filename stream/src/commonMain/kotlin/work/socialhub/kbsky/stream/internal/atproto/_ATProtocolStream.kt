@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.stream.internal.atproto
 
-import kbsky.stream.api.atproto.SyncResource
+import work.socialhub.kbsky.stream.api.atproto.SyncResource
 import work.socialhub.kbsky.ATProtocol
 import work.socialhub.kbsky.internal._ATProtocol
 import work.socialhub.kbsky.stream.ATProtocolStream

@@ -1,4 +1,4 @@
-package kbsky.stream.api.atproto
+package work.socialhub.kbsky.stream.api.atproto
 
 import work.socialhub.kbsky.stream.api.entity.atproto.sync.SyncSubscribeReposRequest
 import work.socialhub.kbsky.stream.util.StreamClient
