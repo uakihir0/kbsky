@@ -6,3 +6,4 @@ build/
 out/
 secrets.json
 jwt.txt
+/local.properties
