@@ -12,7 +12,7 @@ object FacetUtil {
         var str = text
 
         // メンションの要素を分解
-        val mention = Regex("(?<=^|\\s)(@[\\w.]+)")
+        val mention = Regex("(?<=^|\\s)(@[\\w.-]+)")
 
         // リンクの要素を展開
         val link = Regex("(?<=^|\\s)(https?://\\S+)")
