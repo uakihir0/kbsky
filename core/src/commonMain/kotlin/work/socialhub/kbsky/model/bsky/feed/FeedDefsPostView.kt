@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.model.bsky.feed
 
 import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.model.atproto.label.LabelDefsLabel
 import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileViewBasic
 import work.socialhub.kbsky.model.bsky.embed.EmbedViewUnion
 import work.socialhub.kbsky.model.share.RecordUnion
@@ -17,4 +18,5 @@ class FeedDefsPostView {
     var likeCount: Int? = null
     var indexedAt: String? = null
     var viewer: FeedDefsViewerState? = null
+    var labels: List<LabelDefsLabel>? = null
 }
