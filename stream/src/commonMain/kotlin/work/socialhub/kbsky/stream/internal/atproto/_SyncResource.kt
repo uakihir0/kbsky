@@ -1,7 +1,7 @@
 package work.socialhub.kbsky.stream.internal.atproto
 
 import io.ktor.http.*
-import kbsky.stream.api.atproto.SyncResource
+import work.socialhub.kbsky.stream.api.atproto.SyncResource
 import work.socialhub.kbsky.ATProtocol
 import work.socialhub.kbsky.ATProtocolTypes.SyncSubscribeRepos
 import work.socialhub.kbsky.stream.api.entity.atproto.sync.SyncSubscribeReposRequest
