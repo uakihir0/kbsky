@@ -8,5 +8,5 @@ class EmbedExternalExternal {
     lateinit var uri: String
     lateinit var title: String
     lateinit var description: String
-    private var thumb: Blob? = null
+    var thumb: Blob? = null
 }
