@@ -129,6 +129,30 @@ class FacetsTest {
         }
     }
 
+    @Test
+    fun testParseMention(){
+        val text = "@hello.com @hello-world.com"
+
+        val facets = FacetUtil.extractFacets(text)
+        print(facets)
+        print(facets.richTextFacets(mutableMapOf()))
+
+        facets.records[0].let {
+            assertEquals(FacetType.Mention, it.type)
+            assertEquals("@hello.com", it.contentText)
+            assertEquals("@hello.com", it.displayText)
+        }
+        facets.records[1].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" ", it.contentText)
+            assertEquals(" ", it.displayText)
+        }
+        facets.records[2].let {
+            assertEquals(FacetType.Mention, it.type)
+            assertEquals("@hello-world.com", it.contentText)
+            assertEquals("@hello-world.com", it.displayText)
+        }
+    }
 
     private fun print(records: FacetList) {
         println("facet list: ${records.records.size} ${records.displayText()}")
