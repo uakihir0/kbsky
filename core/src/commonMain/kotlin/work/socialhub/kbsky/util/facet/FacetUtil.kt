@@ -12,17 +12,21 @@ object FacetUtil {
         var str = text
 
         // メンションの要素を分解
-        val mention = Regex("(?<=^|\\s)(@[\\w.-]+)")
+        val mentionRegex = Regex("(?<=^|\\s)(@[\\w.-]+)")
 
         // リンクの要素を展開
-        val link = Regex("(?<=^|\\s)(https?://\\S+)")
+        val linkRegex = Regex("(?<=^|\\s)(https?://\\S+)")
+
+        // ハッシュタグの要素を展開
+        val tagRegex = Regex("(?<=^|\\s)(#[^\\d\\s]\\S*)")
 
         while (true) {
-            val mentionFind = mention.find(str)
-            val linkFind = link.find(str)
+            val mentionFind = mentionRegex.find(str)
+            val linkFind = linkRegex.find(str)
+            val tagFind = tagRegex.find(str)
 
-            // どちらも発見できなかった場合は終了
-            if (mentionFind == null && linkFind == null) {
+            // いずれも発見できなかった場合は終了
+            if (mentionFind == null && linkFind == null && tagFind == null) {
                 records.add(FacetRecord(FacetType.Text, str, str))
                 break
             }
@@ -46,6 +50,14 @@ object FacetUtil {
                 }
             }
 
+            if (tagFind != null) {
+                if (start < 0 || tagFind.range.first < start) {
+                    start = tagFind.range.first
+                    end = tagFind.range.last
+                    type = FacetType.Tag
+                }
+            }
+
             // 前後の文字列を切り出す
             val before = str.substring(0, start)
             str = str.substring(end + 1)
@@ -58,6 +70,7 @@ object FacetUtil {
             when (type) {
                 FacetType.Mention -> records.add(mentionFacet(mentionFind!!.groupValues[1]))
                 FacetType.Link -> records.add(linkFacet(linkFind!!.groupValues[1]))
+                FacetType.Tag -> records.add(tagFacet(tagFind!!.groupValues[1]))
                 else -> throw Exception("unknown type")
             }
 
@@ -83,5 +96,9 @@ object FacetUtil {
             display = display.substring(0, 27) + "..."
         }
         return FacetRecord(FacetType.Link, link, display)
+    }
+
+    private fun tagFacet(tag: String): FacetRecord {
+        return FacetRecord(FacetType.Tag, tag, tag)
     }
 }

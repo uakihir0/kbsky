@@ -3,6 +3,7 @@ package work.socialhub.kbsky.util
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetLink
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetMention
+import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetTag
 import work.socialhub.kbsky.util.facet.FacetList
 import work.socialhub.kbsky.util.facet.FacetType
 import work.socialhub.kbsky.util.facet.FacetUtil
@@ -42,14 +43,20 @@ class FacetsTest {
         val text = "こんにちは https://yahoo.co.jp"
 
         val facets = FacetUtil.extractFacets(text)
-        print(facets)
-        print(facets.richTextFacets(mutableMapOf()))
+        print1(facets)
+        print2(facets.richTextFacets(mutableMapOf()))
 
         assertEquals(2, facets.records.size)
-        assertEquals("こんにちは ", facets.records[0].contentText)
-        assertEquals("こんにちは ", facets.records[0].displayText)
-        assertEquals("https://yahoo.co.jp", facets.records[1].contentText)
-        assertEquals("yahoo.co.jp", facets.records[1].displayText)
+        facets.records[0].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals("こんにちは ", it.contentText)
+            assertEquals("こんにちは ", it.displayText)
+        }
+        facets.records[1].let {
+            assertEquals(FacetType.Link, it.type)
+            assertEquals("https://yahoo.co.jp", it.contentText)
+            assertEquals("yahoo.co.jp", it.displayText)
+        }
     }
 
     @Test
@@ -57,16 +64,25 @@ class FacetsTest {
         val text = "こんにちは https://yahoo.co.jp ほげ"
 
         val facets = FacetUtil.extractFacets(text)
-        print(facets)
-        print(facets.richTextFacets(mutableMapOf()))
+        print1(facets)
+        print2(facets.richTextFacets(mutableMapOf()))
 
         assertEquals(3, facets.records.size)
-        assertEquals("こんにちは ", facets.records[0].contentText)
-        assertEquals("こんにちは ", facets.records[0].displayText)
-        assertEquals("https://yahoo.co.jp", facets.records[1].contentText)
-        assertEquals("yahoo.co.jp", facets.records[1].displayText)
-        assertEquals(" ほげ", facets.records[2].contentText)
-        assertEquals(" ほげ", facets.records[2].displayText)
+        facets.records[0].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals("こんにちは ", it.contentText)
+            assertEquals("こんにちは ", it.displayText)
+        }
+        facets.records[1].let {
+            assertEquals(FacetType.Link, it.type)
+            assertEquals("https://yahoo.co.jp", it.contentText)
+            assertEquals("yahoo.co.jp", it.displayText)
+        }
+        facets.records[2].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" ほげ", it.contentText)
+            assertEquals(" ほげ", it.displayText)
+        }
     }
 
     @Test
@@ -74,18 +90,30 @@ class FacetsTest {
         val text = "こんにちは https://yahoo.co.jp ほげ https://www.itmedia.co.jp/news/articles/2402/07/news082.html"
 
         val facets = FacetUtil.extractFacets(text)
-        print(facets)
-        print(facets.richTextFacets(mutableMapOf()))
+        print1(facets)
+        print2(facets.richTextFacets(mutableMapOf()))
 
         assertEquals(4, facets.records.size)
-        assertEquals("こんにちは ", facets.records[0].contentText)
-        assertEquals("こんにちは ", facets.records[0].displayText)
-        assertEquals("https://yahoo.co.jp", facets.records[1].contentText)
-        assertEquals("yahoo.co.jp", facets.records[1].displayText)
-        assertEquals(" ほげ ", facets.records[2].contentText)
-        assertEquals(" ほげ ", facets.records[2].displayText)
-        assertEquals("https://www.itmedia.co.jp/news/articles/2402/07/news082.html", facets.records[3].contentText)
-        assertEquals("www.itmedia.co.jp/news/arti...", facets.records[3].displayText)
+        facets.records[0].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals("こんにちは ", it.contentText)
+            assertEquals("こんにちは ", it.displayText)
+        }
+        facets.records[1].let {
+            assertEquals(FacetType.Link, it.type)
+            assertEquals("https://yahoo.co.jp", it.contentText)
+            assertEquals("yahoo.co.jp", it.displayText)
+        }
+        facets.records[2].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" ほげ ", it.contentText)
+            assertEquals(" ほげ ", it.displayText)
+        }
+        facets.records[3].let {
+            assertEquals(FacetType.Link, it.type)
+            assertEquals("https://www.itmedia.co.jp/news/articles/2402/07/news082.html", it.contentText)
+            assertEquals("www.itmedia.co.jp/news/arti...", it.displayText)
+        }
     }
 
     @Test
@@ -93,8 +121,8 @@ class FacetsTest {
         val text = "@takke @zonepane こんにちは https://yahoo.co.jp ほげ"
 
         val facets = FacetUtil.extractFacets(text)
-        print(facets)
-        print(facets.richTextFacets(mutableMapOf()))
+        print1(facets)
+        print2(facets.richTextFacets(mutableMapOf()))
 
         assertEquals(6, facets.records.size)
         facets.records[0].let {
@@ -134,8 +162,8 @@ class FacetsTest {
         val text = "@hello.com @hello-world.com"
 
         val facets = FacetUtil.extractFacets(text)
-        print(facets)
-        print(facets.richTextFacets(mutableMapOf()))
+        print1(facets)
+        print2(facets.richTextFacets(mutableMapOf()))
 
         facets.records[0].let {
             assertEquals(FacetType.Mention, it.type)
@@ -154,16 +182,74 @@ class FacetsTest {
         }
     }
 
-    private fun print(records: FacetList) {
-        println("facet list: ${records.records.size} ${records.displayText()}")
-        for (record in records.records) {
-            println("- TYPE: " + record.type)
-            println("  CTEXT: " + record.contentText)
-            println("  DTEXT: " + record.displayText)
+    @Test
+    fun testParseTag1() {
+        val text = "#hello"
+
+        val facets = FacetUtil.extractFacets(text)
+        print1(facets)
+        print2(facets.richTextFacets(mutableMapOf()))
+
+        assertEquals(1, facets.records.size)
+        facets.records[0].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("#hello", it.contentText)
+            assertEquals("#hello", it.displayText)
         }
     }
 
-    private fun print(richTextFacets: List<RichtextFacet>) {
+    @Test
+    fun testParseTag2() {
+        val text = "@hello.com hi, #hello #world #1"
+
+        val facets = FacetUtil.extractFacets(text)
+        print1(facets)
+        val richTextFacets = facets.richTextFacets(mutableMapOf())
+        print2(richTextFacets)
+
+        assertEquals(6, facets.records.size)
+        facets.records[0].let {
+            assertEquals(FacetType.Mention, it.type)
+            assertEquals("@hello.com", it.contentText)
+            assertEquals("@hello.com", it.displayText)
+        }
+        facets.records[1].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" hi, ", it.contentText)
+            assertEquals(" hi, ", it.displayText)
+        }
+        facets.records[2].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("#hello", it.contentText)
+            assertEquals("#hello", it.displayText)
+        }
+        facets.records[3].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" ", it.contentText)
+            assertEquals(" ", it.displayText)
+        }
+        facets.records[4].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("#world", it.contentText)
+            assertEquals("#world", it.displayText)
+        }
+        facets.records[5].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" #1", it.contentText)
+            assertEquals(" #1", it.displayText)
+        }
+    }
+
+    private fun print1(records: FacetList) {
+        println("facet list: ${records.records.size} ${records.displayText()}")
+        for (record in records.records) {
+            println("- TYPE: " + record.type)
+            println("  CTEXT: [" + record.contentText + "]")
+            println("  DTEXT: [" + record.displayText + "]")
+        }
+    }
+
+    private fun print2(richTextFacets: List<RichtextFacet>) {
         println("richTextFacets: ")
         for (facet in richTextFacets) {
             val index = checkNotNull(facet.index)
@@ -181,6 +267,9 @@ class FacetsTest {
                 }
                 if (feature is RichtextFacetMention) {
                     println("    MENTION: " + feature.did)
+                }
+                if (feature is RichtextFacetTag) {
+                    println("    TAG: " + feature.tag)
                 }
             }
         }
