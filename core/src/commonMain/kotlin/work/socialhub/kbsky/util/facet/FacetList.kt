@@ -4,6 +4,7 @@ import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetByteSlice
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetLink
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetMention
+import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetTag
 
 class FacetList(
     val records: List<FacetRecord>
@@ -65,9 +66,25 @@ class FacetList(
                     facet.features = mutableListOf()
                     facet.index = slice
 
-                    val mention = RichtextFacetLink()
-                    mention.uri = record.contentText
-                    facet.features!!.add(mention)
+                    val link = RichtextFacetLink()
+                    link.uri = record.contentText
+                    facet.features!!.add(link)
+                    facets.add(facet)
+                }
+
+                FacetType.Tag -> {
+                    val slice = RichtextFacetByteSlice()
+                    slice.byteStart = bytes
+                    bytes += byteCount(record.displayText)
+                    slice.byteEnd = bytes
+
+                    val facet = RichtextFacet()
+                    facet.features = mutableListOf()
+                    facet.index = slice
+
+                    val tag = RichtextFacetTag()
+                    tag.tag = record.contentText.replace("^#".toRegex(), "")
+                    facet.features!!.add(tag)
                     facets.add(facet)
                 }
             }
