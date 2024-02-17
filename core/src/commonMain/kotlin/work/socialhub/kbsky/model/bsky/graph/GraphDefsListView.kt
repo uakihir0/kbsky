@@ -24,12 +24,10 @@ class GraphDefsListView {
     lateinit var cid: String
     lateinit var creator: ActorDefsProfileView
     lateinit var name: String
-    // TODO Implement GraphDefsListPurpose
-//    lateinit var purpose: GraphDefsListPurpose
+    lateinit var purpose: String
     var description: String? = null
     var descriptionFacets: List<RichtextFacet> = emptyList()
     var avatar: String? = null
-    // TODO: Implement GraphDefsListViewerState
-//    var viewer: GraphDefsListViewerState? = null
+    var viewer: GraphDefsListViewerState? = null
     var indexedAt: String? = null
 }
