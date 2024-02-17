@@ -82,4 +82,18 @@ interface GraphResource {
     fun getBlocks(
         request: GraphGetBlocksRequest
     ): Response<GraphGetBlocksResponse>
+
+    /**
+     * Gets a 'view' (with additional context) of a specified list.
+     */
+    fun getList(
+        request: GraphGetListRequest
+    ): Response<GraphGetListResponse>
+
+    /**
+     * Enumerates the lists created by a specified account (actor).
+     */
+    fun getLists(
+        request: GraphGetListsRequest
+    ): Response<GraphGetListsResponse>
 }

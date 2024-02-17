@@ -41,6 +41,7 @@ object BlueskyTypes {
     const val FeedGetFeedGenerators = "app.bsky.feed.getFeedGenerators"
 
     // Graph
+    const val GraphDefs = "app.bsky.graph.defs"
     const val GraphFollow = "app.bsky.graph.follow"
     const val GraphGetFollowers = "app.bsky.graph.getFollowers"
     const val GraphGetFollows = "app.bsky.graph.getFollows"
@@ -49,6 +50,8 @@ object BlueskyTypes {
     const val GraphUnmuteActor = "app.bsky.graph.unmuteActor"
     const val GraphBlock = "app.bsky.graph.block"
     const val GraphGetBlocks = "app.bsky.graph.getBlocks"
+    const val GraphGetList = "app.bsky.graph.getList"
+    const val GraphGetLists = "app.bsky.graph.getLists"
 
     // Notification
     const val NotificationGetUnreadCount = "app.bsky.notification.getUnreadCount"

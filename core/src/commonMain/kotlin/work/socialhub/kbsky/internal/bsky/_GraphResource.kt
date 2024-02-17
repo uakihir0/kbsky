@@ -8,6 +8,8 @@ import work.socialhub.kbsky.BlueskyTypes.GraphFollow
 import work.socialhub.kbsky.BlueskyTypes.GraphGetBlocks
 import work.socialhub.kbsky.BlueskyTypes.GraphGetFollowers
 import work.socialhub.kbsky.BlueskyTypes.GraphGetFollows
+import work.socialhub.kbsky.BlueskyTypes.GraphGetList
+import work.socialhub.kbsky.BlueskyTypes.GraphGetLists
 import work.socialhub.kbsky.BlueskyTypes.GraphGetMutes
 import work.socialhub.kbsky.BlueskyTypes.GraphMuteActor
 import work.socialhub.kbsky.BlueskyTypes.GraphUnmuteActor
@@ -206,6 +208,34 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(uri, GraphGetBlocks))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun getList(request: GraphGetListRequest): Response<GraphGetListResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, GraphGetList))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun getLists(request: GraphGetListsRequest): Response<GraphGetListsResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, GraphGetLists))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
