@@ -11,6 +11,7 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedGenerator
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedGenerators
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedSearchPosts
 import work.socialhub.kbsky.BlueskyTypes.FeedGetLikes
+import work.socialhub.kbsky.BlueskyTypes.FeedGetListFeed
 import work.socialhub.kbsky.BlueskyTypes.FeedGetPostThread
 import work.socialhub.kbsky.BlueskyTypes.FeedGetPosts
 import work.socialhub.kbsky.BlueskyTypes.FeedGetRepostedBy
@@ -141,6 +142,22 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(uri, FeedGetFeed))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun getListFeed(
+        request: FeedGetListFeedRequest
+    ): Response<FeedGetListFeedResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, FeedGetListFeed))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
