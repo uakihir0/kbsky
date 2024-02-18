@@ -11,6 +11,7 @@ import work.socialhub.kbsky.BlueskyTypes.GraphGetFollows
 import work.socialhub.kbsky.BlueskyTypes.GraphGetList
 import work.socialhub.kbsky.BlueskyTypes.GraphGetLists
 import work.socialhub.kbsky.BlueskyTypes.GraphGetMutes
+import work.socialhub.kbsky.BlueskyTypes.GraphListItem
 import work.socialhub.kbsky.BlueskyTypes.GraphMuteActor
 import work.socialhub.kbsky.BlueskyTypes.GraphUnmuteActor
 import work.socialhub.kbsky.api.bsky.GraphResource
@@ -243,4 +244,26 @@ class _GraphResource(
             }
         }
     }
+
+    override fun addUserToList(request: GraphAddUserToListRequest): Response<GraphAddUserToListResponse> {
+
+        return proceed {
+            runBlocking {
+                val record = RepoCreateRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = GraphListItem,
+                    record = request.toListItem(),
+                )
+
+                HttpRequest()
+                    .url(xrpc(uri, RepoCreateRecord))
+                    .header("Authorization", request.bearerToken)
+                    .json(record.toMappedJson())
+                    .accept(MediaType.JSON)
+                    .post()
+            }
+        }
+    }
+
 }

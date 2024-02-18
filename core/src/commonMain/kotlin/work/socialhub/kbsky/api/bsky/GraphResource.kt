@@ -96,4 +96,13 @@ interface GraphResource {
     fun getLists(
         request: GraphGetListsRequest
     ): Response<GraphGetListsResponse>
+
+    /**
+     * Add a user to a list.
+     * (ATProtocol/Repo createRecord wrapper)
+     */
+    fun addUserToList(
+        request: GraphAddUserToListRequest
+    ): Response<GraphAddUserToListResponse>
+
 }

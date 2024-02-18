@@ -53,6 +53,7 @@ object BlueskyTypes {
     const val GraphGetBlocks = "app.bsky.graph.getBlocks"
     const val GraphGetList = "app.bsky.graph.getList"
     const val GraphGetLists = "app.bsky.graph.getLists"
+    const val GraphListItem = "app.bsky.graph.listitem"
 
     // Notification
     const val NotificationGetUnreadCount = "app.bsky.notification.getUnreadCount"
