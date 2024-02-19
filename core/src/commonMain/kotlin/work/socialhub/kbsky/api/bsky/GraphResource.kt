@@ -105,4 +105,12 @@ interface GraphResource {
         request: GraphAddUserToListRequest
     ): Response<GraphAddUserToListResponse>
 
+    /**
+     * Remove a user from a list.
+     * (ATProtocol/Repo deleteRecord wrapper)
+     */
+    fun removeUserFromList(
+        request: GraphRemoveUserFromListRequest
+    ): Response<Unit>
+
 }

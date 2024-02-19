@@ -266,4 +266,24 @@ class _GraphResource(
         }
     }
 
+    override fun removeUserFromList(request: GraphRemoveUserFromListRequest): Response<Unit> {
+
+        return proceedUnit {
+            runBlocking {
+                val record = RepoDeleteRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = GraphListItem,
+                    rkey = request.rkey!!,
+                )
+
+                HttpRequest()
+                    .url(xrpc(uri, RepoDeleteRecord))
+                    .header("Authorization", request.bearerToken)
+                    .json(record.toMappedJson())
+                    .accept(MediaType.JSON)
+                    .post()
+            }
+        }
+    }
 }
