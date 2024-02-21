@@ -18,6 +18,7 @@ class FeedPost : RecordUnion() {
     override var type = TYPE
 
     var text: String? = null
+    var langs: List<String>? = null
     var facets: List<RichtextFacet>? = null
     var reply: FeedPostReplyRef? = null
     var embed: EmbedUnion? = null
