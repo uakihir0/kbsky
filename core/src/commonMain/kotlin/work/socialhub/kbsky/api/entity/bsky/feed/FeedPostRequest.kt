@@ -15,6 +15,7 @@ class FeedPostRequest(
 
     lateinit var text: String
 
+    var langs: List<String>? = null
     var facets: List<RichtextFacet>? = null
     var reply: FeedPostReplyRef? = null
     var embed: EmbedUnion? = null
@@ -23,6 +24,7 @@ class FeedPostRequest(
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
             it.addParam("text", text)
+            it.addParam("langs", toJson(langs))
             it.addParam("facets", toJson(facets))
             it.addParam("reply", toJson(reply))
             it.addParam("embed", toJson(embed))
@@ -33,6 +35,7 @@ class FeedPostRequest(
     fun toPost(): FeedPost {
         val post = FeedPost()
         post.text = text
+        post.langs = langs
         post.facets = facets
         post.reply = reply
         post.embed = embed
