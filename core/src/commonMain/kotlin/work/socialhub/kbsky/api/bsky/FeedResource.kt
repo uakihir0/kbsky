@@ -59,6 +59,13 @@ interface FeedResource {
     ): Response<FeedGetFeedResponse>
 
     /**
+     * Get a feed of recent posts from a list (posts and reposts from any actors on the list). Does not require auth.
+     */
+    fun getListFeed(
+        request: FeedGetListFeedRequest
+    ): Response<FeedGetListFeedResponse>
+
+    /**
      * Retrieve a list of feeds created by a given actor
      */
     fun getActorFeeds(

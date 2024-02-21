@@ -8,7 +8,10 @@ import work.socialhub.kbsky.BlueskyTypes.GraphFollow
 import work.socialhub.kbsky.BlueskyTypes.GraphGetBlocks
 import work.socialhub.kbsky.BlueskyTypes.GraphGetFollowers
 import work.socialhub.kbsky.BlueskyTypes.GraphGetFollows
+import work.socialhub.kbsky.BlueskyTypes.GraphGetList
+import work.socialhub.kbsky.BlueskyTypes.GraphGetLists
 import work.socialhub.kbsky.BlueskyTypes.GraphGetMutes
+import work.socialhub.kbsky.BlueskyTypes.GraphListItem
 import work.socialhub.kbsky.BlueskyTypes.GraphMuteActor
 import work.socialhub.kbsky.BlueskyTypes.GraphUnmuteActor
 import work.socialhub.kbsky.api.bsky.GraphResource
@@ -210,6 +213,76 @@ class _GraphResource(
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
+            }
+        }
+    }
+
+    override fun getList(request: GraphGetListRequest): Response<GraphGetListResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, GraphGetList))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun getLists(request: GraphGetListsRequest): Response<GraphGetListsResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, GraphGetLists))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun addUserToList(request: GraphAddUserToListRequest): Response<GraphAddUserToListResponse> {
+
+        return proceed {
+            runBlocking {
+                val record = RepoCreateRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = GraphListItem,
+                    record = request.toListItem(),
+                )
+
+                HttpRequest()
+                    .url(xrpc(uri, RepoCreateRecord))
+                    .header("Authorization", request.bearerToken)
+                    .json(record.toMappedJson())
+                    .accept(MediaType.JSON)
+                    .post()
+            }
+        }
+    }
+
+    override fun removeUserFromList(request: GraphRemoveUserFromListRequest): Response<Unit> {
+
+        return proceedUnit {
+            runBlocking {
+                val record = RepoDeleteRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = GraphListItem,
+                    rkey = request.rkey!!,
+                )
+
+                HttpRequest()
+                    .url(xrpc(uri, RepoDeleteRecord))
+                    .header("Authorization", request.bearerToken)
+                    .json(record.toMappedJson())
+                    .accept(MediaType.JSON)
+                    .post()
             }
         }
     }

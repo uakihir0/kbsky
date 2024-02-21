@@ -82,4 +82,35 @@ interface GraphResource {
     fun getBlocks(
         request: GraphGetBlocksRequest
     ): Response<GraphGetBlocksResponse>
+
+    /**
+     * Gets a 'view' (with additional context) of a specified list.
+     */
+    fun getList(
+        request: GraphGetListRequest
+    ): Response<GraphGetListResponse>
+
+    /**
+     * Enumerates the lists created by a specified account (actor).
+     */
+    fun getLists(
+        request: GraphGetListsRequest
+    ): Response<GraphGetListsResponse>
+
+    /**
+     * Add a user to a list.
+     * (ATProtocol/Repo createRecord wrapper)
+     */
+    fun addUserToList(
+        request: GraphAddUserToListRequest
+    ): Response<GraphAddUserToListResponse>
+
+    /**
+     * Remove a user from a list.
+     * (ATProtocol/Repo deleteRecord wrapper)
+     */
+    fun removeUserFromList(
+        request: GraphRemoveUserFromListRequest
+    ): Response<Unit>
+
 }

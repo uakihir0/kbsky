@@ -8,6 +8,7 @@ import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.bsky.feed.FeedRepost
 import work.socialhub.kbsky.model.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.bsky.graph.GraphFollow
+import work.socialhub.kbsky.model.bsky.graph.GraphListItem
 import work.socialhub.kbsky.util.json.RecordPolymorphicSerializer
 
 /**
@@ -17,6 +18,7 @@ import work.socialhub.kbsky.util.json.RecordPolymorphicSerializer
  * @see FeedLike
  * @see FeedPost
  * @see FeedRepost
+ * @see GraphListItem
  */
 @Serializable(with = RecordPolymorphicSerializer::class)
 abstract class RecordUnion {
