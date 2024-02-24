@@ -25,10 +25,11 @@ abstract class RecordUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    fun actorProfile(): ActorProfile? = this as? ActorProfile
-    fun graphFollow(): GraphFollow? = this as? GraphFollow
-    fun graphBlock(): GraphBlock? = this as? GraphBlock
-    fun feedLike(): FeedLike? = this as? FeedLike
-    fun feedPost(): FeedPost? = this as? FeedPost
-    fun feedRepost(): FeedRepost? = this as? FeedRepost
+    val asActorProfile get() = this as? ActorProfile
+    val asGraphFollow get() = this as? GraphFollow
+    val asGraphBlock get() = this as? GraphBlock
+    val asFeedLike get() = this as? FeedLike
+    val asFeedPost get() = this as? FeedPost
+    val asFeedRepost get() = this as? FeedRepost
+    val asGraphListItem get() = this as? GraphListItem
 }

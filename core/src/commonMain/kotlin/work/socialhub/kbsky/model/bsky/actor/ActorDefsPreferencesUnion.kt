@@ -17,10 +17,10 @@ abstract class ActorDefsPreferencesUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    fun personalDetailsPref() = this as? ActorDefsPersonalDetailsPref
-    fun adultContentPref() = this as? ActorDefsAdultContentPref
-    fun contentLabelPref() = this as? ActorDefsContentLabelPref
-    fun savedFeedsPref() = this as? ActorDefsSavedFeedsPref
-    fun feedViewPref() = this as? ActorDefsFeedViewPref
-    fun threadViewPref() = this as? ActorDefsThreadViewPref
+    val asPersonalDetailsPref get() = this as? ActorDefsPersonalDetailsPref
+    val asAdultContentPref get() = this as? ActorDefsAdultContentPref
+    val asContentLabelPref get() = this as? ActorDefsContentLabelPref
+    val asSavedFeedsPref get() = this as? ActorDefsSavedFeedsPref
+    val asFeedViewPref get() = this as? ActorDefsFeedViewPref
+    val asThreadViewPref get() = this as? ActorDefsThreadViewPref
 }

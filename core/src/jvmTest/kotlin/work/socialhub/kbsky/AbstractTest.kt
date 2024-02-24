@@ -82,7 +82,7 @@ open class AbstractTest {
                 println("FACET> " + r.type)
                 r.features?.forEach { f ->
                     println("FEATURE> " + f.type)
-                    f.tag()?.let { t ->
+                    f.asTag?.let { t ->
                         println("TAG> " + t.tag)
                     }
                 }

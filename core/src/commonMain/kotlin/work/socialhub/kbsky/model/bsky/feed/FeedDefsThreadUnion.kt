@@ -13,6 +13,6 @@ abstract class FeedDefsThreadUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    fun viewPost() = this as? FeedDefsThreadViewPost
-    fun notFoundPost() = this as? FeedDefsNotFoundPost
+    val asViewPost get() = this as? FeedDefsThreadViewPost
+    val asNotFoundPost get() = this as? FeedDefsNotFoundPost
 }
