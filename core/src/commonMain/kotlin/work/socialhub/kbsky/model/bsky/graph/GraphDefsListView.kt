@@ -4,6 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
+import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewUnion
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.share.RecordUnion
 
@@ -11,14 +12,14 @@ import work.socialhub.kbsky.model.share.RecordUnion
  * List
  */
 @Serializable
-class GraphDefsListView {
+class GraphDefsListView : EmbedRecordViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.GraphDefs + "#listView"
     }
 
     @SerialName("\$type")
-    var type = TYPE
+    override var type = TYPE
 
     lateinit var uri: String
     lateinit var cid: String
