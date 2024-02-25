@@ -22,6 +22,9 @@ object ATProtocolTypes {
     const val IdentifyResolveHandle = "com.atproto.identity.resolveHandle"
     const val IdentifyUpdateHandle = "com.atproto.identity.updateHandle"
 
+    // Label
+    const val LabelDefs = "com.atproto.label.defs"
+
     // Moderation
     const val ModerationCreateReport = "com.atproto.moderation.createReport"
 
