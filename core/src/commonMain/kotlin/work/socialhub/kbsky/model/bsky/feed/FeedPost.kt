@@ -3,6 +3,7 @@ package work.socialhub.kbsky.model.bsky.feed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
+import work.socialhub.kbsky.model.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.bsky.embed.EmbedUnion
 import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.share.RecordUnion
@@ -19,6 +20,7 @@ class FeedPost : RecordUnion() {
 
     var text: String? = null
     var langs: List<String>? = null
+    var labels: LabelDefsSelfLabels? = null
     var facets: List<RichtextFacet>? = null
     var reply: FeedPostReplyRef? = null
     var embed: EmbedUnion? = null
