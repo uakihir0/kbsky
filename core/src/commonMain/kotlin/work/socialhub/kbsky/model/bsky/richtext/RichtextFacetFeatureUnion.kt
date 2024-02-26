@@ -14,7 +14,7 @@ abstract class RichtextFacetFeatureUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    fun link() = this as? RichtextFacetLink
-    fun mention() = this as? RichtextFacetMention
-    fun tag() = this as? RichtextFacetTag
+    val asLink get() = this as? RichtextFacetLink
+    val asMention get() = this as? RichtextFacetMention
+    val asTag get() = this as? RichtextFacetTag
 }

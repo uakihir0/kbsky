@@ -18,9 +18,9 @@ abstract class EmbedRecordViewUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    fun record() = this as? EmbedRecordViewRecord
-    fun notFound() = this as? EmbedRecordViewNotFound
-    fun blocked() = this as? EmbedRecordViewBlocked
-    fun generatorView() = this as? FeedDefsGeneratorView
-    fun listView() = this as? GraphDefsListView
+    val asRecord get() = this as? EmbedRecordViewRecord
+    val asNotFound get() = this as? EmbedRecordViewNotFound
+    val asBlocked get() = this as? EmbedRecordViewBlocked
+    val asGeneratorView get() = this as? FeedDefsGeneratorView
+    val asListView get() = this as? GraphDefsListView
 }

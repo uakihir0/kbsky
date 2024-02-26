@@ -15,8 +15,8 @@ abstract class EmbedViewUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    fun `external`() = this as? EmbedExternalView
-    fun images() = this as? EmbedImagesView
-    fun record() = this as? EmbedRecordView
-    fun recordWithMedia() = this as? EmbedRecordWithMediaView
+    val asExternal get() = this as? EmbedExternalView
+    val asImages get() = this as? EmbedImagesView
+    val asRecord get() = this as? EmbedRecordView
+    val asRecordWithMedia get() = this as? EmbedRecordWithMediaView
 }

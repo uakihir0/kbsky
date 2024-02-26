@@ -10,7 +10,5 @@ import work.socialhub.kbsky.util.json.DidDocPolymorphicSerializer
 @Serializable(with = DidDocPolymorphicSerializer::class)
 abstract class DidDocUnion {
 
-    fun DIDDetails(): DIDDetails? {
-        return this as? DIDDetails
-    }
+    val asDIDDetails get() = this as? DIDDetails
 }
