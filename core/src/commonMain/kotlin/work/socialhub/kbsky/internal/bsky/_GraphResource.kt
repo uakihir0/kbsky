@@ -18,11 +18,41 @@ import work.socialhub.kbsky.BlueskyTypes.GraphUnmuteActor
 import work.socialhub.kbsky.api.bsky.GraphResource
 import work.socialhub.kbsky.api.entity.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.atproto.repo.RepoDeleteRecordRequest
-import work.socialhub.kbsky.api.entity.bsky.graph.*
+import work.socialhub.kbsky.api.entity.atproto.repo.RepoGetRecordRequest
+import work.socialhub.kbsky.api.entity.atproto.repo.RepoPutRecordRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphAddUserToListRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphAddUserToListResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphBlockRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphBlockResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphCreateListRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphCreateListResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphDeleteBlockRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphDeleteFollowRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphEditListRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphEditListResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphFollowRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphFollowResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetBlocksRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetBlocksResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetFollowersRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetFollowersResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetFollowsRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetFollowsResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetListRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetListResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetListsRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetListsResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetMutesRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphGetMutesResponse
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphMuteActorRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphRemoveUserFromListRequest
+import work.socialhub.kbsky.api.entity.bsky.graph.GraphUnmuteActorRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.atproto._RepoResource
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.util.ATUriParser
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
@@ -236,6 +266,46 @@ class _GraphResource(
                     .accept(MediaType.JSON)
                     .post()
             }
+        }
+    }
+
+    override fun editList(request: GraphEditListRequest): Response<GraphEditListResponse> {
+
+        return runBlocking {
+            val listUri = request.listUri
+
+            val repoResource = _RepoResource(uri)
+
+            val original = repoResource.getRecord(
+                RepoGetRecordRequest(
+                    repo = request.did!!,
+                    collection = GraphList,
+                    rkey = ATUriParser.getRKey(listUri)
+                )
+            )
+
+            val originalListRecord = original.data.value.asGraphList
+                ?: throw IllegalStateException("response data is not GraphList(type=${original.data.value.type}")
+
+            val modifiedListRecord = originalListRecord.copy(
+                name = request.name,
+                description = request.description
+            )
+
+            val r = repoResource.putRecord(
+                RepoPutRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = GraphList,
+                    rkey = ATUriParser.getRKey(listUri),
+                    record = modifiedListRecord
+                )
+            )
+
+            Response(GraphEditListResponse().also {
+                it.uri = r.data.uri
+                it.cid = r.data.cid
+            }, r.json)
         }
     }
 

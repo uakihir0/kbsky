@@ -23,11 +23,11 @@ class GraphCreateListRequest(
     }
 
     fun toRecord(): GraphList {
-        return GraphList().also {
-            it.purpose = purpose
-            it.name = name
-            it.description = description
-            it.createdAt = createdAt()
-        }
+        return GraphList(
+            purpose = purpose,
+            name = name,
+            description = description,
+            createdAt = createdAt()
+        )
     }
 }

@@ -6,7 +6,12 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class GraphList : RecordUnion() {
+data class GraphList(
+    val purpose: String? = null,
+    val name: String? = null,
+    val description: String? = null,
+    val createdAt: String? = null,
+) : RecordUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.GraphList
@@ -14,12 +19,4 @@ class GraphList : RecordUnion() {
 
     @SerialName("\$type")
     override var type = TYPE
-
-    var purpose: String? = null
-
-    var name: String? = null
-
-    var description: String? = null
-
-    var createdAt: String? = null
 }

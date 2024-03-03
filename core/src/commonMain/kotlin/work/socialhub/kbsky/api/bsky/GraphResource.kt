@@ -92,6 +92,14 @@ interface GraphResource {
     ): Response<GraphCreateListResponse>
 
     /**
+     * Edit a list.
+     * (ATProtocol/Repo getRecord and putRecord wrapper)
+     */
+    fun editList(
+        request: GraphEditListRequest
+    ): Response<GraphEditListResponse>
+
+    /**
      * Gets a 'view' (with additional context) of a specified list.
      */
     fun getList(
