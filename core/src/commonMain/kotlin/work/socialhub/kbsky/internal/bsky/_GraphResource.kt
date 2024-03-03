@@ -288,8 +288,12 @@ class _GraphResource(
                 ?: throw IllegalStateException("response data is not GraphList(type=${original.data.value.type}")
 
             val modifiedListRecord = originalListRecord.copy(
+                // keep purpose, createdAt
                 name = request.name,
-                description = request.description
+                description = request.description,
+                descriptionFacets = request.descriptionFacets,
+                avatar = request.avatar,
+                labels = request.labels
             )
 
             val r = repoResource.putRecord(
