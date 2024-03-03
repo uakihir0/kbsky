@@ -84,6 +84,14 @@ interface GraphResource {
     ): Response<GraphGetBlocksResponse>
 
     /**
+     * Create a list.
+     * (ATProtocol/Repo createRecord wrapper)
+     */
+    fun createList(
+        request: GraphCreateListRequest
+    ): Response<GraphCreateListResponse>
+
+    /**
      * Gets a 'view' (with additional context) of a specified list.
      */
     fun getList(

@@ -10,6 +10,7 @@ import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.bsky.feed.FeedRepost
 import work.socialhub.kbsky.model.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.bsky.graph.GraphFollow
+import work.socialhub.kbsky.model.bsky.graph.GraphList
 import work.socialhub.kbsky.model.bsky.graph.GraphListItem
 import work.socialhub.kbsky.model.share.RecordUnion
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
@@ -30,6 +31,7 @@ object RecordPolymorphicSerializer :
             FeedPost.TYPE -> FeedPost.serializer()
             FeedRepost.TYPE -> FeedRepost.serializer()
             GraphListItem.TYPE -> GraphListItem.serializer()
+            GraphList.TYPE -> GraphList.serializer()
             else -> {
                 println("[Warning] Unknown Item type: $type (RecordUnion)")
                 Unknown.serializer()

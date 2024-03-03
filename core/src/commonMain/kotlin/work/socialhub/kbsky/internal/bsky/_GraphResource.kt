@@ -11,6 +11,7 @@ import work.socialhub.kbsky.BlueskyTypes.GraphGetFollows
 import work.socialhub.kbsky.BlueskyTypes.GraphGetList
 import work.socialhub.kbsky.BlueskyTypes.GraphGetLists
 import work.socialhub.kbsky.BlueskyTypes.GraphGetMutes
+import work.socialhub.kbsky.BlueskyTypes.GraphList
 import work.socialhub.kbsky.BlueskyTypes.GraphListItem
 import work.socialhub.kbsky.BlueskyTypes.GraphMuteActor
 import work.socialhub.kbsky.BlueskyTypes.GraphUnmuteActor
@@ -213,6 +214,27 @@ class _GraphResource(
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
+            }
+        }
+    }
+
+    override fun createList(request: GraphCreateListRequest): Response<GraphCreateListResponse> {
+
+        return proceed {
+            runBlocking {
+                val record = RepoCreateRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = GraphList,
+                    record = request.toRecord(),
+                )
+
+                HttpRequest()
+                    .url(xrpc(uri, RepoCreateRecord))
+                    .header("Authorization", request.bearerToken)
+                    .json(record.toMappedJson())
+                    .accept(MediaType.JSON)
+                    .post()
             }
         }
     }
