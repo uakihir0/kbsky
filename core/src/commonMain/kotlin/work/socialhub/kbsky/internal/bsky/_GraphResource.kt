@@ -309,6 +309,23 @@ class _GraphResource(
         }
     }
 
+    override fun deleteList(accessJwt: String, listUri: String): Response<Unit> {
+
+        return runBlocking {
+            val did = ATUriParser.getDid(listUri)
+            val rkey = ATUriParser.getRKey(listUri)
+
+            val record = RepoDeleteRecordRequest(
+                accessJwt = accessJwt,
+                repo = did,
+                collection = GraphList,
+                rkey = rkey,
+            )
+
+            _RepoResource(uri).deleteRecord(record)
+        }
+    }
+
     override fun getList(request: GraphGetListRequest): Response<GraphGetListResponse> {
 
         return proceed {

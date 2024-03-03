@@ -100,6 +100,12 @@ interface GraphResource {
     ): Response<GraphEditListResponse>
 
     /**
+     * Delete a list.
+     * (ATProtocol/Repo deleteRecord wrapper)
+     */
+    fun deleteList(accessJwt: String, listUri: String): Response<Unit>
+
+    /**
      * Gets a 'view' (with additional context) of a specified list.
      */
     fun getList(
