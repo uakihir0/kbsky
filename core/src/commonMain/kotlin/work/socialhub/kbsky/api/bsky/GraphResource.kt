@@ -84,6 +84,28 @@ interface GraphResource {
     ): Response<GraphGetBlocksResponse>
 
     /**
+     * Create a list.
+     * (ATProtocol/Repo createRecord wrapper)
+     */
+    fun createList(
+        request: GraphCreateListRequest
+    ): Response<GraphCreateListResponse>
+
+    /**
+     * Edit a list.
+     * (ATProtocol/Repo getRecord and putRecord wrapper)
+     */
+    fun editList(
+        request: GraphEditListRequest
+    ): Response<GraphEditListResponse>
+
+    /**
+     * Delete a list.
+     * (ATProtocol/Repo deleteRecord wrapper)
+     */
+    fun deleteList(accessJwt: String, listUri: String): Response<Unit>
+
+    /**
      * Gets a 'view' (with additional context) of a specified list.
      */
     fun getList(

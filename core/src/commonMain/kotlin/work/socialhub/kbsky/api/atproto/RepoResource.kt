@@ -50,10 +50,11 @@ interface RepoResource {
     ): Response<RepoListRecordsResponse>
 
     /**
-     * TODO:
      * Write a record, creating or updating it as needed.
      */
-    fun putRecord()
+    fun putRecord(
+        request: RepoPutRecordRequest
+    ): Response<RepoPutRecordResponse>
 
     /**
      * Upload a new blob to be added to repo in a later request.

@@ -12,6 +12,7 @@ import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.bsky.feed.FeedRepost
 import work.socialhub.kbsky.model.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.bsky.graph.GraphFollow
+import work.socialhub.kbsky.model.bsky.graph.GraphList
 import work.socialhub.kbsky.model.bsky.graph.GraphListItem
 
 object AnySerializer : KSerializer<Any> {
@@ -66,6 +67,7 @@ object AnySerializer : KSerializer<Any> {
             is ActorProfile -> encoder.encodeSerializableValue(ActorProfile.serializer(), value)
             is GraphFollow -> encoder.encodeSerializableValue(GraphFollow.serializer(), value)
             is GraphListItem -> encoder.encodeSerializableValue(GraphListItem.serializer(), value)
+            is GraphList -> encoder.encodeSerializableValue(GraphList.serializer(), value)
             is GraphBlock -> encoder.encodeSerializableValue(GraphBlock.serializer(), value)
             is FeedLike -> encoder.encodeSerializableValue(FeedLike.serializer(), value)
             is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)

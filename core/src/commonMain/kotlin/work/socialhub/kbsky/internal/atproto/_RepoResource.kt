@@ -5,6 +5,7 @@ import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoGetRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoListRecords
+import work.socialhub.kbsky.ATProtocolTypes.RepoPutRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoUploadBlob
 import work.socialhub.kbsky.api.atproto.RepoResource
 import work.socialhub.kbsky.api.entity.atproto.repo.*
@@ -90,8 +91,20 @@ class _RepoResource(
         }
     }
 
-    override fun putRecord() {
-        throw IllegalStateException("not implemented.")
+    override fun putRecord(
+        request: RepoPutRecordRequest
+    ): Response<RepoPutRecordResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(uri, RepoPutRecord))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .json(request.toMappedJson())
+                    .post()
+            }
+        }
     }
 
     override fun uploadBlob(
