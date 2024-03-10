@@ -29,12 +29,12 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2.6.0
       with:
-        arguments: ${{ matrix.target }}:build -x core:jvmTest
+        arguments: ${{ matrix.target }}:build -x ${{ matrix.target }}:jvmTest
 
     - name: Publish to Repsy
       uses: gradle/gradle-build-action@v2.6.0
       with:
-        arguments: ${{ matrix.target }}:publish -x core:jvmTest
+        arguments: ${{ matrix.target }}:publish -x ${{ matrix.target }}:jvmTest
       env:
         USERNAME: ${{ secrets.REPSY_USERNAME }}
         PASSWORD: ${{ secrets.REPSY_PASSWORD }}

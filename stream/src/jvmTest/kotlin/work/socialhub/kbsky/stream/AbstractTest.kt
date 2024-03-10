@@ -7,7 +7,10 @@ import work.socialhub.kbsky.model.bsky.embed.EmbedImagesView
 import work.socialhub.kbsky.model.bsky.feed.FeedDefsPostView
 import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.share.RecordUnion
-import java.io.*
+import java.io.ByteArrayOutputStream
+import java.io.FileReader
+import java.io.FileWriter
+import java.io.InputStream
 import kotlin.test.BeforeTest
 
 open class AbstractTest {
@@ -97,26 +100,8 @@ open class AbstractTest {
     /**
      * Read File
      */
-    private fun readFile(fileName: String): String? {
-        try {
-            val fr = FileReader(fileName)
-            val br = BufferedReader(fr)
-            val b = StringBuilder()
-
-            var line: String?
-            val ls = System.lineSeparator()
-            while ((br.readLine().also { line = it }) != null) {
-                b.append(line)
-                b.append(ls)
-            }
-
-            b.deleteCharAt(b.length - 1)
-            br.close()
-
-            return b.toString()
-        } catch (e: Exception) {
-            return null
-        }
+    private fun readFile(file: String): String {
+        return FileReader(file).readText()
     }
 
     /**
