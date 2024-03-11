@@ -1,5 +1,5 @@
 [versions]
-kotest = "5.8.0"
+kotest = "5.8.1"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.1-SNAPSHOT"
