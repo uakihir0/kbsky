@@ -20,6 +20,13 @@ interface ActorResource {
     ): Response<ActorGetProfileResponse>
 
     /**
+     * Update the profile of the actor.
+     */
+    fun updateProfile(
+        request: ActorUpdateProfileRequest
+    ): Response<ActorUpdateProfileResponse>
+
+    /**
      * Get detailed profile views of multiple actors.
      */
     fun getProfiles(
