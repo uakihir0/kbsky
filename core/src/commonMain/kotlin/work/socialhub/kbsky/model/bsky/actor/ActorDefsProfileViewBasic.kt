@@ -9,7 +9,9 @@ import work.socialhub.kbsky.model.atproto.label.LabelDefsLabel
 @Serializable
 class ActorDefsProfileViewBasic {
     lateinit var did: String
-    lateinit var handle: String
+
+    // required but some implementations may not provide it (e.g. post.reply.root.author.handle)
+    var handle: String = ""
 
     var displayName: String? = null
     var avatar: String? = null
