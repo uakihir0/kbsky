@@ -22,6 +22,7 @@ class FeedPostRequest(
     var reply: FeedPostReplyRef? = null
     var embed: EmbedUnion? = null
     override var createdAt: String? = null
+    var via: String? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
@@ -32,6 +33,7 @@ class FeedPostRequest(
             it.addParam("reply", toJson(reply))
             it.addParam("embed", toJson(embed))
             it.addParam("createdAt", createdAt())
+            it.addParam("via", via)
         }
     }
 
@@ -44,6 +46,7 @@ class FeedPostRequest(
         post.reply = reply
         post.embed = embed
         post.createdAt = createdAt()
+        post.via = via
         return post
     }
 }

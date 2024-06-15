@@ -25,4 +25,5 @@ class FeedPost : RecordUnion() {
     var reply: FeedPostReplyRef? = null
     var embed: EmbedUnion? = null
     var createdAt: String? = null
+    var via: String? = null
 }
