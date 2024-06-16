@@ -2,7 +2,7 @@ package work.socialhub.kbsky.atproto.repo
 
 import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.api.entity.atproto.repo.RepoUploadBlobRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.domain.Service
 import kotlin.test.Test
 import kotlin.test.assertNotNull

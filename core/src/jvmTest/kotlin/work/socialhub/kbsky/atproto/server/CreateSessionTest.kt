@@ -2,7 +2,7 @@ package work.socialhub.kbsky.atproto.server
 
 import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.api.entity.atproto.server.ServerCreateSessionRequest
+import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 

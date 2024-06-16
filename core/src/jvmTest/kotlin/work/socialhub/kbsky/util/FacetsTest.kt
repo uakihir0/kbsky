@@ -1,9 +1,9 @@
 package work.socialhub.kbsky.util
 
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetLink
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetMention
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetTag
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetLink
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetTag
 import work.socialhub.kbsky.util.facet.FacetList
 import work.socialhub.kbsky.util.facet.FacetType
 import work.socialhub.kbsky.util.facet.FacetUtil
@@ -249,7 +249,7 @@ class FacetsTest {
         }
     }
 
-    private fun print2(richTextFacets: List<RichtextFacet>) {
+    private fun print2(richTextFacets: List<work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet>) {
         println("richTextFacets: ")
         for (facet in richTextFacets) {
             val index = checkNotNull(facet.index)
@@ -262,13 +262,13 @@ class FacetsTest {
             for (feature in features) {
 
                 println("  - UNION: " + feature.type)
-                if (feature is RichtextFacetLink) {
+                if (feature is work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetLink) {
                     println("    LINK: " + feature.uri)
                 }
-                if (feature is RichtextFacetMention) {
+                if (feature is work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention) {
                     println("    MENTION: " + feature.did)
                 }
-                if (feature is RichtextFacetTag) {
+                if (feature is work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetTag) {
                     println("    TAG: " + feature.tag)
                 }
             }

@@ -6,7 +6,7 @@ import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
 import work.socialhub.kbsky.BlueskyTypes.GraphBlock
-import work.socialhub.kbsky.api.entity.atproto.repo.RepoListRecordsRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoListRecordsRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 

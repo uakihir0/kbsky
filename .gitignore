@@ -1,6 +1,7 @@
 *.iml
 .idea
 .gradle
+.kotlin
 target/
 build/
 out/

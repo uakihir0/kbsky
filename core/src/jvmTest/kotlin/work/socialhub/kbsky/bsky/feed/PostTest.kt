@@ -3,16 +3,20 @@ package work.socialhub.kbsky.bsky.feed
 import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
-import work.socialhub.kbsky.api.entity.atproto.identity.IdentityResolveHandleRequest
-import work.socialhub.kbsky.api.entity.atproto.repo.RepoUploadBlobRequest
+import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
-import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
-import work.socialhub.kbsky.model.bsky.embed.EmbedImages
-import work.socialhub.kbsky.model.bsky.embed.EmbedImagesImage
-import work.socialhub.kbsky.model.bsky.feed.FeedPostReplyRef
+import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedExternal
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedExternalExternal
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesImage
+import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
+import work.socialhub.kbsky.model.share.Blob
+import work.socialhub.kbsky.model.share.BlobRef
 import work.socialhub.kbsky.util.facet.FacetType
 import work.socialhub.kbsky.util.facet.FacetUtil
 import kotlin.test.Test
@@ -54,12 +58,12 @@ class PostTest : AbstractTest() {
         println(link)
 
         // Setup Image
-        val imagesMain = EmbedImages()
+        val imagesMain = work.socialhub.kbsky.model.app.bsky.embed.EmbedImages()
         run {
-            val images = mutableListOf<EmbedImagesImage>()
+            val images = mutableListOf<work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesImage>()
             imagesMain.images = images
 
-            val image = EmbedImagesImage()
+            val image = work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesImage()
             image.image = response1.data.blob
             image.alt = "image test"
             images.add(image)
@@ -102,7 +106,7 @@ class PostTest : AbstractTest() {
                 checkNotNull(root.data.cid),
             )
 
-            val reply = FeedPostReplyRef().also {
+            val reply = work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef().also {
                 it.parent = parentRef
                 it.root = rootRef
             }
@@ -130,7 +134,7 @@ class PostTest : AbstractTest() {
                 checkNotNull(parent.data.cid),
             )
 
-            val reply = FeedPostReplyRef().also {
+            val reply = work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef().also {
                 it.parent = parentRef
                 it.root = rootRef
             }

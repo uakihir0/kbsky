@@ -4,10 +4,10 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.bsky.feed.ThreadgateAllowUnion
-import work.socialhub.kbsky.model.bsky.feed.ThreadgateFollowingRule
-import work.socialhub.kbsky.model.bsky.feed.ThreadgateListRule
-import work.socialhub.kbsky.model.bsky.feed.ThreadgateMentionRule
+import work.socialhub.kbsky.model.app.bsky.feed.ThreadgateAllowUnion
+import work.socialhub.kbsky.model.app.bsky.feed.ThreadgateFollowingRule
+import work.socialhub.kbsky.model.app.bsky.feed.ThreadgateListRule
+import work.socialhub.kbsky.model.app.bsky.feed.ThreadgateMentionRule
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object ThreadgateAllowUnionPolymorphicSerializer :

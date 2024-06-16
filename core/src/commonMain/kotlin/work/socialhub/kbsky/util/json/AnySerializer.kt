@@ -6,15 +6,15 @@ import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.*
-import work.socialhub.kbsky.model.bsky.actor.ActorProfile
-import work.socialhub.kbsky.model.bsky.feed.FeedLike
-import work.socialhub.kbsky.model.bsky.feed.FeedPost
-import work.socialhub.kbsky.model.bsky.feed.FeedRepost
-import work.socialhub.kbsky.model.bsky.feed.Threadgate
-import work.socialhub.kbsky.model.bsky.graph.GraphBlock
-import work.socialhub.kbsky.model.bsky.graph.GraphFollow
-import work.socialhub.kbsky.model.bsky.graph.GraphList
-import work.socialhub.kbsky.model.bsky.graph.GraphListItem
+import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
+import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
+import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
+import work.socialhub.kbsky.model.app.bsky.feed.Threadgate
+import work.socialhub.kbsky.model.app.bsky.feed.FeedRepost
+import work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
+import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
+import work.socialhub.kbsky.model.app.bsky.graph.GraphList
+import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
 
 object AnySerializer : KSerializer<Any> {
 

@@ -1,8 +1,8 @@
 package work.socialhub.kbsky
 
-import work.socialhub.kbsky.api.atproto.IdentityResource
-import work.socialhub.kbsky.api.atproto.RepoResource
-import work.socialhub.kbsky.api.atproto.ServerResource
+import work.socialhub.kbsky.api.com.atproto.IdentityResource
+import work.socialhub.kbsky.api.com.atproto.RepoResource
+import work.socialhub.kbsky.api.com.atproto.ServerResource
 
 interface ATProtocol {
     fun identity(): IdentityResource

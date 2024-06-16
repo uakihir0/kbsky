@@ -4,9 +4,9 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.bsky.feed.FeedDefsNotFoundPost
-import work.socialhub.kbsky.model.bsky.feed.FeedDefsThreadUnion
-import work.socialhub.kbsky.model.bsky.feed.FeedDefsThreadViewPost
+import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsNotFoundPost
+import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsThreadUnion
+import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsThreadViewPost
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object FeedDefsThreadPolymorphicSerializer :

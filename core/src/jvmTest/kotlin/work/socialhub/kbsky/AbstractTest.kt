@@ -1,11 +1,11 @@
 package work.socialhub.kbsky
 
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
-import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
-import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileViewDetailed
-import work.socialhub.kbsky.model.bsky.embed.EmbedImagesView
-import work.socialhub.kbsky.model.bsky.feed.FeedDefsPostView
-import work.socialhub.kbsky.model.bsky.feed.FeedPost
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewDetailed
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView
+import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
+import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.share.RecordUnion
 import java.io.File
 import java.io.FileReader
@@ -56,12 +56,12 @@ open class AbstractTest {
     fun print(record: RecordUnion) {
         println("TYPE> " + record.type)
 
-        if (record is FeedPost) {
+        if (record is work.socialhub.kbsky.model.app.bsky.feed.FeedPost) {
             println("TEXT> " + record.text)
         }
     }
 
-    fun print(post: FeedDefsPostView) {
+    fun print(post: work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView) {
 
         println("|POST|-----------------------------------------")
         println("URI> " + post.uri)
@@ -69,13 +69,13 @@ open class AbstractTest {
 
         if (post.embed != null) {
             val embed = post.embed
-            if (embed is EmbedImagesView) {
+            if (embed is work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView) {
                 println("ImageURL> " + embed.images!![0].fullsize)
             }
         }
 
         val record = post.record
-        if (record is FeedPost) {
+        if (record is work.socialhub.kbsky.model.app.bsky.feed.FeedPost) {
             println("TEXT> " + record.text)
 
             record.facets?.forEach { r ->
@@ -90,14 +90,14 @@ open class AbstractTest {
         }
     }
 
-    fun print(user: ActorDefsProfileView) {
+    fun print(user: work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView) {
         println("|USER|-----------------------------------------")
         println("DID> " + user.did)
         println("HANDLE> " + user.handle)
         println("NAME> " + user.displayName)
     }
 
-    fun print(user: ActorDefsProfileViewDetailed) {
+    fun print(user: work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewDetailed) {
         println("|USER|-----------------------------------------")
         println("DID> " + user.did)
         println("HANDLE> " + user.handle)

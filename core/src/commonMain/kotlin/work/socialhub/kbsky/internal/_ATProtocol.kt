@@ -1,12 +1,12 @@
 package work.socialhub.kbsky.internal
 
 import work.socialhub.kbsky.ATProtocol
-import work.socialhub.kbsky.api.atproto.IdentityResource
-import work.socialhub.kbsky.api.atproto.RepoResource
-import work.socialhub.kbsky.api.atproto.ServerResource
-import work.socialhub.kbsky.internal.atproto._IdentityResource
-import work.socialhub.kbsky.internal.atproto._RepoResource
-import work.socialhub.kbsky.internal.atproto._ServerResource
+import work.socialhub.kbsky.api.com.atproto.IdentityResource
+import work.socialhub.kbsky.api.com.atproto.RepoResource
+import work.socialhub.kbsky.api.com.atproto.ServerResource
+import work.socialhub.kbsky.internal.com.atproto._IdentityResource
+import work.socialhub.kbsky.internal.com.atproto._RepoResource
+import work.socialhub.kbsky.internal.com.atproto._ServerResource
 
 open class _ATProtocol(uri: String) : ATProtocol {
 

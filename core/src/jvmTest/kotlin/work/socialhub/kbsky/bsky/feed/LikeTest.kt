@@ -5,7 +5,7 @@ import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedDeleteLikeRequest
 import work.socialhub.kbsky.api.entity.bsky.feed.FeedLikeRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
-import work.socialhub.kbsky.model.atproto.repo.RepoStrongRef
+import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import kotlin.test.Test
 
 class LikeTest : AbstractTest() {
