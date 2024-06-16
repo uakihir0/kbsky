@@ -40,6 +40,7 @@ object BlueskyTypes {
     const val FeedGetFeedSearchPosts = "app.bsky.feed.searchPosts"
     const val FeedGetFeedGenerator = "app.bsky.feed.getFeedGenerator"
     const val FeedGetFeedGenerators = "app.bsky.feed.getFeedGenerators"
+    const val FeedThreadgate = "app.bsky.feed.threadgate"
 
     // Graph
     const val GraphDefs = "app.bsky.graph.defs"

@@ -19,4 +19,5 @@ class FeedDefsPostView {
     var indexedAt: String? = null
     var viewer: FeedDefsViewerState? = null
     var labels: List<LabelDefsLabel>? = null
+    var threadgate: FeedDefsThreadgateView? = null
 }
