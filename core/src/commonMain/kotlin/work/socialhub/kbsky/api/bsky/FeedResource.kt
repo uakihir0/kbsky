@@ -147,4 +147,12 @@ interface FeedResource {
     fun deleteRepost(
         request: FeedDeleteRepostRequest
     ): Response<Unit>
+
+    /**
+     * Threadgate feed operation.
+     * (ATProtocol/Repo createRecord wrapper)
+     */
+    fun threadgate(
+        request: FeedThreadgateRequest
+    ): Response<FeedThreadgateResponse>
 }

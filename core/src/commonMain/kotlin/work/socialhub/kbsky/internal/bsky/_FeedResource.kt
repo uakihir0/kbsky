@@ -3,6 +3,7 @@ package work.socialhub.kbsky.internal.bsky
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
+import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorFeeds
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorLikes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetAuthorFeed
@@ -27,6 +28,7 @@ import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.util.ATUriParser
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
@@ -380,6 +382,32 @@ class _FeedResource(
 
                 HttpRequest()
                     .url(xrpc(uri, RepoDeleteRecord))
+                    .header("Authorization", request.bearerToken)
+                    .json(record.toMappedJson())
+                    .accept(MediaType.JSON)
+                    .post()
+            }
+        }
+    }
+
+    override fun threadgate(
+        request: FeedThreadgateRequest
+    ): Response<FeedThreadgateResponse> {
+
+        return proceed {
+            runBlocking {
+                val record = RepoCreateRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = BlueskyTypes.FeedThreadgate,
+                    record = request.toThreadgate(),
+                ).also {
+                    // get rkey from uri of post
+                    it.rkey = ATUriParser.getRKey(request.post)
+                }
+
+                HttpRequest()
+                    .url(xrpc(uri, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)

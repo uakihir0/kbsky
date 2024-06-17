@@ -10,6 +10,7 @@ import work.socialhub.kbsky.model.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.bsky.feed.FeedRepost
+import work.socialhub.kbsky.model.bsky.feed.Threadgate
 import work.socialhub.kbsky.model.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.bsky.graph.GraphList
@@ -72,6 +73,7 @@ object AnySerializer : KSerializer<Any> {
             is FeedLike -> encoder.encodeSerializableValue(FeedLike.serializer(), value)
             is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)
             is FeedRepost -> encoder.encodeSerializableValue(FeedRepost.serializer(), value)
+            is Threadgate -> encoder.encodeSerializableValue(Threadgate.serializer(), value)
 
             else -> {
                 println("Can't serialize unknown type: ${value::class}")
