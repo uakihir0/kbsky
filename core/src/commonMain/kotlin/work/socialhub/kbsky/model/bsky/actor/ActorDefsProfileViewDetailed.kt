@@ -16,6 +16,7 @@ open class ActorDefsProfileViewDetailed {
     var followersCount: Int? = null
     var followsCount: Int? = null
     var postsCount: Int? = null
+    var associated: ActorDefsProfileAssociated? = null
     var indexedAt: String? = null
     var viewer: ActorDefsViewerState? = null
     var labels: List<LabelDefsLabel>? = null

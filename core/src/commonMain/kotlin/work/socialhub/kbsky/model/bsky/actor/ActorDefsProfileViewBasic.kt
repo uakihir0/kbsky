@@ -15,6 +15,7 @@ class ActorDefsProfileViewBasic {
 
     var displayName: String? = null
     var avatar: String? = null
+    var associated: ActorDefsProfileAssociated? = null
     var viewer: ActorDefsViewerState? = null
     var labels: List<LabelDefsLabel>? = null
 }
