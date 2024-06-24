@@ -19,8 +19,7 @@ class _PLCDirectory(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(uri)
-                    .path(did)
+                    .url("$uri$did")
                     .get()
             }
         }
@@ -33,8 +32,7 @@ class _PLCDirectory(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(uri)
-                    .path("$did/log")
+                    .url("$uri$did/log")
                     .get()
             }
         }
