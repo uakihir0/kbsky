@@ -2,7 +2,7 @@ package work.socialhub.kbsky.bsky.feed
 
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
-import work.socialhub.kbsky.api.entity.bsky.feed.FeedGetPostThreadRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostThreadRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsThreadViewPost
 import kotlin.test.Test
@@ -24,8 +24,8 @@ class GetPostThreadTest : AbstractTest() {
 
 
         val union = feeds.data.thread
-        if (union is work.socialhub.kbsky.model.app.bsky.feed.FeedDefsThreadViewPost) {
-            var tmp: work.socialhub.kbsky.model.app.bsky.feed.FeedDefsThreadViewPost = union
+        if (union is FeedDefsThreadViewPost) {
+            var tmp: FeedDefsThreadViewPost = union
 
             while (true) {
                 print(tmp.post)
@@ -35,7 +35,7 @@ class GetPostThreadTest : AbstractTest() {
                     break
                 }
 
-                tmp = replies[0] as work.socialhub.kbsky.model.app.bsky.feed.FeedDefsThreadViewPost
+                tmp = replies[0] as FeedDefsThreadViewPost
             }
         }
     }

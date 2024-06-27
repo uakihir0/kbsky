@@ -249,7 +249,7 @@ class FacetsTest {
         }
     }
 
-    private fun print2(richTextFacets: List<work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet>) {
+    private fun print2(richTextFacets: List<RichtextFacet>) {
         println("richTextFacets: ")
         for (facet in richTextFacets) {
             val index = checkNotNull(facet.index)
@@ -262,13 +262,13 @@ class FacetsTest {
             for (feature in features) {
 
                 println("  - UNION: " + feature.type)
-                if (feature is work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetLink) {
+                if (feature is RichtextFacetLink) {
                     println("    LINK: " + feature.uri)
                 }
-                if (feature is work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention) {
+                if (feature is RichtextFacetMention) {
                     println("    MENTION: " + feature.did)
                 }
-                if (feature is work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetTag) {
+                if (feature is RichtextFacetTag) {
                     println("    TAG: " + feature.tag)
                 }
             }

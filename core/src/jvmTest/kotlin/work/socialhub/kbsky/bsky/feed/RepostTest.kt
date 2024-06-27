@@ -2,8 +2,8 @@ package work.socialhub.kbsky.bsky.feed
 
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
-import work.socialhub.kbsky.api.entity.bsky.feed.FeedDeleteRepostRequest
-import work.socialhub.kbsky.api.entity.bsky.feed.FeedRepostRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteRepostRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import kotlin.test.Test

@@ -14,7 +14,7 @@ class GetProfileTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .actor()
             .getProfile(
-                work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest(accessJwt).also {
+                ActorGetProfileRequest(accessJwt).also {
                     it.actor = "uakihir0.com"
                 }
             )

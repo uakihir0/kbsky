@@ -8,8 +8,6 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.share.RecordUnion
 import java.io.File
-import java.io.FileReader
-import java.io.FileWriter
 import kotlin.test.BeforeTest
 
 open class AbstractTest {
@@ -56,12 +54,12 @@ open class AbstractTest {
     fun print(record: RecordUnion) {
         println("TYPE> " + record.type)
 
-        if (record is work.socialhub.kbsky.model.app.bsky.feed.FeedPost) {
+        if (record is FeedPost) {
             println("TEXT> " + record.text)
         }
     }
 
-    fun print(post: work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView) {
+    fun print(post: FeedDefsPostView) {
 
         println("|POST|-----------------------------------------")
         println("URI> " + post.uri)
@@ -69,13 +67,13 @@ open class AbstractTest {
 
         if (post.embed != null) {
             val embed = post.embed
-            if (embed is work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView) {
+            if (embed is EmbedImagesView) {
                 println("ImageURL> " + embed.images!![0].fullsize)
             }
         }
 
         val record = post.record
-        if (record is work.socialhub.kbsky.model.app.bsky.feed.FeedPost) {
+        if (record is FeedPost) {
             println("TEXT> " + record.text)
 
             record.facets?.forEach { r ->
@@ -90,14 +88,14 @@ open class AbstractTest {
         }
     }
 
-    fun print(user: work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView) {
+    fun print(user: ActorDefsProfileView) {
         println("|USER|-----------------------------------------")
         println("DID> " + user.did)
         println("HANDLE> " + user.handle)
         println("NAME> " + user.displayName)
     }
 
-    fun print(user: work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewDetailed) {
+    fun print(user: ActorDefsProfileViewDetailed) {
         println("|USER|-----------------------------------------")
         println("DID> " + user.did)
         println("HANDLE> " + user.handle)

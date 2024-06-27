@@ -2,7 +2,7 @@ package work.socialhub.kbsky.bsky.feed
 
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
-import work.socialhub.kbsky.api.entity.bsky.feed.FeedGetAuthorFeedRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetAuthorFeedRequest
 import work.socialhub.kbsky.domain.Service
 import kotlin.test.Test
 

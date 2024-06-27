@@ -16,16 +16,16 @@ class GetPreferencesTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .actor()
             .getPreferences(
-                work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest(accessJwt)
+                ActorGetPreferencesRequest(accessJwt)
             )
 
         setting.data.preferences.forEach { s ->
-            if (s is work.socialhub.kbsky.model.app.bsky.actor.ActorDefsAdultContentPref) {
+            if (s is ActorDefsAdultContentPref) {
                 println("> ActorDefsAdultContentPref")
                 println("> enabled: ${s.enabled}")
             }
 
-            if (s is work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPref) {
+            if (s is ActorDefsSavedFeedsPref) {
                 s.saved.forEach { println(it) }
             }
         }

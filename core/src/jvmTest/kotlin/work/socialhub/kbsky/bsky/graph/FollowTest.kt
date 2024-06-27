@@ -2,8 +2,8 @@ package work.socialhub.kbsky.bsky.graph
 
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
-import work.socialhub.kbsky.api.entity.bsky.graph.GraphDeleteFollowRequest
-import work.socialhub.kbsky.api.entity.bsky.graph.GraphFollowRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteFollowRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphFollowRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 

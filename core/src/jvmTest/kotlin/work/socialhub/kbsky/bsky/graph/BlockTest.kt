@@ -2,8 +2,8 @@ package work.socialhub.kbsky.bsky.graph
 
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
-import work.socialhub.kbsky.api.entity.bsky.graph.GraphBlockRequest
-import work.socialhub.kbsky.api.entity.bsky.graph.GraphDeleteBlockRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphBlockRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteBlockRequest
 import work.socialhub.kbsky.domain.Service
 import kotlin.test.Test
 
