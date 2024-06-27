@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.api.app.bsky
 
 import work.socialhub.kbsky.api.entity.app.bsky.feed.*
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateResponse
 import work.socialhub.kbsky.api.entity.share.Response
 
 /**

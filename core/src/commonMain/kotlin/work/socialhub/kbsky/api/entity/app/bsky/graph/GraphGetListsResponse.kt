@@ -6,5 +6,5 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView
 @Serializable
 class GraphGetListsResponse {
     var cursor: String? = null
-    lateinit var lists: List<work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView>
+    lateinit var lists: List<GraphDefsListView>
 }

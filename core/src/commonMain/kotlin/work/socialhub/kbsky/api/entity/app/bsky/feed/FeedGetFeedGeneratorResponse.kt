@@ -5,7 +5,7 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView
 
 @Serializable
 class FeedGetFeedGeneratorResponse {
-    var view: work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView? = null
+    var view: FeedDefsGeneratorView? = null
     var online: Boolean? = null
     var valid: Boolean? = null
 }

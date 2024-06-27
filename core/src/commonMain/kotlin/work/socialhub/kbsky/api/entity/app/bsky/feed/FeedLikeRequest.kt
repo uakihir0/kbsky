@@ -21,8 +21,8 @@ class FeedLikeRequest(
         }
     }
 
-    fun toLike(): work.socialhub.kbsky.model.app.bsky.feed.FeedLike {
-        val like = work.socialhub.kbsky.model.app.bsky.feed.FeedLike()
+    fun toLike(): FeedLike {
+        val like = FeedLike()
         like.subject = subject
         like.createdAt = createdAt()
         return like

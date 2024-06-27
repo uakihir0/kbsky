@@ -18,9 +18,9 @@ class FeedPostRequest(
 
     var langs: List<String>? = null
     var labels: LabelDefsSelfLabels? = null
-    var facets: List<work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet>? = null
-    var reply: work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef? = null
-    var embed: work.socialhub.kbsky.model.app.bsky.embed.EmbedUnion? = null
+    var facets: List<RichtextFacet>? = null
+    var reply: FeedPostReplyRef? = null
+    var embed: EmbedUnion? = null
     override var createdAt: String? = null
     var via: String? = null
 
@@ -37,8 +37,8 @@ class FeedPostRequest(
         }
     }
 
-    fun toPost(): work.socialhub.kbsky.model.app.bsky.feed.FeedPost {
-        val post = work.socialhub.kbsky.model.app.bsky.feed.FeedPost()
+    fun toPost(): FeedPost {
+        val post = FeedPost()
         post.text = text
         post.langs = langs
         post.labels = labels

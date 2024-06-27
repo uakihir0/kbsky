@@ -7,7 +7,7 @@ package work.socialhub.kbsky
 object BlueskyTypes {
 
     /// ----------------------------------------------------------------------- ///
-    /// APP.BLUESKY
+    /// APP.BSKY
     /// ----------------------------------------------------------------------- ///
 
     // Actor
@@ -73,7 +73,7 @@ object BlueskyTypes {
     const val UnspeccedGetPopular = "app.bsky.unspecced.getPopular"
 
     /// ----------------------------------------------------------------------- ///
-    /// CHAT.BLUESKY
+    /// CHAT.BSKY
     /// ----------------------------------------------------------------------- ///
 
     // Convo
@@ -85,6 +85,7 @@ object BlueskyTypes {
     const val ConvoLeaveConvo = "chat.bsky.convo.leaveConvo"
     const val ConvoListConvos = "chat.bsky.convo.listConvos"
     const val ConvoMuteConvo = "chat.bsky.convo.muteConvo"
+    const val ConvoSendMessage = "chat.bsky.convo.sendMessage"
     const val ConvoSendMessageBatch = "chat.bsky.convo.sendMessageBatch"
     const val ConvoUnmuteConvo = "chat.bsky.convo.unmuteConvo"
     const val ConvoUpdateRead = "chat.bsky.convo.updateRead"

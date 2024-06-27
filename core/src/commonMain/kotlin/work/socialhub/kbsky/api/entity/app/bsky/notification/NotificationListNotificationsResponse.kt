@@ -6,5 +6,5 @@ import work.socialhub.kbsky.model.app.bsky.notification.NotificationListNotifica
 @Serializable
 class NotificationListNotificationsResponse {
     var cursor: String? = null
-    lateinit var notifications: List<work.socialhub.kbsky.model.app.bsky.notification.NotificationListNotificationsNotification>
+    lateinit var notifications: List<NotificationListNotificationsNotification>
 }

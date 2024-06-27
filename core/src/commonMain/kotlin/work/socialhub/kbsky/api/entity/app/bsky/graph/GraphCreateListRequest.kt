@@ -13,7 +13,7 @@ class GraphCreateListRequest(
     private val purpose: String = "app.bsky.graph.defs#curatelist",
     private val name: String,
     private val description: String?,
-    private val descriptionFacets: List<work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet>? = null,
+    private val descriptionFacets: List<RichtextFacet>? = null,
     private val avatar: Blob? = null,
     private var labels: LabelDefsSelfLabels? = null,
     override var createdAt: String? = null
@@ -31,8 +31,8 @@ class GraphCreateListRequest(
         }
     }
 
-    fun toRecord(): work.socialhub.kbsky.model.app.bsky.graph.GraphList {
-        return work.socialhub.kbsky.model.app.bsky.graph.GraphList(
+    fun toRecord(): GraphList {
+        return GraphList(
             purpose = purpose,
             name = name,
             description = description,

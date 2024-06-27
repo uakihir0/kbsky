@@ -8,5 +8,5 @@ class FeedGetLikesResponse {
     lateinit var uri: String
     var cid: String? = null
     var cursor: String? = null
-    lateinit var likes: List<work.socialhub.kbsky.model.app.bsky.feed.FeedGetLikesLike>
+    lateinit var likes: List<FeedGetLikesLike>
 }

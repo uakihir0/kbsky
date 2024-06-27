@@ -8,6 +8,6 @@ import work.socialhub.kbsky.model.app.bsky.undoc.UndocSearchFeedsUser
 class UnspeccedSearchFeedsResponse {
     var cid: String? = null
     var tid: String? = null
-    var user: work.socialhub.kbsky.model.app.bsky.undoc.UndocSearchFeedsUser? = null
-    var post: work.socialhub.kbsky.model.app.bsky.undoc.UndocSearchFeedsPost? = null
+    var user: UndocSearchFeedsUser? = null
+    var post: UndocSearchFeedsPost? = null
 }

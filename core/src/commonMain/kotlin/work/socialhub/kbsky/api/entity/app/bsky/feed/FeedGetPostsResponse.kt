@@ -5,5 +5,5 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
 
 @Serializable
 class FeedGetPostsResponse {
-    lateinit var posts: List<work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView>
+    lateinit var posts: List<FeedDefsPostView>
 }

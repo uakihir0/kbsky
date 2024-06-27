@@ -21,8 +21,8 @@ class FeedRepostRequest(
         }
     }
 
-    fun toRepost(): work.socialhub.kbsky.model.app.bsky.feed.FeedRepost {
-        val repost = work.socialhub.kbsky.model.app.bsky.feed.FeedRepost()
+    fun toRepost(): FeedRepost {
+        val repost = FeedRepost()
         repost.subject = subject
         repost.createdAt = createdAt()
         return repost

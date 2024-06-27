@@ -6,5 +6,5 @@ import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 @Serializable
 class GraphGetBlocksResponse {
     var cursor: String? = null
-    lateinit var blocks: List<work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView>
+    lateinit var blocks: List<ActorDefsProfileView>
 }

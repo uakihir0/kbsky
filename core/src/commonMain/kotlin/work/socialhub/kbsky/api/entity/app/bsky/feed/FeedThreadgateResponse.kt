@@ -1,7 +1,7 @@
-package work.socialhub.kbsky.api.entity.bsky.feed
+package work.socialhub.kbsky.api.entity.app.bsky.feed
 
 import kotlinx.serialization.Serializable
-import work.socialhub.kbsky.api.entity.atproto.repo.RepoCreateRecordResponse
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordResponse
 
 @Serializable
 class FeedThreadgateResponse : RepoCreateRecordResponse()

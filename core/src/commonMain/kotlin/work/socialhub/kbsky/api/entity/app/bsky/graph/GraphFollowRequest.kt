@@ -19,8 +19,8 @@ class GraphFollowRequest(
         }
     }
 
-    fun toFollow(): work.socialhub.kbsky.model.app.bsky.graph.GraphFollow {
-        val follow = work.socialhub.kbsky.model.app.bsky.graph.GraphFollow()
+    fun toFollow(): GraphFollow {
+        val follow = GraphFollow()
         follow.subject = subject
         follow.createdAt = createdAt()
         return follow

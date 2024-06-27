@@ -6,5 +6,5 @@ import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 @Serializable
 class GraphGetMutesResponse {
     var cursor: String? = null
-    lateinit var mutes: List<work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView>
+    lateinit var mutes: List<ActorDefsProfileView>
 }

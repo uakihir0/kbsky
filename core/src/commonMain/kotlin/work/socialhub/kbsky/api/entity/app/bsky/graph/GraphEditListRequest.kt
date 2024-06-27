@@ -10,7 +10,7 @@ class GraphEditListRequest(
     val listUri: String,
     val name: String,
     val description: String?,
-    val descriptionFacets: List<work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet>? = null,
+    val descriptionFacets: List<RichtextFacet>? = null,
     val avatar: Blob? = null,
     var labels: LabelDefsSelfLabels? = null,
 ) : AuthRequest(accessJwt)

@@ -12,6 +12,7 @@ class ActorDefsProfileView {
     var displayName: String? = null
     var description: String? = null
     var avatar: String? = null
+    var associated: ActorDefsProfileAssociated? = null
     var indexedAt: String? = null
     var viewer: work.socialhub.kbsky.model.app.bsky.actor.ActorDefsViewerState? = null
     var labels: List<LabelDefsLabel>? = null

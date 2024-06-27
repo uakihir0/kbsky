@@ -19,8 +19,8 @@ class GraphBlockRequest(
         }
     }
 
-    fun toBlock(): work.socialhub.kbsky.model.app.bsky.graph.GraphBlock {
-        val block = work.socialhub.kbsky.model.app.bsky.graph.GraphBlock()
+    fun toBlock(): GraphBlock {
+        val block = GraphBlock()
         block.subject = subject
         block.createdAt = createdAt()
         return block

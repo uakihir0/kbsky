@@ -17,8 +17,8 @@ class GraphAddUserToListRequest(
         return emptyMap()
     }
 
-    fun toListItem(): work.socialhub.kbsky.model.app.bsky.graph.GraphListItem {
-        return work.socialhub.kbsky.model.app.bsky.graph.GraphListItem().also {
+    fun toListItem(): GraphListItem {
+        return GraphListItem().also {
             it.subject = userDid
             it.list = listUri
             it.createdAt = createdAt()

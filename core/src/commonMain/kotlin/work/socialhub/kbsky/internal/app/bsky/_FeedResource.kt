@@ -21,6 +21,8 @@ import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
 import work.socialhub.kbsky.BlueskyTypes.FeedRepost
 import work.socialhub.kbsky.api.app.bsky.FeedResource
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
 import work.socialhub.kbsky.api.entity.bsky.feed.*

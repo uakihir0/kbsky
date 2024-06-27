@@ -12,13 +12,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest
-import work.socialhub.kbsky.api.entity.bsky.actor.ActorGetProfileResponse
-import work.socialhub.kbsky.api.entity.bsky.actor.ActorGetProfilesRequest
-import work.socialhub.kbsky.api.entity.bsky.actor.ActorGetProfilesResponse
-import work.socialhub.kbsky.api.entity.bsky.actor.ActorSearchActorsRequest
-import work.socialhub.kbsky.api.entity.bsky.actor.ActorSearchActorsResponse
-import work.socialhub.kbsky.api.entity.bsky.actor.ActorUpdateProfileRequest
-import work.socialhub.kbsky.api.entity.bsky.actor.ActorUpdateProfileResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.*
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
@@ -48,7 +42,7 @@ class _ActorResource(
     }
 
     override fun getProfile(
-        request: work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest
+        request: ActorGetProfileRequest
     ): Response<ActorGetProfileResponse> {
 
         return proceed {
@@ -82,7 +76,7 @@ class _ActorResource(
             val originalActorProfile = original.data.value.asActorProfile
                 ?: throw IllegalStateException("response data is not ActorProfile(type=${original.data.value.type}")
 
-            val modifiedActorProfileRecord = work.socialhub.kbsky.model.app.bsky.actor.ActorProfile().also {
+            val modifiedActorProfileRecord = ActorProfile().also {
                 it.displayName = request.displayName ?: originalActorProfile.displayName
                 it.description = request.description ?: originalActorProfile.description
                 it.avatar = request.avatar ?: originalActorProfile.avatar
@@ -132,8 +126,8 @@ class _ActorResource(
     }
 
     override fun getPreferences(
-        request: work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
-    ): Response<work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesResponse> {
+        request: ActorGetPreferencesRequest
+    ): Response<ActorGetPreferencesResponse> {
 
         return proceed {
             runBlocking {
