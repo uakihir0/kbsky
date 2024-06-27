@@ -1,21 +1,21 @@
-package work.socialhub.kbsky.model.bsky.actor
+package work.socialhub.kbsky.model.chat.actor
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.atproto.label.LabelDefsLabel
+import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileAssociated
+import work.socialhub.kbsky.model.bsky.actor.ActorDefsViewerState
 
 /**
- * A reference to an actor in the network.
+ * chat.bsky.actor.defs#profileViewBasic
  */
 @Serializable
-class ActorDefsProfileViewBasic {
+class ChatActorDefsProfileViewBasic {
     lateinit var did: String
-
-    // required but some implementations may not provide it (e.g. post.reply.root.author.handle)
-    var handle: String = ""
-
+    lateinit var handle: String
     var displayName: String? = null
     var avatar: String? = null
     var associated: ActorDefsProfileAssociated? = null
     var viewer: ActorDefsViewerState? = null
     var labels: List<LabelDefsLabel>? = null
+    var chatDisabled: Boolean = false
 }

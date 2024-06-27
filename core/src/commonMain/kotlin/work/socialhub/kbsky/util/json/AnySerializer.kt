@@ -15,6 +15,7 @@ import work.socialhub.kbsky.model.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.bsky.graph.GraphList
 import work.socialhub.kbsky.model.bsky.graph.GraphListItem
+import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsMessageInput
 
 object AnySerializer : KSerializer<Any> {
 
@@ -74,6 +75,7 @@ object AnySerializer : KSerializer<Any> {
             is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)
             is FeedRepost -> encoder.encodeSerializableValue(FeedRepost.serializer(), value)
             is Threadgate -> encoder.encodeSerializableValue(Threadgate.serializer(), value)
+            is ChatConvoDefsMessageInput -> encoder.encodeSerializableValue(ChatConvoDefsMessageInput.serializer(), value)
 
             else -> {
                 println("Can't serialize unknown type: ${value::class}")
