@@ -1,6 +1,27 @@
 package work.socialhub.kbsky.api.chat.bsky
 
-import work.socialhub.kbsky.api.entity.chat.bsky.convo.*
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetLogRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetLogResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetMessagesRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetMessagesResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLeaveConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLeaveConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoMuteConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoMuteConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoSendMessageRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoSendMessageResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnmuteConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnmuteConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadResponse
 import work.socialhub.kbsky.api.entity.share.Response
 
 /**

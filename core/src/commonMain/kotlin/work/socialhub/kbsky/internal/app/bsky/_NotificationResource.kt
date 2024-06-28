@@ -5,7 +5,11 @@ import work.socialhub.kbsky.BlueskyTypes.NotificationGetUnreadCount
 import work.socialhub.kbsky.BlueskyTypes.NotificationListNotifications
 import work.socialhub.kbsky.BlueskyTypes.NotificationUpdateSeen
 import work.socialhub.kbsky.api.app.bsky.NotificationResource
-import work.socialhub.kbsky.api.entity.app.bsky.notification.*
+import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationGetUnreadCountRequest
+import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationGetUnreadCountResponse
+import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNotificationsRequest
+import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNotificationsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationUpdateSeenRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit

@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ChatConvoDefsLogCreateMessage : ChatConvoDefsLogUnion() {
+class ConvoDefsLogDeleteMessage : ConvoDefsLogUnion() {
 
     companion object {
-        const val TYPE = BlueskyTypes.ConvoDefs + "#logCreateMessage"
+        const val TYPE = BlueskyTypes.ConvoDefs + "#logDeleteMessage"
     }
 
     @SerialName("\$type")
@@ -16,5 +16,5 @@ class ChatConvoDefsLogCreateMessage : ChatConvoDefsLogUnion() {
 
     lateinit var rev: String
     lateinit var convoId: String
-    lateinit var message: ChatConvoDefsMessageUnion
+    lateinit var message: ConvoDefsMessageUnion
 }

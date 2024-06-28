@@ -5,17 +5,15 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ChatConvoDefsDeletedMessageView : ChatConvoDefsMessageUnion() {
+class ConvoDefsLogBeginConvo : ConvoDefsLogUnion() {
 
     companion object {
-        const val TYPE = BlueskyTypes.ConvoDefs + "#deletedMessageView"
+        const val TYPE = BlueskyTypes.ConvoDefs + "#logBeginConvo"
     }
 
     @SerialName("\$type")
     override var type = TYPE
 
-    lateinit var id: String
     lateinit var rev: String
-    lateinit var sender: ChatConvoDefsMessageViewSender
-    lateinit var sentAt: String
+    lateinit var convoId: String
 }

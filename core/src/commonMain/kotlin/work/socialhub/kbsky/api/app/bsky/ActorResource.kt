@@ -1,6 +1,12 @@
 package work.socialhub.kbsky.api.app.bsky
 
-import work.socialhub.kbsky.api.entity.app.bsky.actor.*
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesRequest
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsRequest
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileRequest
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileResponse
 import work.socialhub.kbsky.api.entity.share.Response
 
 interface ActorResource {

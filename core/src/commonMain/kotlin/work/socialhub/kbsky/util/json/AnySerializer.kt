@@ -5,7 +5,21 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonDecoder
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.boolean
+import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.double
+import kotlinx.serialization.json.doubleOrNull
+import kotlinx.serialization.json.float
+import kotlinx.serialization.json.floatOrNull
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.intOrNull
+import kotlinx.serialization.json.long
+import kotlinx.serialization.json.longOrNull
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
@@ -15,7 +29,7 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.app.bsky.graph.GraphList
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
-import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsMessageInput
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageInput
 
 object AnySerializer : KSerializer<Any> {
 
@@ -75,7 +89,10 @@ object AnySerializer : KSerializer<Any> {
             is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)
             is FeedRepost -> encoder.encodeSerializableValue(FeedRepost.serializer(), value)
             is FeedThreadgate -> encoder.encodeSerializableValue(FeedThreadgate.serializer(), value)
-            is ChatConvoDefsMessageInput -> encoder.encodeSerializableValue(ChatConvoDefsMessageInput.serializer(), value)
+            is ConvoDefsMessageInput -> encoder.encodeSerializableValue(
+                ConvoDefsMessageInput.serializer(),
+                value
+            )
 
             else -> {
                 println("Can't serialize unknown type: ${value::class}")

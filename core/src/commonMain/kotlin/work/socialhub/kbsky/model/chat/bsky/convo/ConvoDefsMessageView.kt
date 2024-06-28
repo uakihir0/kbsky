@@ -7,7 +7,7 @@ import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class ChatConvoDefsMessageView : ChatConvoDefsMessageUnion() {
+class ConvoDefsMessageView : ConvoDefsMessageUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ConvoDefs + "#messageView"
@@ -19,7 +19,7 @@ class ChatConvoDefsMessageView : ChatConvoDefsMessageUnion() {
     lateinit var id: String
     lateinit var rev: String
     lateinit var text: String
-    lateinit var sender: ChatConvoDefsMessageViewSender
+    lateinit var sender: ConvoDefsMessageViewSender
     lateinit var sentAt: String
 
     var facets: List<RichtextFacet>? = null

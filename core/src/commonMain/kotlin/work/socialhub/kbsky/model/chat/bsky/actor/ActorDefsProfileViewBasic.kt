@@ -9,7 +9,7 @@ import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
  * chat.bsky.actor.defs#profileViewBasic
  */
 @Serializable
-class ChatActorDefsProfileViewBasic {
+class ActorDefsProfileViewBasic {
     lateinit var did: String
     lateinit var handle: String
     var displayName: String? = null

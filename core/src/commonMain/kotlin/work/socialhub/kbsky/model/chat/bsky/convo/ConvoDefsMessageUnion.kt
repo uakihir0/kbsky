@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.util.json.ChatConvoDefsMessageUnionSerializer
 
 /**
- * @see ChatConvoDefsMessageView
- * @see ChatConvoDefsDeletedMessageView
+ * @see ConvoDefsMessageView
+ * @see ConvoDefsDeletedMessageView
  */
 @Serializable(with = ChatConvoDefsMessageUnionSerializer::class)
-abstract class ChatConvoDefsMessageUnion {
+abstract class ConvoDefsMessageUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    val asMessageView get() = this as? ChatConvoDefsMessageView
-    val asDeletedMessageView get() = this as? ChatConvoDefsDeletedMessageView
+    val asMessageView get() = this as? ConvoDefsMessageView
+    val asDeletedMessageView get() = this as? ConvoDefsDeletedMessageView
 }

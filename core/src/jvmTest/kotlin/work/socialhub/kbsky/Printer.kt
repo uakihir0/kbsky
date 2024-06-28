@@ -5,9 +5,9 @@ import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewDetailed
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
-import work.socialhub.kbsky.model.chat.bsky.actor.ChatActorDefsProfileViewBasic
-import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsConvoView
-import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsMessageView
+import work.socialhub.kbsky.model.chat.bsky.actor.ActorDefsProfileViewBasic
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsConvoView
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageView
 import work.socialhub.kbsky.model.share.RecordUnion
 
 object Printer {
@@ -64,7 +64,7 @@ object Printer {
         println("${sp}FOLLOWERS COUNT> ${user.followersCount}")
     }
 
-    fun AbstractTest.dump(convo: ChatConvoDefsConvoView, sp: String = "") {
+    fun AbstractTest.dump(convo: ConvoDefsConvoView, sp: String = "") {
         println("${sp}|CONVO|-----------------------------------------")
         println("${sp}ID> ${convo.id}")
         println("${sp}REV> ${convo.rev}")
@@ -78,13 +78,13 @@ object Printer {
         }
     }
 
-    fun AbstractTest.dump(message: ChatConvoDefsMessageView, sp: String = "") {
+    fun AbstractTest.dump(message: ConvoDefsMessageView, sp: String = "") {
         println("${sp}|CONVO MESSAGE|-----------------------------------------")
         println("${sp}ID> ${message.id}")
         println("${sp}TEXT> ${message.text}")
     }
 
-    fun AbstractTest.dump(actor: ChatActorDefsProfileViewBasic, sp: String = "") {
+    fun AbstractTest.dump(actor: ActorDefsProfileViewBasic, sp: String = "") {
         println("${sp}|CONVO ACTOR|-----------------------------------------")
         println("${sp}DID> ${actor.did}")
         println("${sp}DISPLAY NAME> ${actor.displayName}")

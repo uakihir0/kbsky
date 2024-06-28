@@ -18,6 +18,7 @@ class FeedGetAuthorFeedRequest(
         PostsWithMedia("posts_with_media"),
         PostsAndAuthorThreads("posts_and_author_threads")
     }
+
     var filter: Filter? = null
 
     override fun toMap(): Map<String, Any> {
