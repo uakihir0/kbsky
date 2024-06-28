@@ -1,16 +1,6 @@
 package work.socialhub.kbsky.api.com.atproto
 
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordResponse
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordResponse
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoListRecordsRequest
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoListRecordsResponse
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordResponse
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobResponse
+import work.socialhub.kbsky.api.entity.com.atproto.repo.*
 import work.socialhub.kbsky.api.entity.share.Response
 
 /**

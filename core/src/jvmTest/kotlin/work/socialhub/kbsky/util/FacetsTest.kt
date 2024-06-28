@@ -158,7 +158,7 @@ class FacetsTest {
     }
 
     @Test
-    fun testParseMention(){
+    fun testParseMention() {
         val text = "@hello.com @hello-world.com"
 
         val facets = FacetUtil.extractFacets(text)

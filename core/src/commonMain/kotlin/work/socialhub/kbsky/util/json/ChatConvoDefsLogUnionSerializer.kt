@@ -4,11 +4,7 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogBeginConvo
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogCreateMessage
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogDeleteMessage
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogLeaveConvo
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogUnion
+import work.socialhub.kbsky.model.chat.bsky.convo.*
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object ChatConvoDefsLogUnionSerializer :

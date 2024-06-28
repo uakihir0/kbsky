@@ -8,14 +8,14 @@ import work.socialhub.kbsky.BlueskyTypes
  * A set of images embedded in some other form of content
  */
 @Serializable
-class EmbedImages : work.socialhub.kbsky.model.app.bsky.embed.EmbedUnion() {
+class EmbedImages : EmbedUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedImages
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.embed.EmbedImages.Companion.TYPE
+    override var type = TYPE
 
-    var images: List<work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesImage>? = null
+    var images: List<EmbedImagesImage>? = null
 }

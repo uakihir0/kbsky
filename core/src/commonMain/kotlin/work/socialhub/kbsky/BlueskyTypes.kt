@@ -77,6 +77,7 @@ object BlueskyTypes {
     /// ----------------------------------------------------------------------- ///
 
     // Convo
+    const val ConvoDefs = "chat.bsky.convo.defs"
     const val ConvoDeleteMessageForSelf = "chat.bsky.convo.deleteMessageForSelf"
     const val ConvoGetConvo = "chat.bsky.convo.getConvo"
     const val ConvoGetConvoForMembers = "chat.bsky.convo.getConvoForMembers"

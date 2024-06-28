@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedExternalView : work.socialhub.kbsky.model.app.bsky.embed.EmbedViewUnion() {
+class EmbedExternalView : EmbedViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedExternal + "#view"
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.embed.EmbedExternalView.Companion.TYPE
+    override var type = TYPE
 
-    var external: work.socialhub.kbsky.model.app.bsky.embed.EmbedExternalViewExternal? = null
+    var external: EmbedExternalViewExternal? = null
 }

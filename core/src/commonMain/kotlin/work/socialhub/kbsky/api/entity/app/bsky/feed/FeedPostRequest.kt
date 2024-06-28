@@ -4,11 +4,11 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
-import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedUnion
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
+import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 
 class FeedPostRequest(
     accessJwt: String

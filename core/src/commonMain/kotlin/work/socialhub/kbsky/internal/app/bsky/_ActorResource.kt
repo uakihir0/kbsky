@@ -7,12 +7,9 @@ import work.socialhub.kbsky.BlueskyTypes.ActorGetProfile
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfiles
 import work.socialhub.kbsky.BlueskyTypes.ActorSearchActors
 import work.socialhub.kbsky.api.app.bsky.ActorResource
+import work.socialhub.kbsky.api.entity.app.bsky.actor.*
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
-import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
-import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesResponse
-import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest
-import work.socialhub.kbsky.api.entity.app.bsky.actor.*
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed

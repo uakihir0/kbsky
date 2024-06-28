@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ActorDefsThreadViewPref : work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion() {
+class ActorDefsThreadViewPref : ActorDefsPreferencesUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ActorDefs + "#threadViewPref"
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.actor.ActorDefsThreadViewPref.Companion.TYPE
+    override var type = TYPE
 
     /**
      * Sorting mode for threads.

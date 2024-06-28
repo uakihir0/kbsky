@@ -6,28 +6,16 @@ import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.json.*
-<<<<<<< HEAD
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
-import work.socialhub.kbsky.model.app.bsky.feed.Threadgate
 import work.socialhub.kbsky.model.app.bsky.feed.FeedRepost
+import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgate
 import work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.app.bsky.graph.GraphList
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
-=======
-import work.socialhub.kbsky.model.bsky.actor.ActorProfile
-import work.socialhub.kbsky.model.bsky.feed.FeedLike
-import work.socialhub.kbsky.model.bsky.feed.FeedPost
-import work.socialhub.kbsky.model.bsky.feed.FeedRepost
-import work.socialhub.kbsky.model.bsky.feed.Threadgate
-import work.socialhub.kbsky.model.bsky.graph.GraphBlock
-import work.socialhub.kbsky.model.bsky.graph.GraphFollow
-import work.socialhub.kbsky.model.bsky.graph.GraphList
-import work.socialhub.kbsky.model.bsky.graph.GraphListItem
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsMessageInput
->>>>>>> main
+import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsMessageInput
 
 object AnySerializer : KSerializer<Any> {
 
@@ -86,7 +74,7 @@ object AnySerializer : KSerializer<Any> {
             is FeedLike -> encoder.encodeSerializableValue(FeedLike.serializer(), value)
             is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)
             is FeedRepost -> encoder.encodeSerializableValue(FeedRepost.serializer(), value)
-            is Threadgate -> encoder.encodeSerializableValue(Threadgate.serializer(), value)
+            is FeedThreadgate -> encoder.encodeSerializableValue(FeedThreadgate.serializer(), value)
             is ChatConvoDefsMessageInput -> encoder.encodeSerializableValue(ChatConvoDefsMessageInput.serializer(), value)
 
             else -> {

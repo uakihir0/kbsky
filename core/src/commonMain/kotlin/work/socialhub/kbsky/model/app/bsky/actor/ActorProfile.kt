@@ -14,7 +14,7 @@ class ActorProfile : RecordUnion() {
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.actor.ActorProfile.Companion.TYPE
+    override var type = TYPE
 
     var displayName: String? = null
     var description: String? = null

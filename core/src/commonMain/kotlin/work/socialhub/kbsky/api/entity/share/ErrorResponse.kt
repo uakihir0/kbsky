@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class ErrorResponse {
-    lateinit var message: String
+    var message: String = ""
     lateinit var error: String
 }

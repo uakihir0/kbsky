@@ -4,8 +4,8 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
-import work.socialhub.kbsky.model.app.bsky.feed.Threadgate
-import work.socialhub.kbsky.model.app.bsky.feed.ThreadgateAllowUnion
+import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgate
+import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateAllowUnion
 
 class FeedThreadgateRequest(
     accessJwt: String
@@ -14,7 +14,7 @@ class FeedThreadgateRequest(
     override var createdAt: String? = null
     lateinit var post: String
 
-    var allow: List<ThreadgateAllowUnion>? = null
+    var allow: List<FeedThreadgateAllowUnion>? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
@@ -26,8 +26,8 @@ class FeedThreadgateRequest(
         }
     }
 
-    fun toThreadgate(): Threadgate {
-        return Threadgate().also {
+    fun toThreadgate(): FeedThreadgate {
+        return FeedThreadgate().also {
             it.createdAt = createdAt()
             it.post = post
             it.allow = allow

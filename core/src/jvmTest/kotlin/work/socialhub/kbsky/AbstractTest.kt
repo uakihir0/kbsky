@@ -1,12 +1,8 @@
 package work.socialhub.kbsky
 
+import work.socialhub.kbsky.api.entity.share.AuthRequest
+import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
-import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
-import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewDetailed
-import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView
-import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
-import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
-import work.socialhub.kbsky.model.share.RecordUnion
 import java.io.File
 import kotlin.test.BeforeTest
 
@@ -27,6 +23,15 @@ open class AbstractTest {
             password = checkNotNull(props["password"]) { "missing password." }
 
         } catch (e: Exception) {
+            println(
+                """
+                !!!
+                No credentials exist for testing. 
+                Please copy the following file and describe its contents.
+                `cp secrets.json.default secrets.json`
+                !!!
+            """.trimIndent()
+            )
             e.printStackTrace()
         }
 
@@ -34,10 +39,24 @@ open class AbstractTest {
         readAccessJwt()
     }
 
+    fun endpoint(): String {
+        val did = ATProtocolFactory.instance(BSKY_SOCIAL.uri)
+            .server().getSession(AuthRequest(accessJwt)).data.did
+
+        val details = PLCDirectoryFactory.instance().DIDDetails(did)
+        return details.data.service
+            ?.firstOrNull { it.id == "#atproto_pds" }
+            ?.serviceEndpoint ?: BSKY_SOCIAL.uri
+    }
+
+    fun getAuthRequest(): AuthRequest {
+        return AuthRequest(accessJwt)
+    }
+
     /**
      * Read Access JWT
      */
-    fun readAccessJwt() {
+    private fun readAccessJwt() {
         val jwt = readFile("../jwt.txt")
         if (jwt != null) {
             accessJwt = jwt
@@ -49,59 +68,6 @@ open class AbstractTest {
      */
     fun saveAccessJwt() {
         saveFile(accessJwt, "../jwt.txt")
-    }
-
-    fun print(record: RecordUnion) {
-        println("TYPE> " + record.type)
-
-        if (record is FeedPost) {
-            println("TEXT> " + record.text)
-        }
-    }
-
-    fun print(post: FeedDefsPostView) {
-
-        println("|POST|-----------------------------------------")
-        println("URI> " + post.uri)
-        println("CID> " + post.cid)
-
-        if (post.embed != null) {
-            val embed = post.embed
-            if (embed is EmbedImagesView) {
-                println("ImageURL> " + embed.images!![0].fullsize)
-            }
-        }
-
-        val record = post.record
-        if (record is FeedPost) {
-            println("TEXT> " + record.text)
-
-            record.facets?.forEach { r ->
-                println("FACET> " + r.type)
-                r.features?.forEach { f ->
-                    println("FEATURE> " + f.type)
-                    f.asTag?.let { t ->
-                        println("TAG> " + t.tag)
-                    }
-                }
-            }
-        }
-    }
-
-    fun print(user: ActorDefsProfileView) {
-        println("|USER|-----------------------------------------")
-        println("DID> " + user.did)
-        println("HANDLE> " + user.handle)
-        println("NAME> " + user.displayName)
-    }
-
-    fun print(user: ActorDefsProfileViewDetailed) {
-        println("|USER|-----------------------------------------")
-        println("DID> " + user.did)
-        println("HANDLE> " + user.handle)
-        println("NAME> " + user.displayName)
-        println("FOLLOWS COUNT> " + user.followsCount)
-        println("FOLLOWERS COUNT> " + user.followersCount)
     }
 
     /**

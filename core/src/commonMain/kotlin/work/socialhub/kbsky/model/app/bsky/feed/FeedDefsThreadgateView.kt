@@ -7,6 +7,6 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListViewBasic
 class FeedDefsThreadgateView {
     var uri: String? = null
     var cid: String? = null
-    var record: Threadgate? = null
+    var record: FeedThreadgate? = null
     var lists: List<GraphDefsListViewBasic>? = null
 }

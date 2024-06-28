@@ -3,7 +3,6 @@ package work.socialhub.kbsky.model.app.bsky.graph
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
-import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow.Companion.TYPE
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable

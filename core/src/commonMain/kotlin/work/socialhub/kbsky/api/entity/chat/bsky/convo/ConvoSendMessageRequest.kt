@@ -2,7 +2,7 @@ package work.socialhub.kbsky.api.entity.chat.bsky.convo
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsMessageInput
+import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsMessageInput
 
 class ConvoSendMessageRequest(
     accessJwt: String,

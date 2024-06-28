@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ActorDefsContentLabelPref : work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion() {
+class ActorDefsContentLabelPref : ActorDefsPreferencesUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ActorDefs + "#contentLabelPref"
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.actor.ActorDefsContentLabelPref.Companion.TYPE
+    override var type = TYPE
 
     lateinit var label: String
 

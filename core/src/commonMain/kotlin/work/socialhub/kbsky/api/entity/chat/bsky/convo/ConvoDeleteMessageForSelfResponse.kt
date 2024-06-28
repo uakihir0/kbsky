@@ -1,5 +1,5 @@
 package work.socialhub.kbsky.api.entity.chat.bsky.convo
 
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsDeletedMessageView
+import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsDeletedMessageView
 
 typealias ConvoDeleteMessageForSelfResponse = ChatConvoDefsDeletedMessageView

@@ -18,9 +18,9 @@ abstract class EmbedRecordViewUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    val asRecord get() = this as? work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewRecord
-    val asNotFound get() = this as? work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewNotFound
-    val asBlocked get() = this as? work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewBlocked
-    val asGeneratorView get() = this as? work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView
-    val asListView get() = this as? work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView
+    val asRecord get() = this as? EmbedRecordViewRecord
+    val asNotFound get() = this as? EmbedRecordViewNotFound
+    val asBlocked get() = this as? EmbedRecordViewBlocked
+    val asGeneratorView get() = this as? FeedDefsGeneratorView
+    val asListView get() = this as? GraphDefsListView
 }

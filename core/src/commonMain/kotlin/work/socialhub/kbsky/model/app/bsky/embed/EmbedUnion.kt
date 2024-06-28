@@ -15,8 +15,8 @@ abstract class EmbedUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    val asExternal get() = this as? work.socialhub.kbsky.model.app.bsky.embed.EmbedExternal
-    val asImages get() = this as? work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
-    val asRecord get() = this as? work.socialhub.kbsky.model.app.bsky.embed.EmbedRecord
-    val asRecordWithMedia get() = this as? work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordWithMedia
+    val asExternal get() = this as? EmbedExternal
+    val asImages get() = this as? EmbedImages
+    val asRecord get() = this as? EmbedRecord
+    val asRecordWithMedia get() = this as? EmbedRecordWithMedia
 }

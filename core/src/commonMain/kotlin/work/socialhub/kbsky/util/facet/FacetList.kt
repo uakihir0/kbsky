@@ -1,10 +1,6 @@
 package work.socialhub.kbsky.util.facet
 
-import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
-import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetByteSlice
-import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetLink
-import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention
-import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetTag
+import work.socialhub.kbsky.model.app.bsky.richtext.*
 
 class FacetList(
     val records: List<FacetRecord>

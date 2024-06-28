@@ -3,7 +3,6 @@ package work.socialhub.kbsky.model.app.bsky.richtext
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
-import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention.Companion.TYPE
 
 /**
  * A facet feature for actor mentions.

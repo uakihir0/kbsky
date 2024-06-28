@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ActorDefsSavedFeedsPref : work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion() {
+class ActorDefsSavedFeedsPref : ActorDefsPreferencesUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ActorDefs + "#savedFeedsPref"
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPref.Companion.TYPE
+    override var type = TYPE
 
     /** at-url  */
     lateinit var pinned: List<String>

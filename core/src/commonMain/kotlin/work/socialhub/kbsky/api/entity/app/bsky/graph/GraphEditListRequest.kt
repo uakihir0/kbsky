@@ -1,8 +1,8 @@
 package work.socialhub.kbsky.api.entity.app.bsky.graph
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
-import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
+import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.share.Blob
 
 class GraphEditListRequest(

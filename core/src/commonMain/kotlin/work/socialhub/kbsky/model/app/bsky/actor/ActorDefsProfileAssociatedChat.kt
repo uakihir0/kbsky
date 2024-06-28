@@ -1,4 +1,4 @@
-package work.socialhub.kbsky.model.bsky.actor
+package work.socialhub.kbsky.model.app.bsky.actor
 
 import kotlinx.serialization.Serializable
 

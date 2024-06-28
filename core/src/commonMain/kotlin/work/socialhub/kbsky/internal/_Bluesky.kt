@@ -1,17 +1,9 @@
 package work.socialhub.kbsky.internal
 
 import work.socialhub.kbsky.Bluesky
-import work.socialhub.kbsky.api.app.bsky.ActorResource
-import work.socialhub.kbsky.api.app.bsky.FeedResource
-import work.socialhub.kbsky.api.app.bsky.GraphResource
-import work.socialhub.kbsky.api.app.bsky.NotificationResource
-import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
+import work.socialhub.kbsky.api.app.bsky.*
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
-import work.socialhub.kbsky.internal.app.bsky._ActorResource
-import work.socialhub.kbsky.internal.app.bsky._FeedResource
-import work.socialhub.kbsky.internal.app.bsky._GraphResource
-import work.socialhub.kbsky.internal.app.bsky._NotificationResource
-import work.socialhub.kbsky.internal.app.bsky._UnspeccedResource
+import work.socialhub.kbsky.internal.app.bsky.*
 import work.socialhub.kbsky.internal.chat.bsky._ConvoResource
 
 class _Bluesky(uri: String) : _ATProtocol(uri), Bluesky {

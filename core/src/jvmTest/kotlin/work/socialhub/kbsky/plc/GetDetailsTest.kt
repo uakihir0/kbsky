@@ -14,6 +14,12 @@ class GetDetailsTest : AbstractTest() {
             .instance()
             .DIDDetails(did)
 
+        response.data.service?.forEach {
+            println(it.id)
+            println(it.type)
+            println(it.serviceEndpoint)
+        }
+
         println(checkNotNull(response.data.alsoKnownAs)[0])
     }
 }

@@ -4,9 +4,9 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsDeletedMessageView
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsMessageUnion
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsMessageView
+import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsDeletedMessageView
+import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsMessageUnion
+import work.socialhub.kbsky.model.chat.bsky.convo.ChatConvoDefsMessageView
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object ChatConvoDefsMessageUnionSerializer :

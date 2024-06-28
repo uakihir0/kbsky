@@ -8,14 +8,14 @@ import work.socialhub.kbsky.BlueskyTypes
  * A representation of a record embedded in another form of content
  */
 @Serializable
-class EmbedRecordView : work.socialhub.kbsky.model.app.bsky.embed.EmbedViewUnion() {
+class EmbedRecordView : EmbedViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecord + "#view"
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordView.Companion.TYPE
+    override var type = TYPE
 
-    var record: work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewUnion? = null
+    var record: EmbedRecordViewUnion? = null
 }

@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedImagesView : work.socialhub.kbsky.model.app.bsky.embed.EmbedViewUnion() {
+class EmbedImagesView : EmbedViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedImages + "#view"
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView.Companion.TYPE
+    override var type = TYPE
 
-    var images: List<work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesViewImage>? = null
+    var images: List<EmbedImagesViewImage>? = null
 }

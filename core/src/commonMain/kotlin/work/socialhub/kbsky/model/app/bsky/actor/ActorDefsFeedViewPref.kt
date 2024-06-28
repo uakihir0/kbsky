@@ -5,14 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ActorDefsFeedViewPref : work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion() {
+class ActorDefsFeedViewPref : ActorDefsPreferencesUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ActorDefs + "#feedViewPref"
     }
 
     @SerialName("\$type")
-    override var type = work.socialhub.kbsky.model.app.bsky.actor.ActorDefsFeedViewPref.Companion.TYPE
+    override var type = TYPE
 
     /** The URI of the feed, or an identifier which describes the feed. */
     lateinit var feed: String
