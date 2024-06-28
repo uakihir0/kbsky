@@ -65,8 +65,7 @@ object _InternalUtility {
                     response.stringBody,
                 )
             }
-            println(response.status)
-            println(response.stringBody)
+
             throw handleError(
                 exception = null,
                 body = response.stringBody
