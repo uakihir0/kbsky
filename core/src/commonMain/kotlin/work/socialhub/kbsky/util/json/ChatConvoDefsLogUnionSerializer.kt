@@ -4,26 +4,26 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogBeginConvo
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogCreateMessage
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogDeleteMessage
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogLeaveConvo
-import work.socialhub.kbsky.model.chat.convo.ChatConvoDefsLogUnion
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsLogBeginConvo
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsLogCreateMessage
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsLogDeleteMessage
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsLogLeaveConvo
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsLogUnion
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object ChatConvoDefsLogUnionSerializer :
-    JsonContentPolymorphicSerializer<ChatConvoDefsLogUnion>(
-        ChatConvoDefsLogUnion::class
+    JsonContentPolymorphicSerializer<ConvoDefsLogUnion>(
+        ConvoDefsLogUnion::class
     ) {
 
     override fun selectDeserializer(
         element: JsonElement
-    ): DeserializationStrategy<ChatConvoDefsLogUnion> {
+    ): DeserializationStrategy<ConvoDefsLogUnion> {
         return when (val type = element.type()) {
-            ChatConvoDefsLogBeginConvo.TYPE -> ChatConvoDefsLogBeginConvo.serializer()
-            ChatConvoDefsLogLeaveConvo.TYPE -> ChatConvoDefsLogLeaveConvo.serializer()
-            ChatConvoDefsLogCreateMessage.TYPE -> ChatConvoDefsLogCreateMessage.serializer()
-            ChatConvoDefsLogDeleteMessage.TYPE -> ChatConvoDefsLogDeleteMessage.serializer()
+            ConvoDefsLogBeginConvo.TYPE -> ConvoDefsLogBeginConvo.serializer()
+            ConvoDefsLogLeaveConvo.TYPE -> ConvoDefsLogLeaveConvo.serializer()
+            ConvoDefsLogCreateMessage.TYPE -> ConvoDefsLogCreateMessage.serializer()
+            ConvoDefsLogDeleteMessage.TYPE -> ConvoDefsLogDeleteMessage.serializer()
             else -> {
                 println("[Warning] Unknown Item type: $type (ChatConvoDefsLogUnion)")
                 Unknown.serializer()
@@ -32,7 +32,7 @@ object ChatConvoDefsLogUnionSerializer :
     }
 
     @Serializable
-    class Unknown : ChatConvoDefsLogUnion() {
+    class Unknown : ConvoDefsLogUnion() {
         override var type: String = "unknown"
     }
 }

@@ -4,7 +4,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.cbor.Cbor
 import kotlinx.serialization.decodeFromHexString
 import work.socialhub.kbsky.ATProtocol
-import work.socialhub.kbsky.api.entity.atproto.repo.RepoGetRecordRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.stream.util.callback.ClosedCallback
 import work.socialhub.kbsky.stream.util.callback.ErrorCallback
 import work.socialhub.kbsky.stream.util.callback.EventCallback

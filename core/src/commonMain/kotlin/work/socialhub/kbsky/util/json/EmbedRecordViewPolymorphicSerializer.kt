@@ -4,12 +4,12 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewBlocked
-import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewNotFound
-import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewRecord
-import work.socialhub.kbsky.model.bsky.embed.EmbedRecordViewUnion
-import work.socialhub.kbsky.model.bsky.feed.FeedDefsGeneratorView
-import work.socialhub.kbsky.model.bsky.graph.GraphDefsListView
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewBlocked
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewNotFound
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewRecord
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewUnion
+import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView
+import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object EmbedRecordViewPolymorphicSerializer :

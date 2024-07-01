@@ -1,11 +1,11 @@
 package work.socialhub.kbsky.stream
 
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
-import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileView
-import work.socialhub.kbsky.model.bsky.actor.ActorDefsProfileViewDetailed
-import work.socialhub.kbsky.model.bsky.embed.EmbedImagesView
-import work.socialhub.kbsky.model.bsky.feed.FeedDefsPostView
-import work.socialhub.kbsky.model.bsky.feed.FeedPost
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewDetailed
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView
+import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
+import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.share.RecordUnion
 import java.io.ByteArrayOutputStream
 import java.io.FileReader

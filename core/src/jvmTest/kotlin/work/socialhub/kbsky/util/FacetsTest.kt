@@ -1,9 +1,9 @@
 package work.socialhub.kbsky.util
 
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacet
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetLink
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetMention
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetTag
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetLink
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetTag
 import work.socialhub.kbsky.util.facet.FacetList
 import work.socialhub.kbsky.util.facet.FacetType
 import work.socialhub.kbsky.util.facet.FacetUtil
@@ -158,7 +158,7 @@ class FacetsTest {
     }
 
     @Test
-    fun testParseMention(){
+    fun testParseMention() {
         val text = "@hello.com @hello-world.com"
 
         val facets = FacetUtil.extractFacets(text)

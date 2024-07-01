@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.stream
 
-import work.socialhub.kbsky.stream.internal.atproto._ATProtocolStream
+import work.socialhub.kbsky.stream.internal.com.atproto._ATProtocolStream
 
 object ATProtocolStreamFactory {
     fun instance(

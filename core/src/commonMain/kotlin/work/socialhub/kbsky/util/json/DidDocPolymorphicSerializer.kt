@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
-import work.socialhub.kbsky.model.atproto.server.DidDocUnion
+import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
 import work.socialhub.kbsky.model.plc.DIDDetails
 
 object DidDocPolymorphicSerializer :

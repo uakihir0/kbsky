@@ -4,10 +4,10 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetFeatureUnion
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetLink
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetMention
-import work.socialhub.kbsky.model.bsky.richtext.RichtextFacetTag
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetFeatureUnion
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetLink
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention
+import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetTag
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object RichtextFacetFeaturePolymorphicSerializer :

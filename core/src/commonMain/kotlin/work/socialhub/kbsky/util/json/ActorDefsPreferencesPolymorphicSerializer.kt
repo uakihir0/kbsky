@@ -4,7 +4,13 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.bsky.actor.*
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsAdultContentPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsContentLabelPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsFeedViewPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPersonalDetailsPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsThreadViewPref
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object ActorDefsPreferencesPolymorphicSerializer :

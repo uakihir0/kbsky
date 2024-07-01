@@ -4,7 +4,11 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
-import work.socialhub.kbsky.model.bsky.embed.*
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedExternalView
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordView
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordWithMediaView
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedViewUnion
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object EmbedViewPolymorphicSerializer :

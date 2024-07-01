@@ -8,7 +8,7 @@ import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.share.RecordUnion
 import work.socialhub.kbsky.stream.ATProtocolStreamFactory
 import work.socialhub.kbsky.stream.AbstractTest
-import work.socialhub.kbsky.stream.api.entity.atproto.sync.SyncSubscribeReposRequest
+import work.socialhub.kbsky.stream.api.entity.com.atproto.sync.SyncSubscribeReposRequest
 import work.socialhub.kbsky.stream.util.callback.EventCallback
 import work.socialhub.kbsky.stream.util.callback.OpenedCallback
 import kotlin.test.Test
