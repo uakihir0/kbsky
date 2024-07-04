@@ -11,4 +11,5 @@ class ServerRefreshSessionResponse {
     lateinit var did: String
 
     var didDoc: DidDocUnion? = null
+    var active: Boolean? = null
 }

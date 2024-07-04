@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.chat.bsky
 
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfRequest
@@ -32,7 +33,7 @@ import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _ConvoResource(
-    private val uri: String
+    private val config: ATProtocolConfig
 ) : ConvoResource {
 
     override fun getConvo(
@@ -164,7 +165,7 @@ class _ConvoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, id))
+                    .url(xrpc(config, id))
                     .header("Authorization", bearerToken)
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)
@@ -182,7 +183,7 @@ class _ConvoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, id))
+                    .url(xrpc(config, id))
                     .header("Authorization", bearerToken)
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)

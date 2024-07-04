@@ -4,6 +4,7 @@ import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.Printer.dump
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosRequest
+import work.socialhub.kbsky.api.entity.share.AuthRequest
 import kotlin.test.Test
 
 class GetListConvosTest : AbstractTest() {
@@ -11,7 +12,12 @@ class GetListConvosTest : AbstractTest() {
     @Test
     fun testGetListConvos() {
         val convos = BlueskyFactory
-            .instance(endpoint())
+            .instance().also {
+                it.server()
+                    .getSession(
+                        AuthRequest(accessJwt)
+                    )
+            }
             .convo()
             .getListConvos(
                 ConvoGetListConvosRequest(accessJwt)

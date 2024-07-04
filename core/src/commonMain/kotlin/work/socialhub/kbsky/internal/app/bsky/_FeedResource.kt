@@ -3,6 +3,7 @@ package work.socialhub.kbsky.internal.app.bsky
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
+import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorFeeds
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorLikes
@@ -69,7 +70,7 @@ import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _FeedResource(
-    private val uri: String
+    private val config: BlueskyConfig
 ) : FeedResource {
 
     override fun getAuthorFeed(
@@ -79,7 +80,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetAuthorFeed))
+                    .url(xrpc(config, FeedGetAuthorFeed))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -95,7 +96,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetLikes))
+                    .url(xrpc(config, FeedGetLikes))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -111,7 +112,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetPostThread))
+                    .url(xrpc(config, FeedGetPostThread))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -127,7 +128,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetPosts))
+                    .url(xrpc(config, FeedGetPosts))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .also { req ->
@@ -147,7 +148,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetRepostedBy))
+                    .url(xrpc(config, FeedGetRepostedBy))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -163,7 +164,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetTimeline))
+                    .url(xrpc(config, FeedGetTimeline))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -179,7 +180,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetFeed))
+                    .url(xrpc(config, FeedGetFeed))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -195,7 +196,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetListFeed))
+                    .url(xrpc(config, FeedGetListFeed))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -211,7 +212,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetActorFeeds))
+                    .url(xrpc(config, FeedGetActorFeeds))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -227,7 +228,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetActorLikes))
+                    .url(xrpc(config, FeedGetActorLikes))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -243,7 +244,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetFeedSearchPosts))
+                    .url(xrpc(config, FeedGetFeedSearchPosts))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -259,7 +260,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetFeedGenerator))
+                    .url(xrpc(config, FeedGetFeedGenerator))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -275,7 +276,7 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, FeedGetFeedGenerators))
+                    .url(xrpc(config, FeedGetFeedGenerators))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .also { req ->
@@ -302,7 +303,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .url(xrpc(uri, RepoCreateRecord))
+                    .url(xrpc(config, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -325,7 +326,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .url(xrpc(uri, RepoDeleteRecord))
+                    .url(xrpc(config, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -348,7 +349,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .url(xrpc(uri, RepoCreateRecord))
+                    .url(xrpc(config, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -371,7 +372,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .url(xrpc(uri, RepoDeleteRecord))
+                    .url(xrpc(config, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -394,7 +395,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .url(xrpc(uri, RepoCreateRecord))
+                    .url(xrpc(config, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -417,7 +418,7 @@ class _FeedResource(
                 )
 
                 HttpRequest()
-                    .url(xrpc(uri, RepoDeleteRecord))
+                    .url(xrpc(config, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -443,7 +444,7 @@ class _FeedResource(
                 }
 
                 HttpRequest()
-                    .url(xrpc(uri, RepoCreateRecord))
+                    .url(xrpc(config, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)

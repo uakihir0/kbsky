@@ -10,5 +10,7 @@ class ServerGetSessionResponse {
 
     var email: String? = null
     var emailConfirmed: Boolean? = null
+    var emailAuthFactor: Boolean? = null
     var didDoc: DidDocUnion? = null
+    var active: Boolean? = null
 }

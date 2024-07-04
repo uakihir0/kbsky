@@ -1,7 +1,6 @@
 package work.socialhub.kbsky
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
 import java.io.File
 import kotlin.test.BeforeTest
@@ -37,16 +36,6 @@ open class AbstractTest {
 
         // restore session.
         readAccessJwt()
-    }
-
-    fun endpoint(): String {
-        val did = ATProtocolFactory.instance(BSKY_SOCIAL.uri)
-            .server().getSession(AuthRequest(accessJwt)).data.did
-
-        val details = PLCDirectoryFactory.instance().DIDDetails(did)
-        return details.data.service
-            ?.firstOrNull { it.id == "#atproto_pds" }
-            ?.serviceEndpoint ?: BSKY_SOCIAL.uri
     }
 
     fun getAuthRequest(): AuthRequest {

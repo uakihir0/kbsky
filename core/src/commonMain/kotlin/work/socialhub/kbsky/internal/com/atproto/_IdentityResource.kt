@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.com.atproto
 
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolTypes.IdentifyResolveHandle
 import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleRequest
@@ -12,7 +13,7 @@ import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _IdentityResource(
-    private val uri: String
+    private val config: ATProtocolConfig
 ) : IdentityResource {
 
     override fun resolveHandle(
@@ -22,7 +23,7 @@ class _IdentityResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, IdentifyResolveHandle))
+                    .url(xrpc(config, IdentifyResolveHandle))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
