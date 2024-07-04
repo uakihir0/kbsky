@@ -3,10 +3,21 @@ package work.socialhub.kbsky.stream
 import work.socialhub.kbsky.stream.internal.com.atproto._ATProtocolStream
 
 object ATProtocolStreamFactory {
+
     fun instance(
-        apiUri: String,
-        streamUri: String,
+        pdsUri: String,
+        firehoseUri: String,
     ): ATProtocolStream {
-        return _ATProtocolStream(apiUri, streamUri)
+        return _ATProtocolStream(
+            ATProtocolStreamConfig().also {
+                it.pdsUri = pdsUri
+                it.firehoseUri = firehoseUri
+            })
+    }
+
+    fun instance(
+        config: ATProtocolStreamConfig = ATProtocolStreamConfig(),
+    ): ATProtocolStream {
+        return _ATProtocolStream(config)
     }
 }
