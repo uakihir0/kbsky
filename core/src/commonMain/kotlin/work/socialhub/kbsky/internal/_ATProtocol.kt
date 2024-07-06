@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal
 
 import work.socialhub.kbsky.ATProtocol
+import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.com.atproto.RepoResource
 import work.socialhub.kbsky.api.com.atproto.ServerResource
@@ -8,11 +9,13 @@ import work.socialhub.kbsky.internal.com.atproto._IdentityResource
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.com.atproto._ServerResource
 
-open class _ATProtocol(uri: String) : ATProtocol {
+open class _ATProtocol(
+    config: ATProtocolConfig
+) : ATProtocol {
 
-    protected val identity: IdentityResource = _IdentityResource(uri)
-    protected val server: ServerResource = _ServerResource(uri)
-    protected val repo: RepoResource = _RepoResource(uri)
+    protected val identity: IdentityResource = _IdentityResource(config)
+    protected val server: ServerResource = _ServerResource(config)
+    protected val repo: RepoResource = _RepoResource(config)
 
     /**
      * {@inheritDoc}

@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.app.bsky
 
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.BlueskyTypes.ActorGetPreferences
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfile
@@ -28,7 +29,7 @@ import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _ActorResource(
-    private val uri: String
+    private val config: BlueskyConfig
 ) : ActorResource {
 
     override fun searchActors(
@@ -38,7 +39,7 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ActorSearchActors))
+                    .url(xrpc(config, ActorSearchActors))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -54,7 +55,7 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ActorGetProfile))
+                    .url(xrpc(config, ActorGetProfile))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -69,7 +70,7 @@ class _ActorResource(
 
         return runBlocking {
 
-            val repoResource = _RepoResource(uri)
+            val repoResource = _RepoResource(config)
 
             val original = repoResource.getRecord(
                 RepoGetRecordRequest(
@@ -118,7 +119,7 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ActorGetProfiles))
+                    .url(xrpc(config, ActorGetProfiles))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .also {
@@ -138,7 +139,7 @@ class _ActorResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ActorGetPreferences))
+                    .url(xrpc(config, ActorGetPreferences))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

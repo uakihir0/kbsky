@@ -19,10 +19,7 @@ class SubscribeRepoTest : AbstractTest() {
     fun testSubscribeRepo() {
         runBlocking {
             val stream = ATProtocolStreamFactory
-                .instance(
-                    apiUri = BSKY_SOCIAL.uri,
-                    streamUri = BSKY_NETWORK.uri
-                )
+                .instance()
                 .sync()
                 .subscribeRepos(
                     SyncSubscribeReposRequest().also {

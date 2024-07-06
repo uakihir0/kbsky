@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.com.atproto
 
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolTypes.ServerCreateSession
 import work.socialhub.kbsky.ATProtocolTypes.ServerDeleteSession
 import work.socialhub.kbsky.ATProtocolTypes.ServerGetSession
@@ -15,11 +16,12 @@ import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _ServerResource(
-    private val uri: String
+    private val config: ATProtocolConfig
 ) : ServerResource {
 
     override fun createAccount() {
@@ -33,16 +35,15 @@ class _ServerResource(
     override fun createSession(
         request: ServerCreateSessionRequest
     ): Response<ServerCreateSessionResponse> {
-
-        return proceed {
+        return proceed<ServerCreateSessionResponse> {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ServerCreateSession))
+                    .url(xrpc(config, ServerCreateSession))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .post()
             }
-        }
+        }.also { updatePdsUri(it.data.didDoc) }
     }
 
     override fun deleteAccount() {
@@ -56,7 +57,7 @@ class _ServerResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ServerDeleteSession))
+                    .url(xrpc(config, ServerDeleteSession))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .post()
@@ -71,31 +72,29 @@ class _ServerResource(
     override fun getSession(
         request: AuthRequest
     ): Response<ServerGetSessionResponse> {
-
-        return proceed {
+        return proceed<ServerGetSessionResponse> {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ServerGetSession))
+                    .url(xrpc(config, ServerGetSession))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .get()
             }
-        }
+        }.also { updatePdsUri(it.data.didDoc) }
     }
 
     override fun refreshSession(
         request: AuthRequest
     ): Response<ServerRefreshSessionResponse> {
-
-        return proceed {
+        return proceed<ServerRefreshSessionResponse> {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, ServerRefreshSession))
+                    .url(xrpc(config, ServerRefreshSession))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .post()
             }
-        }
+        }.also { updatePdsUri(it.data.didDoc) }
     }
 
     override fun requestAccountDelete() {
@@ -108,5 +107,15 @@ class _ServerResource(
 
     override fun resetPassword() {
         throw IllegalStateException("not implemented.")
+    }
+
+    private fun updatePdsUri(doc: DidDocUnion?){
+        if (config.updatePdsUri) {
+            doc?.asDIDDetails?.also { d ->
+                d.pdsEndpoint()?.also {
+                    config.pdsUri = it
+                }
+            }
+        }
     }
 }

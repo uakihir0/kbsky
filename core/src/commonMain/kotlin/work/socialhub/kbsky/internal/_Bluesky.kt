@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal
 
 import work.socialhub.kbsky.Bluesky
+import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.api.app.bsky.ActorResource
 import work.socialhub.kbsky.api.app.bsky.FeedResource
 import work.socialhub.kbsky.api.app.bsky.GraphResource
@@ -14,14 +15,16 @@ import work.socialhub.kbsky.internal.app.bsky._NotificationResource
 import work.socialhub.kbsky.internal.app.bsky._UnspeccedResource
 import work.socialhub.kbsky.internal.chat.bsky._ConvoResource
 
-class _Bluesky(uri: String) : _ATProtocol(uri), Bluesky {
+class _Bluesky(
+    config: BlueskyConfig
+) : _ATProtocol(config), Bluesky {
 
-    protected val actor: ActorResource = _ActorResource(uri)
-    protected val feed: FeedResource = _FeedResource(uri)
-    protected val graph: GraphResource = _GraphResource(uri)
-    protected val notification: NotificationResource = _NotificationResource(uri)
-    protected val undoc: UnspeccedResource = _UnspeccedResource(uri)
-    protected val convo: ConvoResource = _ConvoResource(uri)
+    protected val actor: ActorResource = _ActorResource(config)
+    protected val feed: FeedResource = _FeedResource(config)
+    protected val graph: GraphResource = _GraphResource(config)
+    protected val notification: NotificationResource = _NotificationResource(config)
+    protected val undoc: UnspeccedResource = _UnspeccedResource(config)
+    protected val convo: ConvoResource = _ConvoResource(config)
 
     /**
      * {@inheritDoc}

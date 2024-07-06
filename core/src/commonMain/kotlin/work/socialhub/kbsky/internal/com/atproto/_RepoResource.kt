@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.com.atproto
 
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoGetRecord
@@ -27,7 +28,7 @@ import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _RepoResource(
-    private val uri: String
+    private val config: ATProtocolConfig
 ) : RepoResource {
 
     // TODO: implement
@@ -42,7 +43,7 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, RepoCreateRecord))
+                    .url(xrpc(config, RepoCreateRecord))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -58,7 +59,7 @@ class _RepoResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, RepoDeleteRecord))
+                    .url(xrpc(config, RepoDeleteRecord))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -78,7 +79,7 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, RepoGetRecord))
+                    .url(xrpc(config, RepoGetRecord))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -93,7 +94,7 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, RepoListRecords))
+                    .url(xrpc(config, RepoListRecords))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .get()
@@ -108,7 +109,7 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, RepoPutRecord))
+                    .url(xrpc(config, RepoPutRecord))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -124,7 +125,7 @@ class _RepoResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, RepoUploadBlob))
+                    .url(xrpc(config, RepoUploadBlob))
                     .header("Authorization", request.bearerToken)
                     .header("Content-Type", "image/jpeg")
                     .accept(MediaType.JSON)

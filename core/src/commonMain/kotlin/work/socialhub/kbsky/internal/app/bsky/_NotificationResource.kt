@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.app.bsky
 
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes.NotificationGetUnreadCount
 import work.socialhub.kbsky.BlueskyTypes.NotificationListNotifications
 import work.socialhub.kbsky.BlueskyTypes.NotificationUpdateSeen
@@ -18,7 +19,7 @@ import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _NotificationResource(
-    private val uri: String
+    private val config: BlueskyConfig
 ) : NotificationResource {
 
     override fun getUnreadCount(
@@ -28,7 +29,7 @@ class _NotificationResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, NotificationGetUnreadCount))
+                    .url(xrpc(config, NotificationGetUnreadCount))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .get()
@@ -43,7 +44,7 @@ class _NotificationResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, NotificationListNotifications))
+                    .url(xrpc(config, NotificationListNotifications))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -59,7 +60,7 @@ class _NotificationResource(
         return proceedUnit {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, NotificationUpdateSeen))
+                    .url(xrpc(config, NotificationUpdateSeen))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())

@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.app.bsky
 
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes.UnspeccedGetPopular
 import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularRequest
@@ -12,7 +13,7 @@ import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
 class _UnspeccedResource(
-    private val uri: String
+    private val config: BlueskyConfig
 ) : UnspeccedResource {
 
     override fun getPopular(
@@ -22,7 +23,7 @@ class _UnspeccedResource(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(uri, UnspeccedGetPopular))
+                    .url(xrpc(config, UnspeccedGetPopular))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

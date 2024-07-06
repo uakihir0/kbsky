@@ -5,6 +5,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.api.entity.share.ErrorResponse
 import work.socialhub.kbsky.api.entity.share.Response
@@ -73,6 +74,10 @@ object _InternalUtility {
         } catch (e: Exception) {
             throw handleError(e)
         }
+    }
+
+    fun xrpc(config: ATProtocolConfig, path: String? = null): String {
+        return xrpc(config.pdsUri, path)
     }
 
     fun xrpc(uri: String, path: String? = null): String {
