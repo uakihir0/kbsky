@@ -4,7 +4,6 @@
 
 ![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.repsy.io%2Fmvn%2Fuakihir0%2Fpublic%2Fwork%2Fsocialhub%2Fkbsky%2Fcore%2Fmaven-metadata.xml)
 
-![badge][badge-js]
 ![badge][badge-jvm]
 ![badge][badge-ios]
 ![badge][badge-mac]
