@@ -16,4 +16,6 @@ class ActorDefsViewerState {
 
     /** at-uri  */
     var followedBy: String? = null
+
+    val knownFollowers: ActorDefsKnownFollowers? = null
 }
