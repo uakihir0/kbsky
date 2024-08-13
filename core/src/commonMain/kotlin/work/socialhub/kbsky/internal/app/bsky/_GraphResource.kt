@@ -9,6 +9,7 @@ import work.socialhub.kbsky.BlueskyTypes.GraphFollow
 import work.socialhub.kbsky.BlueskyTypes.GraphGetBlocks
 import work.socialhub.kbsky.BlueskyTypes.GraphGetFollowers
 import work.socialhub.kbsky.BlueskyTypes.GraphGetFollows
+import work.socialhub.kbsky.BlueskyTypes.GraphGetKnownFollowers
 import work.socialhub.kbsky.BlueskyTypes.GraphGetList
 import work.socialhub.kbsky.BlueskyTypes.GraphGetLists
 import work.socialhub.kbsky.BlueskyTypes.GraphGetMutes
@@ -35,6 +36,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowersRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowersResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetKnownFollowersRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetKnownFollowersResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListsRequest
@@ -131,6 +134,22 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetFollows))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
+    }
+
+    override fun getKnownFollowers(
+        request: GraphGetKnownFollowersRequest
+    ): Response<GraphGetKnownFollowersResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, GraphGetKnownFollowers))
                     .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
