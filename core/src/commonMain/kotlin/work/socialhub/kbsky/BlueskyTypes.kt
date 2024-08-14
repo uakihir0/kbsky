@@ -51,6 +51,7 @@ object BlueskyTypes {
     const val GraphFollow = "app.bsky.graph.follow"
     const val GraphGetFollowers = "app.bsky.graph.getFollowers"
     const val GraphGetFollows = "app.bsky.graph.getFollows"
+    const val GraphGetKnownFollowers = "app.bsky.graph.getKnownFollowers"
     const val GraphGetMutes = "app.bsky.graph.getMutes"
     const val GraphMuteActor = "app.bsky.graph.muteActor"
     const val GraphUnmuteActor = "app.bsky.graph.unmuteActor"

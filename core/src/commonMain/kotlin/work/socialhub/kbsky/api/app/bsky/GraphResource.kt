@@ -18,6 +18,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowersRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowersResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetKnownFollowersRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetKnownFollowersResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListsRequest
@@ -64,6 +66,13 @@ interface GraphResource {
     fun getFollows(
         request: GraphGetFollowsRequest
     ): Response<GraphGetFollowsResponse>
+
+    /**
+     * Enumerates accounts which follow a specified account (actor) and are followed by the viewer.
+     */
+    fun getKnownFollowers(
+        request: GraphGetKnownFollowersRequest
+    ): Response<GraphGetKnownFollowersResponse>
 
     /**
      * Who does the viewer mute?
