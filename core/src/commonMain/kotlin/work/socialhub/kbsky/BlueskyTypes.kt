@@ -32,6 +32,7 @@ object BlueskyTypes {
     const val FeedGetLikes = "app.bsky.feed.getLikes"
     const val FeedGetPostThread = "app.bsky.feed.getPostThread"
     const val FeedGetPosts = "app.bsky.feed.getPosts"
+    const val FeedGetQuotes = "app.bsky.feed.getQuotes"
     const val FeedGetRepostedBy = "app.bsky.feed.getRepostedBy"
     const val FeedGetTimeline = "app.bsky.feed.getTimeline"
     const val FeedLike = "app.bsky.feed.like"

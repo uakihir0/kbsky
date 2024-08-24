@@ -16,6 +16,7 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetLikes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetListFeed
 import work.socialhub.kbsky.BlueskyTypes.FeedGetPostThread
 import work.socialhub.kbsky.BlueskyTypes.FeedGetPosts
+import work.socialhub.kbsky.BlueskyTypes.FeedGetQuotes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetRepostedBy
 import work.socialhub.kbsky.BlueskyTypes.FeedGetTimeline
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
@@ -45,6 +46,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostThreadRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostThreadResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineRequest
@@ -136,6 +139,22 @@ class _FeedResource(
                             req.query("uris", it)
                         }
                     }
+                    .get()
+            }
+        }
+    }
+
+    override fun getQuotes(
+        request: FeedGetQuotesRequest
+    ): Response<FeedGetQuotesResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, FeedGetQuotes))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
                     .get()
             }
         }
