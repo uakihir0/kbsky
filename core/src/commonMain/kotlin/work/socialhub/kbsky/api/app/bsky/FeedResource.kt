@@ -23,6 +23,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostThreadRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostThreadResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineRequest
@@ -74,7 +76,14 @@ interface FeedResource {
     ): Response<FeedGetPostsResponse>
 
     /**
-     *
+     * Get a list of quotes for a given post.
+     */
+    fun getQuotes(
+        request: FeedGetQuotesRequest
+    ): Response<FeedGetQuotesResponse>
+
+    /**
+     * Get a list of reposts for a given post.
      */
     fun getRepostedBy(
         request: FeedGetRepostedByRequest
