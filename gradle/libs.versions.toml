@@ -1,4 +1,6 @@
 [versions]
+kotlin = "2.0.10"
+kotlinSerialization = "2.0.10"
 kotest = "5.9.1"
 
 [libraries]
