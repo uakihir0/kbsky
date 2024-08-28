@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform") version libs.versions.kotlin
-    kotlin("plugin.serialization") version libs.versions.kotlinSerialization
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
     id("maven-publish")
 }
 
