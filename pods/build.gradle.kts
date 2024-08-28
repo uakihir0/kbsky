@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "2.0.10"
-    kotlin("native.cocoapods") version "2.0.10"
-    kotlin("plugin.serialization") version "2.0.10"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.cocoapods)
 }
 
 kotlin {
