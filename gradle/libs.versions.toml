@@ -1,11 +1,11 @@
 [versions]
-kotlin = "2.0.10"
+kotlin = "2.0.20"
 kotest = "5.9.1"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.1-SNAPSHOT"
 ktor-core = "io.ktor:ktor-client-core:2.3.12"
-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.0"
+datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.1"
 coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1"
 serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1"
 serialization-cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.7.1"
