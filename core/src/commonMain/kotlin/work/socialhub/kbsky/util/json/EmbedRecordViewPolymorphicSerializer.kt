@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewBlocked
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewDetached
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewNotFound
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewRecord
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewUnion
@@ -24,6 +25,7 @@ object EmbedRecordViewPolymorphicSerializer :
             EmbedRecordViewRecord.TYPE -> EmbedRecordViewRecord.serializer()
             EmbedRecordViewNotFound.TYPE -> EmbedRecordViewNotFound.serializer()
             EmbedRecordViewBlocked.TYPE -> EmbedRecordViewBlocked.serializer()
+            EmbedRecordViewDetached.TYPE -> EmbedRecordViewDetached.serializer()
             FeedDefsGeneratorView.TYPE -> FeedDefsGeneratorView.serializer()
             GraphDefsListView.TYPE -> GraphDefsListView.serializer()
             else -> {

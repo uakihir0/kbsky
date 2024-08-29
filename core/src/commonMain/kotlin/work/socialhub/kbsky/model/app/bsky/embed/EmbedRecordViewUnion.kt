@@ -10,6 +10,7 @@ import work.socialhub.kbsky.util.json.EmbedRecordViewPolymorphicSerializer
  * @see EmbedRecordViewRecord
  * @see EmbedRecordViewNotFound
  * @see EmbedRecordViewBlocked
+ * @see EmbedRecordViewDetached
  * @see FeedDefsGeneratorView
  * @see GraphDefsListView
  */
@@ -21,6 +22,7 @@ abstract class EmbedRecordViewUnion {
     val asRecord get() = this as? EmbedRecordViewRecord
     val asNotFound get() = this as? EmbedRecordViewNotFound
     val asBlocked get() = this as? EmbedRecordViewBlocked
+    val asDetached get() = this as? EmbedRecordViewDetached
     val asGeneratorView get() = this as? FeedDefsGeneratorView
     val asListView get() = this as? GraphDefsListView
 }
