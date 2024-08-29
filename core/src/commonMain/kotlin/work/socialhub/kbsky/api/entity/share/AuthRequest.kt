@@ -19,7 +19,7 @@ open class AuthRequest(
                 .toTypedArray()[1]
 
             @OptIn(ExperimentalEncodingApi::class)
-            val decodedJson = Base64.decode(encodedJson)
+            val decodedJson = Base64.Default.withPadding(Base64.PaddingOption.PRESENT_OPTIONAL).decode(encodedJson)
             return fromJson<Jwt>(decodedJson.decodeToString()).sub
         }
 
