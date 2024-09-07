@@ -10,6 +10,7 @@ import work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecord
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordWithMedia
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedUnion
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedVideo
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object EmbedPolymorphicSerializer :
@@ -22,6 +23,7 @@ object EmbedPolymorphicSerializer :
     ): DeserializationStrategy<EmbedUnion> {
         return when (val type = element.type()) {
             BlueskyTypes.EmbedImages -> EmbedImages.serializer()
+            BlueskyTypes.EmbedVideo -> EmbedVideo.serializer()
             BlueskyTypes.EmbedExternal -> EmbedExternal.serializer()
             BlueskyTypes.EmbedRecord -> EmbedRecord.serializer()
             BlueskyTypes.EmbedRecordWithMedia -> EmbedRecordWithMedia.serializer()

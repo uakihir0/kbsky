@@ -23,6 +23,7 @@ object BlueskyTypes {
     // Embed
     const val EmbedExternal = "app.bsky.embed.external"
     const val EmbedImages = "app.bsky.embed.images"
+    const val EmbedVideo = "app.bsky.embed.video"
     const val EmbedRecord = "app.bsky.embed.record"
     const val EmbedRecordWithMedia = "app.bsky.embed.recordWithMedia"
 
