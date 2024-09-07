@@ -44,6 +44,7 @@ class PostTest : AbstractTest() {
                     accessJwt = accessJwt,
                     name = "icon.png",
                     bytes = stream.readBytes(),
+                    contentType = "image/jpeg"
                 )
             )
 

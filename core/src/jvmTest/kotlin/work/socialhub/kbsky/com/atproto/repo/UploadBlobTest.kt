@@ -22,6 +22,7 @@ class UploadBlobTest : AbstractTest() {
                     accessJwt = accessJwt,
                     name = "icon.png",
                     bytes = stream.readBytes(),
+                    contentType = "image/png"
                 )
             )
 

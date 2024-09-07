@@ -127,7 +127,7 @@ class _RepoResource(
                 HttpRequest()
                     .url(xrpc(config, RepoUploadBlob))
                     .header("Authorization", request.bearerToken)
-                    .header("Content-Type", "image/jpeg")
+                    .header("Content-Type", request.contentType)
                     .accept(MediaType.JSON)
                     .file(
                         key = "file",
