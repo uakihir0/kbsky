@@ -10,6 +10,7 @@ import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsFeedViewPref
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPersonalDetailsPref
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPrefV2
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsThreadViewPref
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
@@ -26,6 +27,7 @@ object ActorDefsPreferencesPolymorphicSerializer :
             ActorDefsAdultContentPref.TYPE -> ActorDefsAdultContentPref.serializer()
             ActorDefsContentLabelPref.TYPE -> ActorDefsContentLabelPref.serializer()
             ActorDefsSavedFeedsPref.TYPE -> ActorDefsSavedFeedsPref.serializer()
+            ActorDefsSavedFeedsPrefV2.TYPE -> ActorDefsSavedFeedsPrefV2.serializer()
             ActorDefsFeedViewPref.TYPE -> ActorDefsFeedViewPref.serializer()
             ActorDefsThreadViewPref.TYPE -> ActorDefsThreadViewPref.serializer()
             else -> {
