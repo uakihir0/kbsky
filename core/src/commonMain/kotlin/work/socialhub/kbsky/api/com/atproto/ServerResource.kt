@@ -2,6 +2,8 @@ package work.socialhub.kbsky.api.com.atproto
 
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionRequest
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionResponse
+import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthRequest
+import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthResponse
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetSessionResponse
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerRefreshSessionResponse
 import work.socialhub.kbsky.api.entity.share.AuthRequest
@@ -49,6 +51,15 @@ interface ServerResource {
      * Get a document describing the service's accounts configuration.
      */
     fun describeServer()
+
+    /**
+     * Get a signed token on behalf of the requesting DID for the requested service.
+     *
+     * [Reference](https://github.com/bluesky-social/atproto/blob/main/lexicons/com/atproto/server/getServiceAuth.json)
+     */
+    fun getServiceAuth(
+        request: ServerGetServiceAuthRequest
+    ): Response<ServerGetServiceAuthResponse>
 
     /**
      * TODO:

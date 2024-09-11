@@ -4,11 +4,14 @@ import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolTypes.ServerCreateSession
 import work.socialhub.kbsky.ATProtocolTypes.ServerDeleteSession
+import work.socialhub.kbsky.ATProtocolTypes.ServerGetServiceAuth
 import work.socialhub.kbsky.ATProtocolTypes.ServerGetSession
 import work.socialhub.kbsky.ATProtocolTypes.ServerRefreshSession
 import work.socialhub.kbsky.api.com.atproto.ServerResource
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionRequest
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionResponse
+import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthRequest
+import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthResponse
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetSessionResponse
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerRefreshSessionResponse
 import work.socialhub.kbsky.api.entity.share.AuthRequest
@@ -67,6 +70,21 @@ class _ServerResource(
 
     override fun describeServer() {
         throw IllegalStateException("not implemented.")
+    }
+
+    override fun getServiceAuth(
+        request: ServerGetServiceAuthRequest
+    ): Response<ServerGetServiceAuthResponse> {
+        return proceed<ServerGetServiceAuthResponse> {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, ServerGetServiceAuth))
+                    .header("Authorization", request.bearerToken)
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
     }
 
     override fun getSession(
