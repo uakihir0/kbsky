@@ -7,12 +7,14 @@ import work.socialhub.kbsky.api.app.bsky.FeedResource
 import work.socialhub.kbsky.api.app.bsky.GraphResource
 import work.socialhub.kbsky.api.app.bsky.NotificationResource
 import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
+import work.socialhub.kbsky.api.app.bsky.VideoResource
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
 import work.socialhub.kbsky.internal.app.bsky._ActorResource
 import work.socialhub.kbsky.internal.app.bsky._FeedResource
 import work.socialhub.kbsky.internal.app.bsky._GraphResource
 import work.socialhub.kbsky.internal.app.bsky._NotificationResource
 import work.socialhub.kbsky.internal.app.bsky._UnspeccedResource
+import work.socialhub.kbsky.internal.app.bsky._VideoResource
 import work.socialhub.kbsky.internal.chat.bsky._ConvoResource
 
 class _Bluesky(
@@ -24,6 +26,7 @@ class _Bluesky(
     protected val graph: GraphResource = _GraphResource(config)
     protected val notification: NotificationResource = _NotificationResource(config)
     protected val undoc: UnspeccedResource = _UnspeccedResource(config)
+    protected val video: VideoResource = _VideoResource(config)
     protected val convo: ConvoResource = _ConvoResource(config)
 
     /**
@@ -50,6 +53,11 @@ class _Bluesky(
      * {@inheritDoc}
      */
     override fun unspecced() = undoc
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun video() = video
 
     /**
      * {@inheritDoc}

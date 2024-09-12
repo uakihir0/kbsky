@@ -75,6 +75,11 @@ object BlueskyTypes {
     // Unspecced
     const val UnspeccedGetPopular = "app.bsky.unspecced.getPopular"
 
+    // Video
+    const val VideoGetJobStatus = "app.bsky.video.getJobStatus"
+    const val VideoGetUploadLimits = "app.bsky.video.getUploadLimits"
+    const val VideoUploadVideo = "app.bsky.video.uploadVideo"
+
     /// ----------------------------------------------------------------------- ///
     /// CHAT.BSKY
     /// ----------------------------------------------------------------------- ///
