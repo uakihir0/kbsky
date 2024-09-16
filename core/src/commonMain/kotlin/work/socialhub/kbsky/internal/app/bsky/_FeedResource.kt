@@ -56,6 +56,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostgateRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostgateResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsRequest
@@ -457,6 +459,32 @@ class _FeedResource(
                     repo = request.did!!,
                     collection = BlueskyTypes.FeedThreadgate,
                     record = request.toThreadgate(),
+                ).also {
+                    // get rkey from uri of post
+                    it.rkey = ATUriParser.getRKey(request.post)
+                }
+
+                HttpRequest()
+                    .url(xrpc(config, RepoCreateRecord))
+                    .header("Authorization", request.bearerToken)
+                    .json(record.toMappedJson())
+                    .accept(MediaType.JSON)
+                    .post()
+            }
+        }
+    }
+
+    override fun postgate(
+        request: FeedPostgateRequest
+    ): Response<FeedPostgateResponse> {
+
+        return proceed {
+            runBlocking {
+                val record = RepoCreateRecordRequest(
+                    accessJwt = request.accessJwt,
+                    repo = request.did!!,
+                    collection = BlueskyTypes.FeedPostgate,
+                    record = request.toPostgate(),
                 ).also {
                     // get rkey from uri of post
                     it.rkey = ATUriParser.getRKey(request.post)
