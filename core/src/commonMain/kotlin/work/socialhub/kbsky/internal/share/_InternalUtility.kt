@@ -50,7 +50,8 @@ object _InternalUtility {
 
             throw handleError(
                 exception = null,
-                body = response.stringBody
+                body = response.stringBody,
+                status = response.status
             )
         } catch (e: Exception) {
             throw handleError(e)
@@ -69,7 +70,8 @@ object _InternalUtility {
 
             throw handleError(
                 exception = null,
-                body = response.stringBody
+                body = response.stringBody,
+                status = response.status
             )
         } catch (e: Exception) {
             throw handleError(e)
@@ -95,6 +97,7 @@ object _InternalUtility {
     fun handleError(
         exception: Exception?,
         body: String? = null,
+        status: Int? = null
     ): RuntimeException {
 
         // ATProtocolException is already handled.
@@ -107,6 +110,7 @@ object _InternalUtility {
             return ATProtocolException(
                 message = response.message,
                 exception = exception,
+                status = status
             ).also { it.response = response }
         }
 
