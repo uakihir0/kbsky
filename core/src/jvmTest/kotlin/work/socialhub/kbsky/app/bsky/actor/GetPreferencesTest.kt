@@ -6,6 +6,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsAdultContentPref
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPrefV2
 import kotlin.test.Test
 
 class GetPreferencesTest : AbstractTest() {
@@ -27,6 +28,10 @@ class GetPreferencesTest : AbstractTest() {
 
             if (s is ActorDefsSavedFeedsPref) {
                 s.saved.forEach { println(it) }
+            }
+
+            if (s is ActorDefsSavedFeedsPrefV2) {
+                s.items.forEach { println(it) }
             }
         }
     }
