@@ -16,3 +16,4 @@ kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.r
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+sonatype-central-upload = "cl.franciscosolis.sonatype-central-upload:1.0.3"
