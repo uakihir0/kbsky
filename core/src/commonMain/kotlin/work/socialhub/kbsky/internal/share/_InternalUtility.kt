@@ -1,7 +1,6 @@
 package work.socialhub.kbsky.internal.share
 
 import kotlinx.datetime.TimeZone
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
@@ -18,7 +17,6 @@ import work.socialhub.khttpclient.HttpResponse
  */
 object _InternalUtility {
 
-    @OptIn(ExperimentalSerializationApi::class)
     val json = Json {
         explicitNulls = false
         encodeDefaults = true
@@ -69,6 +67,7 @@ object _InternalUtility {
 
             throw handleError(
                 exception = null,
+                status = response.status,
                 body = response.stringBody
             )
         } catch (e: Exception) {
@@ -94,6 +93,7 @@ object _InternalUtility {
 
     fun handleError(
         exception: Exception?,
+        status: Int? = null,
         body: String? = null,
     ): RuntimeException {
 
@@ -105,8 +105,10 @@ object _InternalUtility {
         if (body != null) {
             val response = fromJson<ErrorResponse>(body)
             return ATProtocolException(
-                message = response.message,
+                message = response.messageForDisplay(),
                 exception = exception,
+                status = status,
+                body = body,
             ).also { it.response = response }
         }
 

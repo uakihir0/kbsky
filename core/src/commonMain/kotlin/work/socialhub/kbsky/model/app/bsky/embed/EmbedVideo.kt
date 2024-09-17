@@ -21,7 +21,7 @@ class EmbedVideo : EmbedUnion() {
     var video: Blob? = null
 
     // TODO Add support for captions
-//    var captions: List<EmbedVideoCaption>? = null
+    // var captions: List<EmbedVideoCaption>? = null
 
     var alt: String? = null
 

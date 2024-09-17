@@ -1,7 +1,9 @@
 package work.socialhub.kbsky.internal.app.bsky
 
-import io.ktor.http.URLBuilder
+import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
+import work.socialhub.kbsky.ATProtocolException
+import work.socialhub.kbsky.ATProtocolTypes
 import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes.VideoGetJobStatus
 import work.socialhub.kbsky.BlueskyTypes.VideoGetUploadLimits
@@ -17,6 +19,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthRe
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto._ServerResource
+import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
@@ -31,12 +34,17 @@ class _VideoResource(
     ): Response<VideoGetJobStatusResponse> {
 
         // get token for video service
-        val videoToken = getVideoTokenFromPds(config, request.accessJwt, VIDEO_SERVICE_DID, VideoGetJobStatus)
+        val videoToken = getVideoTokenFromPds(
+            config = config,
+            accessJwt = request.accessJwt,
+            aud = config.videoServiceDid,
+            lxm = VideoGetJobStatus,
+        )
 
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(config.also { it.pdsUri = VIDEO_SERVICE }, VideoGetJobStatus))
+                    .url(xrpc(config.videoServiceUri, VideoGetJobStatus))
                     .header("Authorization", videoToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -50,12 +58,17 @@ class _VideoResource(
     ): Response<VideoGetUploadLimitsResponse> {
 
         // get token for video service
-        val videoToken = getVideoTokenFromPds(config, request.accessJwt, VIDEO_SERVICE_DID, VideoGetUploadLimits)
+        val videoToken = getVideoTokenFromPds(
+            config = config,
+            accessJwt = request.accessJwt,
+            aud = config.videoServiceDid,
+            lxm = VideoGetUploadLimits,
+        )
 
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(xrpc(config.also { it.pdsUri = VIDEO_SERVICE }, VideoGetUploadLimits))
+                    .url(xrpc(config.videoServiceUri, VideoGetUploadLimits))
                     .header("Authorization", videoToken)
                     .accept(MediaType.JSON)
                     .get()
@@ -70,33 +83,43 @@ class _VideoResource(
         // get token for uploadVideo
         // (note: own pds as aud, "uploadBlob" as lxm required)
         val videoToken = getVideoTokenFromPds(
-            config,
-            request.accessJwt,
+            config = config,
+            accessJwt = request.accessJwt,
             aud = AuthRequest(request.accessJwt).jwt.aud,
-            lxm = "com.atproto.repo.uploadBlob"
+            lxm = ATProtocolTypes.RepoUploadBlob,
         )
 
-        return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(
-                        URLBuilder(xrpc(config.also { it.pdsUri = VIDEO_SERVICE }, VideoUploadVideo))
-                            .also {
-                                it.parameters.append("did", request.did)
-                                it.parameters.append("name", request.name)
-                            }
-                            .buildString()
-                    )
-                    .header("Authorization", videoToken)
-                    .header("Content-Type", request.contentType)
-                    .accept(MediaType.JSON)
-                    .file(
-                        key = "file",
-                        fileName = request.name,
-                        fileBody = request.bytes
-                    )
-                    .post()
+        try {
+            return proceed {
+                runBlocking {
+                    HttpRequest()
+                        .url(
+                            URLBuilder(xrpc(config.videoServiceUri, VideoUploadVideo))
+                                .also {
+                                    it.parameters.append("did", request.did)
+                                    it.parameters.append("name", request.name)
+                                }
+                                .buildString()
+                        )
+                        .header("Authorization", videoToken)
+                        .header("Content-Type", request.contentType)
+                        .accept(MediaType.JSON)
+                        .file(
+                            key = "file",
+                            fileName = request.name,
+                            fileBody = request.bytes
+                        )
+                        .post()
+                }
             }
+        } catch (e: ATProtocolException) {
+
+            // If 409 comes in, convert to JobState.
+            if (e.status == 409 && e.body != null) {
+                return Response(fromJson(e.body), e.body)
+            }
+
+            throw e
         }
     }
 
@@ -113,10 +136,5 @@ class _VideoResource(
                 )
 
         return AuthRequest(videoTokenResponse.data.token).bearerToken
-    }
-
-    companion object {
-        private const val VIDEO_SERVICE = "https://video.bsky.app/"
-        private const val VIDEO_SERVICE_DID = "did:web:video.bsky.app"
     }
 }

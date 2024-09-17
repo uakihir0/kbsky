@@ -127,7 +127,7 @@ class _ServerResource(
         throw IllegalStateException("not implemented.")
     }
 
-    private fun updatePdsUri(doc: DidDocUnion?){
+    private fun updatePdsUri(doc: DidDocUnion?) {
         if (config.updatePdsUri) {
             doc?.asDIDDetails?.also { d ->
                 d.pdsEndpoint()?.also {
