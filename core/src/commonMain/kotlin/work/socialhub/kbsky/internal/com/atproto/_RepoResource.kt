@@ -4,6 +4,7 @@ import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
+import work.socialhub.kbsky.ATProtocolTypes.RepoDescribeRepo
 import work.socialhub.kbsky.ATProtocolTypes.RepoGetRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoListRecords
 import work.socialhub.kbsky.ATProtocolTypes.RepoPutRecord
@@ -12,6 +13,8 @@ import work.socialhub.kbsky.api.com.atproto.RepoResource
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDescribeRepoRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDescribeRepoResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoListRecordsRequest
@@ -68,8 +71,19 @@ class _RepoResource(
         }
     }
 
-    override fun describeRepo() {
-        throw IllegalStateException("not implemented.")
+    override fun describeRepo(
+        request: RepoDescribeRepoRequest
+    ): Response<RepoDescribeRepoResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, RepoDescribeRepo))
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .get()
+            }
+        }
     }
 
     override fun getRecord(
