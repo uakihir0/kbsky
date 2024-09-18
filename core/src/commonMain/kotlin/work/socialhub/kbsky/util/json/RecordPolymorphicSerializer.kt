@@ -7,6 +7,7 @@ import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
+import work.socialhub.kbsky.model.app.bsky.feed.FeedPostgate
 import work.socialhub.kbsky.model.app.bsky.feed.FeedRepost
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgate
 import work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
@@ -35,6 +36,7 @@ object RecordPolymorphicSerializer :
             GraphListItem.TYPE -> GraphListItem.serializer()
             GraphList.TYPE -> GraphList.serializer()
             FeedThreadgate.TYPE -> FeedThreadgate.serializer()
+            FeedPostgate.TYPE -> FeedPostgate.serializer()
 
             else -> {
                 println("[Warning] Unknown Item type: $type (RecordUnion)")

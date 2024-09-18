@@ -48,7 +48,8 @@ object _InternalUtility {
 
             throw handleError(
                 exception = null,
-                body = response.stringBody
+                status = response.status,
+                body = response.stringBody,
             )
         } catch (e: Exception) {
             throw handleError(e)
@@ -68,7 +69,7 @@ object _InternalUtility {
             throw handleError(
                 exception = null,
                 status = response.status,
-                body = response.stringBody
+                body = response.stringBody,
             )
         } catch (e: Exception) {
             throw handleError(e)

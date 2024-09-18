@@ -33,6 +33,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostgateRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostgateResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsRequest
@@ -200,4 +202,12 @@ interface FeedResource {
     fun threadgate(
         request: FeedThreadgateRequest
     ): Response<FeedThreadgateResponse>
+
+    /**
+     * Record defining interaction rules for a post.
+     * (ATProtocol/Repo createRecord wrapper)
+     */
+    fun postgate(
+        request: FeedPostgateRequest
+    ): Response<FeedPostgateResponse>
 }

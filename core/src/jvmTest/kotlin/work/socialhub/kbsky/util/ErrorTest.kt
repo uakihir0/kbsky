@@ -21,6 +21,7 @@ class ErrorTest : AbstractTest() {
                 )
 
         } catch (e: ATProtocolException) {
+            println(e.status)
             println(e.response?.message)
             println(e.response?.error)
         }

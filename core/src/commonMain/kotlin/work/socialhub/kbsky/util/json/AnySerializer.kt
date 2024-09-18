@@ -23,6 +23,7 @@ import kotlinx.serialization.json.longOrNull
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
+import work.socialhub.kbsky.model.app.bsky.feed.FeedPostgate
 import work.socialhub.kbsky.model.app.bsky.feed.FeedRepost
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgate
 import work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
@@ -89,6 +90,7 @@ object AnySerializer : KSerializer<Any> {
             is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)
             is FeedRepost -> encoder.encodeSerializableValue(FeedRepost.serializer(), value)
             is FeedThreadgate -> encoder.encodeSerializableValue(FeedThreadgate.serializer(), value)
+            is FeedPostgate -> encoder.encodeSerializableValue(FeedPostgate.serializer(), value)
             is ConvoDefsMessageInput -> encoder.encodeSerializableValue(
                 ConvoDefsMessageInput.serializer(),
                 value
