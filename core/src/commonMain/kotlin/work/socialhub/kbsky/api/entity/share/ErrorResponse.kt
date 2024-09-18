@@ -6,4 +6,8 @@ import kotlinx.serialization.Serializable
 class ErrorResponse {
     var message: String = ""
     lateinit var error: String
+
+    fun messageForDisplay(): String {
+        return message.ifBlank { error }
+    }
 }

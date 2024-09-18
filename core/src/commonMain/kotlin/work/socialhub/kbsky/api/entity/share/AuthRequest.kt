@@ -11,7 +11,12 @@ open class AuthRequest(
     val bearerToken: String
         get() = "Bearer $accessJwt"
 
-    val did: String?
+    val did: String
+        get() {
+            return jwt.sub
+        }
+
+    val jwt: Jwt
         get() {
             val encodedJson = accessJwt
                 .split("\\.".toRegex())
@@ -20,7 +25,7 @@ open class AuthRequest(
 
             @OptIn(ExperimentalEncodingApi::class)
             val decodedJson = Base64.Default.withPadding(Base64.PaddingOption.PRESENT_OPTIONAL).decode(encodedJson)
-            return fromJson<Jwt>(decodedJson.decodeToString()).sub
+            return fromJson<Jwt>(decodedJson.decodeToString())
         }
 
     @Serializable

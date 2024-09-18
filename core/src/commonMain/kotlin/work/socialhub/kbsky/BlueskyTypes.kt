@@ -23,6 +23,7 @@ object BlueskyTypes {
     // Embed
     const val EmbedExternal = "app.bsky.embed.external"
     const val EmbedImages = "app.bsky.embed.images"
+    const val EmbedVideo = "app.bsky.embed.video"
     const val EmbedRecord = "app.bsky.embed.record"
     const val EmbedRecordWithMedia = "app.bsky.embed.recordWithMedia"
 
@@ -74,6 +75,11 @@ object BlueskyTypes {
 
     // Unspecced
     const val UnspeccedGetPopular = "app.bsky.unspecced.getPopular"
+
+    // Video
+    const val VideoGetJobStatus = "app.bsky.video.getJobStatus"
+    const val VideoGetUploadLimits = "app.bsky.video.getUploadLimits"
+    const val VideoUploadVideo = "app.bsky.video.uploadVideo"
 
     /// ----------------------------------------------------------------------- ///
     /// CHAT.BSKY

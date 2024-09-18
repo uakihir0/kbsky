@@ -7,6 +7,7 @@ import work.socialhub.kbsky.util.json.EmbedPolymorphicSerializer
 /**
  * @see EmbedExternal
  * @see EmbedImages
+ * @see EmbedVideo
  * @see EmbedRecord
  * @see EmbedRecordWithMedia
  */
@@ -17,6 +18,7 @@ abstract class EmbedUnion {
 
     val asExternal get() = this as? EmbedExternal
     val asImages get() = this as? EmbedImages
+    val asVideo get() = this as? EmbedVideo
     val asRecord get() = this as? EmbedRecord
     val asRecordWithMedia get() = this as? EmbedRecordWithMedia
 }

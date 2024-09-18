@@ -45,6 +45,7 @@ object ATProtocolTypes {
     const val ServerDeleteAccount = "com.atproto.server.deleteAccount"
     const val ServerDeleteSession = "com.atproto.server.deleteSession"
     const val ServerDescribeServer = "com.atproto.server.describeServer"
+    const val ServerGetServiceAuth = "com.atproto.server.getServiceAuth"
     const val ServerGetSession = "com.atproto.server.getSession"
     const val ServerRefreshSession = "com.atproto.server.refreshSession"
     const val ServerRequestAccountDelete = "com.atproto.server.requestAccountDelete"

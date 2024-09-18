@@ -8,6 +8,7 @@ import work.socialhub.kbsky.model.app.bsky.embed.EmbedExternalView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordWithMediaView
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedVideoView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedViewUnion
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
@@ -22,6 +23,7 @@ object EmbedViewPolymorphicSerializer :
         return when (val type = element.type()) {
             EmbedExternalView.TYPE -> EmbedExternalView.serializer()
             EmbedImagesView.TYPE -> EmbedImagesView.serializer()
+            EmbedVideoView.TYPE -> EmbedVideoView.serializer()
             EmbedRecordView.TYPE -> EmbedRecordView.serializer()
             EmbedRecordWithMediaView.TYPE -> EmbedRecordWithMediaView.serializer()
             else -> {
