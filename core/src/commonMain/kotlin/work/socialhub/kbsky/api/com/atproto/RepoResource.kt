@@ -3,6 +3,8 @@ package work.socialhub.kbsky.api.com.atproto
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDescribeRepoRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDescribeRepoResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoListRecordsRequest
@@ -40,10 +42,11 @@ interface RepoResource {
     ): Response<Unit>
 
     /**
-     * TODO:
-     * Get information about the repo, including the list of collections.
+     * Get information about an account and repository, including the list of collections. Does not require auth.
      */
-    fun describeRepo()
+    fun describeRepo(
+        request: RepoDescribeRepoRequest
+    ): Response<RepoDescribeRepoResponse>
 
     /**
      * Get a record.
