@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 class FeedDefsFeedViewPost {
     lateinit var post: FeedDefsPostView
     var reply: FeedDefsReplyRef? = null
-    var reason: FeedDefsReasonRepost? = null
+    var reason: FeedDefsReasonUnion? = null
 }
