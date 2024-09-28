@@ -8,4 +8,5 @@ class FeedDefsViewerState {
     var like: String? = null
     var replyDisabled: Boolean? = null
     var embeddingDisabled: Boolean? = null
+    var pinned: Boolean? = null
 }
