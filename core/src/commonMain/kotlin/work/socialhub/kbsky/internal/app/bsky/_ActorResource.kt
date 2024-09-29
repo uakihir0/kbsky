@@ -74,7 +74,7 @@ class _ActorResource(
 
             val original = repoResource.getRecord(
                 RepoGetRecordRequest(
-                    repo = request.did!!,
+                    repo = request.did,
                     collection = BlueskyTypes.ActorProfile,
                     rkey = "self"
                 )
@@ -93,13 +93,19 @@ class _ActorResource(
                 } else {
                     it.banner = request.banner ?: originalActorProfile.banner
                 }
+
+                if (request.clearPinnedPost) {
+                    it.pinnedPost = null
+                } else {
+                    it.pinnedPost = request.pinnedPost ?: originalActorProfile.pinnedPost
+                }
             }
 
             val r = repoResource.putRecord(
                 RepoPutRecordRequest(
                     collection = BlueskyTypes.ActorProfile,
                     accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    repo = request.did,
                     rkey = "self",
                     record = modifiedActorProfileRecord
                 )

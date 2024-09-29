@@ -3,18 +3,14 @@ package work.socialhub.kbsky.model.app.bsky.feed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
-import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewBasic
 
 @Serializable
-class FeedDefsReasonRepost : FeedDefsReasonUnion() {
+class FeedDefsReasonPin : FeedDefsReasonUnion() {
 
     companion object {
-        val TYPE = BlueskyTypes.FeedDefs + "#reasonRepost"
+        val TYPE = BlueskyTypes.FeedDefs + "#reasonPin"
     }
 
     @SerialName("\$type")
     override var type = TYPE
-
-    var by: ActorDefsProfileViewBasic? = null
-    var indexedAt: String? = null
 }

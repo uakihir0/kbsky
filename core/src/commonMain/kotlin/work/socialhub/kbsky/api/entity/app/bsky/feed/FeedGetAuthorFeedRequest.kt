@@ -21,12 +21,15 @@ class FeedGetAuthorFeedRequest(
 
     var filter: Filter? = null
 
+    var includePins: Boolean = false
+
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
             it.addParam("actor", actor)
             it.addParam("limit", limit)
             it.addParam("cursor", cursor)
             it.addParam("filter", filter?.value)
+            it.addParam("includePins", includePins)
         }
     }
 }

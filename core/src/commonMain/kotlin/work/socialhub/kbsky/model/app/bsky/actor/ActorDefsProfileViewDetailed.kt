@@ -2,6 +2,8 @@ package work.socialhub.kbsky.model.app.bsky.actor
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
+import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
+import work.socialhub.kbsky.util.json.PinnedPostSerializer
 
 @Serializable
 open class ActorDefsProfileViewDetailed {
@@ -21,4 +23,10 @@ open class ActorDefsProfileViewDetailed {
     var createdAt: String? = null
     var viewer: ActorDefsViewerState? = null
     var labels: List<LabelDefsLabel>? = null
+
+    // In Japan, many clients are using "string type declaration" for pinnedPost field,
+    // like "pinnedPost": "at://did:plc:xxx".
+    // Parse the string type declaration as uri of RepoStrongRef by using [PinnedPostSerializer]
+    @Serializable(with = PinnedPostSerializer::class)
+    var pinnedPost: RepoStrongRef? = null
 }
