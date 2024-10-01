@@ -11,11 +11,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - target: publishIosArm64PublicationToSonatypeRepository
+          - target: publishIosArm64PublicationToMavenCentralRepository
             os: macos-latest
-          - target: publishJvmPublicationToSonatypeRepository
+          - target: publishJvmPublicationToMavenCentralRepository
             os: ubuntu-latest
-          - target: publishKotlinMultiplatformPublicationToSonatypeRepository
+          - target: publishKotlinMultiplatformPublicationToMavenCentralRepository
             os: ubuntu-latest
 
     runs-on: ${{ matrix.os }}
@@ -41,9 +41,8 @@ jobs:
       - name: Gradle publish
         run: |
           ./gradlew
+          -PmavenCentralUsername=${{secrets.OSSRH_USERNAME}}
+          -PmavenCentralPassword=${{secrets.OSSRH_PASSWORD}}
+          -PsigningInMemoryKeyId=${{secrets.OSSRH_GPG_SECRET_KEY_ID}}
+          -PsigningInMemoryPassword=${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}
           ${{ matrix.target }}
-          closeSonatypeStagingRepository
-          -Psigning.gnupg.passphrase='${{secrets.OSSRH_GPG_SECRET_KEY_PASSWORD}}'
-          -Psigning.gnupg.keyName='${{secrets.OSSRH_GPG_SECRET_KEY_ID}}'
-          -PsonatypeUsername='${{secrets.OSSRH_USERNAME}}'
-          -PsonatypePassword='${{secrets.OSSRH_PASSWORD}}'

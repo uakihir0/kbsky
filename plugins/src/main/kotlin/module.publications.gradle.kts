@@ -8,14 +8,6 @@ publishing {
     // Configure all publications
     publications.withType<MavenPublication> {
 
-        // Stub javadoc.jar artifact
-        artifact(
-            tasks.register("${name}JavadocJar", Jar::class) {
-                archiveAppendix.set(this@withType.name)
-                archiveClassifier.set("javadoc")
-            }
-        )
-
         // Provide artifacts information required by Maven Central
         pom {
             name.set("kbsky")
@@ -45,8 +37,8 @@ publishing {
 }
 
 signing {
-    if (project.hasProperty("signing.gnupg.keyName")) {
+    if (project.hasProperty("mavenCentralUsername") ||
+        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null) {
         useGpgCmd()
-        sign(publishing.publications)
     }
 }

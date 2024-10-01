@@ -1,8 +1,14 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
+
     id("module.publications")
-    id("maven-publish")
+    alias(libs.plugins.vanniktech.maven.publish)
+    alias(libs.plugins.dokka)
 }
 
 kotlin {
@@ -47,5 +53,18 @@ publishing {
                 password = System.getenv("PASSWORD")
             }
         }
+    }
+}
+
+mavenPublishing {
+    configure(
+        KotlinMultiplatform(
+            javadocJar = JavadocJar.Dokka("dokkaHtml")
+        )
+    )
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    if (project.hasProperty("mavenCentralUsername") ||
+        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null) {
+        signAllPublications()
     }
 }
