@@ -18,7 +18,7 @@ jobs:
       - name: Pods XCFramework
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: pods:assembleKbskyXCFramework pods:podPublishXCFramework -x test
+          arguments: all:assembleKbskyXCFramework all:podPublishXCFramework -x test
 
       - name: Set Project Version
         run: |
@@ -30,7 +30,7 @@ jobs:
         run: |
           git config --global user.email "a.urusihara@gmail.com"
           git config --global user.name "Akihiro Urushihara"
-          cd ./pods/build/cocoapods/repository/
+          cd ./all/build/cocoapods/repository/
           git init
           git add --all
           git commit -m "by GitHub Action CI (SHA ${GITHUB_SHA})"
