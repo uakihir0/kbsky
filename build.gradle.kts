@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.cocoapods).apply(false)
 
     alias(libs.plugins.dokka).apply(false)
-    alias(libs.plugins.vanniktech.maven.publish).apply(false)
+    alias(libs.plugins.maven.publish).apply(false)
 
 }
 

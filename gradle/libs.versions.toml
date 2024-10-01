@@ -1,6 +1,8 @@
 [versions]
 kotlin = "2.0.20"
 kotest = "5.9.1"
+dokka = "1.9.20"
+maven-publish = "0.29.0"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.1-SNAPSHOT"
@@ -12,10 +14,12 @@ serialization-cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.7.3"
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
 nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
+maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
+dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
-vanniktech-maven-publish = "com.vanniktech.maven.publish:0.29.0"
-dokka = "org.jetbrains.dokka:1.9.20"
+maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
+dokka = { id  = "org.jetbrains.dokka", version.ref = "dokka" }
