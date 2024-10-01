@@ -11,9 +11,9 @@ serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3"
 serialization-cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.7.3"
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
+nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
-sonatype-central-upload = "cl.franciscosolis.sonatype-central-upload:1.0.3"

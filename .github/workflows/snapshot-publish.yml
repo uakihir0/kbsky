@@ -1,4 +1,4 @@
-name: Publish Package
+name: Publish SNAPSHOT Package
 on:
   push:
     branches:

@@ -1,6 +1,10 @@
+plugins {
+    id("root.publications")
+}
+
 allprojects {
     group = "work.socialhub.kbsky"
-    version = "0.0.1-SNAPSHOT"
+    version = "0.0.1"
 
     repositories {
         mavenCentral()
@@ -9,7 +13,7 @@ allprojects {
 }
 
 tasks.wrapper {
-    gradleVersion = "8.5"
+    gradleVersion = "8.10.2"
     distributionType = Wrapper.DistributionType.ALL
 }
 
