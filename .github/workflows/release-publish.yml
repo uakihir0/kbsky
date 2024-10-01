@@ -1,6 +1,6 @@
 name: Publish RELEASE Package
 
-on: workflow_dispatch
+on: [workflow_dispatch, push]
 
 permissions:
   contents: read
