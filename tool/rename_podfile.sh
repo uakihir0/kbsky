@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit
 BASE_PATH=$(pwd)
-BUILD_PATH=../pods/build
+BUILD_PATH=../all/build
 
 # Make Repository
 cd "$BASE_PATH" || exit
@@ -35,6 +35,6 @@ cp -r kbsky.xcframework ../../repository/release/kbsky.xcframework
 # Copy README
 cd "$BASE_PATH" || exit
 cd ../ || exit
-cp ./LICENSE ./pods/build/cocoapods/repository/LICENSE
-cp ./docs/pods/README.md ./pods/build/cocoapods/repository/README.md
-cp ./docs/pods/README_ja.md ./pods/build/cocoapods/repository/README_ja.md
+cp ./LICENSE ./all/build/cocoapods/repository/LICENSE
+cp ./docs/pods/README.md ./all/build/cocoapods/repository/README.md
+cp ./docs/pods/README_ja.md ./all/build/cocoapods/repository/README_ja.md
