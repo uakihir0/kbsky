@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.dokka).apply(false)
     alias(libs.plugins.maven.publish).apply(false)
 
+    alias(libs.plugins.git.versioning)
 }
 
 allprojects {
@@ -16,7 +17,17 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven { url = uri("https://repo.repsy.io/mvn/uakihir0/public") }
+        // Repsy.io repository for snapshot packages.
+        // maven { url = uri("https://repo.repsy.io/mvn/uakihir0/public") }
+    }
+}
+
+gitVersioning.apply {
+    refs {
+        considerTagsOnBranches = true
+        tag("v(?<version>.*)") {
+            version = "\${ref.version}"
+        }
     }
 }
 
@@ -25,6 +36,3 @@ tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
-tasks.create("version") {
-    doLast { println(project.version) }
-}

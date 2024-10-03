@@ -5,7 +5,7 @@ dokka = "1.9.20"
 maven-publish = "0.29.0"
 
 [libraries]
-khttpclient = "work.socialhub:khttpclient:0.0.1-SNAPSHOT"
+khttpclient = "work.socialhub:khttpclient:0.0.2"
 ktor-core = "io.ktor:ktor-client-core:2.3.12"
 datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.1"
 coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0"
@@ -23,3 +23,4 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 dokka = { id  = "org.jetbrains.dokka", version.ref = "dokka" }
+git-versioning = "me.qoomon.git-versioning:6.4.4"

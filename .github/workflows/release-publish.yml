@@ -1,6 +1,10 @@
 name: Publish RELEASE Package
 
-on: [workflow_dispatch, push]
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: read
@@ -11,12 +15,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - target: publishIosArm64PublicationToMavenCentralRepository
+          - target: publishAllPublicationsToMavenCentralRepository
             os: macos-latest
-          - target: publishJvmPublicationToMavenCentralRepository
-            os: ubuntu-latest
-          - target: publishKotlinMultiplatformPublicationToMavenCentralRepository
-            os: ubuntu-latest
 
     runs-on: ${{ matrix.os }}
 

@@ -8,12 +8,6 @@ jobs:
   build:
     runs-on: macos-latest
 
-    strategy:
-      matrix:
-        target:
-          - core
-          - stream
-
     permissions:
       contents: read
       packages: write
@@ -29,12 +23,12 @@ jobs:
     - name: Build with Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: ${{ matrix.target }}:build -x ${{ matrix.target }}:jvmTest
+        arguments: build -x core:jvmTest -x stream:jvmTest
 
     - name: Publish to Repsy
       uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: ${{ matrix.target }}:publish -x ${{ matrix.target }}:jvmTest
+        arguments: publishAllPublicationsToMavenRepository -x core:jvmTest -x stream:jvmTest
       env:
         USERNAME: ${{ secrets.REPSY_USERNAME }}
         PASSWORD: ${{ secrets.REPSY_PASSWORD }}
