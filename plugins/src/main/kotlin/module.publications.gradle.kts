@@ -58,17 +58,20 @@ mavenPublishing {
             javadocJar = JavadocJar.Dokka("dokkaHtml")
         )
     )
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    publishToMavenCentral(
+        host = SonatypeHost.CENTRAL_PORTAL,
+        automaticRelease = true,
+    )
+
     if (project.hasProperty("mavenCentralUsername") ||
-        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null) {
-        signAllPublications()
-    }
+        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null
+    ) signAllPublications()
 }
 
 signing {
     if (project.hasProperty("mavenCentralUsername") ||
-        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null) {
-        useGpgCmd()
-    }
+        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null
+    ) useGpgCmd()
 }
 
