@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
-    id("maven-publish")
+    id("module.publications")
 }
 
 kotlin {
@@ -33,19 +33,7 @@ kotlin {
     }
 }
 
-
 tasks.named<Test>("jvmTest") {
     useJUnitPlatform()
 }
 
-publishing {
-    repositories {
-        maven {
-            url = uri("https://repo.repsy.io/mvn/uakihir0/public")
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("PASSWORD")
-            }
-        }
-    }
-}
