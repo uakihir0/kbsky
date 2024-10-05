@@ -1,6 +1,7 @@
 # kbsky
 
-![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.repsy.io%2Fmvn%2Fuakihir0%2Fpublic%2Fwork%2Fsocialhub%2Fkbsky%2Fcore%2Fmaven-metadata.xml)
+<!-- ![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.repsy.io%2Fmvn%2Fuakihir0%2Fpublic%2Fwork%2Fsocialhub%2Fkbsky%2Fcore%2Fmaven-metadata.xml) -->
+![Maven Central Version](https://img.shields.io/maven-central/v/work.socialhub.kbsky/all)
 
 ![badge][badge-js]
 ![badge][badge-jvm]
@@ -18,15 +19,29 @@
 **Apple プラットフォームで使用する場合は、 [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods) を参照してください。**
 また、テストコードも合わせて確認してください。
 
+### Stable (Maven Central)
+
 ```kotlin:build.gradle.kts
 repositories {
     mavenCentral()
+}
+
+dependencies {
++   implementation("work.socialhub.kbsky:core:0.1.0")
++   implementation("work.socialhub.kbsky:stream:0.1.0")
+}
+```
+
+### Snapshot
+
+```kotlin:build.gradle.kts
+repositories {
 +   maven { url = uri("https://repo.repsy.io/mvn/uakihir0/public") }
 }
 
 dependencies {
-+   implementation("work.socialhub.kbsky:core:0.0.1-SNAPSHOT")
-+   implementation("work.socialhub.kbsky:stream:0.0.1-SNAPSHOT")
++   implementation("work.socialhub.kbsky:core:0.2.0-SNAPSHOT")
++   implementation("work.socialhub.kbsky:stream:0.2.0-SNAPSHOT")
 }
 ```
 
