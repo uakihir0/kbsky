@@ -1,42 +1,43 @@
-package work.socialhub.kbsky.internal.meta
+package work.socialhub.kbsky.auth.internal
 
 import kotlinx.coroutines.runBlocking
-import work.socialhub.kbsky.ATProtocolConfig
-import work.socialhub.kbsky.api.entity.meta.WellKnownOAuthAuthorizationServer
-import work.socialhub.kbsky.api.entity.meta.WellKnownOAuthProtectedResourceResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.auth.AuthConfig
+import work.socialhub.kbsky.auth.api.WellKnownResource
+import work.socialhub.kbsky.auth.api.entity.wellknown.WellKnownOAuthAuthorizationServerResponse
+import work.socialhub.kbsky.auth.api.entity.wellknown.WellKnownOAuthProtectedResourceResponse
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
-class _MetaResource(
-    private val config: ATProtocolConfig
-) : MetaResource {
+class _WellKnownResource(
+    private val config: AuthConfig
+) : WellKnownResource {
 
-    override fun wellKnownOAuthProtectedResource()
+    override fun oAuthProtectedResource()
             : Response<WellKnownOAuthProtectedResourceResponse> {
         return proceed<WellKnownOAuthProtectedResourceResponse> {
             runBlocking {
                 HttpRequest()
-                    .url("${config.pdsUri}.well-known/oauth-protected-resource")
+                    .url("${config.pdsServer}.well-known/oauth-protected-resource")
                     .accept(MediaType.JSON)
                     .get()
             }
         }.also {
-            if (config.updateAuthUri) {
+            if (it.data.authorizationServers.isNotEmpty()) {
                 var authUri = it.data.authorizationServers[0]
                 if (!authUri.endsWith("/")) authUri += "/"
-                config.authUri = authUri
+                config.authorizationServer = authUri
             }
         }
     }
 
-    override fun wellKnownOAuthAuthorizationServer()
-            : Response<WellKnownOAuthAuthorizationServer> {
+    override fun oAuthAuthorizationServer()
+            : Response<WellKnownOAuthAuthorizationServerResponse> {
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url("${config.pdsUri}.well-known/oauth-authorization-server")
+                    .url("${config.authorizationServer}.well-known/oauth-authorization-server")
                     .accept(MediaType.JSON)
                     .get()
             }

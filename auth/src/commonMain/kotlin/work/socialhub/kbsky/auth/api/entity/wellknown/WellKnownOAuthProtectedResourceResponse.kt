@@ -1,4 +1,4 @@
-package work.socialhub.kbsky.api.entity.meta
+package work.socialhub.kbsky.auth.api.entity.wellknown
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

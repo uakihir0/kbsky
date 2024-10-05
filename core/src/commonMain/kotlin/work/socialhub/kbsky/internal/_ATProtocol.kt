@@ -5,7 +5,6 @@ import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.com.atproto.RepoResource
 import work.socialhub.kbsky.api.com.atproto.ServerResource
-import work.socialhub.kbsky.api.meta.MetaResource
 import work.socialhub.kbsky.internal.com.atproto._IdentityResource
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.com.atproto._ServerResource
