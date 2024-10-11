@@ -14,7 +14,7 @@ class MuteTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .graph()
             .muteActor(
-                GraphMuteActorRequest(accessJwt).also {
+                GraphMuteActorRequest(auth()).also {
                     it.actor = "bsky.app"
                 }
             )
@@ -26,7 +26,7 @@ class MuteTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .graph()
             .muteActor(
-                GraphMuteActorRequest(accessJwt).also {
+                GraphMuteActorRequest(auth()).also {
                     it.actor = "did:plc:oc6vwdlmk2kqyida5i74d3p5"
                 }
             )

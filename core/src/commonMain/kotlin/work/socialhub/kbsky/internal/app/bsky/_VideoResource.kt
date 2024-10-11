@@ -16,8 +16,9 @@ import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetUploadLimitsRespon
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoResponse
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthRequest
-import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.auth.AuthProvider
+import work.socialhub.kbsky.auth.BearerTokenAuthProvider
 import work.socialhub.kbsky.internal.com.atproto._ServerResource
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
@@ -36,7 +37,7 @@ class _VideoResource(
         // get token for video service
         val videoToken = getVideoTokenFromPds(
             config = config,
-            accessJwt = request.accessJwt,
+            auth = request.auth,
             aud = config.videoServiceDid,
             lxm = VideoGetJobStatus,
         )
@@ -60,7 +61,7 @@ class _VideoResource(
         // get token for video service
         val videoToken = getVideoTokenFromPds(
             config = config,
-            accessJwt = request.accessJwt,
+            auth = request.auth,
             aud = config.videoServiceDid,
             lxm = VideoGetUploadLimits,
         )
@@ -80,12 +81,13 @@ class _VideoResource(
         request: VideoUploadVideoRequest
     ): Response<VideoUploadVideoResponse> {
 
+
         // get token for uploadVideo
         // (note: own pds as aud, "uploadBlob" as lxm required)
         val videoToken = getVideoTokenFromPds(
             config = config,
-            accessJwt = request.accessJwt,
-            aud = AuthRequest(request.accessJwt).jwt.aud,
+            auth = request.auth,
+            aud = request.auth.pdsDid,
             lxm = ATProtocolTypes.RepoUploadBlob,
         )
 
@@ -96,7 +98,7 @@ class _VideoResource(
                         .url(
                             URLBuilder(xrpc(config.videoServiceUri, VideoUploadVideo))
                                 .also {
-                                    it.parameters.append("did", request.did)
+                                    it.parameters.append("did", request.auth.did)
                                     it.parameters.append("name", request.name)
                                 }
                                 .buildString()
@@ -123,18 +125,25 @@ class _VideoResource(
         }
     }
 
-    private fun getVideoTokenFromPds(config: BlueskyConfig, accessJwt: String, aud: String, lxm: String): String {
+    private fun getVideoTokenFromPds(
+        config: BlueskyConfig,
+        auth: AuthProvider,
+        aud: String,
+        lxm: String,
+    ): String {
 
         val videoTokenResponse =
             _ServerResource(config)
                 .getServiceAuth(
                     ServerGetServiceAuthRequest(
-                        accessJwt = accessJwt,
+                        auth = auth,
                         aud = aud,
-                        lxm = lxm
+                        lxm = lxm,
                     )
                 )
 
-        return AuthRequest(videoTokenResponse.data.token).bearerToken
+        return BearerTokenAuthProvider(
+            videoTokenResponse.data.token
+        ).bearerToken
     }
 }

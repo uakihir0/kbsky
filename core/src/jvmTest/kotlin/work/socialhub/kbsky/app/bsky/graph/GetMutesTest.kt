@@ -15,7 +15,7 @@ class GetMutesTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .graph()
             .getMutes(
-                GraphGetMutesRequest(accessJwt)
+                GraphGetMutesRequest(auth())
             )
 
         response.data.mutes.forEach {

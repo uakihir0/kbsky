@@ -2,10 +2,10 @@ package work.socialhub.kbsky.internal.app.bsky
 
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.BlueskyConfig
-import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.BlueskyTypes.ActorGetPreferences
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfile
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfiles
+import work.socialhub.kbsky.BlueskyTypes.ActorProfile
 import work.socialhub.kbsky.BlueskyTypes.ActorSearchActors
 import work.socialhub.kbsky.api.app.bsky.ActorResource
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
@@ -22,6 +22,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
+import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
@@ -40,10 +41,9 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorSearchActors))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -56,10 +56,9 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorGetProfile))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -71,11 +70,10 @@ class _ActorResource(
         return runBlocking {
 
             val repoResource = _RepoResource(config)
-
             val original = repoResource.getRecord(
                 RepoGetRecordRequest(
-                    repo = request.did,
-                    collection = BlueskyTypes.ActorProfile,
+                    repo = request.auth.did,
+                    collection = ActorProfile,
                     rkey = "self"
                 )
             )
@@ -88,25 +86,19 @@ class _ActorResource(
                 it.description = request.description ?: originalActorProfile.description
                 it.avatar = request.avatar ?: originalActorProfile.avatar
 
-                if (request.clearBanner) {
-                    it.banner = null
-                } else {
-                    it.banner = request.banner ?: originalActorProfile.banner
-                }
+                it.banner = if (request.clearBanner) null
+                else request.banner ?: originalActorProfile.banner
 
-                if (request.clearPinnedPost) {
-                    it.pinnedPost = null
-                } else {
-                    it.pinnedPost = request.pinnedPost ?: originalActorProfile.pinnedPost
-                }
+                it.pinnedPost = if (request.clearPinnedPost) null
+                else request.pinnedPost ?: originalActorProfile.pinnedPost
             }
 
             val r = repoResource.putRecord(
                 RepoPutRecordRequest(
-                    collection = BlueskyTypes.ActorProfile,
-                    accessJwt = request.accessJwt,
-                    repo = request.did,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     rkey = "self",
+                    collection = ActorProfile,
                     record = modifiedActorProfileRecord
                 )
             )
@@ -126,14 +118,13 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorGetProfiles))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .also {
                         request.actors?.forEach { actor ->
                             it.query("actors", actor)
                         }
                     }
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -146,10 +137,9 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorGetPreferences))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }

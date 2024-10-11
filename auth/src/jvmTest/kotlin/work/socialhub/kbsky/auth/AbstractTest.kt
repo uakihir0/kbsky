@@ -1,11 +1,26 @@
 package work.socialhub.kbsky.auth
 
-import work.socialhub.kbsky.api.entity.share.AuthRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
+import work.socialhub.kbsky.util.json.AnySerializer
 import java.io.File
 import kotlin.test.BeforeTest
 
 open class AbstractTest {
+
+    protected val json = Json {
+        prettyPrint = true
+        explicitNulls = false
+        encodeDefaults = true
+        ignoreUnknownKeys = true
+        serializersModule = SerializersModule {
+            contextual(Any::class, AnySerializer)
+        }
+    }
+
+    protected lateinit var oAuthContext: OAuthContext
+
     protected lateinit var handle: String
     protected lateinit var password: String
     protected lateinit var accessJwt: String
@@ -15,8 +30,8 @@ open class AbstractTest {
     fun setupTest() {
         try {
             // Get account handle and password.
-            val json = readFile("../secrets.json")
-            val props = fromJson<Map<String, String>>(json!!)
+            val jsonStr = readFile("../secrets.json")
+            val props = json.decodeFromString<Map<String, String>>(jsonStr!!)
 
             handle = checkNotNull(props["handle"]) { "missing handle." }
             password = checkNotNull(props["password"]) { "missing password." }
@@ -36,10 +51,33 @@ open class AbstractTest {
 
         // restore session.
         readAccessJwt()
+
+
+        try {
+            val jsonStr = readFile("../oauth.json")
+            oAuthContext = json.decodeFromString<OAuthContext>(jsonStr!!)
+
+        } catch (e: Exception) {
+            println("OAuth context not found, so created.")
+            oAuthContext = OAuthContext()
+        }
     }
 
-    fun getAuthRequest(): AuthRequest {
-        return AuthRequest(accessJwt)
+    fun auth(): AuthProvider {
+        return OAuthProvider(
+            accessTokenJwt = accessJwt,
+            context = oAuthContext
+        )
+    }
+
+    fun saveOAuthContext() {
+        val json = json.encodeToString(oAuthContext)
+        saveFile(json, "../oauth.json")
+    }
+
+    fun clearOAuthContext() {
+        oAuthContext = OAuthContext()
+        saveOAuthContext()
     }
 
     /**

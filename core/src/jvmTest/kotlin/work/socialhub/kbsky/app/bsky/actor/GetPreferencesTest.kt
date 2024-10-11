@@ -17,7 +17,7 @@ class GetPreferencesTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .actor()
             .getPreferences(
-                ActorGetPreferencesRequest(accessJwt)
+                ActorGetPreferencesRequest(auth())
             )
 
         setting.data.preferences.forEach { s ->

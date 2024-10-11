@@ -14,7 +14,7 @@ class GetActorFeedsTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getActorFeeds(
-                FeedGetActorFeedsRequest(accessJwt).also {
+                FeedGetActorFeedsRequest(auth()).also {
                     it.actor = "uakihir0.com"
                     it.limit = 10
                 }

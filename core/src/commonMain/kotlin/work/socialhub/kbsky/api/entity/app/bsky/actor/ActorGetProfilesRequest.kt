@@ -2,10 +2,11 @@ package work.socialhub.kbsky.api.entity.app.bsky.actor
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 
 class ActorGetProfilesRequest(
-    accessJwt: String
-) : AuthRequest(accessJwt), MapRequest {
+    auth: AuthProvider
+) : AuthRequest(auth), MapRequest {
 
     var actors: List<String>? = null
 

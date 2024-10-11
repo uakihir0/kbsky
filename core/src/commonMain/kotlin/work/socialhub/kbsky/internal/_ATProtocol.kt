@@ -8,7 +8,6 @@ import work.socialhub.kbsky.api.com.atproto.ServerResource
 import work.socialhub.kbsky.internal.com.atproto._IdentityResource
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.com.atproto._ServerResource
-import work.socialhub.kbsky.internal.meta._MetaResource
 
 open class _ATProtocol(
     config: ATProtocolConfig
@@ -17,7 +16,6 @@ open class _ATProtocol(
     protected val identity: IdentityResource = _IdentityResource(config)
     protected val server: ServerResource = _ServerResource(config)
     protected val repo: RepoResource = _RepoResource(config)
-    protected val meta: MetaResource = _MetaResource(config)
 
     /**
      * {@inheritDoc}
@@ -33,9 +31,4 @@ open class _ATProtocol(
      * {@inheritDoc}
      */
     override fun repo() = repo
-
-    /**
-     * {@inheritDoc}
-     */
-    override fun meta() = meta
 }

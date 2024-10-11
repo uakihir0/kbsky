@@ -14,7 +14,7 @@ class GetBlocksTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .graph()
             .getBlocks(
-                GraphGetBlocksRequest(accessJwt)
+                GraphGetBlocksRequest(auth())
             )
 
         response.data.blocks

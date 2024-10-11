@@ -20,7 +20,7 @@ class GetProfilesTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .actor()
             .getProfiles(
-                ActorGetProfilesRequest(accessJwt).also {
+                ActorGetProfilesRequest(auth()).also {
                     it.actors = handles
                 }
             )

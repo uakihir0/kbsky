@@ -3,11 +3,12 @@ package work.socialhub.kbsky.api.entity.app.bsky.notification
 import kotlinx.datetime.Clock
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility
 
 class NotificationUpdateSeenRequest(
-    accessJwt: String
-) : AuthRequest(accessJwt), MapRequest {
+    auth: AuthProvider
+) : AuthRequest(auth), MapRequest {
 
     var seenAt: String? = null
 

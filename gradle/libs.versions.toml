@@ -3,6 +3,7 @@ kotlin = "2.0.20"
 kotest = "5.9.1"
 dokka = "1.9.20"
 maven-publish = "0.29.0"
+kotlincrypto-hash = "0.5.3"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.2"
@@ -16,6 +17,7 @@ kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.r
 nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
 maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+hash-sha2 = { module = "org.kotlincrypto.hash:sha2", version.ref = "kotlincrypto-hash" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

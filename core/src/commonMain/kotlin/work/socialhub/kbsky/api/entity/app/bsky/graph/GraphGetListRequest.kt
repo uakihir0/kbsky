@@ -2,10 +2,11 @@ package work.socialhub.kbsky.api.entity.app.bsky.graph
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 
 class GraphGetListRequest(
-    accessJwt: String
-) : AuthRequest(accessJwt), MapRequest {
+    auth: AuthProvider
+) : AuthRequest(auth), MapRequest {
 
     var list: String? = null
     var limit: Int? = null

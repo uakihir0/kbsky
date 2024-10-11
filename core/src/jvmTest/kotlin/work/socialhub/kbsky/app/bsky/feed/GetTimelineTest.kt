@@ -15,7 +15,7 @@ class GetTimelineTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getTimeline(
-                FeedGetTimelineRequest(accessJwt).also {
+                FeedGetTimelineRequest(auth()).also {
                     it.limit = 100
                 }
             )
@@ -28,7 +28,7 @@ class GetTimelineTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getTimeline(
-                FeedGetTimelineRequest(accessJwt).also {
+                FeedGetTimelineRequest(auth()).also {
                     it.cursor = response.data.cursor
                     it.limit = 10
                 }

@@ -25,7 +25,7 @@ class PostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .post(
-                FeedPostRequest(accessJwt).also {
+                FeedPostRequest(auth()).also {
                     it.text = "テスト投稿"
                 }
             )
@@ -44,7 +44,7 @@ class PostTest : AbstractTest() {
             .repo()
             .uploadBlob(
                 RepoUploadBlobRequest(
-                    accessJwt = accessJwt,
+                    auth = auth(),
                     name = "icon.png",
                     bytes = stream.readBytes(),
                     contentType = "image/jpeg"
@@ -73,7 +73,7 @@ class PostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .post(
-                FeedPostRequest(accessJwt).also {
+                FeedPostRequest(auth()).also {
                     it.text = "画像投稿テスト"
                     it.embed = imagesMain
                 }
@@ -88,7 +88,7 @@ class PostTest : AbstractTest() {
         val root = BlueskyFactory
             .instance(BSKY_SOCIAL.uri)
             .feed().post(
-                FeedPostRequest(accessJwt).also {
+                FeedPostRequest(auth()).also {
                     it.text = "リプライテスト (ルート)"
                 }
             )
@@ -111,7 +111,7 @@ class PostTest : AbstractTest() {
             BlueskyFactory
                 .instance(BSKY_SOCIAL.uri)
                 .feed().post(
-                    FeedPostRequest(accessJwt).also {
+                    FeedPostRequest(auth()).also {
                         it.text = "リプライテスト (親)"
                         it.reply = reply
                     }
@@ -140,7 +140,7 @@ class PostTest : AbstractTest() {
                 .instance(BSKY_SOCIAL.uri)
                 .feed()
                 .post(
-                    FeedPostRequest(accessJwt).also {
+                    FeedPostRequest(auth()).also {
                         it.text = "リプライテスト (子)"
                         it.reply = reply
                     }
@@ -182,7 +182,7 @@ class PostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .post(
-                FeedPostRequest(accessJwt).also {
+                FeedPostRequest(auth()).also {
                     it.text = list.displayText()
                     it.facets = facets
                 }
@@ -197,7 +197,7 @@ class PostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .post(
-                FeedPostRequest(accessJwt).also {
+                FeedPostRequest(auth()).also {
                     it.text = "テスト（すぐ消す）"
                 }
             )
@@ -209,7 +209,7 @@ class PostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .deletePost(
-                FeedDeletePostRequest(accessJwt).also {
+                FeedDeletePostRequest(auth()).also {
                     it.uri = uri
                 }
             )

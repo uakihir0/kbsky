@@ -2,10 +2,11 @@ package work.socialhub.kbsky.api.entity.app.bsky.unspecced
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 
 class UnspeccedGetPopularRequest(
-    accessJwt: String
-) : AuthRequest(accessJwt), MapRequest {
+    auth: AuthProvider
+) : AuthRequest(auth), MapRequest {
 
     var includeNsfw: Boolean? = null
     var limit: Int? = null

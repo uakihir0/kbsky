@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.internal.share
 
+import io.ktor.http.HttpMethod.Companion.Get
+import io.ktor.http.HttpMethod.Companion.Post
 import kotlinx.datetime.TimeZone
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -8,8 +10,10 @@ import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.api.entity.share.ErrorResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.util.DateFormatter
 import work.socialhub.kbsky.util.json.AnySerializer
+import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 
 /**
@@ -42,7 +46,7 @@ object _InternalUtility {
     fun proceedUnit(function: () -> HttpResponse): Response<Unit> {
         try {
             val response: HttpResponse = function()
-            if (response.status == 200) {
+            if ((response.status >= 200) && (response.status < 300)) {
                 return Response(Unit, "")
             }
 
@@ -59,7 +63,7 @@ object _InternalUtility {
     inline fun <reified T> proceed(function: () -> HttpResponse): Response<T> {
         try {
             val response: HttpResponse = function()
-            if (response.status == 200) {
+            if ((response.status >= 200) && (response.status < 300)) {
                 return Response(
                     response.typedBody(json),
                     response.stringBody,
@@ -114,5 +118,23 @@ object _InternalUtility {
         }
 
         return ATProtocolException(exception)
+    }
+
+    suspend fun HttpRequest.getWithAuth(
+        auth: AuthProvider
+    ): HttpResponse {
+        auth.preProcess(Get.value, this)
+        val response = this.get()
+        auth.postProcess(Get.value, this, response)
+        return response
+    }
+
+    suspend fun HttpRequest.postWithAuth(
+        auth: AuthProvider
+    ): HttpResponse {
+        auth.preProcess(Post.value, this)
+        val response = this.post()
+        auth.postProcess(Post.value, this, response)
+        return response
     }
 }

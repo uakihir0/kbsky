@@ -17,7 +17,7 @@ class FollowTest : AbstractTest() {
         val response = BlueskyFactory
             .instance(BSKY_SOCIAL.uri)
             .graph().follow(
-                GraphFollowRequest(accessJwt).also {
+                GraphFollowRequest(auth()).also {
                     it.subject = did
                 }
             )
@@ -30,7 +30,7 @@ class FollowTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .graph()
             .deleteFollow(
-                GraphDeleteFollowRequest(accessJwt).also {
+                GraphDeleteFollowRequest(auth()).also {
                     it.uri = uri
                 }
             )

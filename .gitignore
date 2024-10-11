@@ -5,6 +5,7 @@
 target/
 build/
 out/
+oauth.json
 secrets.json
 jwt.txt
 /local.properties

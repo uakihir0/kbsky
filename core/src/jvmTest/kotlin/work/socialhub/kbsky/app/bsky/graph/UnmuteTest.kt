@@ -14,7 +14,7 @@ class UnmuteTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .graph()
             .unmuteActor(
-                GraphUnmuteActorRequest(accessJwt).also {
+                GraphUnmuteActorRequest(auth()).also {
                     it.actor = "bsky.app"
                 }
             )

@@ -12,6 +12,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNot
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNotificationsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationUpdateSeenRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
@@ -30,9 +32,8 @@ class _NotificationResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, NotificationGetUnreadCount))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -45,10 +46,9 @@ class _NotificationResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, NotificationListNotifications))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -61,10 +61,9 @@ class _NotificationResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, NotificationUpdateSeen))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }

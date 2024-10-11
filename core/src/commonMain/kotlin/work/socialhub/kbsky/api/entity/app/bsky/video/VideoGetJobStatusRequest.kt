@@ -2,11 +2,12 @@ package work.socialhub.kbsky.api.entity.app.bsky.video
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 
 class VideoGetJobStatusRequest(
-    accessJwt: String,
+    auth: AuthProvider,
     val jobId: String
-) : AuthRequest(accessJwt), MapRequest {
+) : AuthRequest(auth), MapRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

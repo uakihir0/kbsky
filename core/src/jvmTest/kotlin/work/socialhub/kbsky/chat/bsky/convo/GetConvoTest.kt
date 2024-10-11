@@ -17,12 +17,12 @@ class GetConvoTest : AbstractTest() {
             .instance().also {
                 it.server()
                     .getSession(
-                        AuthRequest(accessJwt)
+                        AuthRequest(auth())
                     )
             }
             .convo()
             .getConvo(
-                ConvoGetConvoRequest(accessJwt).also {
+                ConvoGetConvoRequest(auth()).also {
                     it.convoId = convoId
                 }
             )

@@ -20,7 +20,7 @@ class GetPostsTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getPosts(
-                FeedGetPostsRequest(accessJwt).also {
+                FeedGetPostsRequest(auth()).also {
                     it.uris = uris
                 }
             )

@@ -4,6 +4,7 @@ import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionRequest
 import work.socialhub.kbsky.api.entity.share.AuthRequest
+import work.socialhub.kbsky.auth.BearerTokenAuthProvider
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
@@ -29,7 +30,7 @@ class RefreshSessionTest : AbstractTest() {
         val response = client
             .server()
             .refreshSession(
-                AuthRequest(refreshJwt)
+                AuthRequest(BearerTokenAuthProvider(refreshJwt))
             )
 
         println(response.data.accessJwt)

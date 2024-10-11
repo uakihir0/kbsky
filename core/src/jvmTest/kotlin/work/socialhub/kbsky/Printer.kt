@@ -28,20 +28,20 @@ object Printer {
         if (post.embed != null) {
             val embed = post.embed
             if (embed is EmbedImagesView) {
-                println("{$sp}ImageURL> ${embed.images!![0].fullsize}")
+                println("${sp}ImageURL> ${embed.images!![0].fullsize}")
             }
         }
 
         val record = post.record
         if (record is FeedPost) {
-            println("{$sp}TEXT> ${record.text}")
+            println("${sp}TEXT> ${record.text}")
 
             record.facets?.forEach { r ->
-                println("{$sp}FACET> ${r.type}")
+                println("${sp}FACET> ${r.type}")
                 r.features?.forEach { f ->
-                    println("{$sp}FEATURE> ${f.type}")
+                    println("${sp}FEATURE> ${f.type}")
                     f.asTag?.let { t ->
-                        println("{$sp}TAG> ${t.tag}")
+                        println("${sp}TAG> ${t.tag}")
                     }
                 }
             }

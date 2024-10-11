@@ -34,13 +34,17 @@ class _WellKnownResource(
 
     override fun oAuthAuthorizationServer()
             : Response<WellKnownOAuthAuthorizationServerResponse> {
-        return proceed {
+        return proceed<WellKnownOAuthAuthorizationServerResponse> {
             runBlocking {
                 HttpRequest()
                     .url("${config.authorizationServer}.well-known/oauth-authorization-server")
                     .accept(MediaType.JSON)
                     .get()
             }
+        }.also {
+            config.pushedAuthorizationRequestEndpoint = it.data.pushedAuthorizationRequestEndpoint
+            config.authorizationEndpoint = it.data.authorizationEndpoint
+            config.tokenEndpoint = it.data.tokenEndpoint
         }
     }
 }

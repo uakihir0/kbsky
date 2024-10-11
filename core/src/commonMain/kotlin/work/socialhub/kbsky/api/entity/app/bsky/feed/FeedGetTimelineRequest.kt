@@ -2,10 +2,11 @@ package work.socialhub.kbsky.api.entity.app.bsky.feed
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 
 class FeedGetTimelineRequest(
-    accessJwt: String
-) : AuthRequest(accessJwt), MapRequest {
+    auth: AuthProvider
+) : AuthRequest(auth), MapRequest {
 
     var algorithm: String? = null
     var limit: Int? = null

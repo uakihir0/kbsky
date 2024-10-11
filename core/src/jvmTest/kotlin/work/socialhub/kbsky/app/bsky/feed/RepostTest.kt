@@ -19,7 +19,7 @@ class RepostTest : AbstractTest() {
         val response = BlueskyFactory
             .instance(BSKY_SOCIAL.uri)
             .feed().repost(
-                FeedRepostRequest(accessJwt).also {
+                FeedRepostRequest(auth()).also {
                     it.subject = ref
                 }
             )
@@ -39,7 +39,7 @@ class RepostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .repost(
-                FeedRepostRequest(accessJwt).also {
+                FeedRepostRequest(auth()).also {
                     it.subject = ref
                 }
             )
@@ -51,7 +51,7 @@ class RepostTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .deleteRepost(
-                FeedDeleteRepostRequest(accessJwt).also {
+                FeedDeleteRepostRequest(auth()).also {
                     it.uri = repostUri
                 }
             )
