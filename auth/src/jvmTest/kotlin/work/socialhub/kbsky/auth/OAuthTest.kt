@@ -38,14 +38,12 @@ class OAuthTest : AbstractTest() {
 
         println(authorizeUrl)
         saveOAuthContext()
-
-        // http://127.0.0.1/callback?iss=https%3A%2F%2Fbsky.social&state=8760520e052dcca8a0b82845a5a6d945b180f8b570e92acfbc9a5a1446a50007&code=cod-51603e12cc357c05bc164c4f39e8e925e4ccf2efeb82fd2c0962c43298d53879
     }
 
     @Test
     fun tokenTest() {
         val callback = """
-            http://127.0.0.1/callback?iss=https%3A%2F%2Fbsky.social&state=6jd5zg28htpnagluhkjfel9cn59e2mo4scksyweyydjxflknabaxbup5bfnaq48q&code=cod-e04def9c5bb28c2c4443be669827db39ec4d440e9076c0af98b2226969912f0b
+            {{URI}}
             """
             .trimIndent()
 
