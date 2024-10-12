@@ -22,14 +22,13 @@ kotlin {
             implementation(libs.datetime)
             implementation(libs.coroutines.core)
             implementation(libs.serialization.json)
-            implementation(libs.hash.sha2)
 
-                implementation(project.dependencies.platform("dev.whyoleg.cryptography:cryptography-bom:0.3.1"))
-                implementation("dev.whyoleg.cryptography:cryptography-core")
+            implementation(project.dependencies.platform(libs.cryptography.bom))
+            implementation(libs.cryptography.core)
         }
 
         appleMain.dependencies {
-            implementation("dev.whyoleg.cryptography:cryptography-provider-openssl3-prebuilt")
+            implementation(libs.cryptography.openssl)
         }
 
         // for test (kotlin/jvm)
@@ -37,8 +36,7 @@ kotlin {
             implementation(kotlin("test"))
             implementation(libs.kotest.junit5)
             implementation(libs.kotest.assertions)
-            implementation("dev.whyoleg.cryptography:cryptography-provider-jdk")
-
+            implementation(libs.cryptography.jdk)
         }
     }
 }

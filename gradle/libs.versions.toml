@@ -3,7 +3,6 @@ kotlin = "2.0.20"
 kotest = "5.9.1"
 dokka = "1.9.20"
 maven-publish = "0.29.0"
-kotlincrypto-hash = "0.5.3"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.2"
@@ -17,12 +16,15 @@ kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.r
 nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
 maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-hash-sha2 = { module = "org.kotlincrypto.hash:sha2", version.ref = "kotlincrypto-hash" }
+cryptography-bom = "dev.whyoleg.cryptography:cryptography-bom:0.3.1"
+cryptography-core = { module = "dev.whyoleg.cryptography:cryptography-core" }
+cryptography-openssl = { module = "dev.whyoleg.cryptography:cryptography-provider-openssl3-prebuilt" }
+cryptography-jdk = { module = "dev.whyoleg.cryptography:cryptography-provider-jdk" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
-dokka = { id  = "org.jetbrains.dokka", version.ref = "dokka" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 git-versioning = "me.qoomon.git-versioning:6.4.4"

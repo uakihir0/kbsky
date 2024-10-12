@@ -57,9 +57,6 @@ class OAuthProvider(
             Base64.decode(context.publicKey!!)
         )
 
-        println("endpoint: " + request.getUrl())
-        println("dPoPNonce: " + context.dPoPNonce)
-
         val dPoPHeader = OAuthHelper.makeDPoPHeader(
             clientId = context.clientId!!,
             endpoint = request.getUrl(),
@@ -83,7 +80,6 @@ class OAuthProvider(
             }
         )
 
-        println(dPoPHeader)
         request.header("Authorization", "DPoP $accessTokenJwt")
         request.header("DPoP", dPoPHeader)
     }

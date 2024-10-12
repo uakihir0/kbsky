@@ -134,7 +134,6 @@ class _OAuthResource(
                     }
                 )
 
-                println(dPoPHeader)
                 HttpRequest()
                     .url(config.tokenEndpoint)
                     .accept(MediaType.JSON)
@@ -143,7 +142,6 @@ class _OAuthResource(
                     .header("DPoP", dPoPHeader)
                     .post()
                     .extractDPoPNonce(context)
-                    .also { println(it.stringBody) }
             }
         }
     }

@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.auth.helper
 
+import dev.whyoleg.cryptography.CryptographyProvider
+import dev.whyoleg.cryptography.algorithms.digest.SHA256
 import io.ktor.utils.io.core.*
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.buildJsonObject
@@ -64,7 +66,6 @@ object OAuthHelper {
             if (authorizationServer != null && accessToken != null) {
                 put("iss", authorizationServer)
                 put("ath", hashS256(accessToken))
-                println("???> " + hashS256(accessToken))
             } else {
                 put("iss", clientId)
             }
@@ -99,16 +100,16 @@ object OAuthHelper {
         context: OAuthContext
     ): HttpResponse = also {
         headers["dpop-nonce"]?.let {
-            println("Updated DPoP-Nonce: ${it[0]}")
             context.dPoPNonce = it[0]
         }
     }
 
     fun hashS256(str: String): String {
-        val s256 = org.kotlincrypto.hash.sha2.SHA256()
+        val s256 = CryptographyProvider.Default.get(SHA256).hasher()
         val seed = str.encodeToByteArray()
+
         return Base64.UrlSafe
-            .encode(s256.digest(seed))
+            .encode(s256.hashBlocking(seed))
             .replace("=", "")
     }
 }
