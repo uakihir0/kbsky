@@ -3,7 +3,7 @@ package work.socialhub.kbsky.auth
 import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.algorithms.asymmetric.EC
 import dev.whyoleg.cryptography.algorithms.asymmetric.ECDSA
-import io.ktor.http.*
+import io.ktor.http.Url
 import work.socialhub.kbsky.auth.helper.OAuthHelper
 import java.security.KeyFactory
 import java.security.KeyPairGenerator

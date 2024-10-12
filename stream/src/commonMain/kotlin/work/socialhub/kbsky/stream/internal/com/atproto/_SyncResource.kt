@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.stream.internal.com.atproto
 
-import io.ktor.http.*
+import io.ktor.http.Url
 import work.socialhub.kbsky.ATProtocol
 import work.socialhub.kbsky.ATProtocolTypes.SyncSubscribeRepos
 import work.socialhub.kbsky.stream.ATProtocolStreamConfig

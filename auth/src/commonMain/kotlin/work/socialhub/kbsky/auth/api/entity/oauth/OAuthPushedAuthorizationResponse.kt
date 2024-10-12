@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 class OAuthPushedAuthorizationResponse {
     @SerialName("request_uri")
     lateinit var requestUri: String
+
     @SerialName("expires_in")
     var expiresIn: Int = -1
 }

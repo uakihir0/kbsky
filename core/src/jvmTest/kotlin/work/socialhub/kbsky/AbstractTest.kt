@@ -1,6 +1,5 @@
 package work.socialhub.kbsky
 
-import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.auth.BearerTokenAuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson

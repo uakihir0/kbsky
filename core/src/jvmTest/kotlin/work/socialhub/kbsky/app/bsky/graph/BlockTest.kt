@@ -4,7 +4,6 @@ import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphBlockRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteBlockRequest
-import work.socialhub.kbsky.domain.Service
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 

@@ -4,7 +4,7 @@ import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.algorithms.asymmetric.EC
 import dev.whyoleg.cryptography.algorithms.asymmetric.ECDSA
 import dev.whyoleg.cryptography.algorithms.digest.SHA256
-import io.ktor.http.*
+import io.ktor.http.URLBuilder
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.AuthConfig

@@ -3,8 +3,6 @@ package work.socialhub.kbsky.stream.atproto.sync
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import work.socialhub.kbsky.domain.Service.BSKY_NETWORK
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.share.RecordUnion
 import work.socialhub.kbsky.stream.ATProtocolStreamFactory
 import work.socialhub.kbsky.stream.AbstractTest

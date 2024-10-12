@@ -1,4 +1,5 @@
 package work.socialhub.kbsky.auth.api
+
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.api.entity.wellknown.WellKnownOAuthAuthorizationServerResponse
 import work.socialhub.kbsky.auth.api.entity.wellknown.WellKnownOAuthProtectedResourceResponse

@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.auth
 
-import io.ktor.http.*
+import io.ktor.http.Url
 import work.socialhub.kbsky.auth.api.entity.oauth.BuildAuthorizationUrlRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthPushedAuthorizationRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthTokenRequest
