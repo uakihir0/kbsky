@@ -11,14 +11,14 @@ class BearerTokenAuthProvider(
     val accessTokenJwt: String
 ) : AuthProvider {
 
-    override fun preProcess(
+    override fun beforeRequestHook(
         method: String,
         request: HttpRequest
     ) {
         request.header("Authorization", bearerToken)
     }
 
-    override fun postProcess(
+    override fun afterRequestHook(
         method: String,
         request: HttpRequest,
         response: HttpResponse

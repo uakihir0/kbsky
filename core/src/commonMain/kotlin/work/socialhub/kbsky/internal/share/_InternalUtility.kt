@@ -46,7 +46,7 @@ object _InternalUtility {
     fun proceedUnit(function: () -> HttpResponse): Response<Unit> {
         try {
             val response: HttpResponse = function()
-            if ((response.status >= 200) && (response.status < 300)) {
+            if (response.status in 200..299) {
                 return Response(Unit, "")
             }
 
@@ -63,7 +63,7 @@ object _InternalUtility {
     inline fun <reified T> proceed(function: () -> HttpResponse): Response<T> {
         try {
             val response: HttpResponse = function()
-            if ((response.status >= 200) && (response.status < 300)) {
+            if (response.status in 200..299) {
                 return Response(
                     response.typedBody(json),
                     response.stringBody,
@@ -123,18 +123,18 @@ object _InternalUtility {
     suspend fun HttpRequest.getWithAuth(
         auth: AuthProvider
     ): HttpResponse {
-        auth.preProcess(Get.value, this)
+        auth.beforeRequestHook(Get.value, this)
         val response = this.get()
-        auth.postProcess(Get.value, this, response)
+        auth.afterRequestHook(Get.value, this, response)
         return response
     }
 
     suspend fun HttpRequest.postWithAuth(
         auth: AuthProvider
     ): HttpResponse {
-        auth.preProcess(Post.value, this)
+        auth.beforeRequestHook(Post.value, this)
         val response = this.post()
-        auth.postProcess(Post.value, this, response)
+        auth.afterRequestHook(Post.value, this, response)
         return response
     }
 }

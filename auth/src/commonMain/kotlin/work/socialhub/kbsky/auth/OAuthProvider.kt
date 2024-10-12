@@ -49,7 +49,7 @@ class OAuthProvider(
 
 
     @OptIn(ExperimentalEncodingApi::class)
-    override fun preProcess(
+    override fun beforeRequestHook(
         method: String,
         request: HttpRequest,
     ) {
@@ -89,7 +89,7 @@ class OAuthProvider(
     }
 
 
-    override fun postProcess(
+    override fun afterRequestHook(
         method: String,
         request: HttpRequest,
         response: HttpResponse

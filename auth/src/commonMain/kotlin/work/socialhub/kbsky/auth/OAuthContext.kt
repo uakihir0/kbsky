@@ -6,15 +6,16 @@ import kotlinx.serialization.Serializable
 class OAuthContext {
 
     var clientId: String? = null
-    var redirectUri: String? = null
 
-    var state: String? = null
-    var codeVerifier: String? = null
-
-    /** ECDSA P256 DER Base64 public key */
+    /** ECDSA P256 DER Base64 key */
     var publicKey: String? = null
-    /** ECDSA P256 DER Base64 public key */
     var privateKey: String? = null
 
     var dPoPNonce: String? = null
+
+    /** Following values required during OAuth */
+    var redirectUri: String? = null
+    var codeVerifier: String? = null
+    var state: String? = null
 }
+

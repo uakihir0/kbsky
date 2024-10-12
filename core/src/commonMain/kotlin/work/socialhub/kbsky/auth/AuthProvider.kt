@@ -4,12 +4,12 @@ import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 
 interface AuthProvider {
-    fun preProcess(
+    fun beforeRequestHook(
         method: String,
         request: HttpRequest,
     )
 
-    fun postProcess(
+    fun afterRequestHook(
         method: String,
         request: HttpRequest,
         response: HttpResponse,
