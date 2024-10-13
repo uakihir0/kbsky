@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.util
 
-import io.ktor.http.*
+import io.ktor.http.ContentType
 
 object MediaType {
 

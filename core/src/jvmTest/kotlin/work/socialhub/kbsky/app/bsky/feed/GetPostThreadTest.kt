@@ -17,7 +17,7 @@ class GetPostThreadTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getPostThread(
-                FeedGetPostThreadRequest(accessJwt).also {
+                FeedGetPostThreadRequest(auth()).also {
                     it.uri = uri
                 }
             )

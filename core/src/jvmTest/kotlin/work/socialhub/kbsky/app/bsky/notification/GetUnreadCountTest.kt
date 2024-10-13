@@ -14,7 +14,7 @@ class GetUnreadCountTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .notification()
             .getUnreadCount(
-                NotificationGetUnreadCountRequest(accessJwt)
+                NotificationGetUnreadCountRequest(auth())
             )
 
         println(response.data.count)

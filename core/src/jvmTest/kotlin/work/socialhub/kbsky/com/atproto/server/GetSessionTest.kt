@@ -3,7 +3,7 @@ package work.socialhub.kbsky.com.atproto.server
 import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.share.AuthRequest
-import work.socialhub.kbsky.domain.Service
+import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class GetSessionTest : AbstractTest() {
@@ -11,10 +11,10 @@ class GetSessionTest : AbstractTest() {
     @Test
     fun testGetSession() {
         val response = ATProtocolFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+            .instance(BSKY_SOCIAL.uri)
             .server()
             .getSession(
-                AuthRequest(accessJwt)
+                AuthRequest(auth())
             )
 
         println(response.data.did)

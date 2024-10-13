@@ -4,7 +4,6 @@ import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.BlueskyConfig
-import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorFeeds
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorLikes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetAuthorFeed
@@ -21,7 +20,9 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetRepostedBy
 import work.socialhub.kbsky.BlueskyTypes.FeedGetTimeline
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
+import work.socialhub.kbsky.BlueskyTypes.FeedPostgate
 import work.socialhub.kbsky.BlueskyTypes.FeedRepost
+import work.socialhub.kbsky.BlueskyTypes.FeedThreadgate
 import work.socialhub.kbsky.api.app.bsky.FeedResource
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteLikeRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
@@ -67,6 +68,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
@@ -86,10 +89,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetAuthorFeed))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -102,10 +104,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetLikes))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -118,10 +119,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetPostThread))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -134,14 +134,13 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetPosts))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .also { req ->
                         request.uris?.forEach {
                             req.query("uris", it)
                         }
                     }
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -154,10 +153,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetQuotes))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -170,10 +168,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetRepostedBy))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -186,10 +183,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetTimeline))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -202,10 +198,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetFeed))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -218,10 +213,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetListFeed))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -234,10 +228,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetActorFeeds))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -250,10 +243,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetActorLikes))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -266,10 +258,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetFeedSearchPosts))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -282,10 +273,9 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetFeedGenerator))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -298,14 +288,13 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedGetFeedGenerators))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .also { req ->
                         request.feeds?.forEach {
                             req.query("feeds", it)
                         }
                     }
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -317,18 +306,17 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = FeedLike,
                     record = request.toLike(),
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -340,18 +328,17 @@ class _FeedResource(
         return proceedUnit {
             runBlocking {
                 val record = RepoDeleteRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = FeedLike,
                     rkey = request.rkey()!!,
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -363,18 +350,17 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = FeedPost,
                     record = request.toPost(),
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -386,18 +372,17 @@ class _FeedResource(
         return proceedUnit {
             runBlocking {
                 val record = RepoDeleteRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = FeedPost,
                     rkey = request.rkey()!!,
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -409,18 +394,17 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = FeedRepost,
                     record = request.toRepost(),
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -432,18 +416,17 @@ class _FeedResource(
         return proceedUnit {
             runBlocking {
                 val record = RepoDeleteRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = FeedRepost,
                     rkey = request.rkey()!!,
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -455,9 +438,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
-                    collection = BlueskyTypes.FeedThreadgate,
+                    auth = request.auth,
+                    repo = request.auth.did,
+                    collection = FeedThreadgate,
                     record = request.toThreadgate(),
                 ).also {
                     // get rkey from uri of post
@@ -466,10 +449,9 @@ class _FeedResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -481,9 +463,9 @@ class _FeedResource(
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
-                    collection = BlueskyTypes.FeedPostgate,
+                    auth = request.auth,
+                    repo = request.auth.did,
+                    collection = FeedPostgate,
                     record = request.toPostgate(),
                 ).also {
                     // get rkey from uri of post
@@ -492,10 +474,9 @@ class _FeedResource(
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }

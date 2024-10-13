@@ -14,7 +14,7 @@ class UpdateSeenTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .notification()
             .updateSeen(
-                NotificationUpdateSeenRequest(accessJwt)
+                NotificationUpdateSeenRequest(auth())
             )
     }
 }

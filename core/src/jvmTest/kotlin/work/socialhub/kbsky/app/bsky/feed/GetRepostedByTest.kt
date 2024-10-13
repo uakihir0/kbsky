@@ -16,7 +16,7 @@ class GetRepostedByTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getRepostedBy(
-                FeedGetRepostedByRequest(accessJwt).also {
+                FeedGetRepostedByRequest(auth()).also {
                     it.uri = uri
                 }
             )

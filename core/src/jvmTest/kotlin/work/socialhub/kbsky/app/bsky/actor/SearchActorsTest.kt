@@ -14,7 +14,7 @@ class SearchActorsTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .actor()
             .searchActors(
-                ActorSearchActorsRequest(accessJwt).also {
+                ActorSearchActorsRequest(auth()).also {
                     it.q = "uakihir0"
                 }
             )

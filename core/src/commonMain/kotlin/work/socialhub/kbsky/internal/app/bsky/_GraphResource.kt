@@ -26,6 +26,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphCreateListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphCreateListResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteBlockRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteFollowRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphEditListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphEditListResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphFollowRequest
@@ -53,10 +54,13 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
+import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
-import work.socialhub.kbsky.util.ATUriParser
+import work.socialhub.kbsky.util.ATUriParser.getDid
+import work.socialhub.kbsky.util.ATUriParser.getRKey
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 
@@ -71,18 +75,17 @@ class _GraphResource(
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphFollow,
                     record = request.toFollow(),
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -94,18 +97,17 @@ class _GraphResource(
         return proceedUnit {
             runBlocking {
                 val record = RepoDeleteRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphFollow,
                     rkey = request.rkey!!,
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -118,10 +120,9 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetFollowers))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -134,10 +135,9 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetFollows))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -150,10 +150,9 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetKnownFollowers))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -166,10 +165,9 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetMutes))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -182,10 +180,9 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphMuteActor))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -198,10 +195,9 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphUnmuteActor))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -213,18 +209,17 @@ class _GraphResource(
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphBlock,
                     record = request.toBlock(),
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -236,18 +231,17 @@ class _GraphResource(
         return proceed {
             runBlocking {
                 val record = RepoDeleteRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphBlock,
                     rkey = request.rkey!!,
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -260,47 +254,48 @@ class _GraphResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetBlocks))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
 
-    override fun createList(request: GraphCreateListRequest): Response<GraphCreateListResponse> {
+    override fun createList(
+        request: GraphCreateListRequest
+    ): Response<GraphCreateListResponse> {
 
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphList,
                     record = request.toRecord(),
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
 
-    override fun editList(request: GraphEditListRequest): Response<GraphEditListResponse> {
+    override fun editList(
+        request: GraphEditListRequest
+    ): Response<GraphEditListResponse> {
 
         return runBlocking {
             val listUri = request.listUri
 
             val repoResource = _RepoResource(config)
-
             val original = repoResource.getRecord(
                 RepoGetRecordRequest(
-                    repo = request.did!!,
+                    repo = request.auth.did,
                     collection = GraphList,
-                    rkey = ATUriParser.getRKey(listUri)
+                    rkey = getRKey(listUri)
                 )
             )
 
@@ -318,11 +313,11 @@ class _GraphResource(
 
             val r = repoResource.putRecord(
                 RepoPutRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphList,
-                    rkey = ATUriParser.getRKey(listUri),
-                    record = modifiedListRecord
+                    rkey = getRKey(listUri),
+                    record = modifiedListRecord,
                 )
             )
 
@@ -333,68 +328,70 @@ class _GraphResource(
         }
     }
 
-    override fun deleteList(accessJwt: String, listUri: String): Response<Unit> {
+    override fun deleteList(
+        request: GraphDeleteListRequest
+    ): Response<Unit> {
 
         return runBlocking {
-            val did = ATUriParser.getDid(listUri)
-            val rkey = ATUriParser.getRKey(listUri)
-
             val record = RepoDeleteRecordRequest(
-                accessJwt = accessJwt,
-                repo = did,
+                auth = request.auth,
+                repo = getDid(request.listUri),
                 collection = GraphList,
-                rkey = rkey,
+                rkey = getRKey(request.listUri),
             )
 
             _RepoResource(config).deleteRecord(record)
         }
     }
 
-    override fun getList(request: GraphGetListRequest): Response<GraphGetListResponse> {
+    override fun getList(
+        request: GraphGetListRequest
+    ): Response<GraphGetListResponse> {
 
         return proceed {
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetList))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
 
-    override fun getLists(request: GraphGetListsRequest): Response<GraphGetListsResponse> {
+    override fun getLists(
+        request: GraphGetListsRequest
+    ): Response<GraphGetListsResponse> {
 
         return proceed {
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, GraphGetLists))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
 
-    override fun addUserToList(request: GraphAddUserToListRequest): Response<GraphAddUserToListResponse> {
+    override fun addUserToList(
+        request: GraphAddUserToListRequest
+    ): Response<GraphAddUserToListResponse> {
 
         return proceed {
             runBlocking {
                 val record = RepoCreateRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphListItem,
                     record = request.toListItem(),
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -404,18 +401,17 @@ class _GraphResource(
         return proceedUnit {
             runBlocking {
                 val record = RepoDeleteRecordRequest(
-                    accessJwt = request.accessJwt,
-                    repo = request.did!!,
+                    auth = request.auth,
+                    repo = request.auth.did,
                     collection = GraphListItem,
                     rkey = request.rkey!!,
                 )
 
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }

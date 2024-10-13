@@ -17,7 +17,7 @@ class GetFeedTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getFeed(
-                FeedGetFeedRequest(accessJwt).also {
+                FeedGetFeedRequest(auth()).also {
                     it.feed = uri
                 }
             )

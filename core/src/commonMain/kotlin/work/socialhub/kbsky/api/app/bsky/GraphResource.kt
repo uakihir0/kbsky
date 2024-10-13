@@ -8,6 +8,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphCreateListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphCreateListResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteBlockRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteFollowRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphEditListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphEditListResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphFollowRequest
@@ -138,7 +139,9 @@ interface GraphResource {
      * Delete a list.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun deleteList(accessJwt: String, listUri: String): Response<Unit>
+    fun deleteList(
+        request: GraphDeleteListRequest
+    ): Response<Unit>
 
     /**
      * Gets a 'view' (with additional context) of a specified list.

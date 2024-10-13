@@ -4,7 +4,7 @@ import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphBlockRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteBlockRequest
-import work.socialhub.kbsky.domain.Service
+import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class BlockTest : AbstractTest() {
@@ -15,10 +15,10 @@ class BlockTest : AbstractTest() {
 
         // Block
         val response = BlueskyFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+            .instance(BSKY_SOCIAL.uri)
             .graph()
             .block(
-                GraphBlockRequest(accessJwt).also {
+                GraphBlockRequest(auth()).also {
                     it.subject = did
                 }
             )
@@ -26,10 +26,10 @@ class BlockTest : AbstractTest() {
         val uri = checkNotNull(response.data.uri)
 
         BlueskyFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+            .instance(BSKY_SOCIAL.uri)
             .graph()
             .deleteBlock(
-                GraphDeleteBlockRequest(accessJwt).also {
+                GraphDeleteBlockRequest(auth()).also {
                     it.uri = uri
                 }
             )

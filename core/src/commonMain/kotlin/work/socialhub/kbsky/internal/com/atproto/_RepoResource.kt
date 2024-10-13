@@ -24,6 +24,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
@@ -47,10 +48,9 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoCreateRecord))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -63,10 +63,9 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoDeleteRecord))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -124,10 +123,9 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoPutRecord))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -140,7 +138,6 @@ class _RepoResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, RepoUploadBlob))
-                    .header("Authorization", request.bearerToken)
                     .header("Content-Type", request.contentType)
                     .accept(MediaType.JSON)
                     .file(
@@ -148,7 +145,7 @@ class _RepoResource(
                         fileName = request.name,
                         fileBody = request.bytes
                     )
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }

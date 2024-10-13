@@ -89,7 +89,6 @@ object FacetUtil {
 
         // プロトコルの部分のみ削除
         var display = link.replace("(https?://)".toRegex(), "")
-        println(display.length)
 
         // 文字列長さが 30 を超えた場合は省略
         if (display.length > 30) {

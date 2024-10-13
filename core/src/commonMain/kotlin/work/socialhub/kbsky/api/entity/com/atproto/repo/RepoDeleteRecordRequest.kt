@@ -2,16 +2,17 @@ package work.socialhub.kbsky.api.entity.com.atproto.repo
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 
 class RepoDeleteRecordRequest(
-    accessJwt: String,
+    auth: AuthProvider,
     /** The handle or DID of the repo. */
     var repo: String,
     /** The NSID of the record collection. */
     var collection: String,
     /** The key of the record. */
     var rkey: String
-) : AuthRequest(accessJwt), MapRequest {
+) : AuthRequest(auth), MapRequest {
 
     /** Compare and swap with the previous record by rid. */
     var swapRecord: String? = null

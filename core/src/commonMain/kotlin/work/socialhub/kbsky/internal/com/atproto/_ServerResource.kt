@@ -16,6 +16,8 @@ import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetSessionRespon
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerRefreshSessionResponse
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
@@ -61,9 +63,8 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerDeleteSession))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }
     }
@@ -79,10 +80,9 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerGetServiceAuth))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }
@@ -94,9 +94,8 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerGetSession))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }.also { updatePdsUri(it.data.didDoc) }
     }
@@ -108,9 +107,8 @@ class _ServerResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ServerRefreshSession))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
-                    .post()
+                    .postWithAuth(request.auth)
             }
         }.also { updatePdsUri(it.data.didDoc) }
     }

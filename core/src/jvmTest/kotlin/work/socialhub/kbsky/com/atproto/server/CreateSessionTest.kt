@@ -28,6 +28,8 @@ class CreateSessionTest : AbstractTest() {
         println(response.data.email)
         println(response.data.emailConfirmed)
         println(response.data.didDoc?.asDIDDetails?.id)
+        println(response.data.didDoc?.asDIDDetails?.service?.get(0)?.serviceEndpoint)
+
 
         // Save the accessJwt for testing other APIs
         accessJwt = checkNotNull(response.data.accessJwt)

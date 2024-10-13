@@ -14,7 +14,7 @@ class GetFollowersTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .graph()
             .getFollowers(
-                GraphGetFollowersRequest(accessJwt).also {
+                GraphGetFollowersRequest(auth()).also {
                     it.actor = "uakihir0.com"
                 }
             )

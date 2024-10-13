@@ -17,7 +17,7 @@ class GetLikesTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getLikes(
-                FeedGetLikesRequest(accessJwt).also {
+                FeedGetLikesRequest(auth()).also {
                     it.uri = uri
                 }
             )

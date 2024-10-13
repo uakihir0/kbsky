@@ -14,7 +14,7 @@ class GetAuthorFeedTest : AbstractTest() {
             .instance(Service.BSKY_SOCIAL.uri)
             .feed()
             .getAuthorFeed(
-                FeedGetAuthorFeedRequest(accessJwt).also {
+                FeedGetAuthorFeedRequest(auth()).also {
                     it.actor = "uakihir0.com"
                 }
             )

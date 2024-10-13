@@ -18,7 +18,7 @@ class GetFeedGeneratorsTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getFeedGenerators(
-                FeedGetFeedGeneratorsRequest(accessJwt).also {
+                FeedGetFeedGeneratorsRequest(auth()).also {
                     it.feeds = uris
                 }
             )

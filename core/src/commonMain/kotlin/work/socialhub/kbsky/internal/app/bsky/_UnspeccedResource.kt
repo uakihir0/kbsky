@@ -7,6 +7,7 @@ import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularRequest
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
@@ -24,10 +25,9 @@ class _UnspeccedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, UnspeccedGetPopular))
-                    .header("Authorization", request.bearerToken)
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
-                    .get()
+                    .getWithAuth(request.auth)
             }
         }
     }

@@ -11,4 +11,5 @@ rootProject.name = "kbsky"
 
 include("core")
 include("stream")
+include("auth")
 include("all")

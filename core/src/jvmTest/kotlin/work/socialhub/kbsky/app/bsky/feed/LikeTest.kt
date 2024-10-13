@@ -20,7 +20,7 @@ class LikeTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .like(
-                FeedLikeRequest(accessJwt).also {
+                FeedLikeRequest(auth()).also {
                     it.subject = ref
                 }
             )
@@ -38,7 +38,7 @@ class LikeTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .like(
-                FeedLikeRequest(accessJwt).also {
+                FeedLikeRequest(auth()).also {
                     it.subject = ref
                 }
             )
@@ -49,7 +49,7 @@ class LikeTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .deleteLike(
-                FeedDeleteLikeRequest(accessJwt).also {
+                FeedDeleteLikeRequest(auth()).also {
                     it.uri = response.data.uri
                 }
             )

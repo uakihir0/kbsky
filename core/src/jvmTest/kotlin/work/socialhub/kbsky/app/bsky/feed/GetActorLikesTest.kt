@@ -15,7 +15,7 @@ class GetActorLikesTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .getActorLikes(
-                FeedGetActorLikesRequest(accessJwt).also {
+                FeedGetActorLikesRequest(auth()).also {
                     it.actor = "uakihir0.com"
                     it.limit = 10
                 }

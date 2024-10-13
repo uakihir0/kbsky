@@ -3,13 +3,14 @@ package work.socialhub.kbsky.api.entity.app.bsky.graph
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.api.entity.share.RecordRequest
+import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.app.bsky.graph.GraphList
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.share.Blob
 
 class GraphCreateListRequest(
-    accessJwt: String,
+    auth: AuthProvider,
     private val purpose: String = "app.bsky.graph.defs#curatelist",
     private val name: String,
     private val description: String?,
@@ -17,7 +18,7 @@ class GraphCreateListRequest(
     private val avatar: Blob? = null,
     private var labels: LabelDefsSelfLabels? = null,
     override var createdAt: String? = null
-) : AuthRequest(accessJwt), MapRequest, RecordRequest {
+) : AuthRequest(auth), MapRequest, RecordRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

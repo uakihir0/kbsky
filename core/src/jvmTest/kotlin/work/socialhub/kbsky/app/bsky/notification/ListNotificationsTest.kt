@@ -14,7 +14,7 @@ class ListNotificationsTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .notification()
             .listNotifications(
-                NotificationListNotificationsRequest(accessJwt)
+                NotificationListNotificationsRequest(auth())
             )
 
         response.data.notifications.forEach {

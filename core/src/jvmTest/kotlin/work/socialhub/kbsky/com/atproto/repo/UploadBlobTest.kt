@@ -19,7 +19,7 @@ class UploadBlobTest : AbstractTest() {
             .repo()
             .uploadBlob(
                 RepoUploadBlobRequest(
-                    accessJwt = accessJwt,
+                    auth = auth(),
                     name = "icon.png",
                     bytes = stream.readBytes(),
                     contentType = "image/png"

@@ -15,7 +15,7 @@ class SearchPostsTest : AbstractTest() {
             .feed()
             .searchPosts(
                 FeedSearchPostsRequest(
-                    accessJwt = accessJwt,
+                    auth = auth(),
                     q = "SocialHub"
                 )
             )

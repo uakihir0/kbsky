@@ -26,7 +26,7 @@ class UploadVideoTest : AbstractTest() {
             .video()
             .uploadVideo(
                 VideoUploadVideoRequest(
-                    accessJwt = accessJwt,
+                    auth = auth(),
                     bytes = stream.readBytes(),
                 )
             )
@@ -40,7 +40,7 @@ class UploadVideoTest : AbstractTest() {
                 .video()
                 .getJobStatus(
                     VideoGetJobStatusRequest(
-                        accessJwt = accessJwt,
+                        auth = auth(),
                         jobId = uploadResponse.data.jobId,
                     )
                 )
@@ -71,7 +71,7 @@ class UploadVideoTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .feed()
             .post(
-                FeedPostRequest(accessJwt).also {
+                FeedPostRequest(auth()).also {
                     it.text = "動画投稿テスト"
                     it.embed = video
                 }
@@ -88,7 +88,7 @@ class UploadVideoTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .video()
             .getUploadLimits(
-                VideoGetUploadLimitsRequest(accessJwt)
+                VideoGetUploadLimitsRequest(auth())
             )
 
         println("canUpload:            ${response.data.canUpload}")

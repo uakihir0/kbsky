@@ -3,7 +3,7 @@ package work.socialhub.kbsky.stream
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.domain.Service
 
-class ATProtocolStreamConfig: ATProtocolConfig() {
+class ATProtocolStreamConfig : ATProtocolConfig() {
 
     /**
      * URI of the FireHose.

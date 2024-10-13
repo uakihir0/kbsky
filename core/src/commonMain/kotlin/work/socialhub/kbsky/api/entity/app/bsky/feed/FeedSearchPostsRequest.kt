@@ -2,12 +2,13 @@ package work.socialhub.kbsky.api.entity.app.bsky.feed
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import work.socialhub.kbsky.auth.AuthProvider
 
 class FeedSearchPostsRequest(
-    accessJwt: String,
+    auth: AuthProvider,
     /** Search query string; syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended. */
     var q: String,
-) : AuthRequest(accessJwt), MapRequest {
+) : AuthRequest(auth), MapRequest {
 
     // [1-100] default: 25
     var limit: Int? = null

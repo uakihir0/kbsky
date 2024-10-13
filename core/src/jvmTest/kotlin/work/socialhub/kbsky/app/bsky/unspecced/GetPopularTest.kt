@@ -14,7 +14,7 @@ class GetPopularTest : AbstractTest() {
             .instance(BSKY_SOCIAL.uri)
             .unspecced()
             .getPopular(
-                UnspeccedGetPopularRequest(accessJwt)
+                UnspeccedGetPopularRequest(auth())
             )
 
         feeds.data.feed.forEach {

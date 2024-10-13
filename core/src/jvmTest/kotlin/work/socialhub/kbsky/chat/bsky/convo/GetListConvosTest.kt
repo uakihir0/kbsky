@@ -15,12 +15,12 @@ class GetListConvosTest : AbstractTest() {
             .instance().also {
                 it.server()
                     .getSession(
-                        AuthRequest(accessJwt)
+                        AuthRequest(auth())
                     )
             }
             .convo()
             .getListConvos(
-                ConvoGetListConvosRequest(accessJwt)
+                ConvoGetListConvosRequest(auth())
             )
 
         convos.data.convos.forEach {

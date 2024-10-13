@@ -1,11 +1,12 @@
 package work.socialhub.kbsky.api.entity.app.bsky.actor
 
 import work.socialhub.kbsky.api.entity.share.AuthRequest
+import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.share.Blob
 
 class ActorUpdateProfileRequest(
-    accessJwt: String,
+    auth: AuthProvider,
     val displayName: String? = null,
     val description: String? = null,
     val avatar: Blob? = null,
@@ -15,4 +16,4 @@ class ActorUpdateProfileRequest(
     val pinnedPost: RepoStrongRef? = null,
     // set true if you want to clear the pinned post
     val clearPinnedPost: Boolean = false,
-) : AuthRequest(accessJwt)
+) : AuthRequest(auth)

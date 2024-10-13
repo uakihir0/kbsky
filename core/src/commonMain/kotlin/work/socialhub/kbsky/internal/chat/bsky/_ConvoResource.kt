@@ -27,6 +27,9 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnmuteConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.auth.AuthProvider
+import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
@@ -43,7 +46,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetConvo,
             request.toMap(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -54,7 +57,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetConvoForMembers,
             request.toMap(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -65,7 +68,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetLog,
             request.toMap(),
-            request.bearerToken
+            request.auth
         )
     }
 
@@ -76,7 +79,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoGetMessages,
             request.toMap(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -87,7 +90,7 @@ class _ConvoResource(
         return proceedGet(
             BlueskyTypes.ConvoListConvos,
             request.toMap(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -98,7 +101,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoSendMessage,
             request.toMappedJson(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -109,7 +112,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoUpdateRead,
             request.toMappedJson(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -120,7 +123,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoMuteConvo,
             request.toMappedJson(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -131,7 +134,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoUnmuteConvo,
             request.toMappedJson(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -142,7 +145,7 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoDeleteMessageForSelf,
             request.toMappedJson(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
@@ -153,42 +156,40 @@ class _ConvoResource(
         return proceedPost(
             BlueskyTypes.ConvoLeaveConvo,
             request.toMappedJson(),
-            request.bearerToken,
+            request.auth,
         )
     }
 
     private inline fun <reified T> proceedGet(
         id: String,
-        requestMap: Map<String, Any>,
-        bearerToken: String,
+        queries: Map<String, Any>,
+        auth: AuthProvider,
     ): Response<T> {
         return proceed {
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, id))
-                    .header("Authorization", bearerToken)
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)
-                    .queries(requestMap)
-                    .get()
+                    .queries(queries)
+                    .getWithAuth(auth)
             }
         }
     }
 
     private inline fun <reified T> proceedPost(
         id: String,
-        requestMappedJson: String,
-        bearerToken: String
+        requestJson: String,
+        auth: AuthProvider,
     ): Response<T> {
         return proceed {
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, id))
-                    .header("Authorization", bearerToken)
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)
-                    .json(requestMappedJson)
-                    .post()
+                    .json(requestJson)
+                    .postWithAuth(auth)
             }
         }
     }
