@@ -22,7 +22,8 @@ class BearerTokenAuthProvider(
         method: String,
         request: HttpRequest,
         response: HttpResponse
-    ) {
+    ): Boolean {
+        return false
     }
 
     override val did: String

@@ -1,5 +1,8 @@
 package work.socialhub.kbsky.api.app.bsky
 
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesResponse
@@ -22,7 +25,7 @@ interface ActorResource {
      * Get detailed profile view of an actor.
      */
     fun getProfile(
-        request: work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest
+        request: ActorGetProfileRequest
     ): Response<ActorGetProfileResponse>
 
     /**
@@ -43,6 +46,6 @@ interface ActorResource {
      * Get private preferences attached to the account.
      */
     fun getPreferences(
-        request: work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
-    ): Response<work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesResponse>
+        request: ActorGetPreferencesRequest
+    ): Response<ActorGetPreferencesResponse>
 }

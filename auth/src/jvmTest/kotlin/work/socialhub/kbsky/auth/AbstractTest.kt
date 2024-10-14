@@ -66,7 +66,7 @@ open class AbstractTest {
     fun auth(): AuthProvider {
         return OAuthProvider(
             accessTokenJwt = accessJwt,
-            context = oAuthContext
+            session = oAuthContext
         )
     }
 

@@ -28,7 +28,7 @@ jobs:
     - name: Publish to Repsy
       uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: publishAllPublicationsToMavenRepository -x core:jvmTest -x stream:jvmTest
+        arguments: publishAllPublicationsToMavenRepository -x core:jvmTest -x stream:jvmTest -x auth:jvmTest
       env:
         USERNAME: ${{ secrets.REPSY_USERNAME }}
         PASSWORD: ${{ secrets.REPSY_PASSWORD }}

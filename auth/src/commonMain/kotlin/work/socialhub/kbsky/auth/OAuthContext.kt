@@ -2,18 +2,12 @@ package work.socialhub.kbsky.auth
 
 import kotlinx.serialization.Serializable
 
+/**
+ * Following values required during OAuth
+ */
 @Serializable
-class OAuthContext {
+class OAuthContext : OAuthSession() {
 
-    var clientId: String? = null
-
-    /** ECDSA P256 DER Base64 key */
-    var publicKey: String? = null
-    var privateKey: String? = null
-
-    var dPoPNonce: String? = null
-
-    /** Following values required during OAuth */
     var redirectUri: String? = null
     var codeVerifier: String? = null
     var state: String? = null
