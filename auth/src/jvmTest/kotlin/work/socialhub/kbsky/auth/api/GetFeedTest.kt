@@ -11,21 +11,25 @@ class GetFeedTest : AbstractTest() {
 
     @Test
     fun testGetFeed() {
-        val uri = "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/with-friends"
+        try {
+            val uri = "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/with-friends"
 
-        val feeds = BlueskyFactory
-            .instance(OYSTER_US_EAST.uri)
-            .feed()
-            .getFeed(
-                FeedGetFeedRequest(auth()).also {
-                    it.feed = uri
-                }
-            )
+            val feeds = BlueskyFactory
+                .instance(OYSTER_US_EAST.uri)
+                .feed()
+                .getFeed(
+                    FeedGetFeedRequest(auth()).also {
+                        it.feed = uri
+                    }
+                )
 
-        feeds.data.feed.forEach {
-            dump(it.post)
+            feeds.data.feed.forEach {
+                dump(it.post)
+            }
+
+        } finally {
+            println(oAuthContext.dPoPNonce)
+            saveOAuthContext()
         }
-
-        saveOAuthContext()
     }
 }

@@ -6,7 +6,7 @@ import io.ktor.utils.io.core.toByteArray
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import work.socialhub.kbsky.auth.OAuthContext
+import work.socialhub.kbsky.auth.OAuthSession
 import work.socialhub.khttpclient.HttpResponse
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
@@ -97,10 +97,10 @@ object OAuthHelper {
     }
 
     fun HttpResponse.extractDPoPNonce(
-        context: OAuthContext
+        session: OAuthSession
     ): HttpResponse = also {
         headers["dpop-nonce"]?.let {
-            context.dPoPNonce = it[0]
+            session.dPoPNonce = it[0]
         }
     }
 

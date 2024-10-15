@@ -16,7 +16,7 @@ import kotlin.io.encoding.ExperimentalEncodingApi
 
 class OAuthProvider(
     val accessTokenJwt: String,
-    val context: OAuthContext,
+    val session: OAuthSession,
 ) : AuthProvider {
 
     override val did: String
@@ -54,14 +54,14 @@ class OAuthProvider(
         request: HttpRequest,
     ) {
         val publicKeyXY = OAuthHelper.extractXYFromPublicKey(
-            Base64.decode(context.publicKey!!)
+            Base64.decode(session.publicKey!!)
         )
 
         val dPoPHeader = OAuthHelper.makeDPoPHeader(
-            clientId = context.clientId!!,
+            clientId = session.clientId!!,
             endpoint = request.getUrl(),
             method = method,
-            dPoPNonce = context.dPoPNonce!!,
+            dPoPNonce = session.dPoPNonce!!,
             accessToken = accessTokenJwt,
             authorizationServer = jwt.iss,
             publicKeyWAffineX = publicKeyXY.first,
@@ -72,7 +72,7 @@ class OAuthProvider(
                     .privateKeyDecoder(EC.Curve.P256)
                     .decodeFromBlocking(
                         EC.PrivateKey.Format.DER,
-                        Base64.decode(context.privateKey!!)
+                        Base64.decode(session.privateKey!!)
                     )
 
                 privateKey.signatureGenerator(SHA256)
@@ -89,8 +89,12 @@ class OAuthProvider(
         method: String,
         request: HttpRequest,
         response: HttpResponse
-    ) {
-        response.extractDPoPNonce(context)
+    ): Boolean {
+        response.extractDPoPNonce(session)
+
+        // Retry in case of error with DPoP Nonce
+        return (response.status == 401) &&
+                (response.stringBody.contains("use_dpop_nonce"))
     }
 
     fun HttpRequest.getUrl(): String {

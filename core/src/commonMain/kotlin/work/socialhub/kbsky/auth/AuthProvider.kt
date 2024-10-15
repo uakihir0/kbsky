@@ -9,11 +9,14 @@ interface AuthProvider {
         request: HttpRequest,
     )
 
+    /**
+     * @return If true, retry only once
+     */
     fun afterRequestHook(
         method: String,
         request: HttpRequest,
         response: HttpResponse,
-    )
+    ): Boolean
 
     val did: String
     val pdsDid: String

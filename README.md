@@ -5,21 +5,21 @@
 <!-- ![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.repsy.io%2Fmvn%2Fuakihir0%2Fpublic%2Fwork%2Fsocialhub%2Fkbsky%2Fcore%2Fmaven-metadata.xml) -->
 ![Maven Central Version](https://img.shields.io/maven-central/v/work.socialhub.kbsky/all)
 
-
-![badge][badge-jvm]
-![badge][badge-ios]
+![badge][badge-jvm]  
+![badge][badge-ios]  
 ![badge][badge-mac]
 
-**This library is a Bluesky/ATProtocol client library compatible with [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).**
-It depends on [khttpclient] and internally uses Ktor Client.
-Therefore, this library is available on platforms supported by Kotlin Multiplatform and Ktor Client.
-The behavior on each platform depends on [khttpclient].
+**This library is a Bluesky/ATProtocol client library compatible
+with [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).**
+It depends on [khttpclient] and uses Ktor Client internally. Therefore, this library can be used on any platform
+supported by Kotlin Multiplatform and Ktor Client. The behavior on each platform depends on [khttpclient].
 
 ## Usage
 
-The following is how to use Gradle with Kotlin on supported platforms.
-**For Apple platform, please refer to [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods).**
-Also, please check the test code as well.
+Below is how to use it with Kotlin on the supported platforms using Gradle.  
+**If you are using it on an Apple platform, please refer
+to [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods).**  
+Additionally, please check the test code as well.
 
 ### Stable (Maven Central)
 
@@ -47,7 +47,11 @@ dependencies {
 }
 ```
 
-### CreateSession
+### Starting a Session
+
+#### Authentication with Password
+
+To start a session by specifying a handle and password, do as follows:
 
 ```kotlin
 val response = BlueskyFactory
@@ -63,18 +67,25 @@ val response = BlueskyFactory
 println(response.data.accessJwt)
 ```
 
-### SendFeed
+To access various resources with the obtained access token, execute the following:
 
 ```kotlin
+val auth = BearerTokenAuthProvider(accessJwt)
+
 BlueskyFactory
     .instance(BSKY_SOCIAL.uri)
     .feed()
     .post(
-        FeedPostRequest(accessJwt).also {
+        FeedPostRequest(auth).also {
             it.text = "Hello World!"
         }
     )
 ```
+
+#### Authentication with OAuth
+
+Authentication using a password is gradually being replaced with OAuth. For more details on OAuth authentication, please
+refer to [Authentication via OAuth](./docs/OAUTH.md).
 
 ### PLC Directory
 
@@ -124,18 +135,33 @@ MIT License
 [Akihiro Urushihara](https://github.com/uakihir0)
 
 [khttpclient]: https://github.com/uakihir0/khttpclient
+
 [badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg
+
 [badge-android-native]: http://img.shields.io/badge/support-[AndroidNative]-6EDB8D.svg
+
 [badge-wearos]: http://img.shields.io/badge/-wearos-8ECDA0.svg
+
 [badge-jvm]: http://img.shields.io/badge/-jvm-DB413D.svg
+
 [badge-js]: http://img.shields.io/badge/-js-F8DB5D.svg
+
 [badge-js-ir]: https://img.shields.io/badge/support-[IR]-AAC4E0.svg
+
 [badge-nodejs]: https://img.shields.io/badge/-nodejs-68a063.svg
+
 [badge-linux]: http://img.shields.io/badge/-linux-2D3F6C.svg
+
 [badge-windows]: http://img.shields.io/badge/-windows-4D76CD.svg
+
 [badge-wasm]: https://img.shields.io/badge/-wasm-624FE8.svg
+
 [badge-apple-silicon]: http://img.shields.io/badge/support-[AppleSilicon]-43BBFF.svg
+
 [badge-ios]: http://img.shields.io/badge/-ios-CDCDCD.svg
+
 [badge-mac]: http://img.shields.io/badge/-macos-111111.svg
+
 [badge-watchos]: http://img.shields.io/badge/-watchos-C0C0C0.svg
+
 [badge-tvos]: http://img.shields.io/badge/-tvos-808080.svg

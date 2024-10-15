@@ -123,18 +123,30 @@ object _InternalUtility {
     suspend fun HttpRequest.getWithAuth(
         auth: AuthProvider
     ): HttpResponse {
-        auth.beforeRequestHook(Get.value, this)
-        val response = this.get()
-        auth.afterRequestHook(Get.value, this, response)
-        return response
+        val method = Get.value
+        auth.beforeRequestHook(method, this)
+        val first = this.get()
+        if (!auth.afterRequestHook(method, this, first))
+            return first
+
+        auth.beforeRequestHook(method, this)
+        val second = this.get()
+        auth.afterRequestHook(method, this, second)
+        return second
     }
 
     suspend fun HttpRequest.postWithAuth(
         auth: AuthProvider
     ): HttpResponse {
-        auth.beforeRequestHook(Post.value, this)
-        val response = this.post()
-        auth.afterRequestHook(Post.value, this, response)
-        return response
+        val method = Post.value
+        auth.beforeRequestHook(method, this)
+        val first = this.post()
+        if (!auth.afterRequestHook(method, this, first))
+            return first
+
+        auth.beforeRequestHook(method, this)
+        val second = this.post()
+        auth.afterRequestHook(method, this, second)
+        return second
     }
 }
