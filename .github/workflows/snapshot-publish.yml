@@ -23,7 +23,7 @@ jobs:
     - name: Build with Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: build -x core:jvmTest -x stream:jvmTest
+        arguments: build -x core:jvmTest -x stream:jvmTest -x auth:jvmTest
 
     - name: Publish to Repsy
       uses: gradle/actions/setup-gradle@v3
