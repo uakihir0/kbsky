@@ -16,7 +16,7 @@ kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.r
 nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
 maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-cryptography-bom = "dev.whyoleg.cryptography:cryptography-bom:0.3.1"
+cryptography-bom = "dev.whyoleg.cryptography:cryptography-bom:0.4.0"
 cryptography-core = { module = "dev.whyoleg.cryptography:cryptography-core" }
 cryptography-openssl = { module = "dev.whyoleg.cryptography:cryptography-provider-openssl3-prebuilt" }
 cryptography-jdk = { module = "dev.whyoleg.cryptography:cryptography-provider-jdk" }

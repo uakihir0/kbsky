@@ -1,9 +1,10 @@
 package work.socialhub.kbsky.auth.internal
 
 import dev.whyoleg.cryptography.CryptographyProvider
-import dev.whyoleg.cryptography.algorithms.asymmetric.EC
-import dev.whyoleg.cryptography.algorithms.asymmetric.ECDSA
-import dev.whyoleg.cryptography.algorithms.digest.SHA256
+import dev.whyoleg.cryptography.algorithms.EC
+import dev.whyoleg.cryptography.algorithms.ECDSA
+import dev.whyoleg.cryptography.algorithms.ECDSA.SignatureFormat
+import dev.whyoleg.cryptography.algorithms.SHA256
 import io.ktor.http.URLBuilder
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.api.entity.share.Response
@@ -101,10 +102,10 @@ class _OAuthResource(
                         .keyPairGenerator(EC.Curve.P256).generateKeyBlocking()
 
                     context.publicKey = Base64.encode(
-                        keyPair.publicKey.encodeToBlocking(EC.PublicKey.Format.DER)
+                        keyPair.publicKey.encodeToByteArrayBlocking(EC.PublicKey.Format.DER)
                     )
                     context.privateKey = Base64.encode(
-                        keyPair.privateKey.encodeToBlocking(EC.PrivateKey.Format.DER)
+                        keyPair.privateKey.encodeToByteArrayBlocking(EC.PrivateKey.Format.DER)
                     )
                 }
 
@@ -124,12 +125,12 @@ class _OAuthResource(
                     sign = { jwtMessage ->
                         val privateKey = CryptographyProvider.Default.get(ECDSA)
                             .privateKeyDecoder(EC.Curve.P256)
-                            .decodeFromBlocking(
+                            .decodeFromByteArrayBlocking(
                                 EC.PrivateKey.Format.DER,
                                 Base64.decode(context.privateKey!!)
                             )
 
-                        privateKey.signatureGenerator(SHA256)
+                        privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
                             .generateSignatureBlocking(jwtMessage.encodeToByteArray())
                     }
                 )

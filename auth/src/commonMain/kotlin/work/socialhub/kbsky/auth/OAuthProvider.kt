@@ -1,9 +1,10 @@
 package work.socialhub.kbsky.auth
 
 import dev.whyoleg.cryptography.CryptographyProvider
-import dev.whyoleg.cryptography.algorithms.asymmetric.EC
-import dev.whyoleg.cryptography.algorithms.asymmetric.ECDSA
-import dev.whyoleg.cryptography.algorithms.digest.SHA256
+import dev.whyoleg.cryptography.algorithms.EC
+import dev.whyoleg.cryptography.algorithms.ECDSA
+import dev.whyoleg.cryptography.algorithms.ECDSA.SignatureFormat
+import dev.whyoleg.cryptography.algorithms.SHA256
 import io.ktor.http.Url
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.auth.helper.OAuthHelper
@@ -68,14 +69,15 @@ class OAuthProvider(
             publicKeyWAffineY = publicKeyXY.second,
             sign = { jwtMessage ->
 
-                val privateKey = CryptographyProvider.Default.get(ECDSA)
+                val provider = CryptographyProvider.Default
+                val privateKey = provider.get(ECDSA)
                     .privateKeyDecoder(EC.Curve.P256)
-                    .decodeFromBlocking(
+                    .decodeFromByteArrayBlocking(
                         EC.PrivateKey.Format.DER,
                         Base64.decode(session.privateKey!!)
                     )
 
-                privateKey.signatureGenerator(SHA256)
+                privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
                     .generateSignatureBlocking(jwtMessage.encodeToByteArray())
             }
         )
