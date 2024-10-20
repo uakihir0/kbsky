@@ -5,7 +5,7 @@ dokka = "1.9.20"
 maven-publish = "0.30.0"
 
 [libraries]
-khttpclient = "work.socialhub:khttpclient:0.0.2"
+khttpclient = "work.socialhub:khttpclient:0.0.3"
 ktor-core = "io.ktor:ktor-client-core:3.0.0"
 datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.1"
 coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0"
