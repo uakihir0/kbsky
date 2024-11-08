@@ -8,6 +8,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeaheadRequest
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeaheadResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileResponse
 import work.socialhub.kbsky.api.entity.share.Response
@@ -20,6 +22,13 @@ interface ActorResource {
     fun searchActors(
         request: ActorSearchActorsRequest
     ): Response<ActorSearchActorsResponse>
+
+    /**
+     * Find actor suggestions for a prefix search term.
+     */
+    fun searchActorsTypeahead(
+        request: ActorSearchActorsTypeaheadRequest
+    ): Response<ActorSearchActorsTypeaheadResponse>
 
     /**
      * Get detailed profile view of an actor.

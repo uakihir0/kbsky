@@ -7,6 +7,7 @@ import work.socialhub.kbsky.BlueskyTypes.ActorGetProfile
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfiles
 import work.socialhub.kbsky.BlueskyTypes.ActorProfile
 import work.socialhub.kbsky.BlueskyTypes.ActorSearchActors
+import work.socialhub.kbsky.BlueskyTypes.ActorSearchActorsTypeahead
 import work.socialhub.kbsky.api.app.bsky.ActorResource
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesResponse
@@ -16,6 +17,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeaheadRequest
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeaheadResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
@@ -41,6 +44,21 @@ class _ActorResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, ActorSearchActors))
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .getWithAuth(request.auth)
+            }
+        }
+    }
+
+    override fun searchActorsTypeahead(
+        request: ActorSearchActorsTypeaheadRequest
+    ): Response<ActorSearchActorsTypeaheadResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, ActorSearchActorsTypeahead))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
                     .getWithAuth(request.auth)
