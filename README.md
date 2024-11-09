@@ -5,8 +5,8 @@
 <!-- ![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.repsy.io%2Fmvn%2Fuakihir0%2Fpublic%2Fwork%2Fsocialhub%2Fkbsky%2Fcore%2Fmaven-metadata.xml) -->
 ![Maven Central Version](https://img.shields.io/maven-central/v/work.socialhub.kbsky/all)
 
-![badge][badge-jvm]  
-![badge][badge-ios]  
+![badge][badge-jvm]
+![badge][badge-ios]
 ![badge][badge-mac]
 
 **This library is a Bluesky/ATProtocol client library compatible
