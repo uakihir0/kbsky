@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ActorDefsLabelerPrefItem(
-    var did: String
+    val did: String
 )
