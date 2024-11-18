@@ -55,4 +55,6 @@ class BearerTokenAuthProvider(
         var iat: Int = -1
         var exp: Int = -1
     }
+
+    override var acceptLabelers: List<String> = emptyList()
 }

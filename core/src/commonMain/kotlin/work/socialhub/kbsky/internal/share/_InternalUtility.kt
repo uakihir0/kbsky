@@ -123,6 +123,8 @@ object _InternalUtility {
     suspend fun HttpRequest.getWithAuth(
         auth: AuthProvider
     ): HttpResponse {
+        addContentLabelersHeader(auth.acceptLabelers)
+
         val method = Get.value
         auth.beforeRequestHook(method, this)
         val first = this.get()
@@ -138,6 +140,8 @@ object _InternalUtility {
     suspend fun HttpRequest.postWithAuth(
         auth: AuthProvider
     ): HttpResponse {
+        addContentLabelersHeader(auth.acceptLabelers)
+
         val method = Post.value
         auth.beforeRequestHook(method, this)
         val first = this.post()
@@ -148,5 +152,13 @@ object _InternalUtility {
         val second = this.post()
         auth.afterRequestHook(method, this, second)
         return second
+    }
+
+    private fun HttpRequest.addContentLabelersHeader(acceptLabelers: List<String>) {
+
+        if (acceptLabelers.isNotEmpty()) {
+            val labelers = acceptLabelers.joinToString(", ")
+            this.header("atproto-accept-labelers", labelers)
+        }
     }
 }
