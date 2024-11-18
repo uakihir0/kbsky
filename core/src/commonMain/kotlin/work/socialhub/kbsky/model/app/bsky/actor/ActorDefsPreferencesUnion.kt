@@ -12,6 +12,7 @@ import work.socialhub.kbsky.util.json.ActorDefsPreferencesPolymorphicSerializer
  * @see ActorDefsSavedFeedsPrefV2
  * @see ActorDefsFeedViewPref
  * @see ActorDefsThreadViewPref
+ * @see ActorDefsLabelersPref
  */
 @Serializable(with = ActorDefsPreferencesPolymorphicSerializer::class)
 abstract class ActorDefsPreferencesUnion {
@@ -25,4 +26,5 @@ abstract class ActorDefsPreferencesUnion {
     val asSavedFeedsPrefV2 get() = this as? ActorDefsSavedFeedsPrefV2
     val asFeedViewPref get() = this as? ActorDefsFeedViewPref
     val asThreadViewPref get() = this as? ActorDefsThreadViewPref
+    val asLabelersPref get() = this as? ActorDefsLabelersPref
 }

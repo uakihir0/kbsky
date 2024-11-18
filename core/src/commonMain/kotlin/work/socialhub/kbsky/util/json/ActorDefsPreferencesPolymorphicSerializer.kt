@@ -7,6 +7,7 @@ import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsAdultContentPref
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsContentLabelPref
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsFeedViewPref
+import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsLabelersPref
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPersonalDetailsPref
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsSavedFeedsPref
@@ -30,6 +31,7 @@ object ActorDefsPreferencesPolymorphicSerializer :
             ActorDefsSavedFeedsPrefV2.TYPE -> ActorDefsSavedFeedsPrefV2.serializer()
             ActorDefsFeedViewPref.TYPE -> ActorDefsFeedViewPref.serializer()
             ActorDefsThreadViewPref.TYPE -> ActorDefsThreadViewPref.serializer()
+            ActorDefsLabelersPref.TYPE -> ActorDefsLabelersPref.serializer()
             else -> {
                 println("[Warning] Unknown Item type: $type (ActorDefsPreferencesUnion)")
                 Unknown.serializer()
