@@ -113,4 +113,6 @@ class OAuthProvider(
             }
         }
     }
+
+    override var acceptLabelers: List<String> = emptyList()
 }

@@ -20,4 +20,7 @@ interface AuthProvider {
 
     val did: String
     val pdsDid: String
+
+    // TODO: This is a temporary solution to avoid circular dependencies1
+    var acceptLabelers: List<String>
 }
