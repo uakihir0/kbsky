@@ -65,6 +65,10 @@ object BlueskyTypes {
     const val GraphList = "app.bsky.graph.list"
     const val GraphListItem = "app.bsky.graph.listitem"
 
+    // Labeler
+    const val LabelerDefs = "app.bsky.labeler.defs"
+    const val LabelerGetServices = "app.bsky.labeler.getServices"
+
     // Notification
     const val NotificationGetUnreadCount = "app.bsky.notification.getUnreadCount"
     const val NotificationListNotifications = "app.bsky.notification.listNotifications"
