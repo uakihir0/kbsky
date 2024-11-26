@@ -27,12 +27,12 @@ abstract class RecordUnion {
     @SerialName("\$type")
     abstract var type: String
 
-    val asActorProfile get() = this as? work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
-    val asGraphFollow get() = this as? work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
-    val asGraphBlock get() = this as? work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
-    val asFeedLike get() = this as? work.socialhub.kbsky.model.app.bsky.feed.FeedLike
-    val asFeedPost get() = this as? work.socialhub.kbsky.model.app.bsky.feed.FeedPost
-    val asFeedRepost get() = this as? work.socialhub.kbsky.model.app.bsky.feed.FeedRepost
-    val asGraphListItem get() = this as? work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
-    val asGraphList get() = this as? work.socialhub.kbsky.model.app.bsky.graph.GraphList
+    val asActorProfile get() = this as? ActorProfile
+    val asGraphFollow get() = this as? GraphFollow
+    val asGraphBlock get() = this as? GraphBlock
+    val asFeedLike get() = this as? FeedLike
+    val asFeedPost get() = this as? FeedPost
+    val asFeedRepost get() = this as? FeedRepost
+    val asGraphListItem get() = this as? GraphListItem
+    val asGraphList get() = this as? GraphList
 }

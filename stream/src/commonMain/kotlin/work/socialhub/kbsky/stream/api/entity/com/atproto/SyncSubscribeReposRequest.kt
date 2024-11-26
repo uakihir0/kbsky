@@ -1,4 +1,4 @@
-package work.socialhub.kbsky.stream.api.entity.com.atproto.sync
+package work.socialhub.kbsky.stream.api.entity.com.atproto
 
 import work.socialhub.kbsky.api.entity.share.MapRequest
 

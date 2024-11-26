@@ -1,40 +1,38 @@
-package work.socialhub.kbsky.stream.atproto.sync
+package work.socialhub.kbsky.stream.app.bsky
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import work.socialhub.kbsky.model.share.RecordUnion
-import work.socialhub.kbsky.stream.ATProtocolStreamFactory
 import work.socialhub.kbsky.stream.AbstractTest
-import work.socialhub.kbsky.stream.api.entity.com.atproto.SyncSubscribeReposRequest
-import work.socialhub.kbsky.stream.entity.com.atproto.callback.SyncEventCallback
+import work.socialhub.kbsky.stream.BlueskyStreamFactory
+import work.socialhub.kbsky.stream.api.entity.app.bsky.JetStreamSubscribeRequest
+import work.socialhub.kbsky.stream.entity.app.bsky.callback.JetStreamEventCallback
+import work.socialhub.kbsky.stream.entity.app.bsky.model.Event
 import work.socialhub.kbsky.stream.entity.callback.OpenedCallback
 import kotlin.test.Test
 
-class SubscribeRepoTest : AbstractTest() {
+class JetStreamTest : AbstractTest() {
 
     @Test
     fun testSubscribeRepo() {
         runBlocking {
-            val stream = ATProtocolStreamFactory
+            val stream = BlueskyStreamFactory
                 .instance()
-                .sync()
-                .subscribeRepos(
-                    SyncSubscribeReposRequest().also {
-                        it.filter = listOf(
-                            "app.bsky.feed.post"
-                        )
+                .jetStream()
+                .subscribe(
+                    JetStreamSubscribeRequest().also {
+                        it.wantedCollections = listOf("app.bsky.feed.post")
                     }
                 )
 
             stream.eventCallback(
-                object : SyncEventCallback {
+                object : JetStreamEventCallback {
                     override fun onEvent(
-                        cid: String?,
-                        uri: String?,
-                        record: RecordUnion
+                        event: Event
                     ) {
-                        print(record)
+                        event.commit?.record?.asFeedPost?.let {
+                            println(it.text)
+                        }
                     }
                 })
 
