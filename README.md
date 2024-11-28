@@ -30,6 +30,7 @@ repositories {
 
 dependencies {
 +   implementation("work.socialhub.kbsky:core:0.2.0")
++   implementation("work.socialhub.kbsky:auth:0.2.0")
 +   implementation("work.socialhub.kbsky:stream:0.2.0")
 }
 ```
@@ -43,8 +44,23 @@ repositories {
 
 dependencies {
 +   implementation("work.socialhub.kbsky:core:0.3.0-SNAPSHOT")
++   implementation("work.socialhub.kbsky:auth:0.3.0-SNAPSHOT")
 +   implementation("work.socialhub.kbsky:stream:0.3.0-SNAPSHOT")
 }
+```
+
+### Using as part of a regular Java project
+
+All of the above can be added to and used in regular Java projects, too. All you have to do is to use the suffix `-jvm` when listing the dependency.
+
+Here is a sample Maven configuration:
+
+```xml
+<dependency>
+    <groupId>work.socialhub.kbsky</groupId>
+    <artifactId>core-jvm</artifactId>
+    <version>[VERSION]</version>
+</dependency>
 ```
 
 ### Starting a Session
