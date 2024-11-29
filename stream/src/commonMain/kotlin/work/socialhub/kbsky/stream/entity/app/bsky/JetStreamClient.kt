@@ -57,7 +57,7 @@ class JetStreamClient(
                 it.onEvent(event)
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            errorCallback?.onError(e)
         }
     }
 

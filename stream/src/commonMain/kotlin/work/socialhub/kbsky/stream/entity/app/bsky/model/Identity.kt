@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class Identity {
-
     lateinit var did: String
     lateinit var handle: String
 

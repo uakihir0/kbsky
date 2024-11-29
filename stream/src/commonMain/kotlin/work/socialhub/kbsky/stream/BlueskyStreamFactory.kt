@@ -10,7 +10,7 @@ object BlueskyStreamFactory {
     ): BlueskyStream {
         return _BlueskyStream(
             BlueskyStreamConfig().also {
-                it.jetStreamHosts = listOf(Url(jetStreamUri).host)
+                it.jetStreamHost = Url(jetStreamUri).host
             })
     }
 

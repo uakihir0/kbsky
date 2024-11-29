@@ -5,7 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class Event {
-
     lateinit var did: String
 
     @SerialName("time_us")

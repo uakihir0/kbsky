@@ -5,7 +5,6 @@ import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
 class Commit {
-
     lateinit var rev: String
     lateinit var operation: String
     lateinit var collection: String

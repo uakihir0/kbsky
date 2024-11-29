@@ -2,9 +2,7 @@ package work.socialhub.kbsky.stream.internal.app.bsky
 
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
-import io.ktor.http.Url
 import io.ktor.http.path
-import work.socialhub.kbsky.ATProtocolTypes.SyncSubscribeRepos
 import work.socialhub.kbsky.Bluesky
 import work.socialhub.kbsky.stream.BlueskyStreamConfig
 import work.socialhub.kbsky.stream.api.app.bsky.JetStreamResource
@@ -23,7 +21,8 @@ class _JetStreamResource(
         val builder = URLBuilder().also { b ->
 
             b.protocol = URLProtocol.WSS
-            b.host = request.host ?: config.jetStreamHosts.random()
+            b.host = request.host ?: config.jetStreamHost
+                    ?: BlueskyStreamConfig.defaultJetStreamHosts.random()
 
             if (request.wantedCollections.isNotEmpty()) {
                 for (wantedCollection in request.wantedCollections) {
