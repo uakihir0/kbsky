@@ -1,18 +1,18 @@
-package work.socialhub.kbsky.stream.util
+package work.socialhub.kbsky.stream.entity.com.atproto
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.cbor.Cbor
 import kotlinx.serialization.decodeFromHexString
 import work.socialhub.kbsky.ATProtocol
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
-import work.socialhub.kbsky.stream.util.callback.ClosedCallback
-import work.socialhub.kbsky.stream.util.callback.ErrorCallback
-import work.socialhub.kbsky.stream.util.callback.EventCallback
-import work.socialhub.kbsky.stream.util.callback.OpenedCallback
-import work.socialhub.kbsky.stream.util.model.StreamRoot
+import work.socialhub.kbsky.stream.entity.callback.ClosedCallback
+import work.socialhub.kbsky.stream.entity.callback.ErrorCallback
+import work.socialhub.kbsky.stream.entity.com.atproto.callback.SyncEventCallback
+import work.socialhub.kbsky.stream.entity.callback.OpenedCallback
+import work.socialhub.kbsky.stream.entity.com.atproto.model.StreamRoot
 import work.socialhub.khttpclient.websocket.WebsocketRequest
 
-class StreamClient(
+class SyncStreamClient(
     val atproto: ATProtocol,
     val uri: String,
     val filter: List<String> = listOf(),
@@ -21,12 +21,12 @@ class StreamClient(
     var client = WebsocketRequest()
     var isOpen: Boolean = false
 
-    var eventCallback: EventCallback? = null
+    var eventCallback: SyncEventCallback? = null
     private var openedCallback: OpenedCallback? = null
     private var closedCallback: ClosedCallback? = null
     private var errorCallback: ErrorCallback? = null
 
-    fun eventCallback(callback: EventCallback) = also { this.eventCallback = callback }
+    fun eventCallback(callback: SyncEventCallback) = also { this.eventCallback = callback }
     fun openedCallback(callback: OpenedCallback) = also { this.openedCallback = callback }
     fun closedCallback(callback: ClosedCallback) = also { this.closedCallback = callback }
     fun errorCallback(callback: ErrorCallback) = also { this.errorCallback = callback }

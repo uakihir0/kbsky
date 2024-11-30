@@ -5,8 +5,8 @@ import work.socialhub.kbsky.ATProtocol
 import work.socialhub.kbsky.ATProtocolTypes.SyncSubscribeRepos
 import work.socialhub.kbsky.stream.ATProtocolStreamConfig
 import work.socialhub.kbsky.stream.api.com.atproto.SyncResource
-import work.socialhub.kbsky.stream.api.entity.com.atproto.sync.SyncSubscribeReposRequest
-import work.socialhub.kbsky.stream.util.StreamClient
+import work.socialhub.kbsky.stream.api.entity.com.atproto.SyncSubscribeReposRequest
+import work.socialhub.kbsky.stream.entity.com.atproto.SyncStreamClient
 
 class _SyncResource(
     private val atproto: ATProtocol,
@@ -15,9 +15,9 @@ class _SyncResource(
 
     override fun subscribeRepos(
         request: SyncSubscribeReposRequest
-    ): StreamClient {
+    ): SyncStreamClient {
         val url = ("wss://" + Url(config.firehoseUri).host
                 + "/xrpc/" + SyncSubscribeRepos)
-        return StreamClient(atproto, url, request.filter)
+        return SyncStreamClient(atproto, url, request.filter)
     }
 }

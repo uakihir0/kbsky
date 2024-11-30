@@ -1,4 +1,4 @@
-package work.socialhub.kbsky.stream.util.model
+package work.socialhub.kbsky.stream.entity.com.atproto.model
 
 import kotlinx.serialization.Serializable
 

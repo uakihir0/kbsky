@@ -1,7 +1,7 @@
 package work.socialhub.kbsky.stream.api.com.atproto
 
-import work.socialhub.kbsky.stream.api.entity.com.atproto.sync.SyncSubscribeReposRequest
-import work.socialhub.kbsky.stream.util.StreamClient
+import work.socialhub.kbsky.stream.api.entity.com.atproto.SyncSubscribeReposRequest
+import work.socialhub.kbsky.stream.entity.com.atproto.SyncStreamClient
 
 /**
  * ATProtocol/Sync
@@ -14,5 +14,5 @@ interface SyncResource {
      */
     fun subscribeRepos(
         request: SyncSubscribeReposRequest
-    ): StreamClient
+    ): SyncStreamClient
 }
