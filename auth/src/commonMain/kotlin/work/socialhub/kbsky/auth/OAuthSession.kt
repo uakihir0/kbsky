@@ -11,5 +11,5 @@ open class OAuthSession {
     var publicKey: String? = null
     var privateKey: String? = null
 
-    var dPoPNonce: String? = null
+    var dPoPNonce: String = ""
 }
