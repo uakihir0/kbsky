@@ -14,44 +14,6 @@ import java.io.InputStream
 import kotlin.test.BeforeTest
 
 open class AbstractTest {
-    protected lateinit var handle: String
-    protected lateinit var password: String
-    protected lateinit var accessJwt: String
-
-    @BeforeTest
-    fun setupTest() {
-        try {
-            // Get account handle and password.
-            val json = readFile("../secrets.json")
-            val props = fromJson<Map<String, String>>(json!!)
-
-            handle = checkNotNull(props["handle"]) { "missing handle." }
-            password = checkNotNull(props["password"]) { "missing password." }
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        // restore session.
-        readAccessJwt()
-    }
-
-    /**
-     * Read Access JWT
-     */
-    fun readAccessJwt() {
-        val jwt = readFile("../jwt.txt")
-        if (jwt != null) {
-            accessJwt = jwt
-        }
-    }
-
-    /**
-     * Save Access JWT
-     */
-    fun saveAccessJwt() {
-        saveFile(accessJwt, "../jwt.txt")
-    }
 
     @Synchronized
     fun print(record: RecordUnion) {
