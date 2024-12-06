@@ -1,5 +1,8 @@
 package work.socialhub.kbsky.stream.entity.app.bsky
 
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import work.socialhub.kbsky.internal.share._InternalUtility
 import work.socialhub.kbsky.stream.entity.app.bsky.callback.JetStreamEventCallback
 import work.socialhub.kbsky.stream.entity.app.bsky.model.Event
@@ -44,6 +47,13 @@ class JetStreamClient(
 
     suspend fun open() {
         client.open()
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    fun openAsync() {
+        GlobalScope.launch {
+            client.open()
+        }
     }
 
     fun close() {
