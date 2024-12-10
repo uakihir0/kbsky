@@ -9,6 +9,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandl
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedDefsAspectRatio
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesImage
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
@@ -63,6 +64,10 @@ class PostTest : AbstractTest() {
             val image = EmbedImagesImage()
             image.image = response1.data.blob
             image.alt = "image test"
+            val aspectRatio = EmbedDefsAspectRatio()
+            aspectRatio.width = 200
+            aspectRatio.height = 200
+            image.aspectRatio = aspectRatio
             images.add(image)
         }
 
