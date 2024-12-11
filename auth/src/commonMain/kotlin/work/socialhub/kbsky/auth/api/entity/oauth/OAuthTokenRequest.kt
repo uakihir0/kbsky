@@ -45,7 +45,7 @@ class OAuthTokenRequest : MapRequest {
                 it.addParam("refresh_token", refreshToken)
             }
             if (client_assertion.isNotBlank()) {
-                it.addParam("client_assertion", refreshToken)
+                it.addParam("client_assertion", client_assertion)
             }
         }
 }
