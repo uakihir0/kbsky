@@ -18,6 +18,7 @@ import work.socialhub.kbsky.auth.api.entity.oauth.OAuthTokenRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthTokenResponse
 import work.socialhub.kbsky.auth.helper.OAuthHelper
 import work.socialhub.kbsky.auth.helper.OAuthHelper.extractDPoPNonce
+import work.socialhub.kbsky.auth.helper.OAuthHelper.makeClientAssertion
 import work.socialhub.kbsky.auth.helper.RandomHelper
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.util.MediaType
@@ -30,6 +31,7 @@ class _OAuthResource(
     private val config: AuthConfig
 ) : OAuthResource {
 
+    @OptIn(ExperimentalEncodingApi::class)
     override fun pushedAuthorizationRequest(
         context: OAuthContext,
         request: OAuthPushedAuthorizationRequest
@@ -62,13 +64,32 @@ class _OAuthResource(
                     }
                 }
 
+                if (request.keyId?.isNotEmpty() == true) {
+                    //Include the necessary fields for confidential clients
+                    val clientAssertion = makeClientAssertion(request.keyId!!,
+                        context.clientId!!,
+                        config.authorizationServer,
+                        sign = { jwtMessage ->
+                            val privateKey = CryptographyProvider.Default.get(ECDSA)
+                                .privateKeyDecoder(EC.Curve.P256)
+                                .decodeFromByteArrayBlocking(
+                                    EC.PrivateKey.Format.DER,
+                                    Base64.decode(context.privateKey!!)
+                                )
+
+                            privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
+                                .generateSignatureBlocking(jwtMessage.encodeToByteArray())
+                        })
+                    request.clientAssertion = clientAssertion;
+                }
+
                 HttpRequest()
                     .url(config.pushedAuthorizationRequestEndpoint)
                     .accept(MediaType.JSON)
                     .params(request.toMap())
                     .forceApplicationFormUrlEncoded(true)
-                    .post()
-                    .extractDPoPNonce(context)
+                    .postWithRetry(context)
+                    //.extractDPoPNonce(context)
             }
         }
     }
@@ -102,7 +123,7 @@ class _OAuthResource(
                     .accept(MediaType.JSON)
                     .params(request.toMap())
                     .forceApplicationFormUrlEncoded(true)
-                    .postWithRetry(context, request)
+                    .postWithRetry(context)
             }
         }
     }
@@ -110,7 +131,7 @@ class _OAuthResource(
     @OptIn(ExperimentalEncodingApi::class)
     private fun getDPoPHeader(
         context: OAuthContext,
-        request: OAuthTokenRequest
+        endpointURL: String
     ): String {
 
         if (context.publicKey == null || context.privateKey == null) {
@@ -131,7 +152,7 @@ class _OAuthResource(
 
         val dPoPHeader = OAuthHelper.makeDPoPHeader(
             clientId = context.clientId!!,
-            endpoint = config.tokenEndpoint,
+            endpoint = endpointURL,
             method = "POST",
             dPoPNonce = context.dPoPNonce!!,
             accessToken = null, // non pds
@@ -154,25 +175,23 @@ class _OAuthResource(
         return dPoPHeader
     }
 
-    suspend fun HttpRequest.postWithRetry(context: OAuthContext,
-                                          request: OAuthTokenRequest): HttpResponse {
+    suspend fun HttpRequest.postWithRetry(context: OAuthContext): HttpResponse {
 
-        setDPoPHeader(context, request)
+        setDPoPHeader(context)
         val first = this.post();
         if (!isRetryRequired(context, first))
             return first
 
         //Try again if we have modified the DPoPNonce
-        setDPoPHeader(context, request)
+        setDPoPHeader(context)
         val second = this.post()
         return second
     }
 
     private fun HttpRequest.setDPoPHeader(
-        context: OAuthContext,
-        request: OAuthTokenRequest
+        context: OAuthContext
     ) {
-        val dPoPHeader = getDPoPHeader(context, request);
+        val dPoPHeader = getDPoPHeader(context, this.url!!);
         this.header("DPoP", dPoPHeader);
     }
 

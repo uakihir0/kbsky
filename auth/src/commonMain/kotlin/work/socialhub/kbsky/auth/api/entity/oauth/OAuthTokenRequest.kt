@@ -11,6 +11,11 @@ class OAuthTokenRequest : MapRequest {
     var redirectUri = ""
     var refreshToken = ""
 
+    /**
+     * Must be a signed JWT for confidential clients
+     */
+    var client_assertion = ""
+
     var code = ""
     var codeVerifier = ""
 
@@ -38,6 +43,9 @@ class OAuthTokenRequest : MapRequest {
             }
             if (refreshToken.isNotBlank()) {
                 it.addParam("refresh_token", refreshToken)
+            }
+            if (client_assertion.isNotBlank()) {
+                it.addParam("client_assertion", refreshToken)
             }
         }
 }

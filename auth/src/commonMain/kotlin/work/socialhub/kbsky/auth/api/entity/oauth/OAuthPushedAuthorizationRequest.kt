@@ -19,6 +19,13 @@ class OAuthPushedAuthorizationRequest : MapRequest {
     var codeChallenge: String? = null
     var codeChallengeMethod = "S256"
 
+    /**
+     * Must be a signed JWT for confidential clients
+     */
+    var keyId: String? = null
+    var clientAssertion: String? = null
+    var clientAssertionType: String? = null
+
     var state: String? = null
     // var nonce: String? = null
 
@@ -26,14 +33,20 @@ class OAuthPushedAuthorizationRequest : MapRequest {
 
     override fun toMap(): Map<String, Any> =
         mutableMapOf<String, Any>().also {
+            it.addParam("client_assertion_type", clientAssertionType)
+            it.addParam("client_assertion", clientAssertion)
             it.addParam("client_id", clientId)
             it.addParam("redirect_uri", redirectUri)
             it.addParam("response_type", responseType)
             it.addParam("scope", scope.joinToString(" "))
-
             it.addParam("code_challenge", codeChallenge)
             it.addParam("code_challenge_method", codeChallengeMethod)
-            it.addParam("login_hint", loginHint)
+
+            if (loginHint?.isNotBlank() == true) {
+                it.addParam("login_hint", loginHint)
+            }
             it.addParam("state", state)
+
+
         }
 }

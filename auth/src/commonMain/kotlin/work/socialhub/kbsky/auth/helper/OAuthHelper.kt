@@ -89,6 +89,44 @@ object OAuthHelper {
         return "$headerBase64.$payloadBase64.$jwtSignature"
     }
 
+    fun makeClientAssertion(
+        keyId: String,
+        clientId: String,
+        authorizationServer: String,
+        // Function to sign a message with a private key
+        sign: (String) -> ByteArray
+    ): String {
+
+        // Header generation
+        val headerJson = buildJsonObject {
+            put("typ", "JWT")
+            put("alg", "ES256")
+            put("kid", keyId)
+        }
+
+        val epoch = Clock.System.now().epochSeconds
+
+        // Payload generation
+        val payloadJson = buildJsonObject {
+            put("iss", clientId)
+            put("sub", clientId)
+            put("aud", authorizationServer)
+
+            // random token string (unique per request)
+            put("jti", generateRandomValue())
+            put("iat", epoch)
+            put("exp", epoch + 60)
+        }
+
+        // Signature
+        val headerBase64 = Base64.encode(headerJson.toString().toByteArray())
+        val payloadBase64 = Base64.encode(payloadJson.toString().toByteArray())
+        val jwtMessage = "$headerBase64.$payloadBase64"
+
+        val jwtSignature = Base64.encode(sign(jwtMessage))
+        return "$headerBase64.$payloadBase64.$jwtSignature"
+    }
+
     @OptIn(ExperimentalEncodingApi::class)
     private fun generateRandomValue(): String {
         val randomValueBytes = ByteArray(32)
