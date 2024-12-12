@@ -7,4 +7,5 @@ import work.socialhub.kbsky.model.share.Blob
 class EmbedImagesImage {
     var image: Blob? = null
     var alt: String? = null
+    var aspectRatio: EmbedDefsAspectRatio? = null
 }
