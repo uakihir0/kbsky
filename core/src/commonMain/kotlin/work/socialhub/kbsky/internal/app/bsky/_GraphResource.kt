@@ -13,6 +13,8 @@ import work.socialhub.kbsky.BlueskyTypes.GraphGetKnownFollowers
 import work.socialhub.kbsky.BlueskyTypes.GraphGetList
 import work.socialhub.kbsky.BlueskyTypes.GraphGetLists
 import work.socialhub.kbsky.BlueskyTypes.GraphGetMutes
+import work.socialhub.kbsky.BlueskyTypes.GraphGetStarterPack
+import work.socialhub.kbsky.BlueskyTypes.GraphGetStarterPacks
 import work.socialhub.kbsky.BlueskyTypes.GraphList
 import work.socialhub.kbsky.BlueskyTypes.GraphListItem
 import work.socialhub.kbsky.BlueskyTypes.GraphMuteActor
@@ -45,6 +47,10 @@ import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetMutesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetMutesResponse
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPackRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPackResponse
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPacksRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPacksResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphMuteActorRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphRemoveUserFromListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphUnmuteActorRequest
@@ -412,6 +418,34 @@ class _GraphResource(
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
                     .postWithAuth(request.auth)
+            }
+        }
+    }
+
+    override fun getStarterPack(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> {
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, GraphGetStarterPack))
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .getWithAuth(request.auth)
+            }
+        }
+    }
+
+    override fun getStarterPacks(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> {
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, GraphGetStarterPacks))
+                    .accept(MediaType.JSON)
+                    .also {
+                        request.uris?.forEach { uri ->
+                            it.query("uris", uri)
+                        }
+                    }
+                    .getWithAuth(request.auth)
             }
         }
     }
