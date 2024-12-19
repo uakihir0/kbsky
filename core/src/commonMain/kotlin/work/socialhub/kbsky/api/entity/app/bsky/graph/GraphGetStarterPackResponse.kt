@@ -5,5 +5,5 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphStarterPackView
 
 @Serializable
 data class GraphGetStarterPackResponse(
-    val starterPack: GraphStarterPackView
+    var starterPack: GraphStarterPackView
 )
