@@ -118,6 +118,25 @@ class _OAuthResource(
                 context.redirectUri?.let { request.redirectUri = it }
                 context.codeVerifier?.let { request.codeVerifier = it }
 
+                if (request.keyId?.isNotEmpty() == true) {
+                    //Include the necessary fields for confidential clients
+                    val clientAssertion = makeClientAssertion(request.keyId!!,
+                        context.clientId!!,
+                        config.authorizationServer,
+                        sign = { jwtMessage ->
+                            val privateKey = CryptographyProvider.Default.get(ECDSA)
+                                .privateKeyDecoder(EC.Curve.P256)
+                                .decodeFromByteArrayBlocking(
+                                    EC.PrivateKey.Format.DER,
+                                    Base64.decode(context.privateKey!!)
+                                )
+
+                            privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
+                                .generateSignatureBlocking(jwtMessage.encodeToByteArray())
+                        })
+                    request.clientAssertion = clientAssertion;
+                }
+
                 HttpRequest()
                     .url(config.tokenEndpoint)
                     .accept(MediaType.JSON)

@@ -12,9 +12,11 @@ class OAuthTokenRequest : MapRequest {
     var refreshToken = ""
 
     /**
-     * Must be a signed JWT for confidential clients
+     * Required for confidential OAuth clients.
      */
-    var client_assertion = ""
+    var keyId: String? = null
+    var clientAssertionType: String? = null
+    var clientAssertion: String? = null
 
     var code = ""
     var codeVerifier = ""
@@ -44,8 +46,9 @@ class OAuthTokenRequest : MapRequest {
             if (refreshToken.isNotBlank()) {
                 it.addParam("refresh_token", refreshToken)
             }
-            if (client_assertion.isNotBlank()) {
-                it.addParam("client_assertion", client_assertion)
+            if (clientAssertion?.isNotBlank() == true) {
+                it.addParam("client_assertion", clientAssertion)
+                it.addParam("client_assertion_type", clientAssertionType)
             }
         }
 }

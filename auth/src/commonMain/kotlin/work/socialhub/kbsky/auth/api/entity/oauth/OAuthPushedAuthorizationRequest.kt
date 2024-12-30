@@ -20,11 +20,11 @@ class OAuthPushedAuthorizationRequest : MapRequest {
     var codeChallengeMethod = "S256"
 
     /**
-     * Must be a signed JWT for confidential clients
+     * Required for confidential OAuth clients.
      */
     var keyId: String? = null
-    var clientAssertion: String? = null
     var clientAssertionType: String? = null
+    var clientAssertion: String? = null
 
     var state: String? = null
     // var nonce: String? = null
