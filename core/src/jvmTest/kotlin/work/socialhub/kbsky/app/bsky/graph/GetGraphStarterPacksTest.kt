@@ -23,7 +23,8 @@ class GetGraphStarterPacksTest : AbstractTest() {
                 }
             )
 
-        response.data.starterPacks
-            .forEach { print(it) }
+        response.data.starterPacks.forEach {
+            println("Name: ${it.record.asGraphStarterPack?.name}")
+        }
     }
 }

@@ -1,5 +1,7 @@
 package work.socialhub.kbsky
 
+import work.socialhub.kbsky.model.app.bsky.graph.GraphStarterPack
+
 /**
  * Bluesky/ATProtocol
  * https://atproto.com/docs
@@ -66,6 +68,7 @@ object BlueskyTypes {
     const val GraphListItem = "app.bsky.graph.listitem"
     const val GraphGetStarterPack = "app.bsky.graph.getStarterPack"
     const val GraphGetStarterPacks = "app.bsky.graph.getStarterPacks"
+    const val GraphStarterPack = "app.bsky.graph.starterpack"
 
 
     // Labeler

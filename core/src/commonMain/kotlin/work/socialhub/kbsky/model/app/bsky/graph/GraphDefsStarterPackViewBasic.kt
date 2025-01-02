@@ -11,8 +11,9 @@ data class GraphDefsStarterPackViewBasic(
     val cid: String,
     val record: RecordUnion,
     val creator: ActorDefsProfileViewBasic,
-    val joinedWeekCount: Int,
-    val joinedAllTimeCount: Int,
-    val labels: List<LabelDefsLabel>,
+    val listItemCount: Int? = null,
+    val joinedWeekCount: Int? = null,
+    val joinedAllTimeCount: Int? = null,
+    val labels: List<LabelDefsLabel>? = null,
     val indexedAt: String
 )

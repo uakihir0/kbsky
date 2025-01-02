@@ -177,7 +177,6 @@ interface GraphResource {
         request: GraphRemoveUserFromListRequest
     ): Response<Unit>
 
-
     /**
      * Gets a view of a starter pack.
      */
@@ -191,6 +190,4 @@ interface GraphResource {
     fun getStarterPacks(
         request: GraphGetStarterPacksRequest
     ): Response<GraphGetStarterPacksResponse>
-
-
 }

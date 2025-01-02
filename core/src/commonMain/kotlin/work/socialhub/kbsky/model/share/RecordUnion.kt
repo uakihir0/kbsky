@@ -10,6 +10,7 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.app.bsky.graph.GraphList
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
+import work.socialhub.kbsky.model.app.bsky.graph.GraphStarterPack
 import work.socialhub.kbsky.util.json.RecordPolymorphicSerializer
 
 /**
@@ -35,4 +36,5 @@ abstract class RecordUnion {
     val asFeedRepost get() = this as? FeedRepost
     val asGraphListItem get() = this as? GraphListItem
     val asGraphList get() = this as? GraphList
+    val asGraphStarterPack get() = this as? GraphStarterPack
 }

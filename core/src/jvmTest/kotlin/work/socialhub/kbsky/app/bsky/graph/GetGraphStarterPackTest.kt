@@ -19,6 +19,6 @@ class GetGraphStarterPackTest : AbstractTest() {
                 }
             )
 
-        print(response.data.starterPack)
+        println("Name: ${response.data.starterPack.record.asGraphStarterPack?.name}")
     }
 }
