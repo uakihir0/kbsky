@@ -4,7 +4,7 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class GraphGetStarterPacksRequest (
+class GraphGetStarterPacksRequest(
     auth: AuthProvider
 ) : AuthRequest(auth), MapRequest {
 

@@ -1,7 +1,5 @@
 package work.socialhub.kbsky
 
-import work.socialhub.kbsky.model.app.bsky.graph.GraphStarterPack
-
 /**
  * Bluesky/ATProtocol
  * https://atproto.com/docs

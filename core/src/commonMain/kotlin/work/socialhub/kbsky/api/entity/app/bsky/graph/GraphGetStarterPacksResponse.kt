@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsStarterPackViewBasic
 
 @Serializable
-data class GraphGetStarterPacksResponse (
+data class GraphGetStarterPacksResponse(
     var starterPacks: List<GraphDefsStarterPackViewBasic>
 )
