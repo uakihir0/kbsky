@@ -64,6 +64,10 @@ object BlueskyTypes {
     const val GraphGetLists = "app.bsky.graph.getLists"
     const val GraphList = "app.bsky.graph.list"
     const val GraphListItem = "app.bsky.graph.listitem"
+    const val GraphGetStarterPack = "app.bsky.graph.getStarterPack"
+    const val GraphGetStarterPacks = "app.bsky.graph.getStarterPacks"
+    const val GraphStarterPack = "app.bsky.graph.starterpack"
+
 
     // Labeler
     const val LabelerDefs = "app.bsky.labeler.defs"

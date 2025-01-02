@@ -27,6 +27,10 @@ import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetListsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetMutesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetMutesResponse
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPackRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPackResponse
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPacksRequest
+import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPacksResponse
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphMuteActorRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphRemoveUserFromListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphUnmuteActorRequest
@@ -173,4 +177,17 @@ interface GraphResource {
         request: GraphRemoveUserFromListRequest
     ): Response<Unit>
 
+    /**
+     * Gets a view of a starter pack.
+     */
+    fun getStarterPack(
+        request: GraphGetStarterPackRequest
+    ): Response<GraphGetStarterPackResponse>
+
+    /**
+     * Gets a view of a starter pack.
+     */
+    fun getStarterPacks(
+        request: GraphGetStarterPacksRequest
+    ): Response<GraphGetStarterPacksResponse>
 }
