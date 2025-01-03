@@ -8,4 +8,5 @@ out/
 oauth.json
 secrets.json
 jwt.txt
+jwt.json
 /local.properties

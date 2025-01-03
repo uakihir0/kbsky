@@ -17,6 +17,7 @@ import kotlin.io.encoding.ExperimentalEncodingApi
 
 class OAuthProvider(
     val accessTokenJwt: String,
+    val refreshTokenJwt: String? = null,
     val session: OAuthSession,
 ) : AuthProvider {
 
