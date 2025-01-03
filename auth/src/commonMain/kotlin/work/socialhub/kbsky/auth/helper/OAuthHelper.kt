@@ -76,16 +76,58 @@ object OAuthHelper {
             put("exp", epoch + 60)
             // random token string (unique per request)
             put("jti", generateRandomValue())
-            put("iat", epoch)
+            //In the past to help with minor clock skew
+            put("iat", epoch - 10)
             put("nonce", dPoPNonce)
         }
 
-        // Signature
-        val headerBase64 = Base64.encode(headerJson.toString().toByteArray())
-        val payloadBase64 = Base64.encode(payloadJson.toString().toByteArray())
+        //We need to remove any padding characters (=) to ensure we are compliant
+        //Ideally we'd be using a dedicated JWT library to take care of this for us.
+        val headerBase64 = Base64.UrlSafe.encode(headerJson.toString().toByteArray()).replace("=", "");
+        val payloadBase64 = Base64.UrlSafe.encode(payloadJson.toString().toByteArray()).replace("=", "");
         val jwtMessage = "$headerBase64.$payloadBase64"
 
-        val jwtSignature = Base64.encode(sign(jwtMessage))
+        val jwtSignature = Base64.UrlSafe.encode(sign(jwtMessage)).replace("=", "");
+        return "$headerBase64.$payloadBase64.$jwtSignature"
+    }
+
+    fun makeClientAssertion(
+        keyId: String,
+        clientId: String,
+        authorizationServer: String,
+        // Function to sign a message with a private key
+        sign: (String) -> ByteArray
+    ): String {
+
+        // Header generation
+        val headerJson = buildJsonObject {
+            put("typ", "JWT")
+            put("alg", "ES256")
+            put("kid", keyId)
+        }
+
+        val epoch = Clock.System.now().epochSeconds
+
+        // Payload generation
+        val payloadJson = buildJsonObject {
+            put("iss", clientId)
+            put("sub", clientId)
+            put("aud", authorizationServer)
+
+            // random token string (unique per request)
+            put("jti", generateRandomValue())
+            //In the past to help with minor clock skew
+            put("iat", epoch - 10)
+            put("exp", epoch + 300)
+        }
+
+        //We need to remove any padding characters (=) to ensure we are compliant
+        //Ideally we'd be using a dedicated JWT library to take care of this for us.
+        val headerBase64 = Base64.UrlSafe.encode(headerJson.toString().toByteArray()).replace("=", "");
+        val payloadBase64 = Base64.UrlSafe.encode(payloadJson.toString().toByteArray()).replace("=", "");
+        val jwtMessage = "$headerBase64.$payloadBase64"
+
+        val jwtSignature = Base64.UrlSafe.encode(sign(jwtMessage)).replace("=", "");
         return "$headerBase64.$payloadBase64.$jwtSignature"
     }
 

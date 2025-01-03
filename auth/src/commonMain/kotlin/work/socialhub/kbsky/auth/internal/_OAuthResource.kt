@@ -18,10 +18,12 @@ import work.socialhub.kbsky.auth.api.entity.oauth.OAuthTokenRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthTokenResponse
 import work.socialhub.kbsky.auth.helper.OAuthHelper
 import work.socialhub.kbsky.auth.helper.OAuthHelper.extractDPoPNonce
+import work.socialhub.kbsky.auth.helper.OAuthHelper.makeClientAssertion
 import work.socialhub.kbsky.auth.helper.RandomHelper
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
+import work.socialhub.khttpclient.HttpResponse
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
@@ -29,6 +31,7 @@ class _OAuthResource(
     private val config: AuthConfig
 ) : OAuthResource {
 
+    @OptIn(ExperimentalEncodingApi::class)
     override fun pushedAuthorizationRequest(
         context: OAuthContext,
         request: OAuthPushedAuthorizationRequest
@@ -61,13 +64,32 @@ class _OAuthResource(
                     }
                 }
 
+                if (request.keyId?.isNotEmpty() == true) {
+                    //Include the necessary fields for confidential clients
+                    val clientAssertion = makeClientAssertion(request.keyId!!,
+                        context.clientId!!,
+                        config.authorizationServer,
+                        sign = { jwtMessage ->
+                            val privateKey = CryptographyProvider.Default.get(ECDSA)
+                                .privateKeyDecoder(EC.Curve.P256)
+                                .decodeFromByteArrayBlocking(
+                                    EC.PrivateKey.Format.DER,
+                                    Base64.decode(context.privateKey!!)
+                                )
+
+                            privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
+                                .generateSignatureBlocking(jwtMessage.encodeToByteArray())
+                        })
+                    request.clientAssertion = clientAssertion;
+                }
+
                 HttpRequest()
                     .url(config.pushedAuthorizationRequestEndpoint)
                     .accept(MediaType.JSON)
                     .params(request.toMap())
                     .forceApplicationFormUrlEncoded(true)
-                    .post()
-                    .extractDPoPNonce(context)
+                    .postWithRetry(context)
+                    //.extractDPoPNonce(context)
             }
         }
     }
@@ -95,55 +117,111 @@ class _OAuthResource(
                 context.clientId?.let { request.clientId = it }
                 context.redirectUri?.let { request.redirectUri = it }
                 context.codeVerifier?.let { request.codeVerifier = it }
-                context.dPoPNonce?.let { request.dPoPNonce = it }
 
-                if (context.publicKey == null || context.privateKey == null) {
-                    val keyPair = CryptographyProvider.Default.get(ECDSA)
-                        .keyPairGenerator(EC.Curve.P256).generateKeyBlocking()
+                if (request.keyId?.isNotEmpty() == true) {
+                    //Include the necessary fields for confidential clients
+                    val clientAssertion = makeClientAssertion(request.keyId!!,
+                        context.clientId!!,
+                        config.authorizationServer,
+                        sign = { jwtMessage ->
+                            val privateKey = CryptographyProvider.Default.get(ECDSA)
+                                .privateKeyDecoder(EC.Curve.P256)
+                                .decodeFromByteArrayBlocking(
+                                    EC.PrivateKey.Format.DER,
+                                    Base64.decode(context.privateKey!!)
+                                )
 
-                    context.publicKey = Base64.encode(
-                        keyPair.publicKey.encodeToByteArrayBlocking(EC.PublicKey.Format.DER)
-                    )
-                    context.privateKey = Base64.encode(
-                        keyPair.privateKey.encodeToByteArrayBlocking(EC.PrivateKey.Format.DER)
-                    )
+                            privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
+                                .generateSignatureBlocking(jwtMessage.encodeToByteArray())
+                        })
+                    request.clientAssertion = clientAssertion;
                 }
-
-                val publicKeyXY = OAuthHelper.extractXYFromPublicKey(
-                    Base64.decode(context.publicKey!!)
-                )
-
-                val dPoPHeader = OAuthHelper.makeDPoPHeader(
-                    clientId = request.clientId,
-                    endpoint = config.tokenEndpoint,
-                    method = "POST",
-                    dPoPNonce = request.dPoPNonce!!,
-                    accessToken = null, // non pds
-                    authorizationServer = null, // non pds
-                    publicKeyWAffineX = publicKeyXY.first,
-                    publicKeyWAffineY = publicKeyXY.second,
-                    sign = { jwtMessage ->
-                        val privateKey = CryptographyProvider.Default.get(ECDSA)
-                            .privateKeyDecoder(EC.Curve.P256)
-                            .decodeFromByteArrayBlocking(
-                                EC.PrivateKey.Format.DER,
-                                Base64.decode(context.privateKey!!)
-                            )
-
-                        privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
-                            .generateSignatureBlocking(jwtMessage.encodeToByteArray())
-                    }
-                )
 
                 HttpRequest()
                     .url(config.tokenEndpoint)
                     .accept(MediaType.JSON)
                     .params(request.toMap())
                     .forceApplicationFormUrlEncoded(true)
-                    .header("DPoP", dPoPHeader)
-                    .post()
-                    .extractDPoPNonce(context)
+                    .postWithRetry(context)
             }
         }
+    }
+
+    @OptIn(ExperimentalEncodingApi::class)
+    private fun getDPoPHeader(
+        context: OAuthContext,
+        endpointURL: String
+    ): String {
+
+        if (context.publicKey == null || context.privateKey == null) {
+            val keyPair = CryptographyProvider.Default.get(ECDSA)
+                .keyPairGenerator(EC.Curve.P256).generateKeyBlocking()
+
+            context.publicKey = Base64.encode(
+                keyPair.publicKey.encodeToByteArrayBlocking(EC.PublicKey.Format.DER)
+            )
+            context.privateKey = Base64.encode(
+                keyPair.privateKey.encodeToByteArrayBlocking(EC.PrivateKey.Format.DER)
+            )
+        }
+
+        val publicKeyXY = OAuthHelper.extractXYFromPublicKey(
+            Base64.decode(context.publicKey!!)
+        )
+
+        val dPoPHeader = OAuthHelper.makeDPoPHeader(
+            clientId = context.clientId!!,
+            endpoint = endpointURL,
+            method = "POST",
+            dPoPNonce = context.dPoPNonce!!,
+            accessToken = null, // non pds
+            authorizationServer = null, // non pds
+            publicKeyWAffineX = publicKeyXY.first,
+            publicKeyWAffineY = publicKeyXY.second,
+            sign = { jwtMessage ->
+                val privateKey = CryptographyProvider.Default.get(ECDSA)
+                    .privateKeyDecoder(EC.Curve.P256)
+                    .decodeFromByteArrayBlocking(
+                        EC.PrivateKey.Format.DER,
+                        Base64.decode(context.privateKey!!)
+                    )
+
+                privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
+                    .generateSignatureBlocking(jwtMessage.encodeToByteArray())
+            }
+        )
+
+        return dPoPHeader
+    }
+
+    suspend fun HttpRequest.postWithRetry(context: OAuthContext): HttpResponse {
+
+        setDPoPHeader(context)
+        val first = this.post();
+        if (!isRetryRequired(context, first))
+            return first
+
+        //Try again if we have modified the DPoPNonce
+        setDPoPHeader(context)
+        val second = this.post()
+        return second
+    }
+
+    private fun HttpRequest.setDPoPHeader(
+        context: OAuthContext
+    ) {
+        val dPoPHeader = getDPoPHeader(context, this.url!!);
+        this.header("DPoP", dPoPHeader);
+    }
+
+    fun isRetryRequired(
+        context: OAuthContext,
+        response: HttpResponse
+    ): Boolean {
+        response.extractDPoPNonce(context)
+
+        // Retry in case of error with DPoP Nonce
+        return (response.status / 100 == 4 &&
+                response.stringBody.contains("use_dpop_nonce"))
     }
 }
