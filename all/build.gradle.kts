@@ -49,7 +49,7 @@ tasks.podPublishXCFramework {
     doLast {
         exec {
             executable = "sh"
-            args = listOf("../tool/rename_podfile.sh")
+            args = listOf("./tool/rename_podfile.sh")
         }
     }
 }
