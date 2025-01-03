@@ -1,8 +1,8 @@
 package work.socialhub.kbsky.auth
 
 import dev.whyoleg.cryptography.CryptographyProvider
-import dev.whyoleg.cryptography.algorithms.asymmetric.EC
-import dev.whyoleg.cryptography.algorithms.asymmetric.ECDSA
+import dev.whyoleg.cryptography.algorithms.EC
+import dev.whyoleg.cryptography.algorithms.ECDSA
 import io.ktor.http.Url
 import work.socialhub.kbsky.auth.helper.OAuthHelper
 import java.security.KeyFactory
@@ -25,8 +25,8 @@ class HelperTest {
             val keyPair = CryptographyProvider.Default.get(ECDSA)
                 .keyPairGenerator(EC.Curve.P256).generateKeyBlocking()
 
-            var public = Base64.encode(keyPair.publicKey.encodeToBlocking(EC.PublicKey.Format.DER))
-            var private = Base64.encode(keyPair.privateKey.encodeToBlocking(EC.PrivateKey.Format.DER))
+            var public = Base64.encode(keyPair.publicKey.encodeToByteArrayBlocking(EC.PublicKey.Format.DER))
+            var private = Base64.encode(keyPair.privateKey.encodeToByteArrayBlocking(EC.PrivateKey.Format.DER))
 
             println(public)
             println(private)

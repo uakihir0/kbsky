@@ -17,6 +17,11 @@ interface MapRequest {
         if (value == null) {
             return
         }
+        if (value is String) {
+            if (value.isBlank()) {
+                return
+            }
+        }
         this[key] = value
     }
 }

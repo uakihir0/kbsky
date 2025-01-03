@@ -42,11 +42,7 @@ class OAuthPushedAuthorizationRequest : MapRequest {
             it.addParam("code_challenge", codeChallenge)
             it.addParam("code_challenge_method", codeChallengeMethod)
 
-            if (loginHint?.isNotBlank() == true) {
-                it.addParam("login_hint", loginHint)
-            }
+            it.addParam("login_hint", loginHint)
             it.addParam("state", state)
-
-
         }
 }

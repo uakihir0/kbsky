@@ -1,23 +1,37 @@
 package work.socialhub.kbsky
 
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.modules.SerializersModule
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.auth.BearerTokenAuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
+import work.socialhub.kbsky.util.json.AnySerializer
 import java.io.File
 import kotlin.test.BeforeTest
 
 open class AbstractTest {
+
+    protected val json = Json {
+        prettyPrint = true
+        explicitNulls = false
+        encodeDefaults = true
+        ignoreUnknownKeys = true
+        serializersModule = SerializersModule {
+            contextual(Any::class, AnySerializer)
+        }
+    }
+
     protected lateinit var handle: String
     protected lateinit var password: String
-    protected lateinit var accessJwt: String
-    protected lateinit var refreshJwt: String
+    protected var jwt = JwtStore()
 
     @BeforeTest
     fun setupTest() {
         try {
             // Get account handle and password.
-            val json = readFile("../secrets.json")
-            val props = fromJson<Map<String, String>>(json!!)
+            val jsonStr = readFile("../secrets.json")
+            val props = json.decodeFromString<Map<String, String>>(jsonStr!!)
 
             handle = checkNotNull(props["handle"]) { "missing handle." }
             password = checkNotNull(props["password"]) { "missing password." }
@@ -36,29 +50,34 @@ open class AbstractTest {
         }
 
         // restore session.
-        readAccessJwt()
+        readJwt()
     }
 
-
     fun auth(): AuthProvider {
-        return BearerTokenAuthProvider(accessJwt)
+        return BearerTokenAuthProvider(
+            accessTokenJwt = jwt.accessJwt!!,
+            refreshTokenJwt = jwt.refreshJwt,
+        )
     }
 
     /**
      * Read Access JWT
      */
-    private fun readAccessJwt() {
-        val jwt = readFile("../jwt.txt")
-        if (jwt != null) {
-            accessJwt = jwt
+    private fun readJwt() {
+        val file = readFile("../jwt.json")
+        if (file != null) {
+            val store = json.decodeFromString<JwtStore>(file)
+            jwt.accessJwt = store.accessJwt
+            jwt.refreshJwt = store.refreshJwt
         }
     }
 
     /**
      * Save Access JWT
      */
-    fun saveAccessJwt() {
-        saveFile(accessJwt, "../jwt.txt")
+    fun saveJwt() {
+        val file = json.encodeToString(jwt)
+        saveFile(file, "../jwt.json")
     }
 
     /**

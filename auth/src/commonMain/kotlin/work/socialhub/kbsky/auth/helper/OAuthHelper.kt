@@ -81,13 +81,11 @@ object OAuthHelper {
             put("nonce", dPoPNonce)
         }
 
-        //We need to remove any padding characters (=) to ensure we are compliant
-        //Ideally we'd be using a dedicated JWT library to take care of this for us.
-        val headerBase64 = Base64.UrlSafe.encode(headerJson.toString().toByteArray()).replace("=", "");
-        val payloadBase64 = Base64.UrlSafe.encode(payloadJson.toString().toByteArray()).replace("=", "");
+        val headerBase64 = base64Encode(headerJson.toString().toByteArray())
+        val payloadBase64 = base64Encode(payloadJson.toString().toByteArray())
         val jwtMessage = "$headerBase64.$payloadBase64"
 
-        val jwtSignature = Base64.UrlSafe.encode(sign(jwtMessage)).replace("=", "");
+        val jwtSignature = base64Encode(sign(jwtMessage))
         return "$headerBase64.$payloadBase64.$jwtSignature"
     }
 
@@ -121,13 +119,11 @@ object OAuthHelper {
             put("exp", epoch + 300)
         }
 
-        //We need to remove any padding characters (=) to ensure we are compliant
-        //Ideally we'd be using a dedicated JWT library to take care of this for us.
-        val headerBase64 = Base64.UrlSafe.encode(headerJson.toString().toByteArray()).replace("=", "");
-        val payloadBase64 = Base64.UrlSafe.encode(payloadJson.toString().toByteArray()).replace("=", "");
+        val headerBase64 = base64Encode(headerJson.toString().toByteArray())
+        val payloadBase64 = base64Encode(payloadJson.toString().toByteArray())
         val jwtMessage = "$headerBase64.$payloadBase64"
 
-        val jwtSignature = Base64.UrlSafe.encode(sign(jwtMessage)).replace("=", "");
+        val jwtSignature = base64Encode(sign(jwtMessage))
         return "$headerBase64.$payloadBase64.$jwtSignature"
     }
 
@@ -153,5 +149,11 @@ object OAuthHelper {
         return Base64.UrlSafe
             .encode(s256.hashBlocking(seed))
             .replace("=", "")
+    }
+
+    private fun base64Encode(ary: ByteArray): String {
+        // We need to remove any padding characters (=) to ensure we are compliant
+        // Ideally we'd be using a dedicated JWT library to take care of this for us.
+        return Base64.UrlSafe.encode(ary).replace("=", "");
     }
 }

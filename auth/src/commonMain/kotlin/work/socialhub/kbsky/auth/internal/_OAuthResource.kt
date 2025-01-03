@@ -12,8 +12,10 @@ import work.socialhub.kbsky.auth.AuthConfig
 import work.socialhub.kbsky.auth.OAuthContext
 import work.socialhub.kbsky.auth.api.OAuthResource
 import work.socialhub.kbsky.auth.api.entity.oauth.BuildAuthorizationUrlRequest
+import work.socialhub.kbsky.auth.api.entity.oauth.OAuthAuthorizationCodeTokenRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthPushedAuthorizationRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthPushedAuthorizationResponse
+import work.socialhub.kbsky.auth.api.entity.oauth.OAuthRefreshTokenRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthTokenRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthTokenResponse
 import work.socialhub.kbsky.auth.helper.OAuthHelper
@@ -65,10 +67,11 @@ class _OAuthResource(
                 }
 
                 if (request.keyId?.isNotEmpty() == true) {
-                    //Include the necessary fields for confidential clients
-                    val clientAssertion = makeClientAssertion(request.keyId!!,
-                        context.clientId!!,
-                        config.authorizationServer,
+                    // Include the necessary fields for confidential clients
+                    val clientAssertion = makeClientAssertion(
+                        keyId = request.keyId!!,
+                        clientId = context.clientId!!,
+                        authorizationServer = config.authorizationServer,
                         sign = { jwtMessage ->
                             val privateKey = CryptographyProvider.Default.get(ECDSA)
                                 .privateKeyDecoder(EC.Curve.P256)
@@ -80,7 +83,7 @@ class _OAuthResource(
                             privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
                                 .generateSignatureBlocking(jwtMessage.encodeToByteArray())
                         })
-                    request.clientAssertion = clientAssertion;
+                    request.clientAssertion = clientAssertion
                 }
 
                 HttpRequest()
@@ -89,7 +92,6 @@ class _OAuthResource(
                     .params(request.toMap())
                     .forceApplicationFormUrlEncoded(true)
                     .postWithRetry(context)
-                    //.extractDPoPNonce(context)
             }
         }
     }
@@ -119,10 +121,11 @@ class _OAuthResource(
                 context.codeVerifier?.let { request.codeVerifier = it }
 
                 if (request.keyId?.isNotEmpty() == true) {
-                    //Include the necessary fields for confidential clients
-                    val clientAssertion = makeClientAssertion(request.keyId!!,
-                        context.clientId!!,
-                        config.authorizationServer,
+                    // Include the necessary fields for confidential clients
+                    val clientAssertion = makeClientAssertion(
+                        keyId = request.keyId!!,
+                        clientId = context.clientId!!,
+                        authorizationServer = config.authorizationServer,
                         sign = { jwtMessage ->
                             val privateKey = CryptographyProvider.Default.get(ECDSA)
                                 .privateKeyDecoder(EC.Curve.P256)
@@ -134,7 +137,7 @@ class _OAuthResource(
                             privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
                                 .generateSignatureBlocking(jwtMessage.encodeToByteArray())
                         })
-                    request.clientAssertion = clientAssertion;
+                    request.clientAssertion = clientAssertion
                 }
 
                 HttpRequest()
@@ -145,6 +148,20 @@ class _OAuthResource(
                     .postWithRetry(context)
             }
         }
+    }
+
+    override fun authorizationCodeTokenRequest(
+        context: OAuthContext,
+        request: OAuthAuthorizationCodeTokenRequest
+    ): Response<OAuthTokenResponse> {
+        return tokenRequest(context, request.buildTokenRequest())
+    }
+
+    override fun refreshTokenRequest(
+        context: OAuthContext,
+        request: OAuthRefreshTokenRequest
+    ): Response<OAuthTokenResponse> {
+        return tokenRequest(context, request.buildTokenRequest())
     }
 
     @OptIn(ExperimentalEncodingApi::class)
@@ -173,7 +190,7 @@ class _OAuthResource(
             clientId = context.clientId!!,
             endpoint = endpointURL,
             method = "POST",
-            dPoPNonce = context.dPoPNonce!!,
+            dPoPNonce = context.dPoPNonce,
             accessToken = null, // non pds
             authorizationServer = null, // non pds
             publicKeyWAffineX = publicKeyXY.first,
@@ -194,14 +211,17 @@ class _OAuthResource(
         return dPoPHeader
     }
 
-    suspend fun HttpRequest.postWithRetry(context: OAuthContext): HttpResponse {
+    private suspend fun HttpRequest.postWithRetry(
+        context: OAuthContext
+    ): HttpResponse {
 
         setDPoPHeader(context)
         val first = this.post();
-        if (!isRetryRequired(context, first))
+        if (!isRetryRequired(context, first)) {
             return first
+        }
 
-        //Try again if we have modified the DPoPNonce
+        // Try again if we have modified the DPoPNonce
         setDPoPHeader(context)
         val second = this.post()
         return second
@@ -214,7 +234,7 @@ class _OAuthResource(
         this.header("DPoP", dPoPHeader);
     }
 
-    fun isRetryRequired(
+    private fun isRetryRequired(
         context: OAuthContext,
         response: HttpResponse
     ): Boolean {

@@ -8,7 +8,8 @@ import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
 class BearerTokenAuthProvider(
-    val accessTokenJwt: String
+    val accessTokenJwt: String,
+    val refreshTokenJwt: String? = null,
 ) : AuthProvider {
 
     override fun beforeRequestHook(
