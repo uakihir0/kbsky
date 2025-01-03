@@ -76,7 +76,8 @@ object OAuthHelper {
             put("exp", epoch + 60)
             // random token string (unique per request)
             put("jti", generateRandomValue())
-            put("iat", epoch)
+            //In the past to help with minor clock skew
+            put("iat", epoch - 10)
             put("nonce", dPoPNonce)
         }
 
@@ -115,7 +116,8 @@ object OAuthHelper {
 
             // random token string (unique per request)
             put("jti", generateRandomValue())
-            put("iat", epoch)
+            //In the past to help with minor clock skew
+            put("iat", epoch - 10)
             put("exp", epoch + 300)
         }
 
