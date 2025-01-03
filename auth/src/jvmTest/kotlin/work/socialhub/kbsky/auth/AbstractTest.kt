@@ -23,8 +23,7 @@ open class AbstractTest {
 
     protected lateinit var handle: String
     protected lateinit var password: String
-    protected lateinit var accessJwt: String
-    protected lateinit var refreshJwt: String
+    protected var jwt = JwtStore()
 
     @BeforeTest
     fun setupTest() {
@@ -50,8 +49,7 @@ open class AbstractTest {
         }
 
         // restore session.
-        readAccessJwt()
-
+        readJwt()
 
         try {
             val jsonStr = readFile("../oauth.json")
@@ -65,7 +63,8 @@ open class AbstractTest {
 
     fun auth(): AuthProvider {
         return OAuthProvider(
-            accessTokenJwt = accessJwt,
+            accessTokenJwt = jwt.accessJwt!!,
+            refreshTokenJwt = jwt.refreshJwt,
             session = oAuthContext
         )
     }
@@ -83,18 +82,21 @@ open class AbstractTest {
     /**
      * Read Access JWT
      */
-    private fun readAccessJwt() {
-        val jwt = readFile("../jwt.txt")
-        if (jwt != null) {
-            accessJwt = jwt
+    private fun readJwt() {
+        val file = readFile("../jwt.json")
+        if (file != null) {
+            val store = json.decodeFromString<JwtStore>(file)
+            jwt.accessJwt = store.accessJwt
+            jwt.refreshJwt = store.refreshJwt
         }
     }
 
     /**
      * Save Access JWT
      */
-    fun saveAccessJwt() {
-        saveFile(accessJwt, "../jwt.txt")
+    fun saveJwt() {
+        val file = json.encodeToString(jwt)
+        saveFile(file, "../jwt.json")
     }
 
     /**
