@@ -6,19 +6,25 @@ object FacetUtil {
      * 文字列を展開して Facets になりえる要素を展開します
      * (公式 Web App を準拠した形で作成しています)
      * (リンクカード等は生成しません)
+     *
+     * ref: https://github.com/bluesky-social/atproto/blob/main/packages/api/src/rich-text/util.ts
      */
     fun extractFacets(text: String): FacetList {
         val records = mutableListOf<FacetRecord>()
         var str = text
 
         // メンションの要素を分解
-        val mentionRegex = Regex("(?<=^|\\s)(@[\\w.-]+)")
+        // (ref そのまだだと、空文字でも認識されてしまう問題があるので先頭を修正し、括弧を追加)
+        val mentionRegex = Regex("(?<=^|\\s|\\()((@)([a-zA-Z0-9.-]+))(\\b)")
 
         // リンクの要素を展開
-        val linkRegex = Regex("(?<=^|\\s)(https?://\\S+)")
+        // (ref そのまだだと、空文字でも認識されてしまう問題があるので先頭を修正)
+        val linkRegex = Regex("(?<=^|\\s|\\()((https?://[\\S]+)|((?<domain>[a-z][a-z0-9]*(\\.[a-z0-9]+)+)[\\S]*))")
 
         // ハッシュタグの要素を展開
-        val tagRegex = Regex("(?<=^|\\s)(#[^\\d\\s]\\S*)")
+        // (ref そのまだだと、空文字でも認識されてしまう問題があるので先頭を修正し、括弧を追加した上で、# だけでも認識される問題があるので末尾の ? を + に変更)
+        val tagRegex =
+            Regex("(?<=^|\\s)([#＃]((?!\\ufe0f)[^\\s\\u00AD\\u2060\\u200A\\u200B\\u200C\\u200D\\u20e2]*[^\\d\\s\\p{P}\\u00AD\\u2060\\u200A\\u200B\\u200C\\u200D\\u20e2]+[^\\s\\u00AD\\u2060\\u200A\\u200B\\u200C\\u200D\\u20e2]*)+)")
 
         while (true) {
             val mentionFind = mentionRegex.find(str)
