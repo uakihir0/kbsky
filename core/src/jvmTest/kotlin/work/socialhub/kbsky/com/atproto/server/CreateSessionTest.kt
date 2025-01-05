@@ -32,7 +32,8 @@ class CreateSessionTest : AbstractTest() {
 
 
         // Save the accessJwt for testing other APIs
-        accessJwt = checkNotNull(response.data.accessJwt)
-        saveAccessJwt()
+        jwt.accessJwt = checkNotNull(response.data.accessJwt)
+        jwt.refreshJwt = checkNotNull(response.data.refreshJwt)
+        saveJwt()
     }
 }
