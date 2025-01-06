@@ -9,8 +9,8 @@ khttpclient = "work.socialhub:khttpclient:0.0.3"
 ktor-core = "io.ktor:ktor-client-core:3.0.3"
 datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.1"
 coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1"
-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3"
-serialization-cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.7.3"
+serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0"
+serialization-cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.8.0"
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
 nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
