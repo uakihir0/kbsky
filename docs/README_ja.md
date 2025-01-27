@@ -28,8 +28,9 @@ repositories {
 }
 
 dependencies {
-+   implementation("work.socialhub.kbsky:core:0.2.0")
-+   implementation("work.socialhub.kbsky:stream:0.2.0")
++   implementation("work.socialhub.kbsky:core:0.3.0")
++   implementation("work.socialhub.kbsky:auth:0.3.0")
++   implementation("work.socialhub.kbsky:stream:0.3.0")
 }
 ```
 
@@ -41,8 +42,9 @@ repositories {
 }
 
 dependencies {
-+   implementation("work.socialhub.kbsky:core:0.3.0-SNAPSHOT")
-+   implementation("work.socialhub.kbsky:stream:0.3.0-SNAPSHOT")
++   implementation("work.socialhub.kbsky:core:0.4.0-SNAPSHOT")
++   implementation("work.socialhub.kbsky:auth:0.4.0-SNAPSHOT")
++   implementation("work.socialhub.kbsky:stream:0.4.0-SNAPSHOT")
 }
 ```
 
