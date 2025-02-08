@@ -19,7 +19,7 @@ class _WellKnownResource(
         return proceed<WellKnownOAuthProtectedResourceResponse> {
             runBlocking {
                 HttpRequest()
-                    .url("${config.pdsServer}.well-known/oauth-protected-resource")
+                    .url("${config.pdsServer}/.well-known/oauth-protected-resource")
                     .accept(MediaType.JSON)
                     .get()
             }
@@ -37,7 +37,7 @@ class _WellKnownResource(
         return proceed<WellKnownOAuthAuthorizationServerResponse> {
             runBlocking {
                 HttpRequest()
-                    .url("${config.authorizationServer}.well-known/oauth-authorization-server")
+                    .url("${config.authorizationServer}/.well-known/oauth-authorization-server")
                     .accept(MediaType.JSON)
                     .get()
             }
