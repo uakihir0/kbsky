@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.auth
 
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
+import work.socialhub.kbsky.domain.Service.OYSTER_US_EAST
 import kotlin.test.Test
 
 class WellKnownTest : AbstractTest() {
@@ -8,14 +9,14 @@ class WellKnownTest : AbstractTest() {
     @Test
     fun testWellKnownOAuthProtectedResource() {
         val response = AuthFactory
-            .instance(BSKY_SOCIAL.uri)
+            .instance(OYSTER_US_EAST.uri)
             .wellKnown()
             .oAuthProtectedResource()
         println(response.data.authorizationServers[0])
     }
 
     @Test
-    fun testWell() {
+    fun testWellKnownOAuthAuthorizationServer() {
         val response = AuthFactory
             .instance(BSKY_SOCIAL.uri)
             .wellKnown()
