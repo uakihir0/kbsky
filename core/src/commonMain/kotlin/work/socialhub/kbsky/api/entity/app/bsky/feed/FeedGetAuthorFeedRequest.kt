@@ -17,6 +17,7 @@ class FeedGetAuthorFeedRequest(
         PostsWithReplies("posts_with_replies"),
         PostsNoReplies("posts_no_replies"),
         PostsWithMedia("posts_with_media"),
+        PostsWithVideo("posts_with_video"),
         PostsAndAuthorThreads("posts_and_author_threads")
     }
 
