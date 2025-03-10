@@ -4,10 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class OAuthPushedAuthorizationResponse {
+data class OAuthPushedAuthorizationResponse(
     @SerialName("request_uri")
-    lateinit var requestUri: String
+    val requestUri: String,
 
     @SerialName("expires_in")
-    var expiresIn: Int = -1
-}
+    val expiresIn: Int = -1,
+)
