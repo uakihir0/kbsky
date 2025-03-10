@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 
 @Serializable
-class FeedPostReplyRef {
-    var root: RepoStrongRef? = null
+data class FeedPostReplyRef(
+    var root: RepoStrongRef? = null,
     var parent: RepoStrongRef? = null
-}
+)

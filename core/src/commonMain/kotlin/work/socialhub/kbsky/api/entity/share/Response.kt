@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.share
 /**
  * @author uakihir0
  */
-class Response<T>(
+data class Response<T>(
     val data: T,
-    val json: String,
+    val json: String
 )

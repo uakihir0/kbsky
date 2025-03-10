@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.share.Blob
 
 @Serializable
-class RepoUploadBlobResponse {
-    lateinit var blob: Blob
-}
+data class RepoUploadBlobResponse(
+    var blob: Blob
+)

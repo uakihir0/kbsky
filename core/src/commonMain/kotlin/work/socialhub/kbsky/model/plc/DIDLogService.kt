@@ -4,8 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class DIDLogService {
-
+data class DIDLogService(
     @SerialName("atproto_pds")
     var atprotoPDS: DIDLogPDS? = null
-}
+)

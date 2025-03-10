@@ -4,14 +4,14 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class ErrorResponse {
-    var message: String = ""
-    lateinit var error: String
+data class ErrorResponse(
+    var message: String = "",
+    var error: String,
 
     // for OAuth
     @SerialName("error_description")
     var errorDescription: String = ""
-
+) {
     fun messageForDisplay(): String {
         return if (errorDescription.isNotEmpty()) {
             // OAuth error

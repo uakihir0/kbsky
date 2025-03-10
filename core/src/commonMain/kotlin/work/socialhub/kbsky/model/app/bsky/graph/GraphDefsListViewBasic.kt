@@ -8,20 +8,19 @@ import work.socialhub.kbsky.BlueskyTypes
  * List
  */
 @Serializable
-class GraphDefsListViewBasic {
+data class GraphDefsListViewBasic(
+    @SerialName("\$type")
+    var type: String = TYPE,
 
+    var uri: String,
+    var cid: String,
+    var name: String,
+    var purpose: String,
+    var avatar: String? = null,
+    var viewer: GraphDefsListViewerState? = null,
+    var indexedAt: String? = null
+) {
     companion object {
         const val TYPE = BlueskyTypes.GraphDefs + "#listViewBasic"
     }
-
-    @SerialName("\$type")
-    var type = TYPE
-
-    lateinit var uri: String
-    lateinit var cid: String
-    lateinit var name: String
-    lateinit var purpose: String
-    var avatar: String? = null
-    var viewer: GraphDefsListViewerState? = null
-    var indexedAt: String? = null
 }

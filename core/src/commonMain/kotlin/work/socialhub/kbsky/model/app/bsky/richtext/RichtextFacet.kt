@@ -5,11 +5,10 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class RichtextFacet {
-
+data class RichtextFacet(
     @SerialName("\$type")
-    val type: String = BlueskyTypes.RichtextFacet
+    val type: String = BlueskyTypes.RichtextFacet,
 
-    var index: RichtextFacetByteSlice? = null
+    var index: RichtextFacetByteSlice? = null,
     var features: MutableList<RichtextFacetFeatureUnion>? = null
-}
+)

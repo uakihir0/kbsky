@@ -4,8 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class BlobRef {
-
+data class BlobRef(
     @SerialName("\$link")
     var link: String? = null
-}
+)
