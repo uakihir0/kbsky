@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsLogUnion
 
 @Serializable
-class ConvoGetLogResponse {
-    lateinit var logs: List<ConvoDefsLogUnion>
-}
+data class ConvoGetLogResponse(
+    var logs: List<ConvoDefsLogUnion>
+)

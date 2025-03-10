@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView
 
 @Serializable
-class FeedGetFeedGeneratorsResponse {
-    lateinit var feeds: List<FeedDefsGeneratorView>
-}
+data class FeedGetFeedGeneratorsResponse(
+    var feeds: List<FeedDefsGeneratorView>
+)

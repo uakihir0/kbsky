@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView
 
 @Serializable
-class GraphGetListsResponse {
-    var cursor: String? = null
-    lateinit var lists: List<GraphDefsListView>
-}
+data class GraphGetListsResponse(
+    var cursor: String? = null,
+    var lists: List<GraphDefsListView>
+)

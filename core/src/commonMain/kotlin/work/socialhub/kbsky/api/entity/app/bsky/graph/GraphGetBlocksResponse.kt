@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 
 @Serializable
-class GraphGetBlocksResponse {
-    var cursor: String? = null
-    lateinit var blocks: List<ActorDefsProfileView>
-}
+data class GraphGetBlocksResponse(
+    var cursor: String? = null,
+    var blocks: List<ActorDefsProfileView>
+)

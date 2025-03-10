@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsFeedViewPost
 
 @Serializable
-class FeedGetFeedResponse {
-    var cursor: String? = null
-    lateinit var feed: List<FeedDefsFeedViewPost>
-}
+data class FeedGetFeedResponse(
+    var cursor: String? = null,
+    var feed: List<FeedDefsFeedViewPost>
+)

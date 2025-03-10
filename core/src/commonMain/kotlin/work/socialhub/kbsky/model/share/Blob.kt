@@ -4,11 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Blob {
-
+data class Blob(
     @SerialName("\$type")
-    var type = "blob"
-    var ref: BlobRef? = null
-    var mimeType: String? = null
+    var type: String = "blob",
+    var ref: BlobRef? = null,
+    var mimeType: String? = null,
     var size: Int? = null
-}
+)

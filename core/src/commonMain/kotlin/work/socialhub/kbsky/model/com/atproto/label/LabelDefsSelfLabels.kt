@@ -8,10 +8,9 @@ import work.socialhub.kbsky.ATProtocolTypes
  * Metadata tags on an atproto record, published by the author within the record.
  */
 @Serializable
-class LabelDefsSelfLabels {
-
+data class LabelDefsSelfLabels(
     @SerialName("\$type")
-    var type = ATProtocolTypes.LabelDefs + "#selfLabels"
+    var type: String = ATProtocolTypes.LabelDefs + "#selfLabels",
 
-    lateinit var values: List<LabelDefsSelfLabel>
-}
+    var values: List<LabelDefsSelfLabel>
+)

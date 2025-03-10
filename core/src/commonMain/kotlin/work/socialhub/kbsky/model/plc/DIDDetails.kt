@@ -4,12 +4,12 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
 
 @Serializable
-class DIDDetails : DidDocUnion() {
-    var id: String? = null
-    var alsoKnownAs: List<String>? = null
-    var verificationMethod: List<DIDDetailsVerificationMethod>? = null
+data class DIDDetails(
+    var id: String? = null,
+    var alsoKnownAs: List<String>? = null,
+    var verificationMethod: List<DIDDetailsVerificationMethod>? = null,
     var service: List<DIDDetailsService>? = null
-
+) : DidDocUnion() {
     fun pdsEndpoint(): String? {
         return service
             ?.firstOrNull { it.id == "#atproto_pds" }

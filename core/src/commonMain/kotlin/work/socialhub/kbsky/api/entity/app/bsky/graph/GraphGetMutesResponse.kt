@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 
 @Serializable
-class GraphGetMutesResponse {
-    var cursor: String? = null
-    lateinit var mutes: List<ActorDefsProfileView>
-}
+data class GraphGetMutesResponse(
+    var cursor: String? = null,
+    var mutes: List<ActorDefsProfileView>
+)
