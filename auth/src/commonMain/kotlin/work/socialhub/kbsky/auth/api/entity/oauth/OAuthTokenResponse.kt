@@ -4,23 +4,23 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class OAuthTokenResponse {
+data class OAuthTokenResponse(
 
     @SerialName("access_token")
-    lateinit var accessToken: String
+    val accessToken: String,
 
     @SerialName("token_type")
-    lateinit var tokenType: String
+    val tokenType: String,
 
     @SerialName("refresh_token")
-    lateinit var refreshToken: String
+    val refreshToken: String,
 
     @SerialName("scope")
-    lateinit var scope: String
+    val scope: String,
 
     @SerialName("expires_in")
-    var expiresIn: Int = -1
+    val expiresIn: Int = -1,
 
     @SerialName("sub")
-    lateinit var sub: String
-}
+    val sub: String,
+)
