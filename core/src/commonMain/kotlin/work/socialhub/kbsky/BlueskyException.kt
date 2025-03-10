@@ -1,8 +1,8 @@
 package work.socialhub.kbsky
 
-class BlueskyException(
-    message: String?,
-    exception: Exception?,
+data class BlueskyException(
+    override val message: String?,
+    val exception: Exception?,
 ) : RuntimeException(
     message,
     exception,

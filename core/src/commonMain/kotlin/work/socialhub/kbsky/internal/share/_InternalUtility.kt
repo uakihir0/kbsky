@@ -3,7 +3,6 @@ package work.socialhub.kbsky.internal.share
 import io.ktor.http.HttpMethod.Companion.Get
 import io.ktor.http.HttpMethod.Companion.Post
 import kotlinx.datetime.TimeZone
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import work.socialhub.kbsky.ATProtocolConfig
@@ -114,7 +113,8 @@ object _InternalUtility {
                 exception = exception,
                 status = status,
                 body = body,
-            ).also { it.response = response }
+                response = response,
+            )
         }
 
         return ATProtocolException(exception)
