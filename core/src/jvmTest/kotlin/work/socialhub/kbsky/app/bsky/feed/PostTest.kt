@@ -66,9 +66,9 @@ class PostTest : AbstractTest() {
             image.image = response1.data.blob
             image.alt = "image test"
 
-            val aspectRatio = EmbedDefsAspectRatio()
-            aspectRatio.width = 200
-            aspectRatio.height = 100
+            val aspectRatio = EmbedDefsAspectRatio(
+                200, 100
+            )
             image.aspectRatio = aspectRatio
 
             images.add(image)
