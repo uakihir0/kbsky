@@ -1,8 +1,9 @@
 package work.socialhub.kbsky.auth
 
+import work.socialhub.kbsky.NetworkConfig
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 
-class AuthConfig {
+class AuthConfig : NetworkConfig() {
 
     var pdsServer = BSKY_SOCIAL.uri
     var authorizationServer = BSKY_SOCIAL.uri

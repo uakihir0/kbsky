@@ -4,8 +4,12 @@ import work.socialhub.kbsky.auth.internal._Auth
 
 object AuthFactory {
 
+    fun instance(config: AuthConfig): Auth {
+        return _Auth(config)
+    }
+
     fun instance(pdsUri: String): Auth {
-        return _Auth(AuthConfig().also {
+        return instance(AuthConfig().also {
             it.pdsServer = pdsUri
         })
     }
