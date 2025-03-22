@@ -77,7 +77,13 @@ class OAuthTest : AbstractTest() {
     @Test
     fun refreshToken() {
         val response = AuthFactory
-            .instance(BSKY_SOCIAL.uri)
+            .instance(AuthConfig().also {
+                it.pdsServer = BSKY_SOCIAL.uri
+                // set timeout
+                it.connectTimeoutMillis = 30_000
+                it.socketTimeoutMillis = 30_000
+                it.requestTimeoutMillis = 60_000
+            })
             .oauth()
             .refreshTokenRequest(
                 oAuthContext,
