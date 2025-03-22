@@ -216,7 +216,7 @@ class _OAuthResource(
     ): HttpResponse {
 
         setDPoPHeader(context)
-        val first = this.post();
+        val first = this.post()
         if (!isRetryRequired(context, first)) {
             return first
         }
@@ -230,8 +230,8 @@ class _OAuthResource(
     private fun HttpRequest.setDPoPHeader(
         context: OAuthContext
     ) {
-        val dPoPHeader = getDPoPHeader(context, this.url!!);
-        this.header("DPoP", dPoPHeader);
+        val dPoPHeader = getDPoPHeader(context, this.url!!)
+        this.header("DPoP", dPoPHeader)
     }
 
     private fun isRetryRequired(
