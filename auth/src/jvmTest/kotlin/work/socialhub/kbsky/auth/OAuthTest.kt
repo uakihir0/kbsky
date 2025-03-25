@@ -22,7 +22,8 @@ class OAuthTest : AbstractTest() {
         val response = AuthFactory
             .instance(BSKY_SOCIAL.uri)
             .oauth()
-            .pushedAuthorizationRequest(context,
+            .pushedAuthorizationRequest(
+                context,
                 OAuthPushedAuthorizationRequest().also {
                     it.loginHint = "uakihir0.com"
                 }
@@ -32,7 +33,8 @@ class OAuthTest : AbstractTest() {
 
         val authorizeUrl = AuthFactory
             .instance(BSKY_SOCIAL.uri)
-            .oauth().buildAuthorizationUrl(context,
+            .oauth().buildAuthorizationUrl(
+                context,
                 BuildAuthorizationUrlRequest().also {
                     it.requestUri = response.data.requestUri
                 })
@@ -55,7 +57,8 @@ class OAuthTest : AbstractTest() {
         val response = AuthFactory
             .instance(BSKY_SOCIAL.uri)
             .oauth()
-            .authorizationCodeTokenRequest(oAuthContext,
+            .authorizationCodeTokenRequest(
+                oAuthContext,
                 OAuthAuthorizationCodeTokenRequest().also {
                     it.code = code!!
                 }
@@ -74,9 +77,16 @@ class OAuthTest : AbstractTest() {
     @Test
     fun refreshToken() {
         val response = AuthFactory
-            .instance(BSKY_SOCIAL.uri)
+            .instance(AuthConfig().also {
+                it.pdsServer = BSKY_SOCIAL.uri
+                // set timeout
+                it.connectTimeoutMillis = 30_000
+                it.socketTimeoutMillis = 30_000
+                it.requestTimeoutMillis = 60_000
+            })
             .oauth()
-            .refreshTokenRequest(oAuthContext,
+            .refreshTokenRequest(
+                oAuthContext,
                 OAuthRefreshTokenRequest(auth())
             )
 

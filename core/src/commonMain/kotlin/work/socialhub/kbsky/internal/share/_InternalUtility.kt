@@ -7,6 +7,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolException
+import work.socialhub.kbsky.NetworkConfig
 import work.socialhub.kbsky.api.entity.share.ErrorResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.AuthProvider
@@ -124,6 +125,7 @@ object _InternalUtility {
         auth: AuthProvider
     ): HttpResponse {
         addContentLabelersHeader(auth.acceptLabelers)
+        // TODO timeout setting
 
         val method = Get.value
         auth.beforeRequestHook(method, this)
@@ -141,6 +143,7 @@ object _InternalUtility {
         auth: AuthProvider
     ): HttpResponse {
         addContentLabelersHeader(auth.acceptLabelers)
+        // TODO timeout setting
 
         val method = Post.value
         auth.beforeRequestHook(method, this)
@@ -160,5 +163,12 @@ object _InternalUtility {
             val labelers = acceptLabelers.joinToString(", ")
             this.header("atproto-accept-labelers", labelers)
         }
+    }
+
+    fun HttpRequest.setTimeouts(config: NetworkConfig) = also {
+
+        this.requestTimeoutMillis = config.requestTimeoutMillis
+        this.connectTimeoutMillis = config.connectTimeoutMillis
+        this.socketTimeoutMillis = config.socketTimeoutMillis
     }
 }

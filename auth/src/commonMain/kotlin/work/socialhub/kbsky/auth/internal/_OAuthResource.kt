@@ -23,6 +23,7 @@ import work.socialhub.kbsky.auth.helper.OAuthHelper.extractDPoPNonce
 import work.socialhub.kbsky.auth.helper.OAuthHelper.makeClientAssertion
 import work.socialhub.kbsky.auth.helper.RandomHelper
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
+import work.socialhub.kbsky.internal.share._InternalUtility.setTimeouts
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
@@ -145,6 +146,7 @@ class _OAuthResource(
                     .accept(MediaType.JSON)
                     .params(request.toMap())
                     .forceApplicationFormUrlEncoded(true)
+                    .setTimeouts(config)
                     .postWithRetry(context)
             }
         }
@@ -216,7 +218,7 @@ class _OAuthResource(
     ): HttpResponse {
 
         setDPoPHeader(context)
-        val first = this.post();
+        val first = this.post()
         if (!isRetryRequired(context, first)) {
             return first
         }
@@ -230,8 +232,8 @@ class _OAuthResource(
     private fun HttpRequest.setDPoPHeader(
         context: OAuthContext
     ) {
-        val dPoPHeader = getDPoPHeader(context, this.url!!);
-        this.header("DPoP", dPoPHeader);
+        val dPoPHeader = getDPoPHeader(context, this.url!!)
+        this.header("DPoP", dPoPHeader)
     }
 
     private fun isRetryRequired(
