@@ -67,7 +67,7 @@ class _OAuthResource(
                     }
                 }
 
-                if (request.keyId?.isNotEmpty() == true) {
+                if (config.confidentialClientKeyId?.isNotEmpty() == true) {
                     // Include the necessary fields for confidential clients
                     val clientAssertion = makeClientAssertion(
                         keyId = request.keyId!!,
@@ -78,13 +78,15 @@ class _OAuthResource(
                                 .privateKeyDecoder(EC.Curve.P256)
                                 .decodeFromByteArrayBlocking(
                                     EC.PrivateKey.Format.DER,
-                                    Base64.decode(context.privateKey!!)
+                                    Base64.decode(config.confidentialClientPrivateKey!!)
                                 )
 
                             privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
                                 .generateSignatureBlocking(jwtMessage.encodeToByteArray())
                         })
+                    request.keyId = config.confidentialClientKeyId
                     request.clientAssertion = clientAssertion
+                    request.clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
                 }
 
                 HttpRequest()
@@ -121,7 +123,7 @@ class _OAuthResource(
                 context.redirectUri?.let { request.redirectUri = it }
                 context.codeVerifier?.let { request.codeVerifier = it }
 
-                if (request.keyId?.isNotEmpty() == true) {
+                if (config.confidentialClientKeyId?.isNotEmpty() == true) {
                     // Include the necessary fields for confidential clients
                     val clientAssertion = makeClientAssertion(
                         keyId = request.keyId!!,
@@ -132,13 +134,15 @@ class _OAuthResource(
                                 .privateKeyDecoder(EC.Curve.P256)
                                 .decodeFromByteArrayBlocking(
                                     EC.PrivateKey.Format.DER,
-                                    Base64.decode(context.privateKey!!)
+                                    Base64.decode(config.confidentialClientPrivateKey!!)
                                 )
 
                             privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
                                 .generateSignatureBlocking(jwtMessage.encodeToByteArray())
                         })
+                    request.keyId = config.confidentialClientKeyId
                     request.clientAssertion = clientAssertion
+                    request.clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
                 }
 
                 HttpRequest()
