@@ -8,15 +8,13 @@ import work.socialhub.kbsky.BlueskyTypes
  * A facet feature for actor mentions.
  */
 @Serializable
-class RichtextFacetMention : RichtextFacetFeatureUnion() {
+data class RichtextFacetMention(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var did: String? = null,
+) : RichtextFacetFeatureUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.RichtextFacet + "#mention"
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var did: String? = null
-
 }

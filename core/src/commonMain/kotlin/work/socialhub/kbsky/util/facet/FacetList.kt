@@ -82,8 +82,9 @@ class FacetList(
                     facet.features = mutableListOf()
                     facet.index = slice
 
-                    val tag = RichtextFacetTag()
-                    tag.tag = record.contentText.replace("^#".toRegex(), "")
+                    val tag = RichtextFacetTag(
+                        tag = record.contentText.replace("^#".toRegex(), "")
+                    )
                     facet.features!!.add(tag)
                     facets.add(facet)
                 }
