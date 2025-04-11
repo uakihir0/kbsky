@@ -74,6 +74,10 @@ object Printer {
         convo.lastMessage?.asMessageView?.let {
             dump(it, "$sp  ")
         }
+        convo.lastReaction?.reaction?.let {
+            println("${sp}LAST REACTION> ${it.value}")
+        }
+        println("${sp}MEMBERS> ${convo.members.size}")
         convo.members.forEach {
             dump(it, "$sp  ")
         }
