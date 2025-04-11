@@ -7,7 +7,6 @@ import work.socialhub.kbsky.util.json.ChatConvoDefsMessageUnionSerializer
 /**
  * @see ConvoDefsMessageView
  * @see ConvoDefsDeletedMessageView
- * @see ConvoDefsMessageAndReactionView
  */
 @Serializable(with = ChatConvoDefsMessageUnionSerializer::class)
 abstract class ConvoDefsMessageUnion {
@@ -16,5 +15,4 @@ abstract class ConvoDefsMessageUnion {
 
     val asMessageView get() = this as? ConvoDefsMessageView
     val asDeletedMessageView get() = this as? ConvoDefsDeletedMessageView
-    val asMessageAndReactionView get() = this as? ConvoDefsMessageAndReactionView
 }

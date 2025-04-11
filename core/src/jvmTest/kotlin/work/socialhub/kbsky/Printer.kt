@@ -97,11 +97,6 @@ object Printer {
             println("${sp}|CONVO DELETED MESSAGE|-----------------------------------------")
             println("${sp}ID> ${message.id}")
         }
-        messageUnion.asMessageAndReactionView?.let { message ->
-            println("${sp}|CONVO MESSAGE AND REACTION|-----------------------------------------")
-            dump(message.message, "$sp  ")
-            dump(message.reaction, "$sp  ")
-        }
     }
 
     fun AbstractTest.dump(reaction: ConvoDefsReactionView, sp: String = "") {
