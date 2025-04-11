@@ -94,6 +94,7 @@ object BlueskyTypes {
     /// ----------------------------------------------------------------------- ///
 
     // Convo
+    const val ConvoAddReaction = "chat.bsky.convo.addReaction"
     const val ConvoDefs = "chat.bsky.convo.defs"
     const val ConvoDeleteMessageForSelf = "chat.bsky.convo.deleteMessageForSelf"
     const val ConvoGetConvo = "chat.bsky.convo.getConvo"
@@ -103,6 +104,7 @@ object BlueskyTypes {
     const val ConvoLeaveConvo = "chat.bsky.convo.leaveConvo"
     const val ConvoListConvos = "chat.bsky.convo.listConvos"
     const val ConvoMuteConvo = "chat.bsky.convo.muteConvo"
+    const val ConvoRemoveReaction = "chat.bsky.convo.removeReaction"
     const val ConvoSendMessage = "chat.bsky.convo.sendMessage"
     const val ConvoSendMessageBatch = "chat.bsky.convo.sendMessageBatch"
     const val ConvoUnmuteConvo = "chat.bsky.convo.unmuteConvo"
