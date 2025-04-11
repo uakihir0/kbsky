@@ -13,7 +13,7 @@ import work.socialhub.kbsky.util.json.ChatConvoDefsLogUnionSerializer
 @Serializable(with = ChatConvoDefsLogUnionSerializer::class)
 abstract class ConvoDefsLogUnion {
     @SerialName("\$type")
-    abstract var type: String
+    abstract val type: String
 
     val asBeginConvo get() = this as? ConvoDefsLogBeginConvo
     val asLeaveConvo get() = this as? ConvoDefsLogLeaveConvo
