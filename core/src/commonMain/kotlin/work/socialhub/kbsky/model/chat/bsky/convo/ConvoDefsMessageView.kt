@@ -9,14 +9,15 @@ import work.socialhub.kbsky.model.share.RecordUnion
 @Serializable
 data class ConvoDefsMessageView(
     @SerialName("\$type")
-    override var type: String = TYPE,
-    var id: String,
-    var rev: String,
-    var text: String,
-    var facets: List<RichtextFacet>? = null,
-    var embed: RecordUnion? = null,
-    var sender: ConvoDefsMessageViewSender,
-    var sentAt: String,
+    override val type: String = TYPE,
+    val id: String,
+    val rev: String,
+    val text: String,
+    val facets: List<RichtextFacet>? = null,
+    val embed: RecordUnion? = null,
+    val reactions: List<ConvoDefsReactionView> = emptyList(),
+    val sender: ConvoDefsMessageViewSender,
+    val sentAt: String,
 ) : ConvoDefsMessageUnion() {
 
     companion object {

@@ -8,6 +8,7 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.chat.bsky.actor.ActorDefsProfileViewBasic
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsConvoView
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageView
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsReactionView
 import work.socialhub.kbsky.model.share.RecordUnion
 
 object Printer {
@@ -82,6 +83,15 @@ object Printer {
         println("${sp}|CONVO MESSAGE|-----------------------------------------")
         println("${sp}ID> ${message.id}")
         println("${sp}TEXT> ${message.text}")
+        message.reactions.forEach {
+            dump(it, "$sp  ")
+        }
+    }
+
+    fun AbstractTest.dump(reaction: ConvoDefsReactionView, sp: String = "") {
+        println("${sp}|CONVO REACTION|-----------------------------------------")
+        println("${sp}VALUE> ${reaction.value}")
+        println("${sp}SENDER DID> ${reaction.sender.did}")
     }
 
     fun AbstractTest.dump(actor: ActorDefsProfileViewBasic, sp: String = "") {
