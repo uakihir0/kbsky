@@ -7,11 +7,12 @@ import work.socialhub.kbsky.model.chat.bsky.actor.ActorDefsProfileViewBasic
  * chat.bsky.convo.defs#convoView
  */
 @Serializable
-class ConvoDefsConvoView {
-    lateinit var id: String
-    lateinit var rev: String
-    lateinit var members: List<ActorDefsProfileViewBasic>
-    var lastMessage: ConvoDefsMessageUnion? = null
-    var muted: Boolean = false
-    var unreadCount: Int = 0
-}
+data class ConvoDefsConvoView(
+    val id: String,
+    val rev: String,
+    val members: List<ActorDefsProfileViewBasic>,
+    val lastMessage: ConvoDefsMessageUnion? = null,
+    val lastReaction: ConvoDefsMessageAndReactionView? = null,
+    val muted: Boolean = false,
+    val unreadCount: Int = 0,
+)

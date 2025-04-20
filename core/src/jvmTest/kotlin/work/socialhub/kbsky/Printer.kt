@@ -7,7 +7,9 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.chat.bsky.actor.ActorDefsProfileViewBasic
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsConvoView
-import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageView
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsLogUnion
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageUnion
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsReactionView
 import work.socialhub.kbsky.model.share.RecordUnion
 
 object Printer {
@@ -73,20 +75,73 @@ object Printer {
         convo.lastMessage?.asMessageView?.let {
             dump(it, "$sp  ")
         }
+        convo.lastReaction?.reaction?.let {
+            println("${sp}LAST REACTION> ${it.value}")
+        }
+        println("${sp}MEMBERS> ${convo.members.size}")
         convo.members.forEach {
             dump(it, "$sp  ")
         }
     }
 
-    fun AbstractTest.dump(message: ConvoDefsMessageView, sp: String = "") {
-        println("${sp}|CONVO MESSAGE|-----------------------------------------")
-        println("${sp}ID> ${message.id}")
-        println("${sp}TEXT> ${message.text}")
+    fun AbstractTest.dump(messageUnion: ConvoDefsMessageUnion, sp: String = "") {
+        messageUnion.asMessageView?.let { message ->
+            println("${sp}|CONVO MESSAGE|-----------------------------------------")
+            println("${sp}ID> ${message.id}")
+            println("${sp}TEXT> ${message.text}")
+            message.reactions.forEach {
+                dump(it, "$sp  ")
+            }
+        }
+        messageUnion.asDeletedMessageView?.let { message ->
+            println("${sp}|CONVO DELETED MESSAGE|-----------------------------------------")
+            println("${sp}ID> ${message.id}")
+        }
+    }
+
+    fun AbstractTest.dump(reaction: ConvoDefsReactionView, sp: String = "") {
+        println("${sp}|CONVO REACTION|-----------------------------------------")
+        println("${sp}VALUE> ${reaction.value}")
+        println("${sp}SENDER DID> ${reaction.sender.did}")
     }
 
     fun AbstractTest.dump(actor: ActorDefsProfileViewBasic, sp: String = "") {
         println("${sp}|CONVO ACTOR|-----------------------------------------")
         println("${sp}DID> ${actor.did}")
         println("${sp}DISPLAY NAME> ${actor.displayName}")
+    }
+
+    fun AbstractTest.dump(log: ConvoDefsLogUnion, sp: String = "") {
+        println("${sp}|CONVO LOG|-----------------------------------------")
+        println("${sp}TYPE> ${log.type}")
+
+        log.asBeginConvo?.let {
+            println("${sp}CONVERSATION ID> ${it.convoId}")
+        }
+        log.asLeaveConvo?.let {
+            println("${sp}CONVERSATION ID> ${it.convoId}")
+        }
+        log.asCreateMessage?.let {
+            println("${sp}CONVERSATION ID> ${it.convoId}")
+            dump(it.message, "$sp  ")
+        }
+        log.asDeleteMessage?.let {
+            println("${sp}CONVERSATION ID> ${it.convoId}")
+            dump(it.message, "$sp  ")
+        }
+        log.asReadMessage?.let {
+            println("${sp}CONVERSATION ID> ${it.convoId}")
+            dump(it.message, "$sp  ")
+        }
+        log.asAddReaction?.let {
+            println("${sp}CONVERSATION ID> ${it.convoId}")
+            dump(it.message, "$sp  ")
+            dump(it.reaction, "$sp  ")
+        }
+        log.asRemoveReaction?.let {
+            println("${sp}CONVERSATION ID> ${it.convoId}")
+            dump(it.message, "$sp  ")
+            dump(it.reaction, "$sp  ")
+        }
     }
 }

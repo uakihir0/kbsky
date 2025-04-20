@@ -4,6 +4,8 @@ import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersRequest
@@ -20,6 +22,8 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLeaveConvoRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLeaveConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoMuteConvoRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoMuteConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoRemoveReactionRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoRemoveReactionResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoSendMessageRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoSendMessageResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnmuteConvoRequest
@@ -155,6 +159,28 @@ class _ConvoResource(
 
         return proceedPost(
             BlueskyTypes.ConvoLeaveConvo,
+            request.toMappedJson(),
+            request.auth,
+        )
+    }
+
+    override fun addReaction(
+        request: ConvoAddReactionRequest
+    ): Response<ConvoAddReactionResponse> {
+
+        return proceedPost(
+            BlueskyTypes.ConvoAddReaction,
+            request.toMappedJson(),
+            request.auth,
+        )
+    }
+
+    override fun removeReaction(
+        request: ConvoRemoveReactionRequest
+    ): Response<ConvoRemoveReactionResponse> {
+
+        return proceedPost(
+            BlueskyTypes.ConvoRemoveReaction,
             request.toMappedJson(),
             request.auth,
         )

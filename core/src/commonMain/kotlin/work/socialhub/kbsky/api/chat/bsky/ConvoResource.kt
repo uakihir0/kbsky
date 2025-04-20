@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.api.chat.bsky
 
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersRequest
@@ -16,6 +18,8 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLeaveConvoRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLeaveConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoMuteConvoRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoMuteConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoRemoveReactionRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoRemoveReactionResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoSendMessageRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoSendMessageResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnmuteConvoRequest
@@ -108,4 +112,17 @@ interface ConvoResource {
         request: ConvoLeaveConvoRequest
     ): Response<ConvoLeaveConvoResponse>
 
+    /**
+     * chat.bsky.convo.addReaction
+     */
+    fun addReaction(
+        request: ConvoAddReactionRequest
+    ): Response<ConvoAddReactionResponse>
+
+    /**
+     * chat.bsky.convo.removeReaction
+     */
+    fun removeReaction(
+        request: ConvoRemoveReactionRequest
+    ): Response<ConvoRemoveReactionResponse>
 }

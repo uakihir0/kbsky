@@ -5,9 +5,8 @@ import work.socialhub.kbsky.model.app.bsky.embed.EmbedUnion
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 
 @Serializable
-class ConvoDefsMessageInput {
-
-    lateinit var text: String
-    var facets: List<RichtextFacet>? = null
-    var embed: EmbedUnion? = null
-}
+data class ConvoDefsMessageInput(
+    var text: String,
+    var facets: List<RichtextFacet>? = null,
+    var embed: EmbedUnion? = null,
+)

@@ -5,14 +5,13 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-data class ConvoDefsLogLeaveConvo(
+data class ConvoDefsMessageAndReactionView(
     @SerialName("\$type")
-    override var type: String = TYPE,
-    var rev: String,
-    var convoId: String,
-) : ConvoDefsLogUnion() {
-
+    val type: String = TYPE,
+    val message: ConvoDefsMessageView,
+    val reaction: ConvoDefsReactionView,
+) {
     companion object {
-        const val TYPE = BlueskyTypes.ConvoDefs + "#logLeaveConvo"
+        const val TYPE = BlueskyTypes.ConvoDefs + "#messageAndReactionView"
     }
 }

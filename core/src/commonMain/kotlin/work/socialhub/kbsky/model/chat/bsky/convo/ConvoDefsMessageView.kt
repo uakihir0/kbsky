@@ -7,21 +7,20 @@ import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class ConvoDefsMessageView : ConvoDefsMessageUnion() {
+data class ConvoDefsMessageView(
+    @SerialName("\$type")
+    override val type: String = TYPE,
+    val id: String,
+    val rev: String,
+    val text: String,
+    val facets: List<RichtextFacet>? = null,
+    val embed: RecordUnion? = null,
+    val reactions: List<ConvoDefsReactionView> = emptyList(),
+    val sender: ConvoDefsMessageViewSender,
+    val sentAt: String,
+) : ConvoDefsMessageUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ConvoDefs + "#messageView"
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    lateinit var id: String
-    lateinit var rev: String
-    lateinit var text: String
-    lateinit var sender: ConvoDefsMessageViewSender
-    lateinit var sentAt: String
-
-    var facets: List<RichtextFacet>? = null
-    var embed: RecordUnion? = null
 }

@@ -11,7 +11,7 @@ import work.socialhub.kbsky.util.json.ChatConvoDefsMessageUnionSerializer
 @Serializable(with = ChatConvoDefsMessageUnionSerializer::class)
 abstract class ConvoDefsMessageUnion {
     @SerialName("\$type")
-    abstract var type: String
+    abstract val type: String
 
     val asMessageView get() = this as? ConvoDefsMessageView
     val asDeletedMessageView get() = this as? ConvoDefsDeletedMessageView
