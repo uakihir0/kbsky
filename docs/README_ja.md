@@ -6,18 +6,21 @@
 ![badge][badge-jvm]
 ![badge][badge-ios]
 ![badge][badge-mac]
+![badge][badge-windows]
+![badge][badge-linux]
 
 **このライブラリは [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html) に対応した Bluesky/ATProtocol
 クライアントライブラリです。**
 [khttpclient] を依存関係に持っており、 内部で Ktor Client を使用しています。
 そのため、本ライブラリは、Kotlin Multiplatform かつ Ktor Client がサポートしているプラットフォームであれば利用可能です。
 各プラットフォームでどのような挙動をするのかについては、[khttpclient] に依存します。
+また、[khttpclient] の依存している KtorClient の制約上、Linux プラットフォーム上では、
+stream パッケージは使用できません。
 
 ## 使い方
 
 以下は対応するプラットフォームにおいて Gradle を用いて Kotlin で使用する際の使い方になります。
-**Apple プラットフォームで使用する場合は、 [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods) を参照してください。
-**
+**Apple プラットフォームで使用する場合は、 [kbsky-cocoapods](https://github.com/uakihir0/kbsky-cocoapods) を参照してください。**
 また、テストコードも合わせて確認してください。
 
 ### Stable (Maven Central)
