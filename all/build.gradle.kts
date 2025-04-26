@@ -9,7 +9,7 @@ plugins {
 
 kotlin {
     jvmToolchain(11)
-    jvm { withJava() }
+    jvm()
 
     val xcf = XCFramework("kbsky")
     listOf(

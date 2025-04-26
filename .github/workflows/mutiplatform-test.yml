@@ -36,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: get-test-results-${{ matrix.target }}
-          path: build/reports/tests/
+          path: core/build/reports/tests/
