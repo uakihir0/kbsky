@@ -8,11 +8,15 @@
 ![badge][badge-jvm]
 ![badge][badge-ios]
 ![badge][badge-mac]
+![badge][badge-windows]
+![badge][badge-linux]
 
 **This library is a Bluesky/ATProtocol client library compatible
 with [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).**
 It depends on [khttpclient] and uses Ktor Client internally. Therefore, this library can be used on any platform
 supported by Kotlin Multiplatform and Ktor Client. The behavior on each platform depends on [khttpclient].
+Also, due to limitations of KtorClient, on which [khttpclient] depends, the
+stream package is not available on Linux platforms.
 
 ## Usage
 

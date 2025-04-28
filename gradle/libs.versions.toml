@@ -1,18 +1,17 @@
 [versions]
 kotlin = "2.1.20"
-kotest = "5.9.1"
 dokka = "2.0.0"
 maven-publish = "0.31.0"
+serialization = "1.8.1"
+coroutines = "1.10.2"
 
 [libraries]
-khttpclient = "work.socialhub:khttpclient:0.0.4"
+khttpclient = "work.socialhub:khttpclient:0.0.5"
 ktor-core = "io.ktor:ktor-client-core:3.1.2"
 datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.2"
-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2"
-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1"
-serialization-cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.8.1"
-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
-kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+serialization-cbor = { module = "org.jetbrains.kotlinx:kotlinx-serialization-cbor", version.ref = "serialization" }
 nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
 maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }

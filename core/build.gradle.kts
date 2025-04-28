@@ -8,8 +8,8 @@ plugins {
 
 kotlin {
     jvmToolchain(11)
+    jvm()
 
-    jvm { withJava() }
     if (HostManager.hostIsMac) {
         iosX64()
         iosArm64()
@@ -17,6 +17,9 @@ kotlin {
         macosX64()
         macosArm64()
     }
+
+    mingwX64()
+    linuxX64()
 
     sourceSets {
         commonMain.dependencies {
@@ -27,11 +30,9 @@ kotlin {
             implementation(libs.serialization.json)
         }
 
-        // for test (kotlin/jvm)
-        jvmTest.dependencies {
+        // for test
+        commonTest.dependencies {
             implementation(kotlin("test"))
-            implementation(libs.kotest.junit5)
-            implementation(libs.kotest.assertions)
         }
     }
 }

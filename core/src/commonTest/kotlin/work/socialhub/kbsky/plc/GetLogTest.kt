@@ -1,10 +1,9 @@
 package work.socialhub.kbsky.plc
 
-import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.PLCDirectoryFactory
 import kotlin.test.Test
 
-class GetLogTest : AbstractTest() {
+class GetLogTest() {
 
     @Test
     fun testGetLog() {

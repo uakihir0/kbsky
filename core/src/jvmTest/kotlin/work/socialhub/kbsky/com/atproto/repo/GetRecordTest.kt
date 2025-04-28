@@ -1,13 +1,12 @@
 package work.socialhub.kbsky.com.atproto.repo
 
 import work.socialhub.kbsky.ATProtocolFactory
-import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
-class GetRecordTest : AbstractTest() {
+class GetRecordTest() {
 
     @Test
     fun testGetRecord() {
@@ -19,7 +18,7 @@ class GetRecordTest : AbstractTest() {
             .getRecord(
                 RepoGetRecordRequest(
                     collection = FeedPost,
-                    repo = handle,
+                    repo = "uakihir0.com",
                     uri = uri
                 )
             )

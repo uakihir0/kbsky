@@ -1,7 +1,6 @@
 package work.socialhub.kbsky.com.atproto.repo
 
 import work.socialhub.kbsky.ATProtocolFactory
-import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
@@ -10,7 +9,11 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoListRecordsRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
-class ListRecordsTest : AbstractTest() {
+class ListRecordsTest() {
+
+    companion object {
+        const val handle = "uakihir0.com"
+    }
 
     @Test
     fun testListRecords() {
