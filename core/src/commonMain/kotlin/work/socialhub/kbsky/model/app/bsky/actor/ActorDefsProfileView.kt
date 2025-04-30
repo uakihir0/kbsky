@@ -17,4 +17,5 @@ class ActorDefsProfileView {
     var createdAt: String? = null
     var viewer: ActorDefsViewerState? = null
     var labels: List<LabelDefsLabel>? = null
+    var verification: ActorDefsVerificationState? = null
 }

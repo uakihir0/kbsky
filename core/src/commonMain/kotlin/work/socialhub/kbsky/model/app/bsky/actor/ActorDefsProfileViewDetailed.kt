@@ -29,4 +29,6 @@ open class ActorDefsProfileViewDetailed {
     // Parse the string type declaration as uri of RepoStrongRef by using [PinnedPostSerializer]
     @Serializable(with = PinnedPostSerializer::class)
     var pinnedPost: RepoStrongRef? = null
+
+    var verification: ActorDefsVerificationState? = null
 }
