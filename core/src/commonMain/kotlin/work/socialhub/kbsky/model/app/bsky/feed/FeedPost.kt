@@ -20,6 +20,8 @@ data class FeedPost(
     var embed: EmbedUnion? = null,
     var createdAt: String? = null,
     var via: String? = null,
+    @SerialName("uk.skyblur.post.uri")
+    var skyblurPostUri: String? = null,
 ) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.FeedPost
