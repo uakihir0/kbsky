@@ -11,6 +11,7 @@ import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewRecord
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewUnion
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView
 import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView
+import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsStarterPackViewBasic
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object EmbedRecordViewPolymorphicSerializer :
@@ -28,6 +29,7 @@ object EmbedRecordViewPolymorphicSerializer :
             EmbedRecordViewDetached.TYPE -> EmbedRecordViewDetached.serializer()
             FeedDefsGeneratorView.TYPE -> FeedDefsGeneratorView.serializer()
             GraphDefsListView.TYPE -> GraphDefsListView.serializer()
+            GraphDefsStarterPackViewBasic.TYPE -> GraphDefsStarterPackViewBasic.serializer()
             else -> {
                 println("[Warning] Unknown Item type: $type (EmbedRecordViewUnion)")
                 Unknown.serializer()
