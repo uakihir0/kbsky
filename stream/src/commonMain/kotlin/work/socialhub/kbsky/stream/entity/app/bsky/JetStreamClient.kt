@@ -3,6 +3,7 @@ package work.socialhub.kbsky.stream.entity.app.bsky
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.MissingFieldException
 import work.socialhub.kbsky.internal.share._InternalUtility
 import work.socialhub.kbsky.stream.entity.app.bsky.callback.JetStreamEventCallback
 import work.socialhub.kbsky.stream.entity.app.bsky.model.Event
@@ -66,6 +67,10 @@ class JetStreamClient(
                 val event = _InternalUtility.fromJson<Event>(text)
                 it.onEvent(event)
             }
+        } catch (e: MissingFieldException) {
+            println("Missing field:\n")
+            e.missingFields.forEach { text -> println(text) }
+            println("Raw Text:\n" + text)
         } catch (e: Exception) {
             errorCallback?.onError(e)
         }
