@@ -19,4 +19,5 @@ class ActorDefsProfileViewBasic {
     var associated: ActorDefsProfileAssociated? = null
     var labels: List<LabelDefsLabel>? = null
     var createdAt: String? = null
+    var verification: ActorDefsVerificationState? = null
 }
