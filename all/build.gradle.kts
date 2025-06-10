@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.swiftpackage)
     id("module.publications")
 }
 
@@ -42,6 +43,15 @@ kotlin {
             api(project(":core"))
             api(project(":stream"))
         }
+    }
+}
+
+multiplatformSwiftPackage {
+    swiftToolsVersion("5.7")
+    targetPlatforms {
+        // baseline 2020
+        iOS { v("15") }
+        macOS { v("12.0") }
     }
 }
 
