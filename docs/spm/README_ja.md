@@ -8,7 +8,7 @@
 
 本レポジトリにはバージョンは存在せず、[kbsky] のバージョンと一致するブランチが存在します。
 どのバージョンの [kbsky] を使用するかは、本レポジトリのブランチを指定することで決定します。
-[ブランチ一覧](https://github.com/uakihir0/kbsky-cocoapods/branches) からバージョンに対応するブランチを確認してください。
+[ブランチ一覧](https://github.com/uakihir0/kbsky-spm/branches) からバージョンに対応するブランチを確認してください。
 
 ### リクエスト方法
 

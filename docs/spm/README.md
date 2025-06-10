@@ -12,7 +12,7 @@ Please direct any issues or pull requests to [kbsky].
 This repository does not have its own versioning.
 Instead, branches corresponding to the versions of [kbsky] are provided.
 To use a specific version of [kbsky], specify the corresponding branch of this repository.
-Check the [list of branches](https://github.com/uakihir0/kbsky-cocoapods/branches) to find the branch matching your desired version.
+Check the [list of branches](https://github.com/uakihir0/kbsky-spm/branches) to find the branch matching your desired version.
 
 ### How to Make Requests
 
