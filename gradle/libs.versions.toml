@@ -26,4 +26,5 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+swiftpackage = "io.github.luca992.multiplatform-swiftpackage:2.2.4"
 git-versioning = "me.qoomon.git-versioning:6.4.4"

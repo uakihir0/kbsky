@@ -1,0 +1,41 @@
+name: Make SwiftPackage
+on: [push]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Create SwiftPackage
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          arguments: all:createSwiftPackage -x check
+
+      - name: Set Project Version
+        run: |
+          project_version=$(./gradlew version --no-daemon --console=plain -q)
+          echo "PROJECT_VERSION=$project_version" >> $GITHUB_ENV
+
+      - name: Commit Package to GitHub
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config --global user.email "a.urusihara@gmail.com"
+          git config --global user.name "Akihiro Urushihara"
+          cd ./all/swiftpackage/
+          cp ../../docs/spm/README.md ./README.md
+          cp ../../docs/spm/README_ja.md ./README_ja.md
+          git init
+          git add --all
+          git commit -m "by GitHub Action CI (SHA ${GITHUB_SHA})"
+          git remote add origin https://${GH_TOKEN}@github.com/uakihir0/kbsky-spm.git
+          git push -f origin HEAD:${{ env.PROJECT_VERSION }}
+          git push -f origin HEAD:main

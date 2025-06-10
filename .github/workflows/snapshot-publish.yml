@@ -23,12 +23,12 @@ jobs:
     - name: Build with Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: build -x core:jvmTest -x stream:jvmTest -x auth:jvmTest
+        arguments: build -x check
 
     - name: Publish to Repsy
       uses: gradle/actions/setup-gradle@v3
       with:
-        arguments: publishAllPublicationsToMavenRepository -x core:jvmTest -x stream:jvmTest -x auth:jvmTest
+        arguments: publishAllPublicationsToMavenRepository -x check
       env:
         USERNAME: ${{ secrets.REPSY_USERNAME }}
         PASSWORD: ${{ secrets.REPSY_PASSWORD }}
