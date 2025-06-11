@@ -15,10 +15,19 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Cache CocoaPods
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cocoapods/repos
+            ~/Library/Caches/CocoaPods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
+
       - name: Pods XCFramework
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: all:assembleKbskyXCFramework all:podPublishXCFramework -x check
+          arguments: all:assembleKbskyXCFramework all:podPublishXCFramework -x check --configuration-cache --parallel
 
       - name: Set Project Version
         run: |
