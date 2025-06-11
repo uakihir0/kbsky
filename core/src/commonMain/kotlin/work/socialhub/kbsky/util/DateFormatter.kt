@@ -4,7 +4,7 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-class DateFormatter(
+data class DateFormatter(
     val format: String,
     val timezone: TimeZone,
 ) {

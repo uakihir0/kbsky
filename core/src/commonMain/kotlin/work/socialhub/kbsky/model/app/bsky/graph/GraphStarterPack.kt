@@ -7,24 +7,17 @@ import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class GraphStarterPack : RecordUnion() {
-
+data class GraphStarterPack(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var name: String? = null,
+    var description: String? = null,
+    var descriptionFacets: List<RichtextFacet>? = null,
+    var list: String? = null,
+    var feeds: List<GraphStarterPackFeedItem>? = null,
+    var createdAt: String? = null,
+) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.GraphStarterPack
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    /** Display name for starter pack; can not be empty. */
-    var name: String? = null
-
-    var description: String? = null
-    var descriptionFacets: List<RichtextFacet>? = null
-
-    /** Reference (AT-URI) to the list record. */
-    var list: String? = null
-
-    var feeds: List<GraphStarterPackFeedItem>? = null
-    var createdAt: String? = null
 }

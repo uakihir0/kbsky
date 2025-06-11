@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.util.facet
 
-class FacetRecord(
+data class FacetRecord(
     var type: FacetType,
     var contentText: String,
     var displayText: String,

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ConvoDefsLogRemoveReaction(
+data class ConvoDefsLogRemoveReaction(
     @SerialName("\$type")
     override val type: String = TYPE,
     val rev: String,

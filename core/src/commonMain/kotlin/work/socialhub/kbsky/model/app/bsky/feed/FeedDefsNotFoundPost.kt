@@ -5,15 +5,13 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class FeedDefsNotFoundPost : FeedDefsThreadUnion() {
-
+data class FeedDefsNotFoundPost(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var uri: String? = null,
+    var notFound: Boolean = true,
+) : FeedDefsThreadUnion() {
     companion object {
         val TYPE = BlueskyTypes.FeedDefs + "#notFoundPost"
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var uri: String? = null
-    var notFound = true
 }

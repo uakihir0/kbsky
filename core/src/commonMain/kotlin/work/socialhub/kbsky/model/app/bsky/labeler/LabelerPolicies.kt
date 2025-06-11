@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabelValueDefinition
 
 @Serializable
-class LabelerPolicies {
-
-    lateinit var labelValues: List<String>
-
-    var labelValueDefinitions: List<LabelDefsLabelValueDefinition> = emptyList()
-}
+data class LabelerPolicies(
+    var labelValues: List<String> = emptyList(),
+    var labelValueDefinitions: List<LabelDefsLabelValueDefinition> = emptyList(),
+)

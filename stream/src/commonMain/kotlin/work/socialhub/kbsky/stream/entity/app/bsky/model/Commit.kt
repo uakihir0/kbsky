@@ -4,12 +4,11 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class Commit {
-    lateinit var rev: String
-    lateinit var operation: String
-    lateinit var collection: String
-    lateinit var rkey: String
-
-    var record: RecordUnion? = null
-    var cid: String? = null
-}
+data class Commit(
+    var rev: String = "",
+    var operation: String = "",
+    var collection: String = "",
+    var rkey: String = "",
+    var record: RecordUnion? = null,
+    var cid: String? = null,
+)

@@ -4,20 +4,19 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class WellKnownOAuthProtectedResourceResponse {
-
+data class WellKnownOAuthProtectedResourceResponse(
     @SerialName("resource")
-    lateinit var resource: String
+    var resource: String = "",
 
     @SerialName("authorization_servers")
-    lateinit var authorizationServers: List<String>
+    var authorizationServers: List<String> = emptyList(),
 
     @SerialName("scopes_supported")
-    lateinit var scopesSupported: List<String>
+    var scopesSupported: List<String> = emptyList(),
 
     @SerialName("bearer_methods_supported")
-    lateinit var bearerMethodsSupported: List<String>
+    var bearerMethodsSupported: List<String> = emptyList(),
 
     @SerialName("resource_documentation")
-    lateinit var resourceDocumentation: String
-}
+    var resourceDocumentation: String = "",
+)

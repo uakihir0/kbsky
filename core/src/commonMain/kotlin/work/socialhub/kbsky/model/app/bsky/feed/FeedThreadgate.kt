@@ -6,19 +6,14 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class FeedThreadgate : RecordUnion() {
-
+data class FeedThreadgate(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var createdAt: String? = null,
+    var post: String? = null,
+    var allow: List<FeedThreadgateAllowUnion>? = null,
+) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.FeedThreadgate
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    lateinit var createdAt: String
-
-    // at-uri
-    lateinit var post: String
-
-    var allow: List<FeedThreadgateAllowUnion>? = null
 }

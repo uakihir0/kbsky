@@ -3,13 +3,8 @@ package work.socialhub.kbsky.model.app.bsky.graph
 import kotlinx.serialization.Serializable
 
 @Serializable
-class GraphDefsListViewerState {
-
-    /** at-uri  */
-    var repost: String? = null
-
-    /** at-uri  */
-    var like: String? = null
-
-    var replyDisabled: Boolean? = null
-}
+data class GraphDefsListViewerState(
+    var repost: String? = null,
+    var like: String? = null,
+    var replyDisabled: Boolean? = null,
+)

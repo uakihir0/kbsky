@@ -6,20 +6,14 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class GraphListItem : RecordUnion() {
-
+data class GraphListItem(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var subject: String? = null,
+    var list: String? = null,
+    var createdAt: String? = null,
+) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.GraphListItem
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    // user did
-    var subject: String? = null
-
-    // list uri
-    var list: String? = null
-
-    var createdAt: String? = null
 }
