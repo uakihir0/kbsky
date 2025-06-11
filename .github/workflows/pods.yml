@@ -27,7 +27,7 @@ jobs:
       - name: Pods XCFramework
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: all:assembleKbskyXCFramework all:podPublishXCFramework -x check --configuration-cache --parallel
+          arguments: all:assembleKbskyXCFramework all:podPublishXCFramework -x check --parallel
 
       - name: Set Project Version
         run: |
