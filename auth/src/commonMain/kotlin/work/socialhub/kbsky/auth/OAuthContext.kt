@@ -6,10 +6,9 @@ import kotlinx.serialization.Serializable
  * Following values required during OAuth
  */
 @Serializable
-class OAuthContext : OAuthSession() {
-
-    var redirectUri: String? = null
-    var codeVerifier: String? = null
-    var state: String? = null
-}
+data class OAuthContext(
+    var redirectUri: String? = null,
+    var codeVerifier: String? = null,
+    var state: String? = null,
+) : OAuthSession()
 

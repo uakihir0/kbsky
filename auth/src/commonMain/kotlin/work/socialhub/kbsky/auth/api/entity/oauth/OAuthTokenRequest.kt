@@ -2,24 +2,21 @@ package work.socialhub.kbsky.auth.api.entity.oauth
 
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class OAuthTokenRequest : MapRequest {
-
-    var grantType = ""
-    var responseType: String? = null
-
-    var clientId: String? = null
-    var redirectUri: String? = null
-    var refreshToken: String? = null
-
-    var code: String? = null
-    var codeVerifier: String? = null
-
+data class OAuthTokenRequest(
+    var grantType: String = "",
+    var responseType: String? = null,
+    var clientId: String? = null,
+    var redirectUri: String? = null,
+    var refreshToken: String? = null,
+    var code: String? = null,
+    var codeVerifier: String? = null,
     /**
      * Required for confidential OAuth clients.
      */
-    var keyId: String? = null
-    var clientAssertionType: String? = null
-    var clientAssertion: String? = null
+    var keyId: String? = null,
+    var clientAssertionType: String? = null,
+    var clientAssertion: String? = null,
+) : MapRequest {
 
     override fun toMap(): Map<String, Any> =
         mutableMapOf<String, Any>().also {

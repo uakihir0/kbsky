@@ -9,15 +9,13 @@ import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
  * List Item
  */
 @Serializable
-class GraphDefsListItemView {
-
+data class GraphDefsListItemView(
+    @SerialName("\$type")
+    var type: String = TYPE,
+    var uri: String? = null,
+    var subject: ActorDefsProfileView? = null,
+) {
     companion object {
         const val TYPE = BlueskyTypes.GraphDefs + "#listItemView"
     }
-
-    @SerialName("\$type")
-    var type = TYPE
-
-    lateinit var uri: String
-    lateinit var subject: ActorDefsProfileView
 }

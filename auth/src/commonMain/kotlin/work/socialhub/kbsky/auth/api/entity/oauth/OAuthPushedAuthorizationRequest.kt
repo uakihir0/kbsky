@@ -3,33 +3,27 @@ package work.socialhub.kbsky.auth.api.entity.oauth
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.domain.OAuthScopes
 
-class OAuthPushedAuthorizationRequest : MapRequest {
-
-    var scope = listOf(
+data class OAuthPushedAuthorizationRequest(
+    var scope: List<String> = listOf(
         OAuthScopes.ATProto.value,
         OAuthScopes.TransitionGeneric.value,
         OAuthScopes.TransitionChatBsky.value,
-    )
-
-    var responseType = "code"
-
-    var clientId = ""
-    var redirectUri = ""
-
-    var codeChallenge: String? = null
-    var codeChallengeMethod = "S256"
-
+    ),
+    var responseType: String = "code",
+    var clientId: String = "",
+    var redirectUri: String = "",
+    var codeChallenge: String? = null,
+    var codeChallengeMethod: String = "S256",
     /**
      * Required for confidential OAuth clients.
      */
-    var keyId: String? = null
-    var clientAssertionType: String? = null
-    var clientAssertion: String? = null
-
-    var state: String? = null
+    var keyId: String? = null,
+    var clientAssertionType: String? = null,
+    var clientAssertion: String? = null,
+    var state: String? = null,
     // var nonce: String? = null
-
-    var loginHint: String? = null
+    var loginHint: String? = null,
+) : MapRequest {
 
     override fun toMap(): Map<String, Any> =
         mutableMapOf<String, Any>().also {

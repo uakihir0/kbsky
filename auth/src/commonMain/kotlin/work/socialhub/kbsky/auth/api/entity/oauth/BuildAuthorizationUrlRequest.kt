@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.auth.api.entity.oauth
 
-class BuildAuthorizationUrlRequest {
-    var requestUri: String = ""
-    var clientId: String = ""
-}
+data class BuildAuthorizationUrlRequest(
+    var requestUri: String = "",
+    var clientId: String = "",
+)

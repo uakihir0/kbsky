@@ -9,15 +9,13 @@ import work.socialhub.kbsky.model.share.RecordUnion
  * A block.
  */
 @Serializable
-class GraphBlock : RecordUnion() {
-
+data class GraphBlock(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var subject: String? = null,
+    var createdAt: String? = null,
+) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.GraphBlock
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var subject: String? = null
-    var createdAt: String? = null
 }

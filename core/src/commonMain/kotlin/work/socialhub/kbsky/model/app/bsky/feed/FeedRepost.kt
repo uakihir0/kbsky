@@ -7,15 +7,13 @@ import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class FeedRepost : RecordUnion() {
-
+data class FeedRepost(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var subject: RepoStrongRef? = null,
+    var createdAt: String? = null,
+) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.FeedRepost
     }
-
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var subject: RepoStrongRef? = null
-    var createdAt: String? = null
 }
