@@ -19,11 +19,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ~/.cocoapods/repos
-            ~/Library/Caches/CocoaPods
+            $HOME/.cocoapods/repos
+            $HOME/Library/Caches/CocoaPods
           key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
           restore-keys: ${{ runner.os }}-pods-
-
       - name: Pods XCFramework
         uses: gradle/actions/setup-gradle@v3
         with:
