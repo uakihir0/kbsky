@@ -28,7 +28,7 @@ class JetStreamSubscribeRequest {
 
     /**
      * A unix microseconds timestamp cursor to begin playback from.
-     * n absent cursor or a cursor from the future will result in live-tail operation.
+     * An absent cursor or a cursor from the future will result in live-tail operation.
      * When reconnecting, use the time_us from your most recently processed event
      * and maybe provide a negative buffer (i.e. subtract a few seconds) to ensure gapless playback
      */
