@@ -4,8 +4,8 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class ServerGetServiceAuthRequest(
-    auth: AuthProvider,
+data class ServerGetServiceAuthRequest(
+    override val auth: AuthProvider,
     // did
     val aud: String,
     val exp: Long? = null,
