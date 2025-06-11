@@ -2,11 +2,12 @@ package work.socialhub.kbsky.api.entity.com.atproto.repo
 
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class RepoListRecordsRequest(
+data class RepoListRecordsRequest(
     /** The handle or DID of the repo. */
     var repo: String,
     /** The NSID of the record collection. */
     var collection: String
+
 ) : MapRequest {
 
     /** The number of records to return. */

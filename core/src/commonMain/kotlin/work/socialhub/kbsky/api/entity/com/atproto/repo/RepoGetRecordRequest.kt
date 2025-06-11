@@ -3,7 +3,7 @@ package work.socialhub.kbsky.api.entity.com.atproto.repo
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.util.ATUriParser
 
-class RepoGetRecordRequest(
+data class RepoGetRecordRequest(
     /** The handle or DID of the repo. */
     var repo: String,
     /** The NSID of the record collection. */
@@ -11,11 +11,10 @@ class RepoGetRecordRequest(
     /** The key of the record. */
     var rkey: String? = null,
     /** (Library optional) */
-    var uri: String? = null
-) : MapRequest {
-
+    var uri: String? = null,
     /** The CID of the version of the record. If not specified, then return the most recent version.*/
     var cid: String? = null
+) : MapRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

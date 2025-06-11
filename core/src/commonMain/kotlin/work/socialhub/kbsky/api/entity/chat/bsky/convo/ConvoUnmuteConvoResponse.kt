@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsConvoView
 
 @Serializable
-class ConvoUnmuteConvoResponse {
-    lateinit var convo: ConvoDefsConvoView
-}
+data class ConvoUnmuteConvoResponse(
+    var convo: ConvoDefsConvoView
+)

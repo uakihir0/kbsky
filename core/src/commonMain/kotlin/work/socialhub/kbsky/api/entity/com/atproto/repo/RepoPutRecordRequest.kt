@@ -5,8 +5,8 @@ import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.share.RecordUnion
 
-class RepoPutRecordRequest(
-    auth: AuthProvider,
+data class RepoPutRecordRequest(
+    override val auth: AuthProvider,
     /** The handle or DID of the repo. */
     var repo: String,
     /** The NSID of the record collection. */
