@@ -12,7 +12,7 @@ class RepoStrongRef(
 ) {
 
     override fun equals(other: Any?): Boolean {
-        val ref = other as RepoStrongRef? ?: return false
+        val ref = other as? RepoStrongRef ?: return false
         return (ref.uri == uri) && (ref.cid == cid)
     }
 
