@@ -42,7 +42,7 @@ class JetStreamSubscribeRequest {
     // var compress: Boolean = false
 
     /**
-     * Set to true to pause replay/live-tail until the server recevies
+     * Set to true to pause replay/live-tail until the server receives
      * a SubscriberOptionsUpdatePayload over the socket in a Subscriber Sourced Message
      */
     var requireHello: Boolean? = null
