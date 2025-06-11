@@ -5,7 +5,7 @@ import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.auth.OAuthProvider
 
 data class OAuthRefreshTokenRequest(
-    val auth: AuthProvider,
+    auth: AuthProvider,
 ) : AuthRequest(auth) {
 
     var clientId: String? = null
