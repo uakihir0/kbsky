@@ -20,6 +20,6 @@ data class NotificationListNotificationsNotification(
     var record: RecordUnion? = null,
     var isRead: Boolean = false,
     var indexedAt: String = "",
-
+) {
     // TODO: labels
 }

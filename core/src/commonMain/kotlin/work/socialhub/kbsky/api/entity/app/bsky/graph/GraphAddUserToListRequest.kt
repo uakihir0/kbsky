@@ -10,7 +10,7 @@ data class GraphAddUserToListRequest(
     override val auth: AuthProvider,
     var userDid: String? = null,
     var listUri: String? = null,
-    override var createdAt: String? = createdAt(),
+    override var createdAt: String? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
 
     override fun toMap(): Map<String, Any> {

@@ -8,7 +8,7 @@ import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageInput
 data class ConvoSendMessageRequest(
     override val auth: AuthProvider,
     var convoId: String = "",
-    lateinit var message: ConvoDefsMessageInput,
+    var message: ConvoDefsMessageInput? = null,
 ) : AuthRequest(auth), MapRequest {
 
     override fun toMap(): Map<String, Any> {
