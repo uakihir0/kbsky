@@ -7,8 +7,8 @@ data class OAuthAuthorizationCodeTokenRequest(
     /**
      * Required for confidential OAuth clients.
      */
-    var keyId: String? = null
-    var clientAssertionType: String? = null
+    var keyId: String? = null,
+    var clientAssertionType: String? = null,
     var clientAssertion: String? = null,
 
     var code: String? = null,
