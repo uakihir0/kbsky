@@ -34,6 +34,7 @@ kotlin {
         // for test (kotlin/jvm)
         jvmTest.dependencies {
             implementation(kotlin("test"))
+            implementation(libs.slf4j.simple)
         }
     }
 }
