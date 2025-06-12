@@ -8,5 +8,5 @@ import work.socialhub.kbsky.model.app.bsky.video.JobStatus
  */
 @Serializable
 data class VideoGetJobStatusResponse(
-    var jobStatus: JobStatus? = null,
+    var jobStatus: JobStatus,
 )
