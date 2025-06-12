@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewDetailed
 
 @Serializable
-class ActorGetProfilesResponse {
-    lateinit var profiles: List<ActorDefsProfileViewDetailed>
-}
+data class ActorGetProfilesResponse(
+    var profiles: List<ActorDefsProfileViewDetailed> = emptyList(),
+)

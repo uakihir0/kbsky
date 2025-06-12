@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.share.Blob
 
 @Serializable
-class EmbedExternalExternal {
-    lateinit var uri: String
-    lateinit var title: String
-    lateinit var description: String
-    var thumb: Blob? = null
-}
+data class EmbedExternalExternal(
+    var uri: String = "",
+    var title: String = "",
+    var description: String = "",
+    var thumb: Blob? = null,
+)

@@ -8,18 +8,20 @@ import work.socialhub.kbsky.model.share.Blob
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class ActorProfile : RecordUnion() {
+data class ActorProfile(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var displayName: String? = null,
+    var description: String? = null,
+    var avatar: Blob? = null,
+    var banner: Blob? = null,
+    var pinnedPost: RepoStrongRef? = null,
+) : RecordUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ActorProfile
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var displayName: String? = null
-    var description: String? = null
-    var avatar: Blob? = null
-    var banner: Blob? = null
-    var pinnedPost: RepoStrongRef? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null, null, null, null, null)
 }

@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
  * https://github.com/bluesky-social/atproto/blob/main/lexicons/com/atproto/identity/resolveHandle.json
  */
 @Serializable
-class IdentityResolveHandleResponse {
-    lateinit var did: String
-}
+data class IdentityResolveHandleResponse(
+    var did: String = "",
+)

@@ -5,12 +5,14 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class FeedDefsReasonPin : FeedDefsReasonUnion() {
+data class FeedDefsReasonPin(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+) : FeedDefsReasonUnion() {
 
     companion object {
         val TYPE = BlueskyTypes.FeedDefs + "#reasonPin"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
+
 }

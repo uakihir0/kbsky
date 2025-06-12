@@ -4,14 +4,11 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class FeedGetAuthorFeedRequest(
-    auth: AuthProvider
-) : AuthRequest(auth), MapRequest {
-
-    lateinit var actor: String
-
-    var limit: Int? = null
-    var cursor: String? = null
+data class FeedGetAuthorFeedRequest(
+    override val auth: AuthProvider,
+    var actor: String = "",
+    var limit: Int? = null,
+    var cursor: String? = null,
 
     enum class Filter(val value: String) {
         PostsWithReplies("posts_with_replies"),

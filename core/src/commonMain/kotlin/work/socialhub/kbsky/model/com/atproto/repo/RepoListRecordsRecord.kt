@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class RepoListRecordsRecord {
-    var uri: String? = null
-    var cid: String? = null
-    var value: RecordUnion? = null
-}
+data class RepoListRecordsRecord(
+    var uri: String? = null,
+    var cid: String? = null,
+    var value: RecordUnion? = null,
+)

@@ -6,15 +6,16 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewBasic
 
 @Serializable
-class FeedDefsReasonRepost : FeedDefsReasonUnion() {
+data class FeedDefsReasonRepost(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var by: ActorDefsProfileViewBasic? = null,
+    var indexedAt: String? = null,
+) : FeedDefsReasonUnion() {
 
     companion object {
         val TYPE = BlueskyTypes.FeedDefs + "#reasonRepost"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
 
-    var by: ActorDefsProfileViewBasic? = null
-    var indexedAt: String? = null
 }

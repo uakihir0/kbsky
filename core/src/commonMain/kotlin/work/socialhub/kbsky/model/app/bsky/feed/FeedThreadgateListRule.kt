@@ -5,15 +5,16 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class FeedThreadgateListRule : FeedThreadgateAllowUnion() {
+data class FeedThreadgateListRule(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    // at-uri
+    var list: String = "",
+) : FeedThreadgateAllowUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.FeedThreadgate + "#listRule"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
 
-    // at-uri
-    lateinit var list: String
 }

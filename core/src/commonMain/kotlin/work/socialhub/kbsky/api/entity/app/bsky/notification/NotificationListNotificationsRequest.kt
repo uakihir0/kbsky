@@ -4,12 +4,11 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class NotificationListNotificationsRequest(
-    auth: AuthProvider
+data class NotificationListNotificationsRequest(
+    override val auth: AuthProvider,
+    var limit: Int? = null,
+    var cursor: String? = null,
 ) : AuthRequest(auth), MapRequest {
-
-    var limit: Int? = null
-    var cursor: String? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

@@ -5,14 +5,16 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedExternalView : EmbedViewUnion() {
+data class EmbedExternalView(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var external: EmbedExternalViewExternal? = null,
+) : EmbedViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedExternal + "#view"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var external: EmbedExternalViewExternal? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null)
 }

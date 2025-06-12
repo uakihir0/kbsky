@@ -4,11 +4,10 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class ActorGetProfilesRequest(
-    auth: AuthProvider
+data class ActorGetProfilesRequest(
+    override val auth: AuthProvider,
+    var actors: List<String>? = null,
 ) : AuthRequest(auth), MapRequest {
-
-    var actors: List<String>? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

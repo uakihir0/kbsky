@@ -8,14 +8,16 @@ import work.socialhub.kbsky.BlueskyTypes
  * A set of images embedded in some other form of content
  */
 @Serializable
-class EmbedImages : EmbedUnion() {
+data class EmbedImages(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var images: List<EmbedImagesImage>? = null,
+) : EmbedUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedImages
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var images: List<EmbedImagesImage>? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null)
 }

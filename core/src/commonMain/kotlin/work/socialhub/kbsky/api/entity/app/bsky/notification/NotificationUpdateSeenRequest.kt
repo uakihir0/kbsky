@@ -6,11 +6,10 @@ import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility
 
-class NotificationUpdateSeenRequest(
-    auth: AuthProvider
+data class NotificationUpdateSeenRequest(
+    override val auth: AuthProvider,
+    var seenAt: String? = null,
 ) : AuthRequest(auth), MapRequest {
-
-    var seenAt: String? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

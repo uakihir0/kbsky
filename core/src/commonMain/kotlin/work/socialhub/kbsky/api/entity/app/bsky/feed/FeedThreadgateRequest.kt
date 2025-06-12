@@ -8,14 +8,12 @@ import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgate
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateAllowUnion
 
-class FeedThreadgateRequest(
-    auth: AuthProvider
+data class FeedThreadgateRequest(
+    override val auth: AuthProvider,
+    override var createdAt: String? = null,
+    var post: String = "",
+    var allow: List<FeedThreadgateAllowUnion>? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
-
-    override var createdAt: String? = null
-    lateinit var post: String
-
-    var allow: List<FeedThreadgateAllowUnion>? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

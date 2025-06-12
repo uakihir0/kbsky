@@ -6,8 +6,8 @@ import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.share.Blob
 
-class GraphEditListRequest(
-    auth: AuthProvider,
+data class GraphEditListRequest(
+    override val auth: AuthProvider,
     val listUri: String,
     val name: String,
     val description: String?,

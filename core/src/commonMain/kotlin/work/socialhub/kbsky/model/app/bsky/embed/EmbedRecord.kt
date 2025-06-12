@@ -6,14 +6,16 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 
 @Serializable
-class EmbedRecord : EmbedUnion() {
+data class EmbedRecord(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var record: RepoStrongRef? = null,
+) : EmbedUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecord
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var record: RepoStrongRef? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null)
 }

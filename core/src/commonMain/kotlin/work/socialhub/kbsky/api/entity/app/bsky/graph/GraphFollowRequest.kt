@@ -6,12 +6,11 @@ import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
 
-class GraphFollowRequest(
-    auth: AuthProvider
+data class GraphFollowRequest(
+    override val auth: AuthProvider,
+    var subject: String? = null,
+    override var createdAt: String? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
-
-    var subject: String? = null
-    override var createdAt: String? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

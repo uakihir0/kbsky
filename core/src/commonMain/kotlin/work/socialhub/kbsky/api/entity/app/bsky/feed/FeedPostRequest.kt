@@ -11,19 +11,17 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 
-class FeedPostRequest(
-    auth: AuthProvider
+data class FeedPostRequest(
+    override val auth: AuthProvider,
+    var text: String = "",
+    var langs: List<String>? = null,
+    var labels: LabelDefsSelfLabels? = null,
+    var facets: List<RichtextFacet>? = null,
+    var reply: FeedPostReplyRef? = null,
+    var embed: EmbedUnion? = null,
+    override var createdAt: String? = null,
+    var via: String? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
-
-    lateinit var text: String
-
-    var langs: List<String>? = null
-    var labels: LabelDefsSelfLabels? = null
-    var facets: List<RichtextFacet>? = null
-    var reply: FeedPostReplyRef? = null
-    var embed: EmbedUnion? = null
-    override var createdAt: String? = null
-    var via: String? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

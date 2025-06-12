@@ -4,12 +4,10 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class ConvoGetConvoForMembersRequest(
-    auth: AuthProvider
+data class ConvoGetConvoForMembersRequest(
+    override val auth: AuthProvider,
+    var members: List<String> = emptyList(),
 ) : AuthRequest(auth), MapRequest {
-
-    // did
-    lateinit var members: List<String>
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

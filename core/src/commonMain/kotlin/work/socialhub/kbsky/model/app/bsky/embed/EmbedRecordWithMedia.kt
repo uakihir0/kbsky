@@ -5,17 +5,18 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedRecordWithMedia : EmbedUnion() {
+data class EmbedRecordWithMedia(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var record: EmbedRecord? = null,
+    /** only external and images  */
+    var media: EmbedUnion? = null,
+) : EmbedUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecordWithMedia
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var record: EmbedRecord? = null
-
-    /** only external and images  */
-    var media: EmbedUnion? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null, null)
 }

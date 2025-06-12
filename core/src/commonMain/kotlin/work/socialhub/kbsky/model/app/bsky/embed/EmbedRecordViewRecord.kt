@@ -8,20 +8,22 @@ import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
-class EmbedRecordViewRecord : EmbedRecordViewUnion() {
+data class EmbedRecordViewRecord(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var uri: String? = null,
+    var cid: String? = null,
+    var author: ActorDefsProfileViewBasic? = null,
+    var value: RecordUnion? = null,
+    var labels: List<LabelDefsLabel>? = null,
+    var embeds: List<EmbedViewUnion>? = null,
+    var indexedAt: String? = null,
+) : EmbedRecordViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecord + "#viewRecord"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var uri: String? = null
-    var cid: String? = null
-    var author: ActorDefsProfileViewBasic? = null
-    var value: RecordUnion? = null
-    var labels: List<LabelDefsLabel>? = null
-    var embeds: List<EmbedViewUnion>? = null
-    var indexedAt: String? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null, null, null, null, null, null, null)
 }
