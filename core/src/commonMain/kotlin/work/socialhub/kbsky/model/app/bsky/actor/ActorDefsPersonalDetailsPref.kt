@@ -5,15 +5,17 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ActorDefsPersonalDetailsPref : ActorDefsPreferencesUnion() {
+data class ActorDefsPersonalDetailsPref(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    /** The birth date of account owner. */
+    var birthDate: String? = null,
+) : ActorDefsPreferencesUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ActorDefs + "#personalDetailsPref"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    /** The birth date of account owner. */
-    var birthDate: String? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null)
 }

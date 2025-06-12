@@ -5,8 +5,8 @@ import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.share.Blob
 
-class ActorUpdateProfileRequest(
-    auth: AuthProvider,
+data class ActorUpdateProfileRequest(
+    override val auth: AuthProvider,
     val displayName: String? = null,
     val description: String? = null,
     val avatar: Blob? = null,

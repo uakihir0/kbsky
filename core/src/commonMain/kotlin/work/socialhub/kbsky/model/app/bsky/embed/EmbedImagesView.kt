@@ -5,14 +5,16 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedImagesView : EmbedViewUnion() {
+data class EmbedImagesView(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var images: List<EmbedImagesViewImage>? = null,
+) : EmbedViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedImages + "#view"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var images: List<EmbedImagesViewImage>? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null)
 }

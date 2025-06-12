@@ -4,15 +4,15 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
 
 @Serializable
-class ServerCreateSessionResponse {
-    lateinit var accessJwt: String
-    lateinit var refreshJwt: String
-    lateinit var handle: String
-    lateinit var did: String
+data class ServerCreateSessionResponse(
+    var accessJwt: String = "",
+    var refreshJwt: String = "",
+    var handle: String = "",
+    var did: String = "",
 
-    var email: String? = null
-    var emailConfirmed: Boolean? = null
-    var emailAuthFactor: Boolean? = null
-    var didDoc: DidDocUnion? = null
-    var active: Boolean? = null
-}
+    var email: String? = null,
+    var emailConfirmed: Boolean? = null,
+    var emailAuthFactor: Boolean? = null,
+    var didDoc: DidDocUnion? = null,
+    var active: Boolean? = null,
+)

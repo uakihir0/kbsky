@@ -8,12 +8,11 @@ import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.feed.FeedRepost
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 
-class FeedRepostRequest(
-    auth: AuthProvider
+data class FeedRepostRequest(
+    override val auth: AuthProvider,
+    var subject: RepoStrongRef? = null,
+    override var createdAt: String? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
-
-    var subject: RepoStrongRef? = null
-    override var createdAt: String? = null
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

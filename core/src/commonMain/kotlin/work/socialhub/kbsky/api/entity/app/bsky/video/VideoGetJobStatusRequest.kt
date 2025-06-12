@@ -4,9 +4,9 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class VideoGetJobStatusRequest(
-    auth: AuthProvider,
-    val jobId: String
+data class VideoGetJobStatusRequest(
+    override val auth: AuthProvider,
+    val jobId: String,
 ) : AuthRequest(auth), MapRequest {
 
     override fun toMap(): Map<String, Any> {

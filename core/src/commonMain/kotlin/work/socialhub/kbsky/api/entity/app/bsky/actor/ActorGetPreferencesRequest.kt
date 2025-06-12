@@ -4,11 +4,9 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class ActorGetPreferencesRequest(
-    auth: AuthProvider
+data class ActorGetPreferencesRequest(
+    override val auth: AuthProvider,
 ) : AuthRequest(auth), MapRequest {
 
-    override fun toMap(): Map<String, Any> {
-        return mapOf()
-    }
+    override fun toMap(): Map<String, Any> = emptyMap()
 }

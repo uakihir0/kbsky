@@ -5,17 +5,18 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class ActorDefsContentLabelPref : ActorDefsPreferencesUnion() {
+data class ActorDefsContentLabelPref(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var label: String = "",
+    /** ["show", "warn", "hide"] */
+    var visibility: String = "",
+) : ActorDefsPreferencesUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.ActorDefs + "#contentLabelPref"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    lateinit var label: String
-
-    /** ["show", "warn", "hide"] */
-    lateinit var visibility: String
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, "", "")
 }

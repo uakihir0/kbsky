@@ -6,13 +6,12 @@ import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
 
-class GraphAddUserToListRequest(
-    auth: AuthProvider
+data class GraphAddUserToListRequest(
+    override val auth: AuthProvider,
+    var userDid: String? = null,
+    var listUri: String? = null,
+    override var createdAt: String? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
-
-    var userDid: String? = null
-    var listUri: String? = null
-    override var createdAt: String? = createdAt()
 
     override fun toMap(): Map<String, Any> {
         return emptyMap()

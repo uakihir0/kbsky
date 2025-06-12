@@ -5,14 +5,16 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class EmbedRecordViewNotFound : EmbedRecordViewUnion() {
+data class EmbedRecordViewNotFound(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var uri: String? = null,
+) : EmbedRecordViewUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecord + "#viewNotFound"
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var uri: String? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null)
 }

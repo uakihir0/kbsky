@@ -4,4 +4,6 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordResponse
 
 @Serializable
-class GraphFollowResponse : RepoCreateRecordResponse()
+data class GraphFollowResponse(
+    val dummy: Unit = Unit,
+) : RepoCreateRecordResponse()

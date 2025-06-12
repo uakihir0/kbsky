@@ -5,12 +5,11 @@ import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageInput
 
-class ConvoSendMessageRequest(
-    auth: AuthProvider
+data class ConvoSendMessageRequest(
+    override val auth: AuthProvider,
+    var convoId: String = "",
+    var message: ConvoDefsMessageInput? = null,
 ) : AuthRequest(auth), MapRequest {
-
-    lateinit var convoId: String
-    lateinit var message: ConvoDefsMessageInput
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

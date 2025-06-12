@@ -9,8 +9,8 @@ import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.share.Blob
 
-class GraphCreateListRequest(
-    auth: AuthProvider,
+data class GraphCreateListRequest(
+    override val auth: AuthProvider,
     private val purpose: String = "app.bsky.graph.defs#curatelist",
     private val name: String,
     private val description: String?,

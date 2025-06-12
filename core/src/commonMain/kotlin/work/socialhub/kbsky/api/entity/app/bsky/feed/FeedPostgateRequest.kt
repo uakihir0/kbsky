@@ -8,19 +8,15 @@ import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostgate
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostgateEmbeddingRulesUnion
 
-class FeedPostgateRequest(
-    auth: AuthProvider
-) : AuthRequest(auth), MapRequest, RecordRequest {
-
-    override var createdAt: String? = null
-
+data class FeedPostgateRequest(
+    override val auth: AuthProvider,
+    override var createdAt: String? = null,
     // at-uri
-    lateinit var post: String
-
+    var post: String = "",
     // List of AT-URIs embedding this post that the author has detached from.
-    var detachedEmbeddingUris: List<String>? = null
-
-    var embeddingRules: List<FeedPostgateEmbeddingRulesUnion>? = null
+    var detachedEmbeddingUris: List<String>? = null,
+    var embeddingRules: List<FeedPostgateEmbeddingRulesUnion>? = null,
+) : AuthRequest(auth), MapRequest, RecordRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

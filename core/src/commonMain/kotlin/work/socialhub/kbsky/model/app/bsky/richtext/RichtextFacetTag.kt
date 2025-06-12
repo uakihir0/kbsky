@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 
 @Serializable
-class RichtextFacetTag(
+data class RichtextFacetTag(
     @SerialName("\$type")
     override var type: String = TYPE,
-    var tag: String,
+    var tag: String = "",
 ) : RichtextFacetFeatureUnion() {
 
     companion object {

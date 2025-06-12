@@ -9,21 +9,20 @@ import work.socialhub.kbsky.model.share.Blob
  * A video embedded in a Bluesky record
  */
 @Serializable
-class EmbedVideo : EmbedUnion() {
+data class EmbedVideo(
+    @SerialName("\$type")
+    override var type: String = TYPE,
+    var video: Blob? = null,
+    // TODO Add support for captions
+    // var captions: List<EmbedVideoCaption>? = null
+    var alt: String? = null,
+    var aspectRatio: EmbedDefsAspectRatio? = null,
+) : EmbedUnion() {
 
     companion object {
         const val TYPE = BlueskyTypes.EmbedVideo
     }
 
-    @SerialName("\$type")
-    override var type = TYPE
-
-    var video: Blob? = null
-
-    // TODO Add support for captions
-    // var captions: List<EmbedVideoCaption>? = null
-
-    var alt: String? = null
-
-    var aspectRatio: EmbedDefsAspectRatio? = null
+    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
+    constructor() : this(TYPE, null, null, null)
 }

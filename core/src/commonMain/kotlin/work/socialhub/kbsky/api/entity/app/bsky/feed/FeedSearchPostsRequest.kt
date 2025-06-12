@@ -4,17 +4,15 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
-class FeedSearchPostsRequest(
-    auth: AuthProvider,
+data class FeedSearchPostsRequest(
+    override val auth: AuthProvider,
     /** Search query string; syntax, phrase, boolean, and faceting is unspecified, but Lucene query syntax is recommended. */
     var q: String,
-) : AuthRequest(auth), MapRequest {
-
     // [1-100] default: 25
-    var limit: Int? = null
-
+    var limit: Int? = null,
     /** Optional pagination mechanism; may not necessarily allow scrolling through entire result set. */
-    var cursor: String? = null
+    var cursor: String? = null,
+) : AuthRequest(auth), MapRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
