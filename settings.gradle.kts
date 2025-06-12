@@ -9,14 +9,6 @@ pluginManagement {
     }
 }
 
-@Suppress("UnstableApiUsage")
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
 rootProject.name = "kbsky"
 
 include("core")
