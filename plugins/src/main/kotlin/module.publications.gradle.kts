@@ -6,8 +6,9 @@ plugins {
     id("maven-publish")
     id("signing")
 
-    id("com.vanniktech.maven.publish")
     id("org.jetbrains.dokka")
+    id("org.jetbrains.dokka-javadoc")
+    id("com.vanniktech.maven.publish")
 }
 
 publishing {
@@ -55,7 +56,7 @@ publishing {
 mavenPublishing {
     configure(
         KotlinMultiplatform(
-            javadocJar = JavadocJar.Dokka("dokkaHtml")
+            javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")
         )
     )
 

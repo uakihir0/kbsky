@@ -7,3 +7,9 @@
 ```shell
 ./gradlew core:jvmTest --tests "work.socialhub.kbsky.com.atproto.identity.ResolveHandleTest.testResolveHandle"
 ```
+
+Bluesky のサーバーにアクセス出来ない場合は、ビルドができることを確認してください。JVM 環境では以下でコンパイルの確認ができます。
+
+```shell
+./gradlew jvmJar
+```
