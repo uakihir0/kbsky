@@ -2,10 +2,10 @@ package work.socialhub.kbsky.stream.api.entity.com.atproto
 
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
-class SyncSubscribeReposRequest : MapRequest {
-
-    var cursor: String? = null
-    var filter: List<String> = listOf()
+data class SyncSubscribeReposRequest(
+    var cursor: String? = null,
+    var filter: List<String> = listOf(),
+) : MapRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {

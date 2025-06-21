@@ -6,7 +6,7 @@ import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetLink
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetMention
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacetTag
 
-class FacetList(
+data class FacetList(
     val records: List<FacetRecord>
 ) {
     fun displayText(): String {
