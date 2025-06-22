@@ -34,6 +34,10 @@ kotlin {
             implementation(libs.cryptography.core)
         }
 
+        jvmMain.dependencies {
+            api(kotlin("stdlib"))
+        }
+
         appleMain.dependencies {
             implementation(libs.cryptography.openssl)
         }

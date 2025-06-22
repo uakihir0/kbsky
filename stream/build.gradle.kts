@@ -31,6 +31,10 @@ kotlin {
             implementation(libs.serialization.cbor)
         }
 
+        jvmMain.dependencies {
+            api(kotlin("stdlib"))
+        }
+
         // for test (kotlin/jvm)
         jvmTest.dependencies {
             implementation(kotlin("test"))
