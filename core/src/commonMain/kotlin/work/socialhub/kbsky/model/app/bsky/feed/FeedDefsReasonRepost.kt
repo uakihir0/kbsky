@@ -10,6 +10,8 @@ data class FeedDefsReasonRepost(
     @SerialName("\$type")
     override var type: String = TYPE,
     var by: ActorDefsProfileViewBasic? = null,
+    var uri: String? = null,
+    var cid: String? = null,
     var indexedAt: String? = null,
 ) : FeedDefsReasonUnion() {
 

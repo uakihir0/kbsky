@@ -12,19 +12,23 @@ data class FeedLikeRequest(
     override val auth: AuthProvider,
     var subject: RepoStrongRef? = null,
     override var createdAt: String? = null,
+    val via: RepoStrongRef? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
             it.addParam("subject", toJson(subject))
             it.addParam("createdAt", createdAt())
+            it.addParam("via", toJson(via))
         }
     }
 
     fun toLike(): FeedLike {
-        val like = FeedLike()
-        like.subject = subject
-        like.createdAt = createdAt()
+        val like = FeedLike(
+            subject = subject,
+            createdAt = createdAt(),
+            via = via,
+        )
         return like
     }
 }
