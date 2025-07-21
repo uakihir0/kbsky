@@ -12,19 +12,23 @@ data class FeedRepostRequest(
     override val auth: AuthProvider,
     var subject: RepoStrongRef? = null,
     override var createdAt: String? = null,
+    val via: RepoStrongRef? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
 
     override fun toMap(): Map<String, Any> {
         return mutableMapOf<String, Any>().also {
             it.addParam("subject", toJson(subject))
             it.addParam("createdAt", createdAt())
+            it.addParam("via", toJson(via))
         }
     }
 
     fun toRepost(): FeedRepost {
-        val repost = FeedRepost()
-        repost.subject = subject
-        repost.createdAt = createdAt()
+        val repost = FeedRepost(
+            subject = subject,
+            createdAt = createdAt(),
+            via = via,
+        )
         return repost
     }
 }

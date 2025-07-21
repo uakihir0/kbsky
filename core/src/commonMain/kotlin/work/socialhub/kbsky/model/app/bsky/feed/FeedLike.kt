@@ -12,6 +12,7 @@ data class FeedLike(
     override var type: String = TYPE,
     var subject: RepoStrongRef? = null,
     var createdAt: String? = null,
+    val via: RepoStrongRef? = null,
 ) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.FeedLike
