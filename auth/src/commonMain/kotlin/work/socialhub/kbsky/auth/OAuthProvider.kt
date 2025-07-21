@@ -40,14 +40,14 @@ class OAuthProvider(
         }
 
     @Serializable
-    class Jwt {
-        lateinit var scope: String
-        lateinit var sub: String
-        lateinit var aud: String
-        lateinit var iss: String
-        var iat: Int = -1
-        var exp: Int = -1
-    }
+    data class Jwt(
+        var scope: String = "",
+        var sub: String = "",
+        var aud: String = "",
+        var iss: String = "",
+        var iat: Int = -1,
+        var exp: Int = -1,
+    )
 
 
     @OptIn(ExperimentalEncodingApi::class)

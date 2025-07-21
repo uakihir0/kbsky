@@ -49,13 +49,13 @@ class BearerTokenAuthProvider(
         }
 
     @Serializable
-    class Jwt {
-        lateinit var scope: String
-        lateinit var sub: String
-        lateinit var aud: String
-        var iat: Int = -1
-        var exp: Int = -1
-    }
+    data class Jwt(
+        var scope: String = "",
+        var sub: String = "",
+        var aud: String = "",
+        var iat: Int = -1,
+        var exp: Int = -1,
+    )
 
     override var acceptLabelers: List<String> = emptyList()
 }

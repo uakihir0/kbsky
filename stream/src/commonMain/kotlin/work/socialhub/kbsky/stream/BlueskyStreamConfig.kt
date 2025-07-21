@@ -2,9 +2,9 @@ package work.socialhub.kbsky.stream
 
 import work.socialhub.kbsky.BlueskyConfig
 
-class BlueskyStreamConfig : BlueskyConfig() {
-
-    var jetStreamHost: String? = null
+data class BlueskyStreamConfig(
+    var jetStreamHost: String? = null,
+) : BlueskyConfig() {
 
     companion object {
         val defaultJetStreamHosts = listOf(
