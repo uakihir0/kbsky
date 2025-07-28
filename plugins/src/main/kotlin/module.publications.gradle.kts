@@ -56,7 +56,7 @@ publishing {
 mavenPublishing {
     configure(
         KotlinMultiplatform(
-            javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")
+            javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml")
         )
     )
 
