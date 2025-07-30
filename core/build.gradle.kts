@@ -30,6 +30,10 @@ kotlin {
             implementation(libs.serialization.json)
         }
 
+        jvmMain.dependencies {
+            api(kotlin("stdlib"))
+        }
+
         // for test
         commonTest.dependencies {
             implementation(kotlin("test"))
