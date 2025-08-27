@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.model.com.atproto.repo
 
 import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.model.com.atproto.moderation.ModerationSubjectUnion
 
 /**
  * Repository reference by DID.
@@ -8,4 +9,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RepoRef(
     val did: String,
-)
+) : ModerationSubjectUnion() {
+    override val type: String = "com.atproto.admin.defs#repoRef"
+    
+    override fun toMap(): Map<String, Any> {
+        return mapOf(
+            "\$type" to type,
+            "did" to did
+        )
+    }
+}
