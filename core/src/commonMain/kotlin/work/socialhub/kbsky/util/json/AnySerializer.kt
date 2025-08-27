@@ -31,6 +31,8 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.app.bsky.graph.GraphList
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageInput
+import work.socialhub.kbsky.model.com.atproto.repo.RepoRef
+import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 
 object AnySerializer : KSerializer<Any> {
 
@@ -95,6 +97,8 @@ object AnySerializer : KSerializer<Any> {
                 ConvoDefsMessageInput.serializer(),
                 value
             )
+            is RepoRef -> encoder.encodeSerializableValue(RepoRef.serializer(), value)
+            is RepoStrongRef -> encoder.encodeSerializableValue(RepoStrongRef.serializer(), value)
 
             else -> {
                 println("Can't serialize unknown type: ${value::class}")

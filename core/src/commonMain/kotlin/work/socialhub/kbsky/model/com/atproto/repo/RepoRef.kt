@@ -11,11 +11,4 @@ data class RepoRef(
     val did: String,
 ) : ModerationSubjectUnion() {
     override val type: String = "com.atproto.admin.defs#repoRef"
-    
-    override fun toMap(): Map<String, Any> {
-        return mapOf(
-            "\$type" to type,
-            "did" to did
-        )
-    }
 }

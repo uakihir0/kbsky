@@ -29,6 +29,5 @@ object ModerationSubjectUnionSerializer :
     @Serializable
     class Unknown : ModerationSubjectUnion() {
         override val type: String = "unknown"
-        override fun toMap(): Map<String, Any> = mapOf("\$type" to type)
     }
 }

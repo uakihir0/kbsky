@@ -16,7 +16,7 @@ data class ModerationCreateReportRequest(
         return mutableMapOf<String, Any>().also {
             it.addParam("reasonType", reasonType)
             it.addParam("reason", reason)
-            it.addParam("subject", subject.toMap())
+            it.addParam("subject", subject)
         }
     }
 }
