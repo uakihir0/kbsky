@@ -9,8 +9,7 @@ import kotlin.test.Test
 class RefreshSessionTest : AbstractTest() {
 
     @Test
-    fun testRefreshSession() {
-
+    fun testRefreshSession() {//fails as of 2025/08/31
         val response = ATProtocolFactory
             .instance(BSKY_SOCIAL.uri)
             .server()
@@ -23,6 +22,5 @@ class RefreshSessionTest : AbstractTest() {
 
         jwt.accessJwt = response.data.accessJwt
         jwt.refreshJwt = response.data.refreshJwt
-        saveJwt()
     }
 }
