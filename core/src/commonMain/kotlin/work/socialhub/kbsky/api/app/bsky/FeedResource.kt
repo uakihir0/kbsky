@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.app.bsky
 
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedCreateBookmarkRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteLikeRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteRepostRequest
@@ -210,4 +211,11 @@ interface FeedResource {
     fun postgate(
         request: FeedPostgateRequest
     ): Response<FeedPostgateResponse>
+
+    /**
+     * Creates a private bookmark for the specified record.
+     */
+    fun createBookmark(
+        request: FeedCreateBookmarkRequest
+    ): Response<Unit>
 }
