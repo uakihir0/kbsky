@@ -19,6 +19,7 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetQuotes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetRepostedBy
 import work.socialhub.kbsky.BlueskyTypes.FeedGetTimeline
 import work.socialhub.kbsky.BlueskyTypes.FeedCreateBookmark
+import work.socialhub.kbsky.BlueskyTypes.FeedDeleteBookmark
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
 import work.socialhub.kbsky.BlueskyTypes.FeedPostgate
@@ -26,6 +27,7 @@ import work.socialhub.kbsky.BlueskyTypes.FeedRepost
 import work.socialhub.kbsky.BlueskyTypes.FeedThreadgate
 import work.socialhub.kbsky.api.app.bsky.FeedResource
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedCreateBookmarkRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteBookmarkRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteLikeRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteRepostRequest
@@ -491,6 +493,21 @@ class _FeedResource(
             runBlocking {
                 HttpRequest()
                     .url(xrpc(config, FeedCreateBookmark))
+                    .accept(MediaType.JSON)
+                    .json(request.toMappedJson())
+                    .postWithAuth(request.auth)
+            }
+        }
+    }
+
+    override fun deleteBookmark(
+        request: FeedDeleteBookmarkRequest
+    ): Response<Unit> {
+
+        return proceedUnit {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, FeedDeleteBookmark))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .postWithAuth(request.auth)
