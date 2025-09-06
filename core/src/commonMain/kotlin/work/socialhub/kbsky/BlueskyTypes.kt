@@ -48,6 +48,7 @@ object BlueskyTypes {
     const val FeedGetFeedGenerators = "app.bsky.feed.getFeedGenerators"
     const val FeedCreateBookmark = "app.bsky.bookmark.createBookmark"
     const val FeedDeleteBookmark = "app.bsky.bookmark.deleteBookmark"
+    const val FeedGetBookmarks = "app.bsky.bookmark.getBookmarks"
     const val FeedThreadgate = "app.bsky.feed.threadgate"
     const val FeedPostgate = "app.bsky.feed.postgate"
 

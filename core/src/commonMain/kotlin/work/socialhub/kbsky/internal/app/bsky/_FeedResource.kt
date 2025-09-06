@@ -4,9 +4,12 @@ import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.BlueskyConfig
+import work.socialhub.kbsky.BlueskyTypes.FeedCreateBookmark
+import work.socialhub.kbsky.BlueskyTypes.FeedDeleteBookmark
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorFeeds
 import work.socialhub.kbsky.BlueskyTypes.FeedGetActorLikes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetAuthorFeed
+import work.socialhub.kbsky.BlueskyTypes.FeedGetBookmarks
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeed
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedGenerator
 import work.socialhub.kbsky.BlueskyTypes.FeedGetFeedGenerators
@@ -18,57 +21,13 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetPosts
 import work.socialhub.kbsky.BlueskyTypes.FeedGetQuotes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetRepostedBy
 import work.socialhub.kbsky.BlueskyTypes.FeedGetTimeline
-import work.socialhub.kbsky.BlueskyTypes.FeedCreateBookmark
-import work.socialhub.kbsky.BlueskyTypes.FeedDeleteBookmark
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
 import work.socialhub.kbsky.BlueskyTypes.FeedPostgate
 import work.socialhub.kbsky.BlueskyTypes.FeedRepost
 import work.socialhub.kbsky.BlueskyTypes.FeedThreadgate
 import work.socialhub.kbsky.api.app.bsky.FeedResource
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedCreateBookmarkRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteBookmarkRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteLikeRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteRepostRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorFeedsRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorFeedsResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorLikesRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorLikesResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetAuthorFeedRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetAuthorFeedResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorsRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorsResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetLikesRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetLikesResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetListFeedRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetListFeedResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostThreadRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostThreadResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostsRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetPostsResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostgateRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostgateResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsResponse
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateRequest
-import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.*
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
@@ -511,6 +470,21 @@ class _FeedResource(
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
                     .postWithAuth(request.auth)
+            }
+        }
+    }
+
+    override fun getBookmarks(
+        request: FeedGetBookmarksRequest
+    ): Response<FeedGetBookmarksResponse> {
+
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(xrpc(config, FeedGetBookmarks))
+                    .accept(MediaType.JSON)
+                    .queries(request.toMap())
+                    .getWithAuth(request.auth)
             }
         }
     }

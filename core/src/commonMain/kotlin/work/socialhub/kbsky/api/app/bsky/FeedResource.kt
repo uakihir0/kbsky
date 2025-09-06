@@ -11,6 +11,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorLikesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorLikesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetAuthorFeedRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetAuthorFeedResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetBookmarksRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetBookmarksResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorsRequest
@@ -226,4 +228,11 @@ interface FeedResource {
     fun deleteBookmark(
         request: FeedDeleteBookmarkRequest
     ): Response<Unit>
+
+    /**
+     * Gets views of records bookmarked by the authenticated user.
+     */
+    fun getBookmarks(
+        request: FeedGetBookmarksRequest
+    ): Response<FeedGetBookmarksResponse>
 }
