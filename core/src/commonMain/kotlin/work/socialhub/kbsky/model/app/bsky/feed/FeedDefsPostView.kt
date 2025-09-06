@@ -16,6 +16,7 @@ data class FeedDefsPostView(
     var replyCount: Int? = null,
     var repostCount: Int? = null,
     var likeCount: Int? = null,
+    var bookmarkCount: Int? = null,
     var quoteCount: Int? = null,
     var indexedAt: String? = null,
     var viewer: FeedDefsViewerState? = null,
