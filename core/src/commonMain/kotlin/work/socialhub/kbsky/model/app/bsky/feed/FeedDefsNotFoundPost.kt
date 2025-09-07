@@ -10,7 +10,7 @@ data class FeedDefsNotFoundPost(
     override var type: String = TYPE,
     var uri: String? = null,
     var notFound: Boolean = true,
-) : FeedDefsThreadUnion() {
+) : FeedDefsThreadUnion(), FeedDefsBookmarkItemUnion {
     companion object {
         val TYPE = BlueskyTypes.FeedDefs + "#notFoundPost"
     }

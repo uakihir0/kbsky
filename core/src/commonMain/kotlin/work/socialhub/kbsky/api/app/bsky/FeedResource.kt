@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.api.app.bsky
 
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedCreateBookmarkRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteBookmarkRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteLikeRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteRepostRequest
@@ -9,6 +11,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorLikesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorLikesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetAuthorFeedRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetAuthorFeedResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetBookmarksRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetBookmarksResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetFeedGeneratorsRequest
@@ -210,4 +214,25 @@ interface FeedResource {
     fun postgate(
         request: FeedPostgateRequest
     ): Response<FeedPostgateResponse>
+
+    /**
+     * Creates a private bookmark for the specified record.
+     */
+    fun createBookmark(
+        request: FeedCreateBookmarkRequest
+    ): Response<Unit>
+
+    /**
+     * Deletes a private bookmark for the specified record.
+     */
+    fun deleteBookmark(
+        request: FeedDeleteBookmarkRequest
+    ): Response<Unit>
+
+    /**
+     * Gets views of records bookmarked by the authenticated user.
+     */
+    fun getBookmarks(
+        request: FeedGetBookmarksRequest
+    ): Response<FeedGetBookmarksResponse>
 }
