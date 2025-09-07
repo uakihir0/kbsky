@@ -5,13 +5,12 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.moderation.ModerationSubjectUnion
 
 /**
- * A URI with a content-hash fingerprint.
+ * Repository reference by DID.
  */
 @Serializable
-data class RepoStrongRef(
-    val uri: String = "",
-    val cid: String = "",
+data class RepoRef(
+    val did: String,
 ) : ModerationSubjectUnion() {
     @SerialName("\$type")
-    override val type: String = "com.atproto.repo.strongRef"
+    override val type: String = "com.atproto.admin.defs#repoRef"
 }
