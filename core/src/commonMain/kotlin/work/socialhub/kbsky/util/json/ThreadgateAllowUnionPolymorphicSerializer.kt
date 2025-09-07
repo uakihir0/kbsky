@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateAllowUnion
+import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateFollowerRule
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateFollowingRule
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateListRule
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateMentionRule
@@ -21,6 +22,7 @@ object ThreadgateAllowUnionPolymorphicSerializer :
         return when (val type = element.type()) {
             FeedThreadgateMentionRule.TYPE -> FeedThreadgateMentionRule.serializer()
             FeedThreadgateFollowingRule.TYPE -> FeedThreadgateFollowingRule.serializer()
+            FeedThreadgateFollowerRule.TYPE -> FeedThreadgateFollowerRule.serializer()
             FeedThreadgateListRule.TYPE -> FeedThreadgateListRule.serializer()
             else -> {
                 println("[Warning] Unknown Item type: $type (ThreadgateAllowUnion)")
