@@ -43,6 +43,10 @@ kotlin {
             api(project(":core"))
             api(project(":stream"))
         }
+
+        jvmMain.dependencies {
+            api(kotlin("stdlib"))
+        }
     }
 }
 
