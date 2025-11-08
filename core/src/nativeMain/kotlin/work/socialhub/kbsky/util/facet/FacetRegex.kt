@@ -1,13 +1,14 @@
 package work.socialhub.kbsky.util.facet
 
 /**
- * iOS用のハッシュタグ正規表現
+ * Native用のハッシュタグ正規表現
  *
- * iOSの正規表現エンジンでは、#と＃を明示的に文字クラスから除外し、
+ * Kotlin/Nativeの正規表現エンジンでは、#と＃を明示的に文字クラスから除外し、
  * シンプルなパターンを使用することで正しく動作します。
+ * (iOS, macOS, Windows, Linux すべてのNativeターゲットで使用)
  */
 internal actual fun getTagRegex(): Regex {
-    // iOS用の調整された正規表現
+    // Native用の調整された正規表現
     // - #＃とスペースを文字クラスから除外
     // - 数字のみのハッシュタグを除外するため、数字以外の文字が最低1文字必要
     // - 先読みで区切り文字を確認
