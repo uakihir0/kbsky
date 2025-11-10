@@ -20,3 +20,7 @@ val osName = System.getProperty("os.name").lowercase(Locale.getDefault())
 if (osName.contains("mac")) {
     include("all")
 }
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
