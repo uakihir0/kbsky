@@ -55,6 +55,13 @@ multiplatformSwiftPackage {
     }
 }
 
+tasks.configureEach {
+    // Fix implicit dependency between XCFramework and FatFramework tasks
+    if (name.contains("assembleKbsky") && name.contains("XCFramework")) {
+        mustRunAfter(tasks.matching { it.name.contains("FatFramework") })
+    }
+}
+
 tasks.podPublishXCFramework {
     doLast {
         providers.exec {
