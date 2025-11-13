@@ -130,6 +130,9 @@ stream.eventCallback(
     })
 ```
 
+## 貢献
+`secrets.json.default`にテスト用アカウントのIDとアプリパスワードを入力し、ファイル名を`secrets.json`に変更する必要があります。
+
 ## ライセンス
 
 MIT License
