@@ -22,9 +22,8 @@ object FacetUtil {
         val linkRegex = Regex("(?<=^|\\s|\\()((https?://[\\S]+)|((?<domain>[a-z][a-z0-9]*(\\.[a-z0-9]+)+)[\\S]*))")
 
         // ハッシュタグの要素を展開
-        // (ref そのまだだと、空文字でも認識されてしまう問題があるので先頭を修正し、括弧を追加した上で、# だけでも認識される問題があるので末尾の ? を + に変更)
-        val tagRegex =
-            Regex("(?<=^|\\s)([#＃]((?!\\ufe0f)[^\\s\\u00AD\\u2060\\u200A\\u200B\\u200C\\u200D\\u20e2]*[^\\d\\s\\p{P}\\u00AD\\u2060\\u200A\\u200B\\u200C\\u200D\\u20e2]+[^\\s\\u00AD\\u2060\\u200A\\u200B\\u200C\\u200D\\u20e2]*)+)")
+        // プラットフォーム別の正規表現を使用（expect/actualで定義）
+        val tagRegex = getTagRegex()
 
         while (true) {
             val mentionFind = mentionRegex.find(str)
