@@ -145,6 +145,8 @@ stream.eventCallback(
         }
     })
 ```
+## Contributions
+You need to set your id and app password to `secrets.json.default` and change the file name to `secrets.json`
 
 ## License
 
