@@ -23,6 +23,5 @@ class RefreshSessionTest : AbstractTest() {
 
         jwt.accessJwt = response.data.accessJwt
         jwt.refreshJwt = response.data.refreshJwt
-        saveJwt()
     }
 }
