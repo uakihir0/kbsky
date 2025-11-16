@@ -241,6 +241,72 @@ class FacetsTest {
         }
     }
 
+    @Test
+    fun testParseTag3() {
+        // 全角の＃で始まる複数のハッシュタグ（半角スペース区切り）
+        val text = "＃こんにちは ＃世界"
+
+        val facets = FacetUtil.extractFacets(text)
+        print1(facets)
+        val richTextFacets = facets.richTextFacets(mutableMapOf())
+        print2(richTextFacets)
+
+        assertEquals(3, facets.records.size)
+        facets.records[0].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("＃こんにちは", it.contentText)
+            assertEquals("＃こんにちは", it.displayText)
+        }
+        facets.records[1].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" ", it.contentText)
+            assertEquals(" ", it.displayText)
+        }
+        facets.records[2].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("＃世界", it.contentText)
+            assertEquals("＃世界", it.displayText)
+        }
+    }
+
+    @Test
+    fun testParseTag4() {
+        // 日本語のハッシュタグを半角スペースで区切るパターン
+        val text = "#日本語 #ハッシュタグ #テスト"
+
+        val facets = FacetUtil.extractFacets(text)
+        print1(facets)
+        val richTextFacets = facets.richTextFacets(mutableMapOf())
+        print2(richTextFacets)
+
+        assertEquals(5, facets.records.size)
+        facets.records[0].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("#日本語", it.contentText)
+            assertEquals("#日本語", it.displayText)
+        }
+        facets.records[1].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" ", it.contentText)
+            assertEquals(" ", it.displayText)
+        }
+        facets.records[2].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("#ハッシュタグ", it.contentText)
+            assertEquals("#ハッシュタグ", it.displayText)
+        }
+        facets.records[3].let {
+            assertEquals(FacetType.Text, it.type)
+            assertEquals(" ", it.contentText)
+            assertEquals(" ", it.displayText)
+        }
+        facets.records[4].let {
+            assertEquals(FacetType.Tag, it.type)
+            assertEquals("#テスト", it.contentText)
+            assertEquals("#テスト", it.displayText)
+        }
+    }
+
     private fun print1(records: FacetList) {
         println("facet list: ${records.records.size} ${records.displayText()}")
         for (record in records.records) {
