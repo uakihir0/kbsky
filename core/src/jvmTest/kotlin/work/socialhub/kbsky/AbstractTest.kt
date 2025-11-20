@@ -31,8 +31,10 @@ open class AbstractTest {
 
         try {
             // Get account from environment variable.
-            handle = System.getProperty("ATP_HANDLE")
-            password = System.getProperty("ATP_PASSWORD")
+            handle = System.getenv("ATP_HANDLE")
+                ?: System.getProperty("ATP_HANDLE")
+            password = System.getenv("ATP_PASSWORD")
+                ?: System.getProperty("ATP_PASSWORD")
         } catch (_: Exception) {
         }
 
