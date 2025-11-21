@@ -10,8 +10,7 @@ class ListNotificationsTest : AbstractTest() {
 
     @Test
     fun testListNotifications() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .notification()
             .listNotifications(
                 NotificationListNotificationsRequest(auth())

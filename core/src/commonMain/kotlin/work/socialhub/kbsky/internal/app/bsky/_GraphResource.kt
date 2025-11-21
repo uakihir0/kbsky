@@ -61,6 +61,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
@@ -68,7 +69,6 @@ import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.ATUriParser.getDid
 import work.socialhub.kbsky.util.ATUriParser.getRKey
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _GraphResource(
     private val config: BlueskyConfig
@@ -87,7 +87,7 @@ class _GraphResource(
                     record = request.toFollow(),
                 )
 
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, RepoCreateRecord))
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -109,7 +109,7 @@ class _GraphResource(
                     rkey = request.rkey!!,
                 )
 
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, RepoDeleteRecord))
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -124,7 +124,7 @@ class _GraphResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetFollowers))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -139,7 +139,7 @@ class _GraphResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetFollows))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -154,7 +154,7 @@ class _GraphResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetKnownFollowers))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -169,7 +169,7 @@ class _GraphResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetMutes))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -184,7 +184,7 @@ class _GraphResource(
 
         return proceedUnit {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphMuteActor))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -199,7 +199,7 @@ class _GraphResource(
 
         return proceedUnit {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphUnmuteActor))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -221,7 +221,7 @@ class _GraphResource(
                     record = request.toBlock(),
                 )
 
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, RepoCreateRecord))
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -243,7 +243,7 @@ class _GraphResource(
                     rkey = request.rkey!!,
                 )
 
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, RepoDeleteRecord))
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -258,7 +258,7 @@ class _GraphResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetBlocks))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -280,7 +280,7 @@ class _GraphResource(
                     record = request.toRecord(),
                 )
 
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, RepoCreateRecord))
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -356,7 +356,7 @@ class _GraphResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetList))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -371,7 +371,7 @@ class _GraphResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetLists))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -393,7 +393,7 @@ class _GraphResource(
                     record = request.toListItem(),
                 )
 
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, RepoCreateRecord))
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -413,7 +413,7 @@ class _GraphResource(
                     rkey = request.rkey!!,
                 )
 
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, RepoDeleteRecord))
                     .json(record.toMappedJson())
                     .accept(MediaType.JSON)
@@ -425,7 +425,7 @@ class _GraphResource(
     override fun getStarterPack(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> {
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetStarterPack))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -437,7 +437,7 @@ class _GraphResource(
     override fun getStarterPacks(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> {
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, GraphGetStarterPacks))
                     .accept(MediaType.JSON)
                     .also {

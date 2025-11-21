@@ -7,11 +7,11 @@ import work.socialhub.kbsky.api.com.atproto.ModerationResource
 import work.socialhub.kbsky.api.entity.com.atproto.moderation.ModerationCreateReportRequest
 import work.socialhub.kbsky.api.entity.com.atproto.moderation.ModerationCreateReportResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _ModerationResource(
     private val config: ATProtocolConfig
@@ -22,7 +22,7 @@ class _ModerationResource(
     ): Response<ModerationCreateReportResponse> {
         return proceed<ModerationCreateReportResponse> {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ModerationCreateReport))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())

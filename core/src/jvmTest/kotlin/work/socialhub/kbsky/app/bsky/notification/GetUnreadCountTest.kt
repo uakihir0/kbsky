@@ -10,8 +10,7 @@ class GetUnreadCountTest : AbstractTest() {
 
     @Test
     fun testGetUnreadCount() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .notification()
             .getUnreadCount(
                 NotificationGetUnreadCountRequest(auth())

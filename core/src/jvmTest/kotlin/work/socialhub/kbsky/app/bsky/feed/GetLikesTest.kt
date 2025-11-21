@@ -13,8 +13,7 @@ class GetLikesTest : AbstractTest() {
     fun testLikes() {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jt5ao4gpxc2u"
 
-        val feeds = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val feeds = client()
             .feed()
             .getLikes(
                 FeedGetLikesRequest(auth()).also {

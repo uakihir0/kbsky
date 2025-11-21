@@ -10,8 +10,7 @@ class SearchPostsTest : AbstractTest() {
 
     @Test
     fun testSearchPosts() {
-        val feeds = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val feeds = client()
             .feed()
             .searchPosts(
                 FeedSearchPostsRequest(

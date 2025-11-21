@@ -14,8 +14,7 @@ class BlockTest : AbstractTest() {
         val did = "did:plc:oc6vwdlmk2kqyida5i74d3p5"
 
         // Block
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response =client()
             .graph()
             .block(
                 GraphBlockRequest(auth()).also {
@@ -25,8 +24,7 @@ class BlockTest : AbstractTest() {
 
         val uri = checkNotNull(response.data.uri)
 
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .graph()
             .deleteBlock(
                 GraphDeleteBlockRequest(auth()).also {

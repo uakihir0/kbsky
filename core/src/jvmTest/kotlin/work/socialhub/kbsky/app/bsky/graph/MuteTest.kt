@@ -10,8 +10,7 @@ class MuteTest : AbstractTest() {
 
     @Test
     fun testMute() {
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .graph()
             .muteActor(
                 GraphMuteActorRequest(auth()).also {
@@ -22,8 +21,7 @@ class MuteTest : AbstractTest() {
 
     @Test
     fun testMuteByDID() {
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .graph()
             .muteActor(
                 GraphMuteActorRequest(auth()).also {

@@ -21,10 +21,10 @@ import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.auth.BearerTokenAuthProvider
 import work.socialhub.kbsky.internal.com.atproto._ServerResource
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _VideoResource(
     private val config: BlueskyConfig
@@ -44,7 +44,7 @@ class _VideoResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config.videoServiceUri, VideoGetJobStatus))
                     .header("Authorization", videoToken)
                     .accept(MediaType.JSON)
@@ -68,7 +68,7 @@ class _VideoResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config.videoServiceUri, VideoGetUploadLimits))
                     .header("Authorization", videoToken)
                     .accept(MediaType.JSON)
@@ -94,7 +94,7 @@ class _VideoResource(
         try {
             return proceed {
                 runBlocking {
-                    HttpRequest()
+                    httpRequest(config)
                         .url(
                             URLBuilder(xrpc(config.videoServiceUri, VideoUploadVideo))
                                 .also {

@@ -11,8 +11,7 @@ class GetActorLikesTest : AbstractTest() {
 
     @Test
     fun testGetActorLikes() {
-        val feeds = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val feeds = client()
             .feed()
             .getActorLikes(
                 FeedGetActorLikesRequest(auth()).also {

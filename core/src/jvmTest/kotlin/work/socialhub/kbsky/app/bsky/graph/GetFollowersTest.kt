@@ -10,8 +10,7 @@ class GetFollowersTest : AbstractTest() {
 
     @Test
     fun testGetFollowers() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .graph()
             .getFollowers(
                 GraphGetFollowersRequest(auth()).also {

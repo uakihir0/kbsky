@@ -10,8 +10,7 @@ class GetGraphStarterPackTest : AbstractTest() {
 
     @Test
     fun testGetStarterPack() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .graph()
             .getStarterPack(
                 GraphGetStarterPackRequest(auth()).also {

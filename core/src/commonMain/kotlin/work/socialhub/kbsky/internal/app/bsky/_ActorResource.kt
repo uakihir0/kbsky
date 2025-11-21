@@ -26,11 +26,11 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _ActorResource(
     private val config: BlueskyConfig
@@ -42,7 +42,7 @@ class _ActorResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ActorSearchActors))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -57,7 +57,7 @@ class _ActorResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ActorSearchActorsTypeahead))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -72,7 +72,7 @@ class _ActorResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ActorGetProfile))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -134,7 +134,7 @@ class _ActorResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ActorGetProfiles))
                     .accept(MediaType.JSON)
                     .also {
@@ -153,7 +153,7 @@ class _ActorResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ActorGetPreferences))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

@@ -121,6 +121,12 @@ object _InternalUtility {
         return ATProtocolException(exception)
     }
 
+    fun httpRequest(config: ATProtocolConfig): HttpRequest {
+        return HttpRequest().also {
+            it.skipSSLValidation(config.skipSSLValidation)
+        }
+    }
+
     suspend fun HttpRequest.getWithAuth(
         auth: AuthProvider
     ): HttpResponse {

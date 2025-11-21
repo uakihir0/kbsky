@@ -8,10 +8,10 @@ import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularReq
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _UnspeccedResource(
     private val config: BlueskyConfig
@@ -23,7 +23,7 @@ class _UnspeccedResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, UnspeccedGetPopular))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

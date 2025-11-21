@@ -13,12 +13,12 @@ import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNot
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationUpdateSeenRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _NotificationResource(
     private val config: BlueskyConfig
@@ -30,7 +30,7 @@ class _NotificationResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, NotificationGetUnreadCount))
                     .accept(MediaType.JSON)
                     .getWithAuth(request.auth)
@@ -44,7 +44,7 @@ class _NotificationResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, NotificationListNotifications))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -59,7 +59,7 @@ class _NotificationResource(
 
         return proceedUnit {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, NotificationUpdateSeen))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())

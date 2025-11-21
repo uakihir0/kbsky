@@ -17,13 +17,13 @@ import work.socialhub.kbsky.api.entity.com.atproto.server.ServerRefreshSessionRe
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _ServerResource(
     private val config: ATProtocolConfig
@@ -42,7 +42,7 @@ class _ServerResource(
     ): Response<ServerCreateSessionResponse> {
         return proceed<ServerCreateSessionResponse> {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ServerCreateSession))
                     .accept(MediaType.JSON)
                     .json(request.toMappedJson())
@@ -61,7 +61,7 @@ class _ServerResource(
 
         return proceedUnit {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ServerDeleteSession))
                     .accept(MediaType.JSON)
                     .postWithAuth(request.auth)
@@ -78,7 +78,7 @@ class _ServerResource(
     ): Response<ServerGetServiceAuthResponse> {
         return proceed<ServerGetServiceAuthResponse> {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ServerGetServiceAuth))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())
@@ -92,7 +92,7 @@ class _ServerResource(
     ): Response<ServerGetSessionResponse> {
         return proceed<ServerGetSessionResponse> {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ServerGetSession))
                     .accept(MediaType.JSON)
                     .getWithAuth(request.auth)
@@ -105,7 +105,7 @@ class _ServerResource(
     ): Response<ServerRefreshSessionResponse> {
         return proceed<ServerRefreshSessionResponse> {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, ServerRefreshSession))
                     .accept(MediaType.JSON)
                     .postWithAuth(request.auth)

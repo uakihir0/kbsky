@@ -16,8 +16,7 @@ class GetProfilesTest : AbstractTest() {
             "uakihir0.com"
         )
 
-        val actors = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val actors = client()
             .actor()
             .getProfiles(
                 ActorGetProfilesRequest(auth()).also {

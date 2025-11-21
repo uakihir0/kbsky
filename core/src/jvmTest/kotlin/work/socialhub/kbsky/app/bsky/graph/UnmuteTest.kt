@@ -10,8 +10,7 @@ class UnmuteTest : AbstractTest() {
 
     @Test
     fun testUnmute() {
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .graph()
             .unmuteActor(
                 GraphUnmuteActorRequest(auth()).also {

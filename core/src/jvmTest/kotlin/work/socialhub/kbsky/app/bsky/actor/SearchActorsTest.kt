@@ -10,8 +10,7 @@ class SearchActorsTest : AbstractTest() {
 
     @Test
     fun testSearchActors() {
-        val actors = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val actors = client()
             .actor()
             .searchActors(
                 ActorSearchActorsRequest(auth()).also {

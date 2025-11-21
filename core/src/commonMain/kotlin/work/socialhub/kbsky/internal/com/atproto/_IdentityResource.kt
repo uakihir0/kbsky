@@ -7,10 +7,10 @@ import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleRequest
 import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _IdentityResource(
     private val config: ATProtocolConfig
@@ -22,7 +22,7 @@ class _IdentityResource(
 
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, IdentifyResolveHandle))
                     .accept(MediaType.JSON)
                     .queries(request.toMap())

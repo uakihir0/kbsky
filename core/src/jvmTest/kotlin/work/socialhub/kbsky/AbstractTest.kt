@@ -75,6 +75,16 @@ open class AbstractTest {
         jwt.refreshJwt = checkNotNull(response.data.refreshJwt)
     }
 
+    fun client(): Bluesky {
+        return BlueskyFactory
+            .instance(
+                config = BlueskyConfig().also {
+                    it.pdsUri = BSKY_SOCIAL.uri
+                    it.skipSSLValidation = true
+                }
+            )
+    }
+
     fun auth(): AuthProvider {
         return BearerTokenAuthProvider(
             accessTokenJwt = jwt.accessJwt!!,

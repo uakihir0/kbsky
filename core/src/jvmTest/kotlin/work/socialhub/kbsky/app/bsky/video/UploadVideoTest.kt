@@ -21,8 +21,7 @@ class UploadVideoTest : AbstractTest() {
         checkNotNull(stream)
 
         // Upload Video
-        val uploadResponse = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val uploadResponse = client()
             .video()
             .uploadVideo(
                 VideoUploadVideoRequest(
@@ -35,8 +34,7 @@ class UploadVideoTest : AbstractTest() {
         var blob: Blob? = null
         for (i in 0 until 60) {
 
-            val statusResponse = BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
+            val statusResponse = client()
                 .video()
                 .getJobStatus(
                     VideoGetJobStatusRequest(
@@ -67,8 +65,7 @@ class UploadVideoTest : AbstractTest() {
         video.video = blob
 
         // Post With Video
-        val response2 = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response2 = client()
             .feed()
             .post(
                 FeedPostRequest(auth()).also {
@@ -84,8 +81,7 @@ class UploadVideoTest : AbstractTest() {
     @Test
     fun testGetUploadLimit() {
 
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .video()
             .getUploadLimits(
                 VideoGetUploadLimitsRequest(auth())

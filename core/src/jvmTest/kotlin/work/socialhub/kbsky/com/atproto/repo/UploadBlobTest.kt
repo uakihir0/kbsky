@@ -14,8 +14,7 @@ class UploadBlobTest : AbstractTest() {
         val stream = javaClass.getResourceAsStream("/image/icon.png")
         assertNotNull(stream)
 
-        val response = ATProtocolFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+        val response = client()
             .repo()
             .uploadBlob(
                 RepoUploadBlobRequest(

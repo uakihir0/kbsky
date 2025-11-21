@@ -10,8 +10,7 @@ class UpdateSeenTest : AbstractTest() {
 
     @Test
     fun testUpdateSeen() {
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .notification()
             .updateSeen(
                 NotificationUpdateSeenRequest(auth())

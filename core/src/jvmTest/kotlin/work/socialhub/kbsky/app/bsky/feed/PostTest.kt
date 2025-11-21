@@ -1,13 +1,10 @@
 package work.socialhub.kbsky.app.bsky.feed
 
-import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedDefsAspectRatio
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
@@ -22,8 +19,7 @@ class PostTest : AbstractTest() {
 
     @Test
     fun testPost() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .post(
                 FeedPostRequest(auth()).also {
@@ -41,8 +37,7 @@ class PostTest : AbstractTest() {
         checkNotNull(stream)
 
         // Upload Image
-        val response1 = ATProtocolFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response1 = client()
             .repo()
             .uploadBlob(
                 RepoUploadBlobRequest(
@@ -77,8 +72,7 @@ class PostTest : AbstractTest() {
         println(toJson(imagesMain))
 
         // Post With Image
-        val response2 = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response2 = client()
             .feed()
             .post(
                 FeedPostRequest(auth()).also {
@@ -93,9 +87,9 @@ class PostTest : AbstractTest() {
     @Test
     fun testFeedPostReplay() {
 
-        val root = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
-            .feed().post(
+        val root = client()
+            .feed()
+            .post(
                 FeedPostRequest(auth()).also {
                     it.text = "リプライテスト (ルート)"
                 }
@@ -116,9 +110,9 @@ class PostTest : AbstractTest() {
                 it.root = rootRef
             }
 
-            BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
-                .feed().post(
+            client()
+                .feed()
+                .post(
                     FeedPostRequest(auth()).also {
                         it.text = "リプライテスト (親)"
                         it.reply = reply
@@ -144,8 +138,7 @@ class PostTest : AbstractTest() {
                 it.root = rootRef
             }
 
-            BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
+            client()
                 .feed()
                 .post(
                     FeedPostRequest(auth()).also {
@@ -173,8 +166,7 @@ class PostTest : AbstractTest() {
         val handleToDidMap = mutableMapOf<String, String>()
 
         for (handle in handles) {
-            val response = BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
+            val response = client()
                 .identity()
                 .resolveHandle(
                     IdentityResolveHandleRequest().also {
@@ -186,8 +178,7 @@ class PostTest : AbstractTest() {
 
         val facets = list.richTextFacets(handleToDidMap)
 
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .feed()
             .post(
                 FeedPostRequest(auth()).also {
@@ -201,8 +192,7 @@ class PostTest : AbstractTest() {
     fun testDeleteFeed() {
 
         // Create
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .post(
                 FeedPostRequest(auth()).also {
@@ -213,8 +203,7 @@ class PostTest : AbstractTest() {
         val uri = checkNotNull(response.data.uri)
 
         // Delete
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .feed()
             .deletePost(
                 FeedDeletePostRequest(auth()).also {

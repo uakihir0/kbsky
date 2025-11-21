@@ -11,8 +11,7 @@ class RefreshSessionTest : AbstractTest() {
     @Test
     fun testRefreshSession() {
 
-        val response = ATProtocolFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .server()
             .refreshSession(AuthRequest(auth()))
 

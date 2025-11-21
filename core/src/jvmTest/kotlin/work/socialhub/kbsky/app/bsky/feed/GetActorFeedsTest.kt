@@ -10,8 +10,7 @@ class GetActorFeedsTest : AbstractTest() {
 
     @Test
     fun testGetActorFeeds() {
-        val feeds = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val feeds = client()
             .feed()
             .getActorFeeds(
                 FeedGetActorFeedsRequest(auth()).also {

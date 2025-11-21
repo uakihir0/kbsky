@@ -12,8 +12,7 @@ class GetRepostedByTest : AbstractTest() {
     fun testGetRepostedBy() {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jr7b5svzuc2q"
 
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .getRepostedBy(
                 FeedGetRepostedByRequest(auth()).also {

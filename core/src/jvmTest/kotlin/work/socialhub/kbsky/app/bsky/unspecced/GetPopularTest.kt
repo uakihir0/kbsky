@@ -10,8 +10,7 @@ class GetPopularTest : AbstractTest() {
 
     @Test
     fun testGetPopular() {
-        val feeds = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val feeds = client()
             .unspecced()
             .getPopular(
                 UnspeccedGetPopularRequest(auth())

@@ -14,9 +14,9 @@ class FollowTest : AbstractTest() {
         val did = "did:plc:oc6vwdlmk2kqyida5i74d3p5"
 
         // Follow
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
-            .graph().follow(
+        val response = client()
+            .graph()
+            .follow(
                 GraphFollowRequest(auth()).also {
                     it.subject = did
                 }
@@ -26,8 +26,7 @@ class FollowTest : AbstractTest() {
         println(uri)
 
         // DeleteFollow
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .graph()
             .deleteFollow(
                 GraphDeleteFollowRequest(auth()).also {

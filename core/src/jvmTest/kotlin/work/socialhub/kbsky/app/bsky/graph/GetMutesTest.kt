@@ -11,8 +11,7 @@ class GetMutesTest : AbstractTest() {
 
     @Test
     fun testGetMutes() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .graph()
             .getMutes(
                 GraphGetMutesRequest(auth())

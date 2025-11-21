@@ -16,8 +16,7 @@ class GetPostsTest : AbstractTest() {
             "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jvetipo2rd2r"
         )
 
-        val feeds = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val feeds = client()
             .feed()
             .getPosts(
                 FeedGetPostsRequest(auth()).also {

@@ -16,8 +16,7 @@ class LikeTest : AbstractTest() {
         val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
         val ref = RepoStrongRef(uri, cid)
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .like(
                 FeedLikeRequest(auth()).also {
@@ -34,8 +33,7 @@ class LikeTest : AbstractTest() {
         val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
         val ref = RepoStrongRef(uri, cid)
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .like(
                 FeedLikeRequest(auth()).also {
@@ -45,8 +43,7 @@ class LikeTest : AbstractTest() {
 
         println(response.data.uri)
 
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .feed()
             .deleteLike(
                 FeedDeleteLikeRequest(auth()).also {

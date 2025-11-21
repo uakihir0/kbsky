@@ -10,8 +10,7 @@ class GetServicesTest : AbstractTest() {
 
     @Test
     fun testGetServices() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .labeler()
             .getServices(
                 LabelerGetServicesRequest(auth()).also {

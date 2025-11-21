@@ -1,10 +1,8 @@
 package work.socialhub.kbsky.app.bsky.feed
 
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteRepostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import kotlin.test.Test
 
@@ -16,9 +14,9 @@ class RepostTest : AbstractTest() {
         val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
         val ref = RepoStrongRef(uri, cid)
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
-            .feed().repost(
+        val response = client()
+            .feed()
+            .repost(
                 FeedRepostRequest(auth()).also {
                     it.subject = ref
                 }
@@ -35,8 +33,7 @@ class RepostTest : AbstractTest() {
         val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
         val ref = RepoStrongRef(uri, cid)
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .repost(
                 FeedRepostRequest(auth()).also {
@@ -47,8 +44,7 @@ class RepostTest : AbstractTest() {
         val repostUri = checkNotNull(response.data.uri)
 
         // Delete
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .feed()
             .deleteRepost(
                 FeedDeleteRepostRequest(auth()).also {

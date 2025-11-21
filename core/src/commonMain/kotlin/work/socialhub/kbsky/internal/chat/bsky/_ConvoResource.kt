@@ -33,11 +33,11 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
 
 class _ConvoResource(
     private val config: ATProtocolConfig
@@ -193,7 +193,7 @@ class _ConvoResource(
     ): Response<T> {
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, id))
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)
@@ -210,7 +210,7 @@ class _ConvoResource(
     ): Response<T> {
         return proceed {
             runBlocking {
-                HttpRequest()
+                httpRequest(config)
                     .url(xrpc(config, id))
                     .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
                     .accept(MediaType.JSON)

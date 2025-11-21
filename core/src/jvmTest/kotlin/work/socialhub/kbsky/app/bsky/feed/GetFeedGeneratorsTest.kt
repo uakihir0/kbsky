@@ -14,8 +14,7 @@ class GetFeedGeneratorsTest : AbstractTest() {
             "at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/with-friends"
         )
 
-        val feeds = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val feeds = client()
             .feed()
             .getFeedGenerators(
                 FeedGetFeedGeneratorsRequest(auth()).also {

@@ -10,8 +10,7 @@ class GetAuthorFeedTest : AbstractTest() {
 
     @Test
     fun testGetAuthorFeed() {
-        val feeds = BlueskyFactory
-            .instance(Service.BSKY_SOCIAL.uri)
+        val feeds = client()
             .feed()
             .getAuthorFeed(
                 FeedGetAuthorFeedRequest(auth()).also {

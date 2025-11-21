@@ -10,8 +10,7 @@ class GetBlocksTest : AbstractTest() {
 
     @Test
     fun testGetBlocks() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .graph()
             .getBlocks(
                 GraphGetBlocksRequest(auth())
