@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.api.entity.app.bsky.notification
 
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
@@ -17,6 +18,7 @@ data class NotificationUpdateSeenRequest(
         }
     }
 
+    @OptIn(ExperimentalTime::class)
     fun seenAt(): String {
         return seenAt ?: _InternalUtility.dateFormat.format(Clock.System.now())
     }

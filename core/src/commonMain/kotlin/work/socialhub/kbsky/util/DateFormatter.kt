@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.util
 
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
+import kotlin.time.ExperimentalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
@@ -9,13 +10,14 @@ data class DateFormatter(
     val timezone: TimeZone,
 ) {
 
+    @OptIn(ExperimentalTime::class)
     fun format(instant: Instant): String {
         val local = instant.toLocalDateTime(timezone)
         val date = local.date
 
         val year = date.year
-        val day = date.dayOfMonth
-        val month = date.monthNumber
+        val day = date.day
+        val month = date.month.ordinal + 1
 
         val hour = local.hour
         val minute = local.minute
