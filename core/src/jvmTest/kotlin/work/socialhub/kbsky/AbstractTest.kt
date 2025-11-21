@@ -61,7 +61,12 @@ open class AbstractTest {
         }
 
         val response = ATProtocolFactory
-            .instance(BSKY_SOCIAL.uri)
+            .instance(
+                ATProtocolConfig().also {
+                    it.pdsUri = BSKY_SOCIAL.uri
+                    it.skipSSLValidation = true
+                },
+            )
             .server()
             .createSession(
                 ServerCreateSessionRequest().also {

@@ -7,4 +7,8 @@ object ATProtocolFactory {
         return _ATProtocol(ATProtocolConfig()
             .also { it.pdsUri = uri })
     }
+
+    fun instance(config: ATProtocolConfig): ATProtocol {
+        return _ATProtocol(config)
+    }
 }

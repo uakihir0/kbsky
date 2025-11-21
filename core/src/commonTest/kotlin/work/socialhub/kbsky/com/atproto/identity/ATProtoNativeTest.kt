@@ -5,10 +5,10 @@ import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandl
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
-class ResolveHandleNativeTest {
+class ATProtoNativeTest {
 
     @Test
-    fun testResolveHandleNative() {
+    fun testResolveHandle() {
         val response = ATProtocolFactory
             .instance(BSKY_SOCIAL.uri)
             .identity()
