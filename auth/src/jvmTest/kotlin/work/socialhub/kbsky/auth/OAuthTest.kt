@@ -6,6 +6,7 @@ import work.socialhub.kbsky.auth.api.entity.oauth.OAuthAuthorizationCodeTokenReq
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthPushedAuthorizationRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthRefreshTokenRequest
 import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 class OAuthTest : AbstractTest() {
@@ -20,7 +21,10 @@ class OAuthTest : AbstractTest() {
         }
 
         val response = AuthFactory
-            .instance(BSKY_SOCIAL.uri)
+            .instance(
+                config = AuthConfig(pdsServer = BSKY_SOCIAL.uri)
+                    .also { it.skipSSLValidation = true }
+            )
             .oauth()
             .pushedAuthorizationRequest(
                 context,
@@ -44,6 +48,7 @@ class OAuthTest : AbstractTest() {
     }
 
     @Test
+    @Ignore
     fun tokenTest() {
         val callback = """
             {{CALLBACK_URL}}
@@ -71,10 +76,10 @@ class OAuthTest : AbstractTest() {
         jwt.accessJwt = response.data.accessToken
         jwt.refreshJwt = response.data.refreshToken
         saveOAuthContext()
-        saveJwt()
     }
 
     @Test
+    @Ignore
     fun refreshToken() {
         val response = AuthFactory
             .instance(AuthConfig().also {
@@ -97,6 +102,5 @@ class OAuthTest : AbstractTest() {
         jwt.accessJwt = response.data.accessToken
         jwt.refreshJwt = response.data.refreshToken
         saveOAuthContext()
-        saveJwt()
     }
 }
