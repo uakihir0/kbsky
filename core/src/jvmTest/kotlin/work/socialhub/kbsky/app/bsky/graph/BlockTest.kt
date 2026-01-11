@@ -16,7 +16,7 @@ class BlockTest : AbstractTest() {
         val did = "did:plc:oc6vwdlmk2kqyida5i74d3p5"
 
         // Block
-        val response =client()
+        val response = client()
             .graph()
             .block(
                 GraphBlockRequest(auth()).also {
