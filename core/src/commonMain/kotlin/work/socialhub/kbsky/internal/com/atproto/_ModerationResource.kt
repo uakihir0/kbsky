@@ -1,6 +1,5 @@
 package work.socialhub.kbsky.internal.com.atproto
 
-import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolTypes.ModerationCreateReport
 import work.socialhub.kbsky.api.com.atproto.ModerationResource
@@ -12,22 +11,25 @@ import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
+import work.socialhub.kbsky.util.toBlocking
 
 class _ModerationResource(
     private val config: ATProtocolConfig
 ) : ModerationResource {
 
-    override fun createReport(
+    override suspend fun createReport(
         request: ModerationCreateReportRequest
     ): Response<ModerationCreateReportResponse> {
         return proceed<ModerationCreateReportResponse> {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, ModerationCreateReport))
-                    .accept(MediaType.JSON)
-                    .json(request.toMappedJson())
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, ModerationCreateReport))
+                .accept(MediaType.JSON)
+                .json(request.toMappedJson())
+                .postWithAuth(request.auth)
         }
     }
+
+    override fun createReportBlocking(
+        request: ModerationCreateReportRequest
+    ): Response<ModerationCreateReportResponse> = toBlocking { createReport(request) }
 }

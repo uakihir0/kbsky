@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.auth
 
 import io.ktor.http.Url
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.auth.api.entity.oauth.BuildAuthorizationUrlRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthAuthorizationCodeTokenRequest
 import work.socialhub.kbsky.auth.api.entity.oauth.OAuthPushedAuthorizationRequest
@@ -12,7 +13,7 @@ import kotlin.test.Test
 class OAuthTest : AbstractTest() {
 
     @Test
-    fun parTest() {
+    fun parTest() = runTest {
 
         clearOAuthContext()
         val context = oAuthContext.also {
@@ -49,7 +50,7 @@ class OAuthTest : AbstractTest() {
 
     @Test
     @Ignore
-    fun tokenTest() {
+    fun tokenTest() = runTest {
         val callback = """
             {{CALLBACK_URL}}
             """
@@ -80,7 +81,7 @@ class OAuthTest : AbstractTest() {
 
     @Test
     @Ignore
-    fun refreshToken() {
+    fun refreshToken() = runTest {
         val response = AuthFactory
             .instance(AuthConfig().also {
                 it.pdsServer = BSKY_SOCIAL.uri

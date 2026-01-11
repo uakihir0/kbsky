@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.app.bsky.actor
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsAdultContentPref
@@ -10,7 +11,7 @@ import kotlin.test.Test
 class GetPreferencesTest : AbstractTest() {
 
     @Test
-    fun testGetPreferences() {
+    fun testGetPreferences() = runTest {
         val setting = client()
             .actor()
             .getPreferences(

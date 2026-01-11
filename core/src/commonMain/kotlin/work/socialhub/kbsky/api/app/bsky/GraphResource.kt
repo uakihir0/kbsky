@@ -46,7 +46,11 @@ interface GraphResource {
      * Follow operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun follow(
+    suspend fun follow(
+        request: GraphFollowRequest
+    ): Response<GraphFollowResponse>
+
+    fun followBlocking(
         request: GraphFollowRequest
     ): Response<GraphFollowResponse>
 
@@ -54,49 +58,77 @@ interface GraphResource {
      * Delete Follow operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun deleteFollow(
+    suspend fun deleteFollow(
+        request: GraphDeleteFollowRequest
+    ): Response<Unit>
+
+    fun deleteFollowBlocking(
         request: GraphDeleteFollowRequest
     ): Response<Unit>
 
     /**
      * Who is following an actor?
      */
-    fun getFollowers(
+    suspend fun getFollowers(
+        request: GraphGetFollowersRequest
+    ): Response<GraphGetFollowersResponse>
+
+    fun getFollowersBlocking(
         request: GraphGetFollowersRequest
     ): Response<GraphGetFollowersResponse>
 
     /**
      * Who is an actor following?
      */
-    fun getFollows(
+    suspend fun getFollows(
+        request: GraphGetFollowsRequest
+    ): Response<GraphGetFollowsResponse>
+
+    fun getFollowsBlocking(
         request: GraphGetFollowsRequest
     ): Response<GraphGetFollowsResponse>
 
     /**
      * Enumerates accounts which follow a specified account (actor) and are followed by the viewer.
      */
-    fun getKnownFollowers(
+    suspend fun getKnownFollowers(
+        request: GraphGetKnownFollowersRequest
+    ): Response<GraphGetKnownFollowersResponse>
+
+    fun getKnownFollowersBlocking(
         request: GraphGetKnownFollowersRequest
     ): Response<GraphGetKnownFollowersResponse>
 
     /**
      * Who does the viewer mute?
      */
-    fun getMutes(
+    suspend fun getMutes(
+        request: GraphGetMutesRequest
+    ): Response<GraphGetMutesResponse>
+
+    fun getMutesBlocking(
         request: GraphGetMutesRequest
     ): Response<GraphGetMutesResponse>
 
     /**
      * Mute an actor by did or handle.
      */
-    fun muteActor(
+    suspend fun muteActor(
+        request: GraphMuteActorRequest
+    ): Response<Unit>
+
+    fun muteActorBlocking(
         request: GraphMuteActorRequest
     ): Response<Unit>
 
     /**
      * Unmute an actor by did or handle.
      */
-    fun unmuteActor(
+    suspend fun unmuteActor(
+        request: GraphUnmuteActorRequest
+    ): Response<Unit>
+
+    fun unmuteActorBlocking(
         request: GraphUnmuteActorRequest
     ): Response<Unit>
 
@@ -104,7 +136,11 @@ interface GraphResource {
      * Block operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun block(
+    suspend fun block(
+        request: GraphBlockRequest
+    ): Response<GraphBlockResponse>
+
+    fun blockBlocking(
         request: GraphBlockRequest
     ): Response<GraphBlockResponse>
 
@@ -112,14 +148,22 @@ interface GraphResource {
      * Delete Block operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun deleteBlock(
+    suspend fun deleteBlock(
+        request: GraphDeleteBlockRequest
+    ): Response<Unit>
+
+    fun deleteBlockBlocking(
         request: GraphDeleteBlockRequest
     ): Response<Unit>
 
     /**
      * Who does the viewer mute?
      */
-    fun getBlocks(
+    suspend fun getBlocks(
+        request: GraphGetBlocksRequest
+    ): Response<GraphGetBlocksResponse>
+
+    fun getBlocksBlocking(
         request: GraphGetBlocksRequest
     ): Response<GraphGetBlocksResponse>
 
@@ -127,7 +171,11 @@ interface GraphResource {
      * Create a list.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun createList(
+    suspend fun createList(
+        request: GraphCreateListRequest
+    ): Response<GraphCreateListResponse>
+
+    fun createListBlocking(
         request: GraphCreateListRequest
     ): Response<GraphCreateListResponse>
 
@@ -135,7 +183,11 @@ interface GraphResource {
      * Edit a list.
      * (ATProtocol/Repo getRecord and putRecord wrapper)
      */
-    fun editList(
+    suspend fun editList(
+        request: GraphEditListRequest
+    ): Response<GraphEditListResponse>
+
+    fun editListBlocking(
         request: GraphEditListRequest
     ): Response<GraphEditListResponse>
 
@@ -143,21 +195,33 @@ interface GraphResource {
      * Delete a list.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun deleteList(
+    suspend fun deleteList(
+        request: GraphDeleteListRequest
+    ): Response<Unit>
+
+    fun deleteListBlocking(
         request: GraphDeleteListRequest
     ): Response<Unit>
 
     /**
      * Gets a 'view' (with additional context) of a specified list.
      */
-    fun getList(
+    suspend fun getList(
+        request: GraphGetListRequest
+    ): Response<GraphGetListResponse>
+
+    fun getListBlocking(
         request: GraphGetListRequest
     ): Response<GraphGetListResponse>
 
     /**
      * Enumerates the lists created by a specified account (actor).
      */
-    fun getLists(
+    suspend fun getLists(
+        request: GraphGetListsRequest
+    ): Response<GraphGetListsResponse>
+
+    fun getListsBlocking(
         request: GraphGetListsRequest
     ): Response<GraphGetListsResponse>
 
@@ -165,7 +229,11 @@ interface GraphResource {
      * Add a user to a list.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun addUserToList(
+    suspend fun addUserToList(
+        request: GraphAddUserToListRequest
+    ): Response<GraphAddUserToListResponse>
+
+    fun addUserToListBlocking(
         request: GraphAddUserToListRequest
     ): Response<GraphAddUserToListResponse>
 
@@ -173,21 +241,33 @@ interface GraphResource {
      * Remove a user from a list.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun removeUserFromList(
+    suspend fun removeUserFromList(
+        request: GraphRemoveUserFromListRequest
+    ): Response<Unit>
+
+    fun removeUserFromListBlocking(
         request: GraphRemoveUserFromListRequest
     ): Response<Unit>
 
     /**
      * Gets a view of a starter pack.
      */
-    fun getStarterPack(
+    suspend fun getStarterPack(
+        request: GraphGetStarterPackRequest
+    ): Response<GraphGetStarterPackResponse>
+
+    fun getStarterPackBlocking(
         request: GraphGetStarterPackRequest
     ): Response<GraphGetStarterPackResponse>
 
     /**
      * Gets a view of a starter pack.
      */
-    fun getStarterPacks(
+    suspend fun getStarterPacks(
+        request: GraphGetStarterPacksRequest
+    ): Response<GraphGetStarterPacksResponse>
+
+    fun getStarterPacksBlocking(
         request: GraphGetStarterPacksRequest
     ): Response<GraphGetStarterPacksResponse>
 }

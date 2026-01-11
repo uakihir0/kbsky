@@ -16,21 +16,33 @@ interface VideoResource {
     /**
      * Get status details for a video processing job.
      */
-    fun getJobStatus(
+    suspend fun getJobStatus(
+        request: VideoGetJobStatusRequest
+    ): Response<VideoGetJobStatusResponse>
+
+    fun getJobStatusBlocking(
         request: VideoGetJobStatusRequest
     ): Response<VideoGetJobStatusResponse>
 
     /**
      * Get video upload limits for the authenticated user.
      */
-    fun getUploadLimits(
+    suspend fun getUploadLimits(
+        request: VideoGetUploadLimitsRequest
+    ): Response<VideoGetUploadLimitsResponse>
+
+    fun getUploadLimitsBlocking(
         request: VideoGetUploadLimitsRequest
     ): Response<VideoGetUploadLimitsResponse>
 
     /**
      * Upload a video to be processed then stored on the PDS.
      */
-    fun uploadVideo(
+    suspend fun uploadVideo(
+        request: VideoUploadVideoRequest
+    ): Response<VideoUploadVideoResponse>
+
+    fun uploadVideoBlocking(
         request: VideoUploadVideoRequest
     ): Response<VideoUploadVideoResponse>
 }

@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.app.bsky.graph
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphMuteActorRequest
@@ -9,7 +11,7 @@ import kotlin.test.Test
 class MuteTest : AbstractTest() {
 
     @Test
-    fun testMute() {
+    fun testMute() = runTest {
         client()
             .graph()
             .muteActor(
@@ -20,7 +22,7 @@ class MuteTest : AbstractTest() {
     }
 
     @Test
-    fun testMuteByDID() {
+    fun testMuteByDID() = runTest {
         client()
             .graph()
             .muteActor(

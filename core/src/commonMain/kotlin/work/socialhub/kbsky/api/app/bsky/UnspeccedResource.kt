@@ -10,7 +10,11 @@ interface UnspeccedResource {
     /**
      * DEPRECATED: will be removed soon. Use a feed generator alternative.
      */
-    fun getPopular(
+    suspend fun getPopular(
+        request: UnspeccedGetPopularRequest
+    ): Response<UnspeccedGetPopularResponse>
+
+    fun getPopularBlocking(
         request: UnspeccedGetPopularRequest
     ): Response<UnspeccedGetPopularResponse>
 }

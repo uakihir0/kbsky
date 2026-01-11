@@ -38,91 +38,143 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.getConvo
      */
-    fun getConvo(
+    suspend fun getConvo(
+        request: ConvoGetConvoRequest
+    ): Response<ConvoGetConvoResponse>
+
+    fun getConvoBlocking(
         request: ConvoGetConvoRequest
     ): Response<ConvoGetConvoResponse>
 
     /**
      * chat.bsky.convo.getConvoForMembers
      */
-    fun getConvoForMembers(
+    suspend fun getConvoForMembers(
+        request: ConvoGetConvoForMembersRequest
+    ): Response<ConvoGetConvoForMembersResponse>
+
+    fun getConvoForMembersBlocking(
         request: ConvoGetConvoForMembersRequest
     ): Response<ConvoGetConvoForMembersResponse>
 
     /**
      * chat.bsky.convo.getLog
      */
-    fun getLog(
+    suspend fun getLog(
+        request: ConvoGetLogRequest
+    ): Response<ConvoGetLogResponse>
+
+    fun getLogBlocking(
         request: ConvoGetLogRequest
     ): Response<ConvoGetLogResponse>
 
     /**
      * chat.bsky.convo.getMessages
      */
-    fun getMessages(
+    suspend fun getMessages(
+        request: ConvoGetMessagesRequest
+    ): Response<ConvoGetMessagesResponse>
+
+    fun getMessagesBlocking(
         request: ConvoGetMessagesRequest
     ): Response<ConvoGetMessagesResponse>
 
     /**
      * chat.bsky.convo.listConvos
      */
-    fun getListConvos(
+    suspend fun getListConvos(
+        request: ConvoGetListConvosRequest
+    ): Response<ConvoGetListConvosResponse>
+
+    fun getListConvosBlocking(
         request: ConvoGetListConvosRequest
     ): Response<ConvoGetListConvosResponse>
 
     /**
      * chat.bsky.convo.sendMessage
      */
-    fun sendMessage(
+    suspend fun sendMessage(
+        request: ConvoSendMessageRequest
+    ): Response<ConvoSendMessageResponse>
+
+    fun sendMessageBlocking(
         request: ConvoSendMessageRequest
     ): Response<ConvoSendMessageResponse>
 
     /**
      * chat.bsky.convo.updateRead
      */
-    fun updateRead(
+    suspend fun updateRead(
+        request: ConvoUpdateReadRequest
+    ): Response<ConvoUpdateReadResponse>
+
+    fun updateReadBlocking(
         request: ConvoUpdateReadRequest
     ): Response<ConvoUpdateReadResponse>
 
     /**
      * chat.bsky.convo.muteConvo
      */
-    fun muteConvo(
+    suspend fun muteConvo(
+        request: ConvoMuteConvoRequest
+    ): Response<ConvoMuteConvoResponse>
+
+    fun muteConvoBlocking(
         request: ConvoMuteConvoRequest
     ): Response<ConvoMuteConvoResponse>
 
     /**
      * chat.bsky.convo.unmuteConvo
      */
-    fun unmuteConvo(
+    suspend fun unmuteConvo(
+        request: ConvoUnmuteConvoRequest
+    ): Response<ConvoUnmuteConvoResponse>
+
+    fun unmuteConvoBlocking(
         request: ConvoUnmuteConvoRequest
     ): Response<ConvoUnmuteConvoResponse>
 
     /**
      * chat.bsky.convo.deleteMessageForSelf
      */
-    fun deleteMessageForSelf(
+    suspend fun deleteMessageForSelf(
+        request: ConvoDeleteMessageForSelfRequest
+    ): Response<ConvoDeleteMessageForSelfResponse>
+
+    fun deleteMessageForSelfBlocking(
         request: ConvoDeleteMessageForSelfRequest
     ): Response<ConvoDeleteMessageForSelfResponse>
 
     /**
      * chat.bsky.convo.leaveConvo
      */
-    fun leaveConvo(
+    suspend fun leaveConvo(
+        request: ConvoLeaveConvoRequest
+    ): Response<ConvoLeaveConvoResponse>
+
+    fun leaveConvoBlocking(
         request: ConvoLeaveConvoRequest
     ): Response<ConvoLeaveConvoResponse>
 
     /**
      * chat.bsky.convo.addReaction
      */
-    fun addReaction(
+    suspend fun addReaction(
+        request: ConvoAddReactionRequest
+    ): Response<ConvoAddReactionResponse>
+
+    fun addReactionBlocking(
         request: ConvoAddReactionRequest
     ): Response<ConvoAddReactionResponse>
 
     /**
      * chat.bsky.convo.removeReaction
      */
-    fun removeReaction(
+    suspend fun removeReaction(
+        request: ConvoRemoveReactionRequest
+    ): Response<ConvoRemoveReactionResponse>
+
+    fun removeReactionBlocking(
         request: ConvoRemoveReactionRequest
     ): Response<ConvoRemoveReactionResponse>
 }

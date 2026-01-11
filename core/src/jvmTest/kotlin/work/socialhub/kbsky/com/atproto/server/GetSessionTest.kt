@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.com.atproto.server
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import kotlin.test.Test
@@ -7,7 +9,7 @@ import kotlin.test.Test
 class GetSessionTest : AbstractTest() {
 
     @Test
-    fun testGetSession() {
+    fun testGetSession() = runTest {
         val response = client()
             .server()
             .getSession(

@@ -4,6 +4,7 @@ import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.algorithms.EC
 import dev.whyoleg.cryptography.algorithms.ECDSA
 import io.ktor.http.Url
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.auth.helper.OAuthHelper
 import java.security.KeyFactory
 import java.security.KeyPairGenerator
@@ -18,15 +19,15 @@ import kotlin.test.Test
 class HelperTest {
 
     @Test
-    fun testGenKey() {
+    fun testGenKey() = runTest {
 
         println(">> KMP")
         run {
             val keyPair = CryptographyProvider.Default.get(ECDSA)
-                .keyPairGenerator(EC.Curve.P256).generateKeyBlocking()
+                .keyPairGenerator(EC.Curve.P256).generateKey()
 
-            var public = Base64.encode(keyPair.publicKey.encodeToByteArrayBlocking(EC.PublicKey.Format.DER))
-            var private = Base64.encode(keyPair.privateKey.encodeToByteArrayBlocking(EC.PrivateKey.Format.DER))
+            var public = Base64.encode(keyPair.publicKey.encodeToByteArray(EC.PublicKey.Format.DER))
+            var private = Base64.encode(keyPair.privateKey.encodeToByteArray(EC.PrivateKey.Format.DER))
 
             println(public)
             println(private)
@@ -64,7 +65,7 @@ class HelperTest {
     }
 
     @Test
-    fun testAffineXY() {
+    fun testAffineXY() = runTest {
         run {
             val keyPairGenerator = KeyPairGenerator.getInstance("EC")
             keyPairGenerator.initialize(ECGenParameterSpec("secp256r1"))
@@ -97,7 +98,7 @@ class HelperTest {
 
 
     @Test
-    fun testPath() {
+    fun testPath() = runTest {
         val url = Url("https://google.com/aaa/bbb#aaa?p=1")
         println("${url.protocol.name}://${url.host}:${url.port}${url.encodedPath}")
     }

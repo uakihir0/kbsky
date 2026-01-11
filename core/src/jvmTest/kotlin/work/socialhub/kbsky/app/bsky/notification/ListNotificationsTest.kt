@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.app.bsky.notification
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNotificationsRequest
@@ -9,7 +11,7 @@ import kotlin.test.Test
 class ListNotificationsTest : AbstractTest() {
 
     @Test
-    fun testListNotifications() {
+    fun testListNotifications() = runTest {
         val response = client()
             .notification()
             .listNotifications(

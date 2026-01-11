@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.app.bsky.feed
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.Printer.dump
@@ -10,7 +11,7 @@ import kotlin.test.Test
 class GetActorLikesTest : AbstractTest() {
 
     @Test
-    fun testGetActorLikes() {
+    fun testGetActorLikes() = runTest {
         val feeds = client()
             .feed()
             .getActorLikes(

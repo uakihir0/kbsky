@@ -13,7 +13,11 @@ interface IdentityResource {
     /**
      * Provides the DID of a repo.
      */
-    fun resolveHandle(
+    suspend fun resolveHandle(
+        request: IdentityResolveHandleRequest
+    ): Response<IdentityResolveHandleResponse>
+
+    fun resolveHandleBlocking(
         request: IdentityResolveHandleRequest
     ): Response<IdentityResolveHandleResponse>
 

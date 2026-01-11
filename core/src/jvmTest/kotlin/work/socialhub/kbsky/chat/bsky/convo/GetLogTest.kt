@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.chat.bsky.convo
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 
 class GetLogTest : AbstractTest() {

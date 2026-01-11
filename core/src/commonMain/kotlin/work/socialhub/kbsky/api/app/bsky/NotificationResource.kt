@@ -17,21 +17,33 @@ interface NotificationResource {
     /**
      * Get the number of unread notifications.
      */
-    fun getUnreadCount(
+    suspend fun getUnreadCount(
+        request: NotificationGetUnreadCountRequest
+    ): Response<NotificationGetUnreadCountResponse>
+
+    fun getUnreadCountBlocking(
         request: NotificationGetUnreadCountRequest
     ): Response<NotificationGetUnreadCountResponse>
 
     /**
      * List notifications.
      */
-    fun listNotifications(
+    suspend fun listNotifications(
+        request: NotificationListNotificationsRequest
+    ): Response<NotificationListNotificationsResponse>
+
+    fun listNotificationsBlocking(
         request: NotificationListNotificationsRequest
     ): Response<NotificationListNotificationsResponse>
 
     /**
      * Notify server that the user has seen notifications.
      */
-    fun updateSeen(
+    suspend fun updateSeen(
+        request: NotificationUpdateSeenRequest
+    ): Response<Unit>
+
+    fun updateSeenBlocking(
         request: NotificationUpdateSeenRequest
     ): Response<Unit>
 }

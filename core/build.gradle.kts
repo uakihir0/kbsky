@@ -33,6 +33,7 @@ kotlin {
         // for test
         commonTest.dependencies {
             implementation(kotlin("test"))
+            implementation(libs.coroutines.test)
         }
 
         jvmTest.dependencies {

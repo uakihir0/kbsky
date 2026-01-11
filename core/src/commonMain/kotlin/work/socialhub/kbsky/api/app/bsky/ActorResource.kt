@@ -19,42 +19,66 @@ interface ActorResource {
     /**
      * Find actors matching search criteria.
      */
-    fun searchActors(
+    suspend fun searchActors(
+        request: ActorSearchActorsRequest
+    ): Response<ActorSearchActorsResponse>
+
+    fun searchActorsBlocking(
         request: ActorSearchActorsRequest
     ): Response<ActorSearchActorsResponse>
 
     /**
      * Find actor suggestions for a prefix search term.
      */
-    fun searchActorsTypeahead(
+    suspend fun searchActorsTypeahead(
+        request: ActorSearchActorsTypeaheadRequest
+    ): Response<ActorSearchActorsTypeaheadResponse>
+
+    fun searchActorsTypeaheadBlocking(
         request: ActorSearchActorsTypeaheadRequest
     ): Response<ActorSearchActorsTypeaheadResponse>
 
     /**
      * Get detailed profile view of an actor.
      */
-    fun getProfile(
+    suspend fun getProfile(
+        request: ActorGetProfileRequest
+    ): Response<ActorGetProfileResponse>
+
+    fun getProfileBlocking(
         request: ActorGetProfileRequest
     ): Response<ActorGetProfileResponse>
 
     /**
      * Update the profile of the actor.
      */
-    fun updateProfile(
+    suspend fun updateProfile(
+        request: ActorUpdateProfileRequest
+    ): Response<ActorUpdateProfileResponse>
+
+    fun updateProfileBlocking(
         request: ActorUpdateProfileRequest
     ): Response<ActorUpdateProfileResponse>
 
     /**
      * Get detailed profile views of multiple actors.
      */
-    fun getProfiles(
+    suspend fun getProfiles(
+        request: ActorGetProfilesRequest
+    ): Response<ActorGetProfilesResponse>
+
+    fun getProfilesBlocking(
         request: ActorGetProfilesRequest
     ): Response<ActorGetProfilesResponse>
 
     /**
      * Get private preferences attached to the account.
      */
-    fun getPreferences(
+    suspend fun getPreferences(
+        request: ActorGetPreferencesRequest
+    ): Response<ActorGetPreferencesResponse>
+
+    fun getPreferencesBlocking(
         request: ActorGetPreferencesRequest
     ): Response<ActorGetPreferencesResponse>
 }

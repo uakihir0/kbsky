@@ -13,7 +13,11 @@ interface LabelerResource {
     /**
      * Get information about a list of labeler services.
      */
-    fun getServices(
+    suspend fun getServices(
+        request: LabelerGetServicesRequest
+    ): Response<LabelerGetServicesResponse>
+
+    fun getServicesBlocking(
         request: LabelerGetServicesRequest
     ): Response<LabelerGetServicesResponse>
 }

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.app.bsky.feed
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.Printer.dump
@@ -10,7 +11,7 @@ import kotlin.test.Test
 class GetLikesTest : AbstractTest() {
 
     @Test
-    fun testLikes() {
+    fun testLikes() = runTest {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jt5ao4gpxc2u"
 
         val feeds = client()

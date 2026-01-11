@@ -56,63 +56,99 @@ interface FeedResource {
     /**
      * A view of a user's feed.
      */
-    fun getAuthorFeed(
+    suspend fun getAuthorFeed(
+        request: FeedGetAuthorFeedRequest
+    ): Response<FeedGetAuthorFeedResponse>
+
+    fun getAuthorFeedBlocking(
         request: FeedGetAuthorFeedRequest
     ): Response<FeedGetAuthorFeedResponse>
 
     /**
      *
      */
-    fun getLikes(
+    suspend fun getLikes(
+        request: FeedGetLikesRequest
+    ): Response<FeedGetLikesResponse>
+
+    fun getLikesBlocking(
         request: FeedGetLikesRequest
     ): Response<FeedGetLikesResponse>
 
     /**
      *
      */
-    fun getPostThread(
+    suspend fun getPostThread(
+        request: FeedGetPostThreadRequest
+    ): Response<FeedGetPostThreadResponse>
+
+    fun getPostThreadBlocking(
         request: FeedGetPostThreadRequest
     ): Response<FeedGetPostThreadResponse>
 
     /**
      * A view of an actor's feed.
      */
-    fun getPosts(
+    suspend fun getPosts(
+        request: FeedGetPostsRequest
+    ): Response<FeedGetPostsResponse>
+
+    fun getPostsBlocking(
         request: FeedGetPostsRequest
     ): Response<FeedGetPostsResponse>
 
     /**
      * Get a list of quotes for a given post.
      */
-    fun getQuotes(
+    suspend fun getQuotes(
+        request: FeedGetQuotesRequest
+    ): Response<FeedGetQuotesResponse>
+
+    fun getQuotesBlocking(
         request: FeedGetQuotesRequest
     ): Response<FeedGetQuotesResponse>
 
     /**
      * Get a list of reposts for a given post.
      */
-    fun getRepostedBy(
+    suspend fun getRepostedBy(
+        request: FeedGetRepostedByRequest
+    ): Response<FeedGetRepostedByResponse>
+
+    fun getRepostedByBlocking(
         request: FeedGetRepostedByRequest
     ): Response<FeedGetRepostedByResponse>
 
     /**
      * A view of the user's home timeline.
      */
-    fun getTimeline(
+    suspend fun getTimeline(
+        request: FeedGetTimelineRequest
+    ): Response<FeedGetTimelineResponse>
+
+    fun getTimelineBlocking(
         request: FeedGetTimelineRequest
     ): Response<FeedGetTimelineResponse>
 
     /**
      * Compose and hydrate a feed from a user's selected feed generator.
      */
-    fun getFeed(
+    suspend fun getFeed(
+        request: FeedGetFeedRequest
+    ): Response<FeedGetFeedResponse>
+
+    fun getFeedBlocking(
         request: FeedGetFeedRequest
     ): Response<FeedGetFeedResponse>
 
     /**
      * Get a feed of recent posts from a list (posts and reposts from any actors on the list). Does not require auth.
      */
-    fun getListFeed(
+    suspend fun getListFeed(
+        request: FeedGetListFeedRequest
+    ): Response<FeedGetListFeedResponse>
+
+    fun getListFeedBlocking(
         request: FeedGetListFeedRequest
     ): Response<FeedGetListFeedResponse>
 

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.app.bsky.feed
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteRepostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedRepostRequest
@@ -9,7 +10,7 @@ import kotlin.test.Test
 class RepostTest : AbstractTest() {
 
     @Test
-    fun testRepost() {
+    fun testRepost() = runTest {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b"
         val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
@@ -26,7 +27,7 @@ class RepostTest : AbstractTest() {
     }
 
     @Test
-    fun testDeleteRepost() {
+    fun testDeleteRepost() = runTest {
 
         // Create
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b"

@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.com.atproto.repo
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
@@ -14,7 +16,7 @@ class ListRecordsTest() : AbstractTest() {
     }
 
     @Test
-    fun testListRecords() {
+    fun testListRecords() = runTest {
 
         val response = client()
             .repo()
@@ -34,7 +36,7 @@ class ListRecordsTest() : AbstractTest() {
     }
 
     @Test
-    fun testListRecordBlocks() {
+    fun testListRecordBlocks() = runTest {
 
         val response = client()
             .repo()
@@ -51,7 +53,7 @@ class ListRecordsTest() : AbstractTest() {
     }
 
     @Test
-    fun testListRecordLikes() {
+    fun testListRecordLikes() = runTest {
 
         val response = client()
             .repo()

@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.com.atproto.repo
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
@@ -10,7 +12,7 @@ import kotlin.test.assertNotNull
 class UploadBlobTest : AbstractTest() {
 
     @Test
-    fun testUploadBlob() {
+    fun testUploadBlob() = runTest {
         val stream = javaClass.getResourceAsStream("/image/icon.png")
         assertNotNull(stream)
 

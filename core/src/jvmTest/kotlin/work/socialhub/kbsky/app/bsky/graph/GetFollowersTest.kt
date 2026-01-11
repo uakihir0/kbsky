@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.app.bsky.graph
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetFollowersRequest
@@ -9,7 +11,7 @@ import kotlin.test.Test
 class GetFollowersTest : AbstractTest() {
 
     @Test
-    fun testGetFollowers() {
+    fun testGetFollowers() = runTest {
         val response = client()
             .graph()
             .getFollowers(

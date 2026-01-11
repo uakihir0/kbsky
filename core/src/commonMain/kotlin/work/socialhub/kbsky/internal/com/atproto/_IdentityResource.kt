@@ -1,6 +1,5 @@
 package work.socialhub.kbsky.internal.com.atproto
 
-import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.ATProtocolTypes.IdentifyResolveHandle
 import work.socialhub.kbsky.api.com.atproto.IdentityResource
@@ -11,25 +10,28 @@ import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
+import work.socialhub.kbsky.util.toBlocking
 
 class _IdentityResource(
     private val config: ATProtocolConfig
 ) : IdentityResource {
 
-    override fun resolveHandle(
+    override suspend fun resolveHandle(
         request: IdentityResolveHandleRequest
     ): Response<IdentityResolveHandleResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, IdentifyResolveHandle))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .get()
-            }
+            httpRequest(config)
+                .url(xrpc(config, IdentifyResolveHandle))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .get()
         }
     }
+
+    override fun resolveHandleBlocking(
+        request: IdentityResolveHandleRequest
+    ): Response<IdentityResolveHandleResponse> = toBlocking { resolveHandle(request) }
 
     // TODO: implement
     override fun updateHandle() {

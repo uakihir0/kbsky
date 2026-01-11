@@ -30,49 +30,77 @@ interface RepoResource {
     /**
      * Create a new record.
      */
-    fun createRecord(
+    suspend fun createRecord(
+        request: RepoCreateRecordRequest
+    ): Response<RepoCreateRecordResponse>
+
+    fun createRecordBlocking(
         request: RepoCreateRecordRequest
     ): Response<RepoCreateRecordResponse>
 
     /**
      * Delete a record, or ensure it doesn't exist.
      */
-    fun deleteRecord(
+    suspend fun deleteRecord(
+        request: RepoDeleteRecordRequest
+    ): Response<Unit>
+
+    fun deleteRecordBlocking(
         request: RepoDeleteRecordRequest
     ): Response<Unit>
 
     /**
      * Get information about an account and repository, including the list of collections. Does not require auth.
      */
-    fun describeRepo(
+    suspend fun describeRepo(
+        request: RepoDescribeRepoRequest
+    ): Response<RepoDescribeRepoResponse>
+
+    fun describeRepoBlocking(
         request: RepoDescribeRepoRequest
     ): Response<RepoDescribeRepoResponse>
 
     /**
      * Get a record.
      */
-    fun getRecord(
+    suspend fun getRecord(
+        request: RepoGetRecordRequest
+    ): Response<RepoGetRecordResponse>
+
+    fun getRecordBlocking(
         request: RepoGetRecordRequest
     ): Response<RepoGetRecordResponse>
 
     /**
      * List a range of records in a collection.
      */
-    fun listRecords(
+    suspend fun listRecords(
+        request: RepoListRecordsRequest
+    ): Response<RepoListRecordsResponse>
+
+    fun listRecordsBlocking(
         request: RepoListRecordsRequest
     ): Response<RepoListRecordsResponse>
 
     /**
      * Write a record, creating or updating it as needed.
      */
-    fun putRecord(
+    suspend fun putRecord(
+        request: RepoPutRecordRequest
+    ): Response<RepoPutRecordResponse>
+
+    fun putRecordBlocking(
         request: RepoPutRecordRequest
     ): Response<RepoPutRecordResponse>
 
     /**
      * Upload a new blob to be added to repo in a later request.
      */
-    fun uploadBlob(
+    suspend fun uploadBlob(
+        request: RepoUploadBlobRequest
+    ): Response<RepoUploadBlobResponse>
+
+    fun uploadBlobBlocking(
         request: RepoUploadBlobRequest
     ): Response<RepoUploadBlobResponse>
 }

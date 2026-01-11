@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.chat.bsky.convo
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.Printer.dump
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosRequest
@@ -9,7 +11,7 @@ import kotlin.test.Test
 class GetListConvosTest : AbstractTest() {
 
     @Test
-    fun testGetListConvos() {
+    fun testGetListConvos() = runTest {
         val convos = client()
             .also {
                 it.server()

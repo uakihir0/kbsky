@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.app.bsky.feed
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
@@ -18,7 +19,7 @@ import kotlin.test.Test
 class PostTest : AbstractTest() {
 
     @Test
-    fun testPost() {
+    fun testPost() = runTest {
         val response = client()
             .feed()
             .post(
@@ -31,7 +32,7 @@ class PostTest : AbstractTest() {
     }
 
     @Test
-    fun testFeedPostWithImage() {
+    fun testFeedPostWithImage() = runTest {
         // from https://placehold.jp/
         val stream = javaClass.getResourceAsStream("/image/200x100.png")
         checkNotNull(stream)
@@ -85,7 +86,7 @@ class PostTest : AbstractTest() {
     }
 
     @Test
-    fun testFeedPostReplay() {
+    fun testFeedPostReplay() = runTest {
 
         val root = client()
             .feed()
@@ -154,7 +155,7 @@ class PostTest : AbstractTest() {
 
 
     @Test
-    fun testPostWithFacets() {
+    fun testPostWithFacets() = runTest {
 
         val test = "@uakihir0.com Facet のテスト投稿 https://www.uakihir0.com/blog/p/202305-mario-movie/"
         val list = FacetUtil.extractFacets(test)
@@ -189,7 +190,7 @@ class PostTest : AbstractTest() {
     }
 
     @Test
-    fun testDeleteFeed() {
+    fun testDeleteFeed() = runTest {
 
         // Create
         val response = client()

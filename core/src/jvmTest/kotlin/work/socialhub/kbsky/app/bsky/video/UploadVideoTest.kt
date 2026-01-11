@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.app.bsky.video
 
+import kotlinx.coroutines.test.runTest
+
 import org.junit.jupiter.api.Test
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
@@ -14,7 +16,7 @@ import work.socialhub.kbsky.model.share.Blob
 class UploadVideoTest : AbstractTest() {
 
     @Test
-    fun testPostVideoTest() {
+    fun testPostVideoTest() = runTest {
 
         // val stream = javaClass.getResourceAsStream("/video/heavy.mp4")
         val stream = javaClass.getResourceAsStream("/video/light.mp4")
@@ -79,7 +81,7 @@ class UploadVideoTest : AbstractTest() {
 
 
     @Test
-    fun testGetUploadLimit() {
+    fun testGetUploadLimit() = runTest {
 
         val response = client()
             .video()

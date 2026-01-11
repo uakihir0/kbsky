@@ -13,7 +13,11 @@ interface ModerationResource {
     /**
      * レポートを作成する
      */
-    fun createReport(
+    suspend fun createReport(
+        request: ModerationCreateReportRequest
+    ): Response<ModerationCreateReportResponse>
+
+    fun createReportBlocking(
         request: ModerationCreateReportRequest
     ): Response<ModerationCreateReportResponse>
 }

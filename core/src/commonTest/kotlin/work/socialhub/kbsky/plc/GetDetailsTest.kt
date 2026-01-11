@@ -1,12 +1,13 @@
 package work.socialhub.kbsky.plc
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.PLCDirectoryFactory
 import kotlin.test.Test
 
 class GetDetailsTest() {
 
     @Test
-    fun testGetDetails() {
+    fun testGetDetails() = runTest {
         val did = "did:plc:bwdof2anluuf5wmfy2upgulw"
 
         val response = PLCDirectoryFactory

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.app.bsky.actor
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsRequest
@@ -9,7 +10,7 @@ import kotlin.test.Test
 class SearchActorsTest : AbstractTest() {
 
     @Test
-    fun testSearchActors() {
+    fun testSearchActors() = runTest {
         val actors = client()
             .actor()
             .searchActors(

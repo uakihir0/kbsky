@@ -1,6 +1,5 @@
 package work.socialhub.kbsky.internal.app.bsky
 
-import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.BlueskyConfig
@@ -69,384 +68,419 @@ import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.ATUriParser.getDid
 import work.socialhub.kbsky.util.ATUriParser.getRKey
 import work.socialhub.kbsky.util.MediaType
+import work.socialhub.kbsky.util.toBlocking
 
 class _GraphResource(
     private val config: BlueskyConfig
 ) : GraphResource {
 
-    override fun follow(
+    override suspend fun follow(
         request: GraphFollowRequest
     ): Response<GraphFollowResponse> {
 
         return proceed {
-            runBlocking {
-                val record = RepoCreateRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphFollow,
-                    record = request.toFollow(),
-                )
+            val record = RepoCreateRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphFollow,
+                record = request.toFollow(),
+            )
 
-                httpRequest(config)
-                    .url(xrpc(config, RepoCreateRecord))
-                    .json(record.toMappedJson())
-                    .accept(MediaType.JSON)
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, RepoCreateRecord))
+                .json(record.toMappedJson())
+                .accept(MediaType.JSON)
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun deleteFollow(
+    override fun followBlocking(
+        request: GraphFollowRequest
+    ): Response<GraphFollowResponse> = toBlocking { follow(request) }
+
+    override suspend fun deleteFollow(
         request: GraphDeleteFollowRequest
     ): Response<Unit> {
 
         return proceedUnit {
-            runBlocking {
-                val record = RepoDeleteRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphFollow,
-                    rkey = request.rkey!!,
-                )
+            val record = RepoDeleteRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphFollow,
+                rkey = request.rkey!!,
+            )
 
-                httpRequest(config)
-                    .url(xrpc(config, RepoDeleteRecord))
-                    .json(record.toMappedJson())
-                    .accept(MediaType.JSON)
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, RepoDeleteRecord))
+                .json(record.toMappedJson())
+                .accept(MediaType.JSON)
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun getFollowers(
+    override fun deleteFollowBlocking(
+        request: GraphDeleteFollowRequest
+    ): Response<Unit> = toBlocking { deleteFollow(request) }
+
+    override suspend fun getFollowers(
         request: GraphGetFollowersRequest
     ): Response<GraphGetFollowersResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetFollowers))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetFollowers))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun getFollows(
+    override fun getFollowersBlocking(
+        request: GraphGetFollowersRequest
+    ): Response<GraphGetFollowersResponse> = toBlocking { getFollowers(request) }
+
+    override suspend fun getFollows(
         request: GraphGetFollowsRequest
     ): Response<GraphGetFollowsResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetFollows))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetFollows))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun getKnownFollowers(
+    override fun getFollowsBlocking(
+        request: GraphGetFollowsRequest
+    ): Response<GraphGetFollowsResponse> = toBlocking { getFollows(request) }
+
+    override suspend fun getKnownFollowers(
         request: GraphGetKnownFollowersRequest
     ): Response<GraphGetKnownFollowersResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetKnownFollowers))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetKnownFollowers))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun getMutes(
+    override fun getKnownFollowersBlocking(
+        request: GraphGetKnownFollowersRequest
+    ): Response<GraphGetKnownFollowersResponse> = toBlocking { getKnownFollowers(request) }
+
+    override suspend fun getMutes(
         request: GraphGetMutesRequest
     ): Response<GraphGetMutesResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetMutes))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetMutes))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun muteActor(
+    override fun getMutesBlocking(
+        request: GraphGetMutesRequest
+    ): Response<GraphGetMutesResponse> = toBlocking { getMutes(request) }
+
+    override suspend fun muteActor(
         request: GraphMuteActorRequest
     ): Response<Unit> {
 
         return proceedUnit {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphMuteActor))
-                    .accept(MediaType.JSON)
-                    .json(request.toMappedJson())
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphMuteActor))
+                .accept(MediaType.JSON)
+                .json(request.toMappedJson())
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun unmuteActor(
+    override fun muteActorBlocking(
+        request: GraphMuteActorRequest
+    ): Response<Unit> = toBlocking { muteActor(request) }
+
+    override suspend fun unmuteActor(
         request: GraphUnmuteActorRequest
     ): Response<Unit> {
 
         return proceedUnit {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphUnmuteActor))
-                    .accept(MediaType.JSON)
-                    .json(request.toMappedJson())
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphUnmuteActor))
+                .accept(MediaType.JSON)
+                .json(request.toMappedJson())
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun block(
+    override fun unmuteActorBlocking(
+        request: GraphUnmuteActorRequest
+    ): Response<Unit> = toBlocking { unmuteActor(request) }
+
+    override suspend fun block(
         request: GraphBlockRequest
     ): Response<GraphBlockResponse> {
 
         return proceed {
-            runBlocking {
-                val record = RepoCreateRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphBlock,
-                    record = request.toBlock(),
-                )
+            val record = RepoCreateRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphBlock,
+                record = request.toBlock(),
+            )
 
-                httpRequest(config)
-                    .url(xrpc(config, RepoCreateRecord))
-                    .json(record.toMappedJson())
-                    .accept(MediaType.JSON)
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, RepoCreateRecord))
+                .json(record.toMappedJson())
+                .accept(MediaType.JSON)
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun deleteBlock(
+    override fun blockBlocking(
+        request: GraphBlockRequest
+    ): Response<GraphBlockResponse> = toBlocking { block(request) }
+
+    override suspend fun deleteBlock(
         request: GraphDeleteBlockRequest
     ): Response<Unit> {
 
         return proceed {
-            runBlocking {
-                val record = RepoDeleteRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphBlock,
-                    rkey = request.rkey!!,
-                )
+            val record = RepoDeleteRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphBlock,
+                rkey = request.rkey!!,
+            )
 
-                httpRequest(config)
-                    .url(xrpc(config, RepoDeleteRecord))
-                    .json(record.toMappedJson())
-                    .accept(MediaType.JSON)
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, RepoDeleteRecord))
+                .json(record.toMappedJson())
+                .accept(MediaType.JSON)
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun getBlocks(
+    override fun deleteBlockBlocking(
+        request: GraphDeleteBlockRequest
+    ): Response<Unit> = toBlocking { deleteBlock(request) }
+
+    override suspend fun getBlocks(
         request: GraphGetBlocksRequest
     ): Response<GraphGetBlocksResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetBlocks))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetBlocks))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun createList(
+    override fun getBlocksBlocking(
+        request: GraphGetBlocksRequest
+    ): Response<GraphGetBlocksResponse> = toBlocking { getBlocks(request) }
+
+    override suspend fun createList(
         request: GraphCreateListRequest
     ): Response<GraphCreateListResponse> {
 
         return proceed {
-            runBlocking {
-                val record = RepoCreateRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphList,
-                    record = request.toRecord(),
-                )
+            val record = RepoCreateRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphList,
+                record = request.toRecord(),
+            )
 
-                httpRequest(config)
-                    .url(xrpc(config, RepoCreateRecord))
-                    .json(record.toMappedJson())
-                    .accept(MediaType.JSON)
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, RepoCreateRecord))
+                .json(record.toMappedJson())
+                .accept(MediaType.JSON)
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun editList(
+    override fun createListBlocking(
+        request: GraphCreateListRequest
+    ): Response<GraphCreateListResponse> = toBlocking { createList(request) }
+
+    override suspend fun editList(
         request: GraphEditListRequest
     ): Response<GraphEditListResponse> {
 
-        return runBlocking {
-            val listUri = request.listUri
+        val listUri = request.listUri
 
-            val repoResource = _RepoResource(config)
-            val original = repoResource.getRecord(
-                RepoGetRecordRequest(
-                    repo = request.auth.did,
-                    collection = GraphList,
-                    rkey = getRKey(listUri)
-                )
+        val repoResource = _RepoResource(config)
+        val original = repoResource.getRecord(
+            RepoGetRecordRequest(
+                repo = request.auth.did,
+                collection = GraphList,
+                rkey = getRKey(listUri)
             )
+        )
 
-            val originalListRecord = original.data.value.asGraphList
-                ?: throw IllegalStateException("response data is not GraphList(type=${original.data.value.type}")
+        val originalListRecord = original.data.value.asGraphList
+            ?: throw IllegalStateException("response data is not GraphList(type=${original.data.value.type}")
 
-            val modifiedListRecord = originalListRecord.copy(
-                // keep purpose, createdAt
-                name = request.name,
-                description = request.description,
-                descriptionFacets = request.descriptionFacets,
-                avatar = request.avatar,
-                labels = request.labels
+        val modifiedListRecord = originalListRecord.copy(
+            // keep purpose, createdAt
+            name = request.name,
+            description = request.description,
+            descriptionFacets = request.descriptionFacets,
+            avatar = request.avatar,
+            labels = request.labels
+        )
+
+        val r = repoResource.putRecord(
+            RepoPutRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphList,
+                rkey = getRKey(listUri),
+                record = modifiedListRecord,
             )
+        )
 
-            val r = repoResource.putRecord(
-                RepoPutRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphList,
-                    rkey = getRKey(listUri),
-                    record = modifiedListRecord,
-                )
-            )
-
-            Response(GraphEditListResponse().also {
-                it.uri = r.data.uri
-                it.cid = r.data.cid
-            }, r.json)
-        }
+        return Response(GraphEditListResponse().also {
+            it.uri = r.data.uri
+            it.cid = r.data.cid
+        }, r.json)
     }
 
-    override fun deleteList(
+    override fun editListBlocking(
+        request: GraphEditListRequest
+    ): Response<GraphEditListResponse> = toBlocking { editList(request) }
+
+    override suspend fun deleteList(
         request: GraphDeleteListRequest
     ): Response<Unit> {
 
-        return runBlocking {
-            val record = RepoDeleteRecordRequest(
-                auth = request.auth,
-                repo = getDid(request.listUri),
-                collection = GraphList,
-                rkey = getRKey(request.listUri),
-            )
+        val record = RepoDeleteRecordRequest(
+            auth = request.auth,
+            repo = getDid(request.listUri),
+            collection = GraphList,
+            rkey = getRKey(request.listUri),
+        )
 
-            _RepoResource(config).deleteRecord(record)
-        }
+        return _RepoResource(config).deleteRecord(record)
     }
 
-    override fun getList(
+    override fun deleteListBlocking(
+        request: GraphDeleteListRequest
+    ): Response<Unit> = toBlocking { deleteList(request) }
+
+    override suspend fun getList(
         request: GraphGetListRequest
     ): Response<GraphGetListResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetList))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetList))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun getLists(
+    override fun getListBlocking(
+        request: GraphGetListRequest
+    ): Response<GraphGetListResponse> = toBlocking { getList(request) }
+
+    override suspend fun getLists(
         request: GraphGetListsRequest
     ): Response<GraphGetListsResponse> {
 
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetLists))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetLists))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun addUserToList(
+    override fun getListsBlocking(
+        request: GraphGetListsRequest
+    ): Response<GraphGetListsResponse> = toBlocking { getLists(request) }
+
+    override suspend fun addUserToList(
         request: GraphAddUserToListRequest
     ): Response<GraphAddUserToListResponse> {
 
         return proceed {
-            runBlocking {
-                val record = RepoCreateRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphListItem,
-                    record = request.toListItem(),
-                )
+            val record = RepoCreateRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphListItem,
+                record = request.toListItem(),
+            )
 
-                httpRequest(config)
-                    .url(xrpc(config, RepoCreateRecord))
-                    .json(record.toMappedJson())
-                    .accept(MediaType.JSON)
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, RepoCreateRecord))
+                .json(record.toMappedJson())
+                .accept(MediaType.JSON)
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun removeUserFromList(request: GraphRemoveUserFromListRequest): Response<Unit> {
+    override fun addUserToListBlocking(
+        request: GraphAddUserToListRequest
+    ): Response<GraphAddUserToListResponse> = toBlocking { addUserToList(request) }
+
+    override suspend fun removeUserFromList(request: GraphRemoveUserFromListRequest): Response<Unit> {
 
         return proceedUnit {
-            runBlocking {
-                val record = RepoDeleteRecordRequest(
-                    auth = request.auth,
-                    repo = request.auth.did,
-                    collection = GraphListItem,
-                    rkey = request.rkey!!,
-                )
+            val record = RepoDeleteRecordRequest(
+                auth = request.auth,
+                repo = request.auth.did,
+                collection = GraphListItem,
+                rkey = request.rkey!!,
+            )
 
-                httpRequest(config)
-                    .url(xrpc(config, RepoDeleteRecord))
-                    .json(record.toMappedJson())
-                    .accept(MediaType.JSON)
-                    .postWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, RepoDeleteRecord))
+                .json(record.toMappedJson())
+                .accept(MediaType.JSON)
+                .postWithAuth(request.auth)
         }
     }
 
-    override fun getStarterPack(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> {
+    override fun removeUserFromListBlocking(request: GraphRemoveUserFromListRequest): Response<Unit> = toBlocking { removeUserFromList(request) }
+
+    override suspend fun getStarterPack(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> {
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetStarterPack))
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .getWithAuth(request.auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetStarterPack))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
         }
     }
 
-    override fun getStarterPacks(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> {
+    override fun getStarterPackBlocking(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> = toBlocking { getStarterPack(request) }
+
+    override suspend fun getStarterPacks(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> {
         return proceed {
-            runBlocking {
-                httpRequest(config)
-                    .url(xrpc(config, GraphGetStarterPacks))
-                    .accept(MediaType.JSON)
-                    .also {
-                        request.uris?.forEach { uri ->
-                            it.query("uris", uri)
-                        }
+            httpRequest(config)
+                .url(xrpc(config, GraphGetStarterPacks))
+                .accept(MediaType.JSON)
+                .also {
+                    request.uris?.forEach { uri ->
+                        it.query("uris", uri)
                     }
-                    .getWithAuth(request.auth)
-            }
+                }
+                .getWithAuth(request.auth)
         }
     }
+
+    override fun getStarterPacksBlocking(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> = toBlocking { getStarterPacks(request) }
 }

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.util
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetActorFeedsRequest
@@ -10,7 +11,7 @@ import kotlin.test.Test
 class ErrorTest() {
 
     @Test
-    fun testError() {
+    fun testError() = runTest {
 
         try {
             BlueskyFactory

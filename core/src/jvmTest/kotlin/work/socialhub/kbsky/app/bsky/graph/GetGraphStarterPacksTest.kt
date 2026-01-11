@@ -1,5 +1,7 @@
 package work.socialhub.kbsky.app.bsky.graph
 
+import kotlinx.coroutines.test.runTest
+
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPacksRequest
@@ -13,7 +15,7 @@ class GetGraphStarterPacksTest : AbstractTest() {
     )
 
     @Test
-    fun testGetStarterPacks() {
+    fun testGetStarterPacks() = runTest {
         val response = client()
             .graph()
             .getStarterPacks(
