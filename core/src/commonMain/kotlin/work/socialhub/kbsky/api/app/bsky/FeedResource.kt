@@ -155,35 +155,55 @@ interface FeedResource {
     /**
      * Retrieve a list of feeds created by a given actor
      */
-    fun getActorFeeds(
+    suspend fun getActorFeeds(
+        request: FeedGetActorFeedsRequest
+    ): Response<FeedGetActorFeedsResponse>
+
+    fun getActorFeedsBlocking(
         request: FeedGetActorFeedsRequest
     ): Response<FeedGetActorFeedsResponse>
 
     /**
      * Get a list of posts liked by an actor.
      */
-    fun getActorLikes(
+    suspend fun getActorLikes(
+        request: FeedGetActorLikesRequest
+    ): Response<FeedGetActorLikesResponse>
+
+    fun getActorLikesBlocking(
         request: FeedGetActorLikesRequest
     ): Response<FeedGetActorLikesResponse>
 
     /**
      * Find posts matching search criteria.
      */
-    fun searchPosts(
+    suspend fun searchPosts(
+        request: FeedSearchPostsRequest
+    ): Response<FeedSearchPostsResponse>
+
+    fun searchPostsBlocking(
         request: FeedSearchPostsRequest
     ): Response<FeedSearchPostsResponse>
 
     /**
      * Get information about a specific feed offered by a feed generator, such as its online status.
      */
-    fun getFeedGenerator(
+    suspend fun getFeedGenerator(
+        request: FeedGetFeedGeneratorRequest
+    ): Response<FeedGetFeedGeneratorResponse>
+
+    fun getFeedGeneratorBlocking(
         request: FeedGetFeedGeneratorRequest
     ): Response<FeedGetFeedGeneratorResponse>
 
     /**
      * Get information about a list of feed generators.
      */
-    fun getFeedGenerators(
+    suspend fun getFeedGenerators(
+        request: FeedGetFeedGeneratorsRequest
+    ): Response<FeedGetFeedGeneratorsResponse>
+
+    fun getFeedGeneratorsBlocking(
         request: FeedGetFeedGeneratorsRequest
     ): Response<FeedGetFeedGeneratorsResponse>
 
@@ -191,7 +211,11 @@ interface FeedResource {
      * Like feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun like(
+    suspend fun like(
+        request: FeedLikeRequest
+    ): Response<FeedLikeResponse>
+
+    fun likeBlocking(
         request: FeedLikeRequest
     ): Response<FeedLikeResponse>
 
@@ -199,7 +223,11 @@ interface FeedResource {
      * Delete Like operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun deleteLike(
+    suspend fun deleteLike(
+        request: FeedDeleteLikeRequest
+    ): Response<Unit>
+
+    fun deleteLikeBlocking(
         request: FeedDeleteLikeRequest
     ): Response<Unit>
 
@@ -207,7 +235,11 @@ interface FeedResource {
      * Post feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun post(
+    suspend fun post(
+        request: FeedPostRequest
+    ): Response<FeedPostResponse>
+
+    fun postBlocking(
         request: FeedPostRequest
     ): Response<FeedPostResponse>
 
@@ -215,7 +247,11 @@ interface FeedResource {
      * Delete Feed operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun deletePost(
+    suspend fun deletePost(
+        request: FeedDeletePostRequest
+    ): Response<Unit>
+
+    fun deletePostBlocking(
         request: FeedDeletePostRequest
     ): Response<Unit>
 
@@ -223,7 +259,11 @@ interface FeedResource {
      * Repost feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun repost(
+    suspend fun repost(
+        request: FeedRepostRequest
+    ): Response<FeedRepostResponse>
+
+    fun repostBlocking(
         request: FeedRepostRequest
     ): Response<FeedRepostResponse>
 
@@ -231,7 +271,11 @@ interface FeedResource {
      * Delete Repost operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
-    fun deleteRepost(
+    suspend fun deleteRepost(
+        request: FeedDeleteRepostRequest
+    ): Response<Unit>
+
+    fun deleteRepostBlocking(
         request: FeedDeleteRepostRequest
     ): Response<Unit>
 
@@ -239,7 +283,11 @@ interface FeedResource {
      * Threadgate feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun threadgate(
+    suspend fun threadgate(
+        request: FeedThreadgateRequest
+    ): Response<FeedThreadgateResponse>
+
+    fun threadgateBlocking(
         request: FeedThreadgateRequest
     ): Response<FeedThreadgateResponse>
 
@@ -247,28 +295,44 @@ interface FeedResource {
      * Record defining interaction rules for a post.
      * (ATProtocol/Repo createRecord wrapper)
      */
-    fun postgate(
+    suspend fun postgate(
+        request: FeedPostgateRequest
+    ): Response<FeedPostgateResponse>
+
+    fun postgateBlocking(
         request: FeedPostgateRequest
     ): Response<FeedPostgateResponse>
 
     /**
      * Creates a private bookmark for the specified record.
      */
-    fun createBookmark(
+    suspend fun createBookmark(
+        request: FeedCreateBookmarkRequest
+    ): Response<Unit>
+
+    fun createBookmarkBlocking(
         request: FeedCreateBookmarkRequest
     ): Response<Unit>
 
     /**
      * Deletes a private bookmark for the specified record.
      */
-    fun deleteBookmark(
+    suspend fun deleteBookmark(
+        request: FeedDeleteBookmarkRequest
+    ): Response<Unit>
+
+    fun deleteBookmarkBlocking(
         request: FeedDeleteBookmarkRequest
     ): Response<Unit>
 
     /**
      * Gets views of records bookmarked by the authenticated user.
      */
-    fun getBookmarks(
+    suspend fun getBookmarks(
+        request: FeedGetBookmarksRequest
+    ): Response<FeedGetBookmarksResponse>
+
+    fun getBookmarksBlocking(
         request: FeedGetBookmarksRequest
     ): Response<FeedGetBookmarksResponse>
 }

@@ -6,7 +6,6 @@ import dev.whyoleg.cryptography.algorithms.ECDSA
 import dev.whyoleg.cryptography.algorithms.ECDSA.SignatureFormat
 import dev.whyoleg.cryptography.algorithms.SHA256
 import io.ktor.http.URLBuilder
-import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.AuthConfig
 import work.socialhub.kbsky.auth.OAuthContext
@@ -24,6 +23,7 @@ import work.socialhub.kbsky.auth.helper.OAuthHelper.makeClientAssertion
 import work.socialhub.kbsky.auth.helper.RandomHelper
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.setTimeouts
+import work.socialhub.kbsky.util.toBlocking
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
@@ -39,56 +39,55 @@ class _OAuthResource(
         context: OAuthContext,
         request: OAuthPushedAuthorizationRequest
     ): Response<OAuthPushedAuthorizationResponse> {
-        return proceed {
-            runBlocking {
+        return toBlocking {
+            context.clientId?.let { request.clientId = it }
+            context.redirectUri?.let { request.redirectUri = it }
+            context.state?.let { request.state = it }
 
-                context.clientId?.let { request.clientId = it }
-                context.redirectUri?.let { request.redirectUri = it }
-                context.state?.let { request.state = it }
-
-                context.codeVerifier?.let { c ->
-                    OAuthHelper.hashS256(c).let {
-                        request.codeChallenge = it
-                    }
+            context.codeVerifier?.let { c ->
+                OAuthHelper.hashS256(c).let {
+                    request.codeChallenge = it
                 }
+            }
 
-                if (request.codeChallenge.isNullOrBlank()) {
-                    val codeVerifier = RandomHelper.random(46)
-                    context.codeVerifier = codeVerifier
-                    OAuthHelper.hashS256(codeVerifier).let {
-                        request.codeChallenge = it
-                    }
+            if (request.codeChallenge.isNullOrBlank()) {
+                val codeVerifier = RandomHelper.random(46)
+                context.codeVerifier = codeVerifier
+                OAuthHelper.hashS256(codeVerifier).let {
+                    request.codeChallenge = it
                 }
+            }
 
-                if (request.state.isNullOrBlank()) {
-                    RandomHelper.random(64).let {
-                        context.state = it
-                        request.state = it
-                    }
+            if (request.state.isNullOrBlank()) {
+                RandomHelper.random(64).let {
+                    context.state = it
+                    request.state = it
                 }
+            }
 
-                if (config.confidentialClientKeyId?.isNotEmpty() == true) {
-                    // Include the necessary fields for confidential clients
-                    val clientAssertion = makeClientAssertion(
-                        keyId = request.keyId!!,
-                        clientId = context.clientId!!,
-                        authorizationServer = config.authorizationServer,
-                        sign = { jwtMessage ->
-                            val privateKey = CryptographyProvider.Default.get(ECDSA)
-                                .privateKeyDecoder(EC.Curve.P256)
-                                .decodeFromByteArrayBlocking(
-                                    EC.PrivateKey.Format.DER,
-                                    Base64.decode(config.confidentialClientPrivateKey!!)
-                                )
+            if (config.confidentialClientKeyId?.isNotEmpty() == true) {
+                // Include the necessary fields for confidential clients
+                val clientAssertion = makeClientAssertion(
+                    keyId = request.keyId!!,
+                    clientId = context.clientId!!,
+                    authorizationServer = config.authorizationServer,
+                    sign = { jwtMessage ->
+                        val privateKey = CryptographyProvider.Default.get(ECDSA)
+                            .privateKeyDecoder(EC.Curve.P256)
+                            .decodeFromByteArrayBlocking(
+                                EC.PrivateKey.Format.DER,
+                                Base64.decode(config.confidentialClientPrivateKey!!)
+                            )
 
-                            privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
-                                .generateSignatureBlocking(jwtMessage.encodeToByteArray())
-                        })
-                    request.keyId = config.confidentialClientKeyId
-                    request.clientAssertion = clientAssertion
-                    request.clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-                }
+                        privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
+                            .generateSignatureBlocking(jwtMessage.encodeToByteArray())
+                    })
+                request.keyId = config.confidentialClientKeyId
+                request.clientAssertion = clientAssertion
+                request.clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+            }
 
+            proceed {
                 HttpRequest()
                     .url(config.pushedAuthorizationRequestEndpoint)
                     .accept(MediaType.JSON)
@@ -117,34 +116,34 @@ class _OAuthResource(
         request: OAuthTokenRequest
     ): Response<OAuthTokenResponse> {
 
-        return proceed {
-            runBlocking {
-                context.clientId?.let { request.clientId = it }
-                context.redirectUri?.let { request.redirectUri = it }
-                context.codeVerifier?.let { request.codeVerifier = it }
+        return toBlocking {
+            context.clientId?.let { request.clientId = it }
+            context.redirectUri?.let { request.redirectUri = it }
+            context.codeVerifier?.let { request.codeVerifier = it }
 
-                if (config.confidentialClientKeyId?.isNotEmpty() == true) {
-                    // Include the necessary fields for confidential clients
-                    val clientAssertion = makeClientAssertion(
-                        keyId = request.keyId!!,
-                        clientId = context.clientId!!,
-                        authorizationServer = config.authorizationServer,
-                        sign = { jwtMessage ->
-                            val privateKey = CryptographyProvider.Default.get(ECDSA)
-                                .privateKeyDecoder(EC.Curve.P256)
-                                .decodeFromByteArrayBlocking(
-                                    EC.PrivateKey.Format.DER,
-                                    Base64.decode(config.confidentialClientPrivateKey!!)
-                                )
+            if (config.confidentialClientKeyId?.isNotEmpty() == true) {
+                // Include the necessary fields for confidential clients
+                val clientAssertion = makeClientAssertion(
+                    keyId = request.keyId!!,
+                    clientId = context.clientId!!,
+                    authorizationServer = config.authorizationServer,
+                    sign = { jwtMessage ->
+                        val privateKey = CryptographyProvider.Default.get(ECDSA)
+                            .privateKeyDecoder(EC.Curve.P256)
+                            .decodeFromByteArrayBlocking(
+                                EC.PrivateKey.Format.DER,
+                                Base64.decode(config.confidentialClientPrivateKey!!)
+                            )
 
-                            privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
-                                .generateSignatureBlocking(jwtMessage.encodeToByteArray())
-                        })
-                    request.keyId = config.confidentialClientKeyId
-                    request.clientAssertion = clientAssertion
-                    request.clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-                }
+                        privateKey.signatureGenerator(SHA256, SignatureFormat.RAW)
+                            .generateSignatureBlocking(jwtMessage.encodeToByteArray())
+                    })
+                request.keyId = config.confidentialClientKeyId
+                request.clientAssertion = clientAssertion
+                request.clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+            }
 
+            proceed {
                 HttpRequest()
                     .url(config.tokenEndpoint)
                     .accept(MediaType.JSON)

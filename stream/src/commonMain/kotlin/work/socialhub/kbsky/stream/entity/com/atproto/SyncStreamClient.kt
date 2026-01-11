@@ -102,7 +102,7 @@ class SyncStreamClient(
 
                         val response = atproto
                             .repo()
-                            .getRecord(
+                            .getRecordBlocking(
                                 RepoGetRecordRequest(
                                     repo = repo!!,
                                     collection = elements[0],

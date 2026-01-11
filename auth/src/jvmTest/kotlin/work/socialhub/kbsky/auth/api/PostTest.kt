@@ -18,7 +18,7 @@ class PostTest : AbstractTest() {
             val response = BlueskyFactory
                 .instance(OYSTER_US_EAST.uri)
                 .feed()
-                .post(
+                .postBlocking(
                     FeedPostRequest(auth()).also {
                         it.text = "テスト投稿"
                     }

@@ -96,7 +96,7 @@ class PostTest : AbstractTest() {
                 }
             )
 
-        val parentFun = {
+        val parent = run {
             val rootRef = RepoStrongRef(
                 checkNotNull(root.data.uri),
                 checkNotNull(root.data.cid),
@@ -121,10 +121,9 @@ class PostTest : AbstractTest() {
                 )
         }
 
-        val parent = parentFun()
         println(parent.data.uri)
 
-        val lastFun = {
+        val last = run {
             val rootRef = RepoStrongRef(
                 checkNotNull(parent.data.uri),
                 checkNotNull(parent.data.cid),
@@ -149,7 +148,6 @@ class PostTest : AbstractTest() {
                 )
         }
 
-        val last = lastFun()
         println(last.data.uri)
     }
 

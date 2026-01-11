@@ -43,7 +43,7 @@ object _InternalUtility {
         timezone = TimeZone.UTC,
     )
 
-    fun proceedUnit(function: () -> HttpResponse): Response<Unit> {
+    suspend fun proceedUnit(function: suspend () -> HttpResponse): Response<Unit> {
         try {
             val response: HttpResponse = function()
             if (response.status in 200..299) {
@@ -60,7 +60,7 @@ object _InternalUtility {
         }
     }
 
-    inline fun <reified T> proceed(function: () -> HttpResponse): Response<T> {
+    suspend inline fun <reified T> proceed(crossinline function: suspend () -> HttpResponse): Response<T> {
         try {
             val response: HttpResponse = function()
             if (response.status in 200..299) {

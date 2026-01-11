@@ -68,7 +68,7 @@ open class AbstractTest {
                 },
             )
             .server()
-            .createSession(
+            .createSessionBlocking(
                 ServerCreateSessionRequest().also {
                     it.identifier = handle
                     it.password = password

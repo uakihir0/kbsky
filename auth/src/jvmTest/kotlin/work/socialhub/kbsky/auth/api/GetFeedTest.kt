@@ -21,7 +21,7 @@ class GetFeedTest : AbstractTest() {
             val feeds = BlueskyFactory
                 .instance(OYSTER_US_EAST.uri)
                 .feed()
-                .getFeed(
+                .getFeedBlocking(
                     FeedGetFeedRequest(auth()).also {
                         it.feed = uri
                     }
