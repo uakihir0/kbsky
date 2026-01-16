@@ -3,6 +3,7 @@ package work.socialhub.kbsky.model.app.bsky.feed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.util.json.ThreadgateAllowUnionPolymorphicSerializer
+import kotlin.js.JsExport
 
 /**
  * @see FeedThreadgateMentionRule
@@ -11,6 +12,7 @@ import work.socialhub.kbsky.util.json.ThreadgateAllowUnionPolymorphicSerializer
  * @see FeedThreadgateListRule
  */
 @Serializable(with = ThreadgateAllowUnionPolymorphicSerializer::class)
+@JsExport
 abstract class FeedThreadgateAllowUnion {
     @SerialName("\$type")
     abstract var type: String

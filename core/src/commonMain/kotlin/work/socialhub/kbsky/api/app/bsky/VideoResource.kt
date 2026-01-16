@@ -7,10 +7,12 @@ import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetUploadLimitsRespon
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import kotlin.js.JsExport
 
 /**
  * Bluesky/Video
  */
+@JsExport
 interface VideoResource {
 
     /**
@@ -20,6 +22,7 @@ interface VideoResource {
         request: VideoGetJobStatusRequest
     ): Response<VideoGetJobStatusResponse>
 
+    @JsExport.Ignore
     fun getJobStatusBlocking(
         request: VideoGetJobStatusRequest
     ): Response<VideoGetJobStatusResponse>
@@ -31,6 +34,7 @@ interface VideoResource {
         request: VideoGetUploadLimitsRequest
     ): Response<VideoGetUploadLimitsResponse>
 
+    @JsExport.Ignore
     fun getUploadLimitsBlocking(
         request: VideoGetUploadLimitsRequest
     ): Response<VideoGetUploadLimitsResponse>
@@ -42,6 +46,7 @@ interface VideoResource {
         request: VideoUploadVideoRequest
     ): Response<VideoUploadVideoResponse>
 
+    @JsExport.Ignore
     fun uploadVideoBlocking(
         request: VideoUploadVideoRequest
     ): Response<VideoUploadVideoResponse>

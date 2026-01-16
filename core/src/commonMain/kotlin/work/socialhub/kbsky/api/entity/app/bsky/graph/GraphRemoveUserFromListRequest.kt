@@ -4,6 +4,7 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.RKeyRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
+@JsExport
 data class GraphRemoveUserFromListRequest(
     override val auth: AuthProvider,
     override var uri: String? = null,

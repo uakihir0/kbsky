@@ -13,7 +13,9 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeahead
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface ActorResource {
 
     /**
@@ -23,6 +25,7 @@ interface ActorResource {
         request: ActorSearchActorsRequest
     ): Response<ActorSearchActorsResponse>
 
+    @JsExport.Ignore
     fun searchActorsBlocking(
         request: ActorSearchActorsRequest
     ): Response<ActorSearchActorsResponse>
@@ -34,6 +37,7 @@ interface ActorResource {
         request: ActorSearchActorsTypeaheadRequest
     ): Response<ActorSearchActorsTypeaheadResponse>
 
+    @JsExport.Ignore
     fun searchActorsTypeaheadBlocking(
         request: ActorSearchActorsTypeaheadRequest
     ): Response<ActorSearchActorsTypeaheadResponse>
@@ -45,6 +49,7 @@ interface ActorResource {
         request: ActorGetProfileRequest
     ): Response<ActorGetProfileResponse>
 
+    @JsExport.Ignore
     fun getProfileBlocking(
         request: ActorGetProfileRequest
     ): Response<ActorGetProfileResponse>
@@ -56,6 +61,7 @@ interface ActorResource {
         request: ActorUpdateProfileRequest
     ): Response<ActorUpdateProfileResponse>
 
+    @JsExport.Ignore
     fun updateProfileBlocking(
         request: ActorUpdateProfileRequest
     ): Response<ActorUpdateProfileResponse>
@@ -67,6 +73,7 @@ interface ActorResource {
         request: ActorGetProfilesRequest
     ): Response<ActorGetProfilesResponse>
 
+    @JsExport.Ignore
     fun getProfilesBlocking(
         request: ActorGetProfilesRequest
     ): Response<ActorGetProfilesResponse>
@@ -78,6 +85,7 @@ interface ActorResource {
         request: ActorGetPreferencesRequest
     ): Response<ActorGetPreferencesResponse>
 
+    @JsExport.Ignore
     fun getPreferencesBlocking(
         request: ActorGetPreferencesRequest
     ): Response<ActorGetPreferencesResponse>

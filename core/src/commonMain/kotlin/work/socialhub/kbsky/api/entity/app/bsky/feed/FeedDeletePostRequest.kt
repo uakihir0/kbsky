@@ -8,6 +8,7 @@ import work.socialhub.kbsky.auth.AuthProvider
  * Uri includes the rkey.
  * so, uri or rkey is enough.
  */
+@JsExport
 data class FeedDeletePostRequest(
     override val auth: AuthProvider,
     override var uri: String? = null,

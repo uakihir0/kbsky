@@ -10,6 +10,11 @@ kotlin {
     jvmToolchain(11)
     jvm()
 
+    js(IR) {
+        nodejs()
+        browser()
+    }
+
     if (HostManager.hostIsMac) {
         iosX64()
         iosArm64()
@@ -22,6 +27,12 @@ kotlin {
     // linuxX64()
 
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
+
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(libs.ktor.core)

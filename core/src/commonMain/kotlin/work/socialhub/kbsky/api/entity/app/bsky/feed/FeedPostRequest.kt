@@ -11,6 +11,7 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 
+@JsExport
 data class FeedPostRequest(
     override val auth: AuthProvider,
     var text: String = "",

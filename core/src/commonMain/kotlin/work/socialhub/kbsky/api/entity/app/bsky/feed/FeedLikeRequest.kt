@@ -8,6 +8,7 @@ import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 
+@JsExport
 data class FeedLikeRequest(
     override val auth: AuthProvider,
     var subject: RepoStrongRef? = null,

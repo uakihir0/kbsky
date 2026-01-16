@@ -35,11 +35,14 @@ import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphMuteActorRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphRemoveUserFromListRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphUnmuteActorRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
+import kotlin.js.JsExport
 
 /**
  * Bluesky/Graph
  * [Reference](https://atproto.com/lexicons/app-bsky-graph)
  */
+@JsExport
 interface GraphResource {
 
     /**
@@ -50,6 +53,7 @@ interface GraphResource {
         request: GraphFollowRequest
     ): Response<GraphFollowResponse>
 
+    @JsExport.Ignore
     fun followBlocking(
         request: GraphFollowRequest
     ): Response<GraphFollowResponse>
@@ -60,11 +64,12 @@ interface GraphResource {
      */
     suspend fun deleteFollow(
         request: GraphDeleteFollowRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteFollowBlocking(
         request: GraphDeleteFollowRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Who is following an actor?
@@ -73,6 +78,7 @@ interface GraphResource {
         request: GraphGetFollowersRequest
     ): Response<GraphGetFollowersResponse>
 
+    @JsExport.Ignore
     fun getFollowersBlocking(
         request: GraphGetFollowersRequest
     ): Response<GraphGetFollowersResponse>
@@ -84,6 +90,7 @@ interface GraphResource {
         request: GraphGetFollowsRequest
     ): Response<GraphGetFollowsResponse>
 
+    @JsExport.Ignore
     fun getFollowsBlocking(
         request: GraphGetFollowsRequest
     ): Response<GraphGetFollowsResponse>
@@ -95,6 +102,7 @@ interface GraphResource {
         request: GraphGetKnownFollowersRequest
     ): Response<GraphGetKnownFollowersResponse>
 
+    @JsExport.Ignore
     fun getKnownFollowersBlocking(
         request: GraphGetKnownFollowersRequest
     ): Response<GraphGetKnownFollowersResponse>
@@ -106,6 +114,7 @@ interface GraphResource {
         request: GraphGetMutesRequest
     ): Response<GraphGetMutesResponse>
 
+    @JsExport.Ignore
     fun getMutesBlocking(
         request: GraphGetMutesRequest
     ): Response<GraphGetMutesResponse>
@@ -115,22 +124,24 @@ interface GraphResource {
      */
     suspend fun muteActor(
         request: GraphMuteActorRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun muteActorBlocking(
         request: GraphMuteActorRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Unmute an actor by did or handle.
      */
     suspend fun unmuteActor(
         request: GraphUnmuteActorRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun unmuteActorBlocking(
         request: GraphUnmuteActorRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Block operation.
@@ -140,6 +151,7 @@ interface GraphResource {
         request: GraphBlockRequest
     ): Response<GraphBlockResponse>
 
+    @JsExport.Ignore
     fun blockBlocking(
         request: GraphBlockRequest
     ): Response<GraphBlockResponse>
@@ -150,11 +162,12 @@ interface GraphResource {
      */
     suspend fun deleteBlock(
         request: GraphDeleteBlockRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteBlockBlocking(
         request: GraphDeleteBlockRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Who does the viewer mute?
@@ -163,6 +176,7 @@ interface GraphResource {
         request: GraphGetBlocksRequest
     ): Response<GraphGetBlocksResponse>
 
+    @JsExport.Ignore
     fun getBlocksBlocking(
         request: GraphGetBlocksRequest
     ): Response<GraphGetBlocksResponse>
@@ -175,6 +189,7 @@ interface GraphResource {
         request: GraphCreateListRequest
     ): Response<GraphCreateListResponse>
 
+    @JsExport.Ignore
     fun createListBlocking(
         request: GraphCreateListRequest
     ): Response<GraphCreateListResponse>
@@ -187,6 +202,7 @@ interface GraphResource {
         request: GraphEditListRequest
     ): Response<GraphEditListResponse>
 
+    @JsExport.Ignore
     fun editListBlocking(
         request: GraphEditListRequest
     ): Response<GraphEditListResponse>
@@ -197,11 +213,12 @@ interface GraphResource {
      */
     suspend fun deleteList(
         request: GraphDeleteListRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteListBlocking(
         request: GraphDeleteListRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Gets a 'view' (with additional context) of a specified list.
@@ -210,6 +227,7 @@ interface GraphResource {
         request: GraphGetListRequest
     ): Response<GraphGetListResponse>
 
+    @JsExport.Ignore
     fun getListBlocking(
         request: GraphGetListRequest
     ): Response<GraphGetListResponse>
@@ -221,6 +239,7 @@ interface GraphResource {
         request: GraphGetListsRequest
     ): Response<GraphGetListsResponse>
 
+    @JsExport.Ignore
     fun getListsBlocking(
         request: GraphGetListsRequest
     ): Response<GraphGetListsResponse>
@@ -233,6 +252,7 @@ interface GraphResource {
         request: GraphAddUserToListRequest
     ): Response<GraphAddUserToListResponse>
 
+    @JsExport.Ignore
     fun addUserToListBlocking(
         request: GraphAddUserToListRequest
     ): Response<GraphAddUserToListResponse>
@@ -243,11 +263,12 @@ interface GraphResource {
      */
     suspend fun removeUserFromList(
         request: GraphRemoveUserFromListRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun removeUserFromListBlocking(
         request: GraphRemoveUserFromListRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Gets a view of a starter pack.
@@ -256,6 +277,7 @@ interface GraphResource {
         request: GraphGetStarterPackRequest
     ): Response<GraphGetStarterPackResponse>
 
+    @JsExport.Ignore
     fun getStarterPackBlocking(
         request: GraphGetStarterPackRequest
     ): Response<GraphGetStarterPackResponse>
@@ -267,6 +289,7 @@ interface GraphResource {
         request: GraphGetStarterPacksRequest
     ): Response<GraphGetStarterPacksResponse>
 
+    @JsExport.Ignore
     fun getStarterPacksBlocking(
         request: GraphGetStarterPacksRequest
     ): Response<GraphGetStarterPacksResponse>

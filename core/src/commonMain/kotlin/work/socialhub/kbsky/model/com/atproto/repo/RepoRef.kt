@@ -3,11 +3,13 @@ package work.socialhub.kbsky.model.com.atproto.repo
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.moderation.ModerationSubjectUnion
+import kotlin.js.JsExport
 
 /**
  * Repository reference by DID.
  */
 @Serializable
+@JsExport
 data class RepoRef(
     val did: String,
 ) : ModerationSubjectUnion() {

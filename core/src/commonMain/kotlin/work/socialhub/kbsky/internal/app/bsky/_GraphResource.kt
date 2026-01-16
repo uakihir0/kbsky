@@ -58,6 +58,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import work.socialhub.kbsky.internal.com.atproto._RepoResource
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
@@ -100,7 +101,7 @@ class _GraphResource(
 
     override suspend fun deleteFollow(
         request: GraphDeleteFollowRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             val record = RepoDeleteRecordRequest(
@@ -120,7 +121,7 @@ class _GraphResource(
 
     override fun deleteFollowBlocking(
         request: GraphDeleteFollowRequest
-    ): Response<Unit> = toBlocking { deleteFollow(request) }
+    ): ResponseUnit = toBlocking { deleteFollow(request) }
 
     override suspend fun getFollowers(
         request: GraphGetFollowersRequest
@@ -192,7 +193,7 @@ class _GraphResource(
 
     override suspend fun muteActor(
         request: GraphMuteActorRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             httpRequest(config)
@@ -205,11 +206,11 @@ class _GraphResource(
 
     override fun muteActorBlocking(
         request: GraphMuteActorRequest
-    ): Response<Unit> = toBlocking { muteActor(request) }
+    ): ResponseUnit = toBlocking { muteActor(request) }
 
     override suspend fun unmuteActor(
         request: GraphUnmuteActorRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             httpRequest(config)
@@ -222,7 +223,7 @@ class _GraphResource(
 
     override fun unmuteActorBlocking(
         request: GraphUnmuteActorRequest
-    ): Response<Unit> = toBlocking { unmuteActor(request) }
+    ): ResponseUnit = toBlocking { unmuteActor(request) }
 
     override suspend fun block(
         request: GraphBlockRequest
@@ -250,9 +251,9 @@ class _GraphResource(
 
     override suspend fun deleteBlock(
         request: GraphDeleteBlockRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
-        return proceed {
+        return proceedUnit {
             val record = RepoDeleteRecordRequest(
                 auth = request.auth,
                 repo = request.auth.did,
@@ -270,7 +271,7 @@ class _GraphResource(
 
     override fun deleteBlockBlocking(
         request: GraphDeleteBlockRequest
-    ): Response<Unit> = toBlocking { deleteBlock(request) }
+    ): ResponseUnit = toBlocking { deleteBlock(request) }
 
     override suspend fun getBlocks(
         request: GraphGetBlocksRequest
@@ -362,7 +363,7 @@ class _GraphResource(
 
     override suspend fun deleteList(
         request: GraphDeleteListRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         val record = RepoDeleteRecordRequest(
             auth = request.auth,
@@ -376,7 +377,7 @@ class _GraphResource(
 
     override fun deleteListBlocking(
         request: GraphDeleteListRequest
-    ): Response<Unit> = toBlocking { deleteList(request) }
+    ): ResponseUnit = toBlocking { deleteList(request) }
 
     override suspend fun getList(
         request: GraphGetListRequest
@@ -436,7 +437,7 @@ class _GraphResource(
         request: GraphAddUserToListRequest
     ): Response<GraphAddUserToListResponse> = toBlocking { addUserToList(request) }
 
-    override suspend fun removeUserFromList(request: GraphRemoveUserFromListRequest): Response<Unit> {
+    override suspend fun removeUserFromList(request: GraphRemoveUserFromListRequest): ResponseUnit {
 
         return proceedUnit {
             val record = RepoDeleteRecordRequest(
@@ -454,7 +455,7 @@ class _GraphResource(
         }
     }
 
-    override fun removeUserFromListBlocking(request: GraphRemoveUserFromListRequest): Response<Unit> = toBlocking { removeUserFromList(request) }
+    override fun removeUserFromListBlocking(request: GraphRemoveUserFromListRequest): ResponseUnit = toBlocking { removeUserFromList(request) }
 
     override suspend fun getStarterPack(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> {
         return proceed {

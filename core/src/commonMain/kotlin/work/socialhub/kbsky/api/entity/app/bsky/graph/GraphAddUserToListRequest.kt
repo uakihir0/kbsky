@@ -6,6 +6,7 @@ import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
 
+@JsExport
 data class GraphAddUserToListRequest(
     override val auth: AuthProvider,
     var userDid: String? = null,

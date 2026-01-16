@@ -5,6 +5,7 @@ import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.share.RecordUnion
 
+@JsExport
 data class RepoCreateRecordRequest(
     override val auth: AuthProvider,
     /** The handle or DID of the repo. */

@@ -6,6 +6,7 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView
 import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView
 import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsStarterPackViewBasic
 import work.socialhub.kbsky.util.json.EmbedRecordViewPolymorphicSerializer
+import kotlin.js.JsExport
 
 /**
  * @see EmbedRecordViewRecord
@@ -17,6 +18,7 @@ import work.socialhub.kbsky.util.json.EmbedRecordViewPolymorphicSerializer
  * @see GraphDefsStarterPackViewBasic
  */
 @Serializable(with = EmbedRecordViewPolymorphicSerializer::class)
+@JsExport
 abstract class EmbedRecordViewUnion {
     @SerialName("\$type")
     abstract var type: String

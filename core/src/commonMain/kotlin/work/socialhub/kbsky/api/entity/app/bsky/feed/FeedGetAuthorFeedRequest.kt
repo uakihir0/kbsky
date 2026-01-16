@@ -7,6 +7,7 @@ import work.socialhub.kbsky.auth.AuthProvider
 /**
  * Request to fetch an author's feed.
  */
+@JsExport
 data class FeedGetAuthorFeedRequest(
     override val auth: AuthProvider,
     var actor: String = "",

@@ -4,8 +4,10 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.util.json.PinnedPostSerializer
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 open class ActorDefsProfileViewDetailed {
 
     lateinit var did: String

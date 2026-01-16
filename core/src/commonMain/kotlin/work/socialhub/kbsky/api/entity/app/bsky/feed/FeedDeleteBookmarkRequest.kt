@@ -4,6 +4,7 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
+@JsExport
 data class FeedDeleteBookmarkRequest(
     override val auth: AuthProvider,
     val uri: String,

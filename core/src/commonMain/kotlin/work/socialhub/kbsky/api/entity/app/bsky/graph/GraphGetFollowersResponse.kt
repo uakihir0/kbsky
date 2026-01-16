@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 
 @Serializable
+@JsExport
 data class GraphGetFollowersResponse(
     var cursor: String? = null,
     var subject: ActorDefsProfileView = ActorDefsProfileView(),

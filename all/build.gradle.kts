@@ -12,6 +12,15 @@ kotlin {
     jvmToolchain(11)
     jvm()
 
+    js(IR) {
+        nodejs()
+        browser()
+        binaries.library()
+        compilerOptions {
+            generateTypeScriptDefinitions()
+        }
+    }
+
     val xcf = XCFramework("kbsky")
     listOf(
         iosX64(),
@@ -39,6 +48,11 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
         commonMain.dependencies {
             api(project(":core"))
             api(project(":stream"))

@@ -3,6 +3,7 @@ package work.socialhub.kbsky.api.entity.app.bsky.video
 import kotlinx.serialization.Serializable
 
 @Serializable
+@JsExport
 data class VideoGetUploadLimitsResponse(
     val canUpload: Boolean,
     val remainingDailyVideos: Int? = null,

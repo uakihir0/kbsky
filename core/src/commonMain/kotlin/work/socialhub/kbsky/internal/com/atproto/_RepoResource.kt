@@ -23,6 +23,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
@@ -59,7 +60,7 @@ class _RepoResource(
 
     override suspend fun deleteRecord(
         request: RepoDeleteRecordRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             httpRequest(config)
@@ -72,7 +73,7 @@ class _RepoResource(
 
     override fun deleteRecordBlocking(
         request: RepoDeleteRecordRequest
-    ): Response<Unit> = toBlocking { deleteRecord(request) }
+    ): ResponseUnit = toBlocking { deleteRecord(request) }
 
     override suspend fun describeRepo(
         request: RepoDescribeRepoRequest

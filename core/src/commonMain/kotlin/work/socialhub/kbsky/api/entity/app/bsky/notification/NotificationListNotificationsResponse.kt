@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.notification.NotificationListNotificationsNotification
 
 @Serializable
+@JsExport
 data class NotificationListNotificationsResponse(
     var cursor: String? = null,
     var notifications: List<NotificationListNotificationsNotification> = emptyList(),

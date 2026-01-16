@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsPostView
 
 @Serializable
+@JsExport
 data class FeedSearchPostsResponse(
     var cursor: String? = null,
 

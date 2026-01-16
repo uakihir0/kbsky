@@ -2,6 +2,7 @@ package work.socialhub.kbsky.api.entity.share
 
 import work.socialhub.kbsky.internal.share._InternalUtility
 
+@JsExport
 interface MapRequest {
 
     fun toMappedJson(): String {

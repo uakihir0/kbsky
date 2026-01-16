@@ -6,6 +6,7 @@ import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
 
+@JsExport
 data class GraphFollowRequest(
     override val auth: AuthProvider,
     var subject: String? = null,

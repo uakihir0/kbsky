@@ -46,11 +46,14 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedSearchPostsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedThreadgateResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
+import kotlin.js.JsExport
 
 /**
  * Bluesky/Feed
  * [Reference](https://atproto.com/lexicons/app-bsky-feed)
  */
+@JsExport
 interface FeedResource {
 
     /**
@@ -60,6 +63,7 @@ interface FeedResource {
         request: FeedGetAuthorFeedRequest
     ): Response<FeedGetAuthorFeedResponse>
 
+    @JsExport.Ignore
     fun getAuthorFeedBlocking(
         request: FeedGetAuthorFeedRequest
     ): Response<FeedGetAuthorFeedResponse>
@@ -71,6 +75,7 @@ interface FeedResource {
         request: FeedGetLikesRequest
     ): Response<FeedGetLikesResponse>
 
+    @JsExport.Ignore
     fun getLikesBlocking(
         request: FeedGetLikesRequest
     ): Response<FeedGetLikesResponse>
@@ -82,6 +87,7 @@ interface FeedResource {
         request: FeedGetPostThreadRequest
     ): Response<FeedGetPostThreadResponse>
 
+    @JsExport.Ignore
     fun getPostThreadBlocking(
         request: FeedGetPostThreadRequest
     ): Response<FeedGetPostThreadResponse>
@@ -93,6 +99,7 @@ interface FeedResource {
         request: FeedGetPostsRequest
     ): Response<FeedGetPostsResponse>
 
+    @JsExport.Ignore
     fun getPostsBlocking(
         request: FeedGetPostsRequest
     ): Response<FeedGetPostsResponse>
@@ -104,6 +111,7 @@ interface FeedResource {
         request: FeedGetQuotesRequest
     ): Response<FeedGetQuotesResponse>
 
+    @JsExport.Ignore
     fun getQuotesBlocking(
         request: FeedGetQuotesRequest
     ): Response<FeedGetQuotesResponse>
@@ -115,6 +123,7 @@ interface FeedResource {
         request: FeedGetRepostedByRequest
     ): Response<FeedGetRepostedByResponse>
 
+    @JsExport.Ignore
     fun getRepostedByBlocking(
         request: FeedGetRepostedByRequest
     ): Response<FeedGetRepostedByResponse>
@@ -126,6 +135,7 @@ interface FeedResource {
         request: FeedGetTimelineRequest
     ): Response<FeedGetTimelineResponse>
 
+    @JsExport.Ignore
     fun getTimelineBlocking(
         request: FeedGetTimelineRequest
     ): Response<FeedGetTimelineResponse>
@@ -137,6 +147,7 @@ interface FeedResource {
         request: FeedGetFeedRequest
     ): Response<FeedGetFeedResponse>
 
+    @JsExport.Ignore
     fun getFeedBlocking(
         request: FeedGetFeedRequest
     ): Response<FeedGetFeedResponse>
@@ -148,6 +159,7 @@ interface FeedResource {
         request: FeedGetListFeedRequest
     ): Response<FeedGetListFeedResponse>
 
+    @JsExport.Ignore
     fun getListFeedBlocking(
         request: FeedGetListFeedRequest
     ): Response<FeedGetListFeedResponse>
@@ -159,6 +171,7 @@ interface FeedResource {
         request: FeedGetActorFeedsRequest
     ): Response<FeedGetActorFeedsResponse>
 
+    @JsExport.Ignore
     fun getActorFeedsBlocking(
         request: FeedGetActorFeedsRequest
     ): Response<FeedGetActorFeedsResponse>
@@ -170,6 +183,7 @@ interface FeedResource {
         request: FeedGetActorLikesRequest
     ): Response<FeedGetActorLikesResponse>
 
+    @JsExport.Ignore
     fun getActorLikesBlocking(
         request: FeedGetActorLikesRequest
     ): Response<FeedGetActorLikesResponse>
@@ -181,6 +195,7 @@ interface FeedResource {
         request: FeedSearchPostsRequest
     ): Response<FeedSearchPostsResponse>
 
+    @JsExport.Ignore
     fun searchPostsBlocking(
         request: FeedSearchPostsRequest
     ): Response<FeedSearchPostsResponse>
@@ -192,6 +207,7 @@ interface FeedResource {
         request: FeedGetFeedGeneratorRequest
     ): Response<FeedGetFeedGeneratorResponse>
 
+    @JsExport.Ignore
     fun getFeedGeneratorBlocking(
         request: FeedGetFeedGeneratorRequest
     ): Response<FeedGetFeedGeneratorResponse>
@@ -203,6 +219,7 @@ interface FeedResource {
         request: FeedGetFeedGeneratorsRequest
     ): Response<FeedGetFeedGeneratorsResponse>
 
+    @JsExport.Ignore
     fun getFeedGeneratorsBlocking(
         request: FeedGetFeedGeneratorsRequest
     ): Response<FeedGetFeedGeneratorsResponse>
@@ -215,6 +232,7 @@ interface FeedResource {
         request: FeedLikeRequest
     ): Response<FeedLikeResponse>
 
+    @JsExport.Ignore
     fun likeBlocking(
         request: FeedLikeRequest
     ): Response<FeedLikeResponse>
@@ -225,11 +243,12 @@ interface FeedResource {
      */
     suspend fun deleteLike(
         request: FeedDeleteLikeRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteLikeBlocking(
         request: FeedDeleteLikeRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Post feed operation.
@@ -239,6 +258,7 @@ interface FeedResource {
         request: FeedPostRequest
     ): Response<FeedPostResponse>
 
+    @JsExport.Ignore
     fun postBlocking(
         request: FeedPostRequest
     ): Response<FeedPostResponse>
@@ -249,11 +269,12 @@ interface FeedResource {
      */
     suspend fun deletePost(
         request: FeedDeletePostRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deletePostBlocking(
         request: FeedDeletePostRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Repost feed operation.
@@ -263,6 +284,7 @@ interface FeedResource {
         request: FeedRepostRequest
     ): Response<FeedRepostResponse>
 
+    @JsExport.Ignore
     fun repostBlocking(
         request: FeedRepostRequest
     ): Response<FeedRepostResponse>
@@ -273,11 +295,12 @@ interface FeedResource {
      */
     suspend fun deleteRepost(
         request: FeedDeleteRepostRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteRepostBlocking(
         request: FeedDeleteRepostRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Threadgate feed operation.
@@ -287,6 +310,7 @@ interface FeedResource {
         request: FeedThreadgateRequest
     ): Response<FeedThreadgateResponse>
 
+    @JsExport.Ignore
     fun threadgateBlocking(
         request: FeedThreadgateRequest
     ): Response<FeedThreadgateResponse>
@@ -299,6 +323,7 @@ interface FeedResource {
         request: FeedPostgateRequest
     ): Response<FeedPostgateResponse>
 
+    @JsExport.Ignore
     fun postgateBlocking(
         request: FeedPostgateRequest
     ): Response<FeedPostgateResponse>
@@ -308,22 +333,24 @@ interface FeedResource {
      */
     suspend fun createBookmark(
         request: FeedCreateBookmarkRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun createBookmarkBlocking(
         request: FeedCreateBookmarkRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Deletes a private bookmark for the specified record.
      */
     suspend fun deleteBookmark(
         request: FeedDeleteBookmarkRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteBookmarkBlocking(
         request: FeedDeleteBookmarkRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Gets views of records bookmarked by the authenticated user.
@@ -332,6 +359,7 @@ interface FeedResource {
         request: FeedGetBookmarksRequest
     ): Response<FeedGetBookmarksResponse>
 
+    @JsExport.Ignore
     fun getBookmarksBlocking(
         request: FeedGetBookmarksRequest
     ): Response<FeedGetBookmarksResponse>

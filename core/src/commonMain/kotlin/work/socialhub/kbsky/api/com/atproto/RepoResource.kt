@@ -14,11 +14,14 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
+import kotlin.js.JsExport
 
 /**
  * ATProtocol/Repo
  * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/com/atproto/repo)
  */
+@JsExport
 interface RepoResource {
 
     /**
@@ -34,6 +37,7 @@ interface RepoResource {
         request: RepoCreateRecordRequest
     ): Response<RepoCreateRecordResponse>
 
+    @JsExport.Ignore
     fun createRecordBlocking(
         request: RepoCreateRecordRequest
     ): Response<RepoCreateRecordResponse>
@@ -43,11 +47,12 @@ interface RepoResource {
      */
     suspend fun deleteRecord(
         request: RepoDeleteRecordRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteRecordBlocking(
         request: RepoDeleteRecordRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Get information about an account and repository, including the list of collections. Does not require auth.
@@ -56,6 +61,7 @@ interface RepoResource {
         request: RepoDescribeRepoRequest
     ): Response<RepoDescribeRepoResponse>
 
+    @JsExport.Ignore
     fun describeRepoBlocking(
         request: RepoDescribeRepoRequest
     ): Response<RepoDescribeRepoResponse>
@@ -67,6 +73,7 @@ interface RepoResource {
         request: RepoGetRecordRequest
     ): Response<RepoGetRecordResponse>
 
+    @JsExport.Ignore
     fun getRecordBlocking(
         request: RepoGetRecordRequest
     ): Response<RepoGetRecordResponse>
@@ -78,6 +85,7 @@ interface RepoResource {
         request: RepoListRecordsRequest
     ): Response<RepoListRecordsResponse>
 
+    @JsExport.Ignore
     fun listRecordsBlocking(
         request: RepoListRecordsRequest
     ): Response<RepoListRecordsResponse>
@@ -89,6 +97,7 @@ interface RepoResource {
         request: RepoPutRecordRequest
     ): Response<RepoPutRecordResponse>
 
+    @JsExport.Ignore
     fun putRecordBlocking(
         request: RepoPutRecordRequest
     ): Response<RepoPutRecordResponse>
@@ -100,6 +109,7 @@ interface RepoResource {
         request: RepoUploadBlobRequest
     ): Response<RepoUploadBlobResponse>
 
+    @JsExport.Ignore
     fun uploadBlobBlocking(
         request: RepoUploadBlobRequest
     ): Response<RepoUploadBlobResponse>

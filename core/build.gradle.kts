@@ -10,6 +10,11 @@ kotlin {
     jvmToolchain(11)
     jvm()
 
+    js(IR) {
+        nodejs()
+        browser()
+    }
+
     if (HostManager.hostIsMac) {
         iosX64()
         iosArm64()
@@ -21,7 +26,17 @@ kotlin {
     mingwX64()
     linuxX64()
 
+    compilerOptions {
+        freeCompilerArgs.add("-Xenable-suspend-function-exporting")
+    }
+
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
+
         commonMain.dependencies {
             implementation(libs.ktor.core)
             implementation(libs.khttpclient)

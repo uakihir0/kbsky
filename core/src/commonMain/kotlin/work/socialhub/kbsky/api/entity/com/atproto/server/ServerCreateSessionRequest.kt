@@ -2,6 +2,7 @@ package work.socialhub.kbsky.api.entity.com.atproto.server
 
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
+@JsExport
 data class ServerCreateSessionRequest(
     var identifier: String? = null,
     var password: String? = null,

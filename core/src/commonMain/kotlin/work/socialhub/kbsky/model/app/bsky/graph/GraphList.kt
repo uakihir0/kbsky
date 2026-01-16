@@ -7,8 +7,10 @@ import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.share.Blob
 import work.socialhub.kbsky.model.share.RecordUnion
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class GraphList(
     val purpose: String? = null,
     val name: String? = null,

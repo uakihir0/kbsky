@@ -12,6 +12,7 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphList
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
 import work.socialhub.kbsky.model.app.bsky.graph.GraphStarterPack
 import work.socialhub.kbsky.util.json.RecordPolymorphicSerializer
+import kotlin.js.JsExport
 
 /**
  * @see ActorProfile
@@ -23,6 +24,7 @@ import work.socialhub.kbsky.util.json.RecordPolymorphicSerializer
  * @see GraphListItem
  * @see GraphList
  */
+@JsExport
 @Serializable(with = RecordPolymorphicSerializer::class)
 abstract class RecordUnion {
     @SerialName("\$type")

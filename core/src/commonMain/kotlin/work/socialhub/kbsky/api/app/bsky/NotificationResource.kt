@@ -6,12 +6,15 @@ import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNot
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNotificationsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationUpdateSeenRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
+import kotlin.js.JsExport
 
 
 /**
  * Bluesky/Notification
  * [Reference](https://atproto.com/lexicons/app-bsky-notification)
  */
+@JsExport
 interface NotificationResource {
 
     /**
@@ -21,6 +24,7 @@ interface NotificationResource {
         request: NotificationGetUnreadCountRequest
     ): Response<NotificationGetUnreadCountResponse>
 
+    @JsExport.Ignore
     fun getUnreadCountBlocking(
         request: NotificationGetUnreadCountRequest
     ): Response<NotificationGetUnreadCountResponse>
@@ -32,6 +36,7 @@ interface NotificationResource {
         request: NotificationListNotificationsRequest
     ): Response<NotificationListNotificationsResponse>
 
+    @JsExport.Ignore
     fun listNotificationsBlocking(
         request: NotificationListNotificationsRequest
     ): Response<NotificationListNotificationsResponse>
@@ -41,9 +46,10 @@ interface NotificationResource {
      */
     suspend fun updateSeen(
         request: NotificationUpdateSeenRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun updateSeenBlocking(
         request: NotificationUpdateSeenRequest
-    ): Response<Unit>
+    ): ResponseUnit
 }

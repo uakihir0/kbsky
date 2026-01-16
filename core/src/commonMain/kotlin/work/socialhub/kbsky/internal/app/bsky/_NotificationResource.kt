@@ -11,6 +11,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNot
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationListNotificationsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.notification.NotificationUpdateSeenRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
@@ -59,7 +60,7 @@ class _NotificationResource(
 
     override suspend fun updateSeen(
         request: NotificationUpdateSeenRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             httpRequest(config)
@@ -72,5 +73,5 @@ class _NotificationResource(
 
     override fun updateSeenBlocking(
         request: NotificationUpdateSeenRequest
-    ): Response<Unit> = toBlocking { updateSeen(request) }
+    ): ResponseUnit = toBlocking { updateSeen(request) }
 }

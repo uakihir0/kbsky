@@ -3,6 +3,7 @@ package work.socialhub.kbsky.model.app.bsky.richtext
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.util.json.RichtextFacetFeaturePolymorphicSerializer
+import kotlin.js.JsExport
 
 /**
  * @see RichtextFacetLink
@@ -10,6 +11,7 @@ import work.socialhub.kbsky.util.json.RichtextFacetFeaturePolymorphicSerializer
  * @see RichtextFacetTag
  */
 @Serializable(with = RichtextFacetFeaturePolymorphicSerializer::class)
+@JsExport
 abstract class RichtextFacetFeatureUnion {
     @SerialName("\$type")
     abstract var type: String

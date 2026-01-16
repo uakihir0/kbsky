@@ -3,8 +3,10 @@ package work.socialhub.kbsky.model.app.bsky.actor
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class ActorDefsThreadViewPref(
     @SerialName("\$type")
     override var type: String = TYPE,
@@ -20,7 +22,4 @@ data class ActorDefsThreadViewPref(
     companion object {
         const val TYPE = BlueskyTypes.ActorDefs + "#threadViewPref"
     }
-
-    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
-    constructor() : this(TYPE, null, null)
 }

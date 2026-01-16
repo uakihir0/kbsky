@@ -7,6 +7,7 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsThreadUnion
  * Response for a post thread request.
  */
 @Serializable
+@JsExport
 data class FeedGetPostThreadResponse(
     var thread: FeedDefsThreadUnion? = null,
 )

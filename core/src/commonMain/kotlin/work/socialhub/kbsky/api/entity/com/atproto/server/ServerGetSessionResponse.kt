@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
 
 @Serializable
+@JsExport
 data class ServerGetSessionResponse(
     var handle: String = "",
     var did: String = "",

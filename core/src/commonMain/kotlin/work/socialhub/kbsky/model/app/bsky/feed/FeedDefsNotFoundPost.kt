@@ -3,8 +3,10 @@ package work.socialhub.kbsky.model.app.bsky.feed
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class FeedDefsNotFoundPost(
     @SerialName("\$type")
     override var type: String = TYPE,

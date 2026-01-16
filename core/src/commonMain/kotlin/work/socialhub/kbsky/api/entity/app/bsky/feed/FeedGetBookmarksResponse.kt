@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsBookmarkView
 
 @Serializable
+@JsExport
 data class FeedGetBookmarksResponse(
     val cursor: String? = null,
     val bookmarks: List<FeedDefsBookmarkView>,

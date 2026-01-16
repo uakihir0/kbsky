@@ -8,6 +8,7 @@ import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostgate
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostgateEmbeddingRulesUnion
 
+@JsExport
 data class FeedPostgateRequest(
     override val auth: AuthProvider,
     override var createdAt: String? = null,

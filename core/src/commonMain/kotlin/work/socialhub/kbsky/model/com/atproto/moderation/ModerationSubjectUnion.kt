@@ -4,12 +4,14 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.repo.RepoRef
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
+import kotlin.js.JsExport
 
 /**
  * @see RepoRef
  * @see RepoStrongRef
  */
 @Serializable(with = ModerationSubjectUnionSerializer::class)
+@JsExport
 abstract class ModerationSubjectUnion {
     @SerialName("\$type")
     abstract val type: String

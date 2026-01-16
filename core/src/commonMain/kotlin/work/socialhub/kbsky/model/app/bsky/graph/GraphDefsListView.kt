@@ -6,11 +6,13 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewUnion
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
+import kotlin.js.JsExport
 
 /**
  * List
  */
 @Serializable
+@JsExport
 data class GraphDefsListView(
     @SerialName("\$type")
     override var type: String = TYPE,

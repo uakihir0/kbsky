@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.feed.FeedGetLikesLike
 
 @Serializable
+@JsExport
 data class FeedGetLikesResponse(
     var uri: String = "",
     var cid: String? = null,

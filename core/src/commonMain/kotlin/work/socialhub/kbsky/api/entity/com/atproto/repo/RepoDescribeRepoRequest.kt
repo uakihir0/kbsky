@@ -2,6 +2,7 @@ package work.socialhub.kbsky.api.entity.com.atproto.repo
 
 import work.socialhub.kbsky.api.entity.share.MapRequest
 
+@JsExport
 data class RepoDescribeRepoRequest(
     /** The handle or DID of the repo. */
     val repo: String,

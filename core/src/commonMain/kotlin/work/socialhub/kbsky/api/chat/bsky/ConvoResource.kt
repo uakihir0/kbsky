@@ -27,12 +27,14 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnmuteConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import kotlin.js.JsExport
 
 /**
  * Chat/Bluesky/Convo
  *
  * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/chat/bsky/convo)
  */
+@JsExport
 interface ConvoResource {
 
     /**
@@ -42,6 +44,7 @@ interface ConvoResource {
         request: ConvoGetConvoRequest
     ): Response<ConvoGetConvoResponse>
 
+    @JsExport.Ignore
     fun getConvoBlocking(
         request: ConvoGetConvoRequest
     ): Response<ConvoGetConvoResponse>
@@ -53,6 +56,7 @@ interface ConvoResource {
         request: ConvoGetConvoForMembersRequest
     ): Response<ConvoGetConvoForMembersResponse>
 
+    @JsExport.Ignore
     fun getConvoForMembersBlocking(
         request: ConvoGetConvoForMembersRequest
     ): Response<ConvoGetConvoForMembersResponse>
@@ -64,6 +68,7 @@ interface ConvoResource {
         request: ConvoGetLogRequest
     ): Response<ConvoGetLogResponse>
 
+    @JsExport.Ignore
     fun getLogBlocking(
         request: ConvoGetLogRequest
     ): Response<ConvoGetLogResponse>
@@ -75,6 +80,7 @@ interface ConvoResource {
         request: ConvoGetMessagesRequest
     ): Response<ConvoGetMessagesResponse>
 
+    @JsExport.Ignore
     fun getMessagesBlocking(
         request: ConvoGetMessagesRequest
     ): Response<ConvoGetMessagesResponse>
@@ -86,6 +92,7 @@ interface ConvoResource {
         request: ConvoGetListConvosRequest
     ): Response<ConvoGetListConvosResponse>
 
+    @JsExport.Ignore
     fun getListConvosBlocking(
         request: ConvoGetListConvosRequest
     ): Response<ConvoGetListConvosResponse>
@@ -97,6 +104,7 @@ interface ConvoResource {
         request: ConvoSendMessageRequest
     ): Response<ConvoSendMessageResponse>
 
+    @JsExport.Ignore
     fun sendMessageBlocking(
         request: ConvoSendMessageRequest
     ): Response<ConvoSendMessageResponse>
@@ -108,6 +116,7 @@ interface ConvoResource {
         request: ConvoUpdateReadRequest
     ): Response<ConvoUpdateReadResponse>
 
+    @JsExport.Ignore
     fun updateReadBlocking(
         request: ConvoUpdateReadRequest
     ): Response<ConvoUpdateReadResponse>
@@ -119,6 +128,7 @@ interface ConvoResource {
         request: ConvoMuteConvoRequest
     ): Response<ConvoMuteConvoResponse>
 
+    @JsExport.Ignore
     fun muteConvoBlocking(
         request: ConvoMuteConvoRequest
     ): Response<ConvoMuteConvoResponse>
@@ -130,6 +140,7 @@ interface ConvoResource {
         request: ConvoUnmuteConvoRequest
     ): Response<ConvoUnmuteConvoResponse>
 
+    @JsExport.Ignore
     fun unmuteConvoBlocking(
         request: ConvoUnmuteConvoRequest
     ): Response<ConvoUnmuteConvoResponse>
@@ -141,6 +152,7 @@ interface ConvoResource {
         request: ConvoDeleteMessageForSelfRequest
     ): Response<ConvoDeleteMessageForSelfResponse>
 
+    @JsExport.Ignore
     fun deleteMessageForSelfBlocking(
         request: ConvoDeleteMessageForSelfRequest
     ): Response<ConvoDeleteMessageForSelfResponse>
@@ -152,6 +164,7 @@ interface ConvoResource {
         request: ConvoLeaveConvoRequest
     ): Response<ConvoLeaveConvoResponse>
 
+    @JsExport.Ignore
     fun leaveConvoBlocking(
         request: ConvoLeaveConvoRequest
     ): Response<ConvoLeaveConvoResponse>
@@ -163,6 +176,7 @@ interface ConvoResource {
         request: ConvoAddReactionRequest
     ): Response<ConvoAddReactionResponse>
 
+    @JsExport.Ignore
     fun addReactionBlocking(
         request: ConvoAddReactionRequest
     ): Response<ConvoAddReactionResponse>
@@ -174,6 +188,7 @@ interface ConvoResource {
         request: ConvoRemoveReactionRequest
     ): Response<ConvoRemoveReactionResponse>
 
+    @JsExport.Ignore
     fun removeReactionBlocking(
         request: ConvoRemoveReactionRequest
     ): Response<ConvoRemoveReactionResponse>

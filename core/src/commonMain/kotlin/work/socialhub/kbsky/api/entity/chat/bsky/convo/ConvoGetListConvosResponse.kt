@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsConvoView
 
 @Serializable
+@JsExport
 data class ConvoGetListConvosResponse(
     var cursor: String? = null,
     var convos: List<ConvoDefsConvoView>

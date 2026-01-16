@@ -3,6 +3,7 @@ package work.socialhub.kbsky.api.entity.com.atproto.repo
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.util.ATUriParser
 
+@JsExport
 data class RepoGetRecordRequest(
     /** The handle or DID of the repo. */
     var repo: String,
@@ -24,6 +25,9 @@ data class RepoGetRecordRequest(
             it.addParam("cid", cid)
         }
     }
+
+    @JsExport.Ignore
+
 
     fun rkey(): String? {
         if (rkey != null) {

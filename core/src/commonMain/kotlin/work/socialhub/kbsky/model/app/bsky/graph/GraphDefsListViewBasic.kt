@@ -3,11 +3,13 @@ package work.socialhub.kbsky.model.app.bsky.graph
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
+import kotlin.js.JsExport
 
 /**
  * List
  */
 @Serializable
+@JsExport
 data class GraphDefsListViewBasic(
     @SerialName("\$type")
     var type: String = TYPE,

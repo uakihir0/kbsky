@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
  * https://github.com/bluesky-social/atproto/blob/main/lexicons/com/atproto/identity/resolveHandle.json
  */
 @Serializable
+@JsExport
 data class IdentityResolveHandleResponse(
     var did: String = "",
 )

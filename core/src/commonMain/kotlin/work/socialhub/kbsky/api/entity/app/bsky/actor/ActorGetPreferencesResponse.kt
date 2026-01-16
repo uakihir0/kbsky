@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsPreferencesUnion
 
 @Serializable
+@JsExport
 data class ActorGetPreferencesResponse(
     var preferences: List<ActorDefsPreferencesUnion> = emptyList(),
 )

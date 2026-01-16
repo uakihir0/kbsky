@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.feed.FeedDefsGeneratorView
 
 @Serializable
+@JsExport
 data class FeedGetFeedGeneratorsResponse(
     var feeds: List<FeedDefsGeneratorView> = emptyList(),
 )

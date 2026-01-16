@@ -5,8 +5,10 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class LabelerViewDetailed(
     @SerialName("\$type")
     override var type: String = TYPE,

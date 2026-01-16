@@ -1,8 +1,11 @@
 package work.socialhub.kbsky.model.com.atproto.moderation
 
+import kotlin.js.JsExport
+
 /**
  * モデレーションレポートの理由タイプ定数
  */
+@JsExport
 object ModerationReasonType {
     /** スパム: 頻繁な不要な宣伝、返信、メンション */
     const val SPAM = "com.atproto.moderation.defs#reasonSpam"

@@ -1,7 +1,9 @@
 package work.socialhub.kbsky
 
 import work.socialhub.kbsky.stream.ATProtocolStreamFactory
+import kotlin.js.JsExport
 
+@JsExport
 class BskyFactory {
 
     fun stream(

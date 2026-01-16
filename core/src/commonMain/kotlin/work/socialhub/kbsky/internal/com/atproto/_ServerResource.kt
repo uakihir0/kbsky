@@ -15,6 +15,7 @@ import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetSessionRespon
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerRefreshSessionResponse
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
@@ -59,7 +60,7 @@ class _ServerResource(
 
     override suspend fun deleteSession(
         request: AuthRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             httpRequest(config)
@@ -71,7 +72,7 @@ class _ServerResource(
 
     override fun deleteSessionBlocking(
         request: AuthRequest
-    ): Response<Unit> = toBlocking { deleteSession(request) }
+    ): ResponseUnit = toBlocking { deleteSession(request) }
 
     override fun describeServer() {
         throw IllegalStateException("not implemented.")

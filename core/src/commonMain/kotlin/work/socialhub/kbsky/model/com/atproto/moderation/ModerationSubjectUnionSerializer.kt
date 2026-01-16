@@ -7,6 +7,7 @@ import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.model.com.atproto.repo.RepoRef
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
+import kotlin.js.JsExport
 
 object ModerationSubjectUnionSerializer :
     JsonContentPolymorphicSerializer<ModerationSubjectUnion>(

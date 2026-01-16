@@ -5,6 +5,7 @@ import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.com.atproto.moderation.ModerationSubjectUnion
 
+@JsExport
 data class ModerationCreateReportRequest(
     val reasonType: String,
     val reason: String? = null,

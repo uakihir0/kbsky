@@ -4,11 +4,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.share.RecordUnion
+import kotlin.js.JsExport
 
 /**
  * A block.
  */
 @Serializable
+@JsExport
 data class GraphBlock(
     @SerialName("\$type")
     override var type: String = TYPE,

@@ -5,6 +5,7 @@ import work.socialhub.kbsky.model.app.bsky.undoc.UndocSearchFeedsPost
 import work.socialhub.kbsky.model.app.bsky.undoc.UndocSearchFeedsUser
 
 @Serializable
+@JsExport
 data class UnspeccedSearchFeedsResponse(
     var cid: String? = null,
     var tid: String? = null,

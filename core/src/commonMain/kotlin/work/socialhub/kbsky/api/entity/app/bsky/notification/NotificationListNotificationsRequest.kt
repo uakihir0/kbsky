@@ -4,6 +4,7 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 
+@JsExport
 data class NotificationListNotificationsRequest(
     override val auth: AuthProvider,
     var limit: Int? = null,

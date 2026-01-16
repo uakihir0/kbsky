@@ -8,6 +8,7 @@ import work.socialhub.kbsky.internal.share._InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgate
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateAllowUnion
 
+@JsExport
 data class FeedThreadgateRequest(
     override val auth: AuthProvider,
     override var createdAt: String? = null,

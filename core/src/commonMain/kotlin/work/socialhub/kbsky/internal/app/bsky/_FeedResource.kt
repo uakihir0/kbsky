@@ -30,6 +30,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.*
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
@@ -376,7 +377,7 @@ class _FeedResource(
 
     override suspend fun deleteLike(
         request: FeedDeleteLikeRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             val record = RepoDeleteRecordRequest(
@@ -396,7 +397,7 @@ class _FeedResource(
 
     override fun deleteLikeBlocking(
         request: FeedDeleteLikeRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
         return toBlocking {
             deleteLike(request)
         }
@@ -432,7 +433,7 @@ class _FeedResource(
 
     override suspend fun deletePost(
         request: FeedDeletePostRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             val record = RepoDeleteRecordRequest(
@@ -452,7 +453,7 @@ class _FeedResource(
 
     override fun deletePostBlocking(
         request: FeedDeletePostRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
         return toBlocking {
             deletePost(request)
         }
@@ -488,7 +489,7 @@ class _FeedResource(
 
     override suspend fun deleteRepost(
         request: FeedDeleteRepostRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             val record = RepoDeleteRecordRequest(
@@ -508,7 +509,7 @@ class _FeedResource(
 
     override fun deleteRepostBlocking(
         request: FeedDeleteRepostRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
         return toBlocking {
             deleteRepost(request)
         }
@@ -578,7 +579,7 @@ class _FeedResource(
 
     override suspend fun createBookmark(
         request: FeedCreateBookmarkRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             httpRequest(config)
@@ -591,7 +592,7 @@ class _FeedResource(
 
     override fun createBookmarkBlocking(
         request: FeedCreateBookmarkRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
         return toBlocking {
             createBookmark(request)
         }
@@ -599,7 +600,7 @@ class _FeedResource(
 
     override suspend fun deleteBookmark(
         request: FeedDeleteBookmarkRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
 
         return proceedUnit {
             httpRequest(config)
@@ -612,7 +613,7 @@ class _FeedResource(
 
     override fun deleteBookmarkBlocking(
         request: FeedDeleteBookmarkRequest
-    ): Response<Unit> {
+    ): ResponseUnit {
         return toBlocking {
             deleteBookmark(request)
         }

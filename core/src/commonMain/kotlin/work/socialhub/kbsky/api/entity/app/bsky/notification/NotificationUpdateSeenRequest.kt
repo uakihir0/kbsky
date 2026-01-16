@@ -7,6 +7,7 @@ import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility
 
+@JsExport
 data class NotificationUpdateSeenRequest(
     override val auth: AuthProvider,
     var seenAt: String? = null,
@@ -19,6 +20,8 @@ data class NotificationUpdateSeenRequest(
     }
 
     @OptIn(ExperimentalTime::class)
+    @JsExport.Ignore
+
     fun seenAt(): String {
         return seenAt ?: _InternalUtility.dateFormat.format(Clock.System.now())
     }

@@ -1,7 +1,9 @@
 package work.socialhub.kbsky
 
 import work.socialhub.kbsky.domain.Service
+import kotlin.js.JsExport
 
+@JsExport
 open class ATProtocolConfig {
 
     /**

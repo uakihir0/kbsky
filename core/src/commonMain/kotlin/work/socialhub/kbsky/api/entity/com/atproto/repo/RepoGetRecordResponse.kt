@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.share.RecordUnion
 
 @Serializable
+@JsExport
 data class RepoGetRecordResponse(
     var uri: String = "",
     var cid: String? = null,

@@ -1,11 +1,13 @@
 package work.socialhub.kbsky.model.app.bsky.actor
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 /**
  * Represents the verification information about the user this object is attached to.
  */
 @Serializable
+@JsExport
 data class ActorDefsVerificationState(
     /**
      * All verifications issued by trusted verifiers on behalf of this user.

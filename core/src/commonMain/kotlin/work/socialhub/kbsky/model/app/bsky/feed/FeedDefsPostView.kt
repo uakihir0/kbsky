@@ -7,8 +7,10 @@ import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewBasic
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedViewUnion
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
 import work.socialhub.kbsky.model.share.RecordUnion
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class FeedDefsPostView(
     @SerialName("\$type")
     override var type: String = TYPE,

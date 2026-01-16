@@ -8,11 +8,14 @@ import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetSessionRespon
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerRefreshSessionResponse
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
+import kotlin.js.JsExport
 
 /**
  * ATProtocol/Server
  * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/com/atproto/server)
  */
+@JsExport
 interface ServerResource {
 
     /**
@@ -34,6 +37,7 @@ interface ServerResource {
         request: ServerCreateSessionRequest
     ): Response<ServerCreateSessionResponse>
 
+    @JsExport.Ignore
     fun createSessionBlocking(
         request: ServerCreateSessionRequest
     ): Response<ServerCreateSessionResponse>
@@ -49,11 +53,12 @@ interface ServerResource {
      */
     suspend fun deleteSession(
         request: AuthRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
+    @JsExport.Ignore
     fun deleteSessionBlocking(
         request: AuthRequest
-    ): Response<Unit>
+    ): ResponseUnit
 
     /**
      * Get a document describing the service's accounts configuration.
@@ -69,6 +74,7 @@ interface ServerResource {
         request: ServerGetServiceAuthRequest
     ): Response<ServerGetServiceAuthResponse>
 
+    @JsExport.Ignore
     fun getServiceAuthBlocking(
         request: ServerGetServiceAuthRequest
     ): Response<ServerGetServiceAuthResponse>
@@ -81,6 +87,7 @@ interface ServerResource {
         request: AuthRequest
     ): Response<ServerGetSessionResponse>
 
+    @JsExport.Ignore
     fun getSessionBlocking(
         request: AuthRequest
     ): Response<ServerGetSessionResponse>
@@ -92,6 +99,7 @@ interface ServerResource {
         request: AuthRequest
     ): Response<ServerRefreshSessionResponse>
 
+    @JsExport.Ignore
     fun refreshSessionBlocking(
         request: AuthRequest
     ): Response<ServerRefreshSessionResponse>

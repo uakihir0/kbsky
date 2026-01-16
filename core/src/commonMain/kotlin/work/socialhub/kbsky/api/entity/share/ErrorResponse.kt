@@ -4,6 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+@JsExport
 data class ErrorResponse(
     var message: String = "",
     var error: String,
