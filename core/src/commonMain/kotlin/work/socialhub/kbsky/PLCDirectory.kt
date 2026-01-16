@@ -8,8 +8,14 @@ import kotlin.js.JsExport
 
 @JsExport
 interface PLCDirectory {
+
     suspend fun DIDDetails(did: String): Response<DIDDetails>
+
+    @JsExport.Ignore
     fun DIDDetailsBlocking(did: String): Response<DIDDetails>
+
     suspend fun DIDLogs(did: String): Response<List<DIDLog>>
+
+    @JsExport.Ignore
     fun DIDLogsBlocking(did: String): Response<List<DIDLog>>
 }

@@ -2,6 +2,7 @@ package work.socialhub.kbsky
 
 import work.socialhub.kbsky.stream.ATProtocolStreamFactory
 import kotlin.js.JsExport
+import kotlin.js.JsName
 
 @JsExport
 class BskyFactory {
@@ -15,8 +16,10 @@ class BskyFactory {
 
     fun atproto(uri: String) = ATProtocolFactory.instance(uri)
 
+    @JsName("plc")
     fun plc() = PLCDirectoryFactory.instance()
 
+    @JsName("plcFromUri")
     fun plc(uri: String) = PLCDirectoryFactory.instance(uri)
 
     companion object {
