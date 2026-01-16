@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.app.bsky.feed
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.util.json.PostgateEmbeddingRulesUnionPolymorphicSerializer

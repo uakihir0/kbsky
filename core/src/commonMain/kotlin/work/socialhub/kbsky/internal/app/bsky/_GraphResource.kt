@@ -455,7 +455,8 @@ class _GraphResource(
         }
     }
 
-    override fun removeUserFromListBlocking(request: GraphRemoveUserFromListRequest): ResponseUnit = toBlocking { removeUserFromList(request) }
+    override fun removeUserFromListBlocking(request: GraphRemoveUserFromListRequest): ResponseUnit =
+        toBlocking { removeUserFromList(request) }
 
     override suspend fun getStarterPack(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> {
         return proceed {
@@ -467,7 +468,8 @@ class _GraphResource(
         }
     }
 
-    override fun getStarterPackBlocking(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> = toBlocking { getStarterPack(request) }
+    override fun getStarterPackBlocking(request: GraphGetStarterPackRequest): Response<GraphGetStarterPackResponse> =
+        toBlocking { getStarterPack(request) }
 
     override suspend fun getStarterPacks(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> {
         return proceed {
@@ -483,5 +485,6 @@ class _GraphResource(
         }
     }
 
-    override fun getStarterPacksBlocking(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> = toBlocking { getStarterPacks(request) }
+    override fun getStarterPacksBlocking(request: GraphGetStarterPacksRequest): Response<GraphGetStarterPacksResponse> =
+        toBlocking { getStarterPacks(request) }
 }

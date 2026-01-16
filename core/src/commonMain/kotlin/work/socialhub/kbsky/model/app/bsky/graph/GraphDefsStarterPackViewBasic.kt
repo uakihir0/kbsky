@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.app.bsky.graph
 
+
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewBasic
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordViewUnion

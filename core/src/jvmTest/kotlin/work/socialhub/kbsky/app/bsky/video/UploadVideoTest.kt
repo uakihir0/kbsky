@@ -1,15 +1,12 @@
 package work.socialhub.kbsky.app.bsky.video
 
 import kotlinx.coroutines.test.runTest
-
 import org.junit.jupiter.api.Test
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetJobStatusRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetUploadLimitsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedVideo
 import work.socialhub.kbsky.model.share.Blob
 

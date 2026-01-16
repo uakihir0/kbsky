@@ -1,14 +1,11 @@
 package work.socialhub.kbsky.com.atproto.repo
 
 import kotlinx.coroutines.test.runTest
-
-import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDescribeRepoRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
-class DescribeRepoTest(): AbstractTest() {
+class DescribeRepoTest() : AbstractTest() {
 
     @Test
     fun testDescribeRepo() = runTest {

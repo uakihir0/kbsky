@@ -3,7 +3,7 @@ package work.socialhub.kbsky.auth
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 
-class UnauthenticatedAuthProvider: AuthProvider {
+class UnauthenticatedAuthProvider : AuthProvider {
 
     override fun beforeRequestHook(method: String, request: HttpRequest) {
         // Nothing to do

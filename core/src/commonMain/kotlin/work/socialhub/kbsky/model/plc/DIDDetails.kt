@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.plc
 
+
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
 import kotlin.js.JsExport

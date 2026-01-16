@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.chat.bsky.actor
 
+
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileAssociated
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsVerificationState

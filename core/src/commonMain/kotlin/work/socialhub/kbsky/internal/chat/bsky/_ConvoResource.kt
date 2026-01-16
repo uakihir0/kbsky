@@ -54,7 +54,8 @@ class _ConvoResource(
         )
     }
 
-    override fun getConvoBlocking(request: ConvoGetConvoRequest): Response<ConvoGetConvoResponse> = toBlocking { getConvo(request) }
+    override fun getConvoBlocking(request: ConvoGetConvoRequest): Response<ConvoGetConvoResponse> =
+        toBlocking { getConvo(request) }
 
     override suspend fun getConvoForMembers(
         request: ConvoGetConvoForMembersRequest
@@ -67,7 +68,8 @@ class _ConvoResource(
         )
     }
 
-    override fun getConvoForMembersBlocking(request: ConvoGetConvoForMembersRequest): Response<ConvoGetConvoForMembersResponse> = toBlocking { getConvoForMembers(request) }
+    override fun getConvoForMembersBlocking(request: ConvoGetConvoForMembersRequest): Response<ConvoGetConvoForMembersResponse> =
+        toBlocking { getConvoForMembers(request) }
 
     override suspend fun getLog(
         request: ConvoGetLogRequest
@@ -80,7 +82,8 @@ class _ConvoResource(
         )
     }
 
-    override fun getLogBlocking(request: ConvoGetLogRequest): Response<ConvoGetLogResponse> = toBlocking { getLog(request) }
+    override fun getLogBlocking(request: ConvoGetLogRequest): Response<ConvoGetLogResponse> =
+        toBlocking { getLog(request) }
 
     override suspend fun getMessages(
         request: ConvoGetMessagesRequest
@@ -93,7 +96,8 @@ class _ConvoResource(
         )
     }
 
-    override fun getMessagesBlocking(request: ConvoGetMessagesRequest): Response<ConvoGetMessagesResponse> = toBlocking { getMessages(request) }
+    override fun getMessagesBlocking(request: ConvoGetMessagesRequest): Response<ConvoGetMessagesResponse> =
+        toBlocking { getMessages(request) }
 
     override suspend fun getListConvos(
         request: ConvoGetListConvosRequest
@@ -106,7 +110,8 @@ class _ConvoResource(
         )
     }
 
-    override fun getListConvosBlocking(request: ConvoGetListConvosRequest): Response<ConvoGetListConvosResponse> = toBlocking { getListConvos(request) }
+    override fun getListConvosBlocking(request: ConvoGetListConvosRequest): Response<ConvoGetListConvosResponse> =
+        toBlocking { getListConvos(request) }
 
     override suspend fun sendMessage(
         request: ConvoSendMessageRequest
@@ -119,7 +124,8 @@ class _ConvoResource(
         )
     }
 
-    override fun sendMessageBlocking(request: ConvoSendMessageRequest): Response<ConvoSendMessageResponse> = toBlocking { sendMessage(request) }
+    override fun sendMessageBlocking(request: ConvoSendMessageRequest): Response<ConvoSendMessageResponse> =
+        toBlocking { sendMessage(request) }
 
     override suspend fun updateRead(
         request: ConvoUpdateReadRequest
@@ -132,7 +138,8 @@ class _ConvoResource(
         )
     }
 
-    override fun updateReadBlocking(request: ConvoUpdateReadRequest): Response<ConvoUpdateReadResponse> = toBlocking { updateRead(request) }
+    override fun updateReadBlocking(request: ConvoUpdateReadRequest): Response<ConvoUpdateReadResponse> =
+        toBlocking { updateRead(request) }
 
     override suspend fun muteConvo(
         request: ConvoMuteConvoRequest
@@ -145,7 +152,8 @@ class _ConvoResource(
         )
     }
 
-    override fun muteConvoBlocking(request: ConvoMuteConvoRequest): Response<ConvoMuteConvoResponse> = toBlocking { muteConvo(request) }
+    override fun muteConvoBlocking(request: ConvoMuteConvoRequest): Response<ConvoMuteConvoResponse> =
+        toBlocking { muteConvo(request) }
 
     override suspend fun unmuteConvo(
         request: ConvoUnmuteConvoRequest
@@ -158,7 +166,8 @@ class _ConvoResource(
         )
     }
 
-    override fun unmuteConvoBlocking(request: ConvoUnmuteConvoRequest): Response<ConvoUnmuteConvoResponse> = toBlocking { unmuteConvo(request) }
+    override fun unmuteConvoBlocking(request: ConvoUnmuteConvoRequest): Response<ConvoUnmuteConvoResponse> =
+        toBlocking { unmuteConvo(request) }
 
     override suspend fun deleteMessageForSelf(
         request: ConvoDeleteMessageForSelfRequest
@@ -171,7 +180,8 @@ class _ConvoResource(
         )
     }
 
-    override fun deleteMessageForSelfBlocking(request: ConvoDeleteMessageForSelfRequest): Response<ConvoDeleteMessageForSelfResponse> = toBlocking { deleteMessageForSelf(request) }
+    override fun deleteMessageForSelfBlocking(request: ConvoDeleteMessageForSelfRequest): Response<ConvoDeleteMessageForSelfResponse> =
+        toBlocking { deleteMessageForSelf(request) }
 
     override suspend fun leaveConvo(
         request: ConvoLeaveConvoRequest
@@ -184,7 +194,8 @@ class _ConvoResource(
         )
     }
 
-    override fun leaveConvoBlocking(request: ConvoLeaveConvoRequest): Response<ConvoLeaveConvoResponse> = toBlocking { leaveConvo(request) }
+    override fun leaveConvoBlocking(request: ConvoLeaveConvoRequest): Response<ConvoLeaveConvoResponse> =
+        toBlocking { leaveConvo(request) }
 
     override suspend fun addReaction(
         request: ConvoAddReactionRequest
@@ -197,7 +208,8 @@ class _ConvoResource(
         )
     }
 
-    override fun addReactionBlocking(request: ConvoAddReactionRequest): Response<ConvoAddReactionResponse> = toBlocking { addReaction(request) }
+    override fun addReactionBlocking(request: ConvoAddReactionRequest): Response<ConvoAddReactionResponse> =
+        toBlocking { addReaction(request) }
 
     override suspend fun removeReaction(
         request: ConvoRemoveReactionRequest
@@ -210,7 +222,8 @@ class _ConvoResource(
         )
     }
 
-    override fun removeReactionBlocking(request: ConvoRemoveReactionRequest): Response<ConvoRemoveReactionResponse> = toBlocking { removeReaction(request) }
+    override fun removeReactionBlocking(request: ConvoRemoveReactionRequest): Response<ConvoRemoveReactionResponse> =
+        toBlocking { removeReaction(request) }
 
     private suspend inline fun <reified T> proceedGet(
         id: String,

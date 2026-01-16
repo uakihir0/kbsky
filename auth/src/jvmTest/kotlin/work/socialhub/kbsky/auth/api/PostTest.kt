@@ -1,7 +1,5 @@
 package work.socialhub.kbsky.auth.api
 
-import kotlinx.coroutines.test.runTest
-
 import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.auth.AbstractTest

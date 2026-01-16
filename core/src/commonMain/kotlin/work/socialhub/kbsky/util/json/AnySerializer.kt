@@ -97,6 +97,7 @@ object AnySerializer : KSerializer<Any> {
                 ConvoDefsMessageInput.serializer(),
                 value
             )
+
             is RepoRef -> encoder.encodeSerializableValue(RepoRef.serializer(), value)
             is RepoStrongRef -> encoder.encodeSerializableValue(RepoStrongRef.serializer(), value)
 

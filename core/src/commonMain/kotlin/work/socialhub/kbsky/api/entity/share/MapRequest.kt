@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.api.entity.share
 
+
 import work.socialhub.kbsky.internal.share._InternalUtility
+import kotlin.js.JsExport
 
 @JsExport
 interface MapRequest {

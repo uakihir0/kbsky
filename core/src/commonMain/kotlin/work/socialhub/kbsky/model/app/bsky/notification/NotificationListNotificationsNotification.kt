@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.app.bsky.notification
 
+
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileView
 import work.socialhub.kbsky.model.share.RecordUnion

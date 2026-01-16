@@ -1,11 +1,8 @@
 package work.socialhub.kbsky.com.atproto.server
 
 import kotlinx.coroutines.test.runTest
-
-import work.socialhub.kbsky.ATProtocolFactory
 import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.share.AuthRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class RefreshSessionTest : AbstractTest() {

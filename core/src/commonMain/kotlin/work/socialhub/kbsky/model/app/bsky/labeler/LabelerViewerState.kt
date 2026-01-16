@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.app.bsky.labeler
 
+
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 

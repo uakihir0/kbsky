@@ -17,5 +17,5 @@ data class AuthConfig(
     var confidentialClientKeyId: String? = null,
     var confidentialClientPrivateKey: String? = null,
 
-) : NetworkConfig()
+    ) : NetworkConfig()
 

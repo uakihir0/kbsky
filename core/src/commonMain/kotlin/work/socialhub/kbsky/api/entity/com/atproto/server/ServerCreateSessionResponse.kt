@@ -1,7 +1,9 @@
 package work.socialhub.kbsky.api.entity.com.atproto.server
 
+
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.server.DidDocUnion
+import kotlin.js.JsExport
 
 @Serializable
 @JsExport

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.entity.share
 
+
 import kotlin.js.JsExport
 
 /**

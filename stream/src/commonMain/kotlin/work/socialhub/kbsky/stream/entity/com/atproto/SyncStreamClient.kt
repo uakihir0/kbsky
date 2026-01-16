@@ -7,8 +7,8 @@ import work.socialhub.kbsky.ATProtocol
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.stream.entity.callback.ClosedCallback
 import work.socialhub.kbsky.stream.entity.callback.ErrorCallback
-import work.socialhub.kbsky.stream.entity.com.atproto.callback.SyncEventCallback
 import work.socialhub.kbsky.stream.entity.callback.OpenedCallback
+import work.socialhub.kbsky.stream.entity.com.atproto.callback.SyncEventCallback
 import work.socialhub.kbsky.stream.entity.com.atproto.model.StreamRoot
 import work.socialhub.khttpclient.websocket.WebsocketRequest
 

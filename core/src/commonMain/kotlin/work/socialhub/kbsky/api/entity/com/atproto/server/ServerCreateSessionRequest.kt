@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.api.entity.com.atproto.server
 
+
 import work.socialhub.kbsky.api.entity.share.MapRequest
+import kotlin.js.JsExport
 
 @JsExport
 data class ServerCreateSessionRequest(

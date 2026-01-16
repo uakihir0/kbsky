@@ -6,8 +6,8 @@ import work.socialhub.kbsky.auth.api.WellKnownResource
 import work.socialhub.kbsky.auth.api.entity.wellknown.WellKnownOAuthAuthorizationServerResponse
 import work.socialhub.kbsky.auth.api.entity.wellknown.WellKnownOAuthProtectedResourceResponse
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.util.toBlocking
 import work.socialhub.kbsky.util.MediaType
+import work.socialhub.kbsky.util.toBlocking
 import work.socialhub.khttpclient.HttpRequest
 
 class _WellKnownResource(

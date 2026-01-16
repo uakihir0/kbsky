@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.com.atproto.label
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.ATProtocolTypes

@@ -1,11 +1,13 @@
 package work.socialhub.kbsky.api.entity.app.bsky.notification
 
-import kotlin.time.Clock
-import kotlin.time.ExperimentalTime
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility
+import kotlin.js.JsExport
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
 @JsExport
 data class NotificationUpdateSeenRequest(

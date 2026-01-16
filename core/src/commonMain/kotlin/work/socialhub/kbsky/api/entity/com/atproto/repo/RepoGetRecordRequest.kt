@@ -1,7 +1,9 @@
 package work.socialhub.kbsky.api.entity.com.atproto.repo
 
+
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.util.ATUriParser
+import kotlin.js.JsExport
 
 @JsExport
 data class RepoGetRecordRequest(

@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.app.bsky
 
+
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetPreferencesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest

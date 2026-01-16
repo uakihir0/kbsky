@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.api.entity.app.bsky.video
 
+
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable
 @JsExport

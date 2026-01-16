@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.api.entity.share
 
+
 import work.socialhub.kbsky.util.ATUriParser
+import kotlin.js.JsExport
 
 @JsExport
 interface RKeyRequest {
