@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -89,7 +90,7 @@ tasks.podPublishXCFramework {
 }
 
 afterEvaluate {
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile>().configureEach {
+    tasks.withType<Kotlin2JsCompile>().configureEach {
         compilerOptions {
             target.set("es2015")
             freeCompilerArgs.add("-Xes-long-as-bigint")
