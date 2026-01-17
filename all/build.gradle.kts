@@ -15,16 +15,12 @@ kotlin {
     js(IR) {
         nodejs()
         browser()
+
         binaries.library()
 
         compilerOptions {
+            target.set("es2015")
             generateTypeScriptDefinitions()
-        }
-
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions { target.set("es2015") }
-            }
         }
     }
 
@@ -89,5 +85,14 @@ tasks.podPublishXCFramework {
             executable = "sh"
             args = listOf(project.projectDir.path + "/../tool/rename_podfile.sh")
         }.standardOutput.asText.get()
+    }
+}
+
+afterEvaluate {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile>().configureEach {
+        compilerOptions {
+            target.set("es2015")
+            freeCompilerArgs.add("-Xes-long-as-bigint")
+        }
     }
 }

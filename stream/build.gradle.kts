@@ -14,6 +14,10 @@ kotlin {
         nodejs()
         browser()
 
+        compilerOptions {
+            target.set("es2015")
+        }
+
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions { target.set("es2015") }
