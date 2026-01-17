@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.entity.app.bsky.feed
 
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.api.entity.share.RecordRequest
@@ -10,7 +11,9 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
+import kotlin.js.JsExport
 
+@JsExport
 data class FeedPostRequest(
     override val auth: AuthProvider,
     var text: String = "",

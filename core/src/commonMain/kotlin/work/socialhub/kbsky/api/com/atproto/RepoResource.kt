@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.com.atproto
 
+
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
@@ -14,11 +15,14 @@ import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
+import kotlin.js.JsExport
 
 /**
  * ATProtocol/Repo
  * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/com/atproto/repo)
  */
+@JsExport
 interface RepoResource {
 
     /**
@@ -30,49 +34,84 @@ interface RepoResource {
     /**
      * Create a new record.
      */
-    fun createRecord(
+    suspend fun createRecord(
+        request: RepoCreateRecordRequest
+    ): Response<RepoCreateRecordResponse>
+
+    @JsExport.Ignore
+    fun createRecordBlocking(
         request: RepoCreateRecordRequest
     ): Response<RepoCreateRecordResponse>
 
     /**
      * Delete a record, or ensure it doesn't exist.
      */
-    fun deleteRecord(
+    suspend fun deleteRecord(
         request: RepoDeleteRecordRequest
-    ): Response<Unit>
+    ): ResponseUnit
+
+    @JsExport.Ignore
+    fun deleteRecordBlocking(
+        request: RepoDeleteRecordRequest
+    ): ResponseUnit
 
     /**
      * Get information about an account and repository, including the list of collections. Does not require auth.
      */
-    fun describeRepo(
+    suspend fun describeRepo(
+        request: RepoDescribeRepoRequest
+    ): Response<RepoDescribeRepoResponse>
+
+    @JsExport.Ignore
+    fun describeRepoBlocking(
         request: RepoDescribeRepoRequest
     ): Response<RepoDescribeRepoResponse>
 
     /**
      * Get a record.
      */
-    fun getRecord(
+    suspend fun getRecord(
+        request: RepoGetRecordRequest
+    ): Response<RepoGetRecordResponse>
+
+    @JsExport.Ignore
+    fun getRecordBlocking(
         request: RepoGetRecordRequest
     ): Response<RepoGetRecordResponse>
 
     /**
      * List a range of records in a collection.
      */
-    fun listRecords(
+    suspend fun listRecords(
+        request: RepoListRecordsRequest
+    ): Response<RepoListRecordsResponse>
+
+    @JsExport.Ignore
+    fun listRecordsBlocking(
         request: RepoListRecordsRequest
     ): Response<RepoListRecordsResponse>
 
     /**
      * Write a record, creating or updating it as needed.
      */
-    fun putRecord(
+    suspend fun putRecord(
+        request: RepoPutRecordRequest
+    ): Response<RepoPutRecordResponse>
+
+    @JsExport.Ignore
+    fun putRecordBlocking(
         request: RepoPutRecordRequest
     ): Response<RepoPutRecordResponse>
 
     /**
      * Upload a new blob to be added to repo in a later request.
      */
-    fun uploadBlob(
+    suspend fun uploadBlob(
+        request: RepoUploadBlobRequest
+    ): Response<RepoUploadBlobResponse>
+
+    @JsExport.Ignore
+    fun uploadBlobBlocking(
         request: RepoUploadBlobRequest
     ): Response<RepoUploadBlobResponse>
 }

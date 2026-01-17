@@ -1,11 +1,14 @@
 package work.socialhub.kbsky.model.com.atproto.label
 
+
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 /**
  * Metadata tag on an atproto resource (eg, repo or record)
  */
 @Serializable
+@JsExport
 data class LabelDefsLabel(
     /** DID of the actor who created this label */
     var src: String? = null,

@@ -1,18 +1,16 @@
 package work.socialhub.kbsky.app.bsky.feed
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.Printer.dump
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class GetTimelineTest : AbstractTest() {
 
     @Test
-    fun testGetTimeline() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+    fun testGetTimeline() = runTest {
+        val response = client()
             .feed()
             .getTimeline(
                 FeedGetTimelineRequest(auth()).also {
@@ -24,8 +22,7 @@ class GetTimelineTest : AbstractTest() {
             dump(it.post)
         }
 
-        val response2 = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response2 = client()
             .feed()
             .getTimeline(
                 FeedGetTimelineRequest(auth()).also {

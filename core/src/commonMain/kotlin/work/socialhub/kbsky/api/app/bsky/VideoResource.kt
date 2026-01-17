@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.app.bsky
 
+
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetJobStatusRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetJobStatusResponse
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetUploadLimitsRequest
@@ -7,30 +8,47 @@ import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetUploadLimitsRespon
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import kotlin.js.JsExport
 
 /**
  * Bluesky/Video
  */
+@JsExport
 interface VideoResource {
 
     /**
      * Get status details for a video processing job.
      */
-    fun getJobStatus(
+    suspend fun getJobStatus(
+        request: VideoGetJobStatusRequest
+    ): Response<VideoGetJobStatusResponse>
+
+    @JsExport.Ignore
+    fun getJobStatusBlocking(
         request: VideoGetJobStatusRequest
     ): Response<VideoGetJobStatusResponse>
 
     /**
      * Get video upload limits for the authenticated user.
      */
-    fun getUploadLimits(
+    suspend fun getUploadLimits(
+        request: VideoGetUploadLimitsRequest
+    ): Response<VideoGetUploadLimitsResponse>
+
+    @JsExport.Ignore
+    fun getUploadLimitsBlocking(
         request: VideoGetUploadLimitsRequest
     ): Response<VideoGetUploadLimitsResponse>
 
     /**
      * Upload a video to be processed then stored on the PDS.
      */
-    fun uploadVideo(
+    suspend fun uploadVideo(
+        request: VideoUploadVideoRequest
+    ): Response<VideoUploadVideoResponse>
+
+    @JsExport.Ignore
+    fun uploadVideoBlocking(
         request: VideoUploadVideoRequest
     ): Response<VideoUploadVideoResponse>
 }

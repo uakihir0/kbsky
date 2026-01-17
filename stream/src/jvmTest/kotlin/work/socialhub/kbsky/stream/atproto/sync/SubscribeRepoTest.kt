@@ -7,8 +7,8 @@ import work.socialhub.kbsky.model.share.RecordUnion
 import work.socialhub.kbsky.stream.ATProtocolStreamFactory
 import work.socialhub.kbsky.stream.AbstractTest
 import work.socialhub.kbsky.stream.api.entity.com.atproto.SyncSubscribeReposRequest
-import work.socialhub.kbsky.stream.entity.com.atproto.callback.SyncEventCallback
 import work.socialhub.kbsky.stream.entity.callback.OpenedCallback
+import work.socialhub.kbsky.stream.entity.com.atproto.callback.SyncEventCallback
 import kotlin.test.Test
 
 class SubscribeRepoTest : AbstractTest() {

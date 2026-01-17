@@ -1,13 +1,16 @@
 package work.socialhub.kbsky.model.app.bsky.embed
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.app.bsky.actor.ActorDefsProfileViewBasic
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
 import work.socialhub.kbsky.model.share.RecordUnion
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class EmbedRecordViewRecord(
     @SerialName("\$type")
     override var type: String = TYPE,
@@ -23,7 +26,4 @@ data class EmbedRecordViewRecord(
     companion object {
         const val TYPE = BlueskyTypes.EmbedRecord + "#viewRecord"
     }
-
-    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
-    constructor() : this(TYPE, null, null, null, null, null, null, null)
 }

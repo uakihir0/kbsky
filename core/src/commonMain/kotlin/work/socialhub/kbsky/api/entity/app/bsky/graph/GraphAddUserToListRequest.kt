@@ -1,11 +1,14 @@
 package work.socialhub.kbsky.api.entity.app.bsky.graph
 
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
+import kotlin.js.JsExport
 
+@JsExport
 data class GraphAddUserToListRequest(
     override val auth: AuthProvider,
     var userDid: String? = null,

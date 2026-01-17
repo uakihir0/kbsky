@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.com.atproto
 
+
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionRequest
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerCreateSessionResponse
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthRequest
@@ -8,11 +9,14 @@ import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetSessionRespon
 import work.socialhub.kbsky.api.entity.com.atproto.server.ServerRefreshSessionResponse
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
+import kotlin.js.JsExport
 
 /**
  * ATProtocol/Server
  * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/com/atproto/server)
  */
+@JsExport
 interface ServerResource {
 
     /**
@@ -30,7 +34,12 @@ interface ServerResource {
     /**
      * Create an authentication session.
      */
-    fun createSession(
+    suspend fun createSession(
+        request: ServerCreateSessionRequest
+    ): Response<ServerCreateSessionResponse>
+
+    @JsExport.Ignore
+    fun createSessionBlocking(
         request: ServerCreateSessionRequest
     ): Response<ServerCreateSessionResponse>
 
@@ -43,9 +52,14 @@ interface ServerResource {
     /**
      * Delete the current session.
      */
-    fun deleteSession(
+    suspend fun deleteSession(
         request: AuthRequest
-    ): Response<Unit>
+    ): ResponseUnit
+
+    @JsExport.Ignore
+    fun deleteSessionBlocking(
+        request: AuthRequest
+    ): ResponseUnit
 
     /**
      * Get a document describing the service's accounts configuration.
@@ -57,7 +71,12 @@ interface ServerResource {
      *
      * [Reference](https://github.com/bluesky-social/atproto/blob/main/lexicons/com/atproto/server/getServiceAuth.json)
      */
-    fun getServiceAuth(
+    suspend fun getServiceAuth(
+        request: ServerGetServiceAuthRequest
+    ): Response<ServerGetServiceAuthResponse>
+
+    @JsExport.Ignore
+    fun getServiceAuthBlocking(
         request: ServerGetServiceAuthRequest
     ): Response<ServerGetServiceAuthResponse>
 
@@ -65,14 +84,24 @@ interface ServerResource {
      * TODO:
      * Get information about the current session.
      */
-    fun getSession(
+    suspend fun getSession(
+        request: AuthRequest
+    ): Response<ServerGetSessionResponse>
+
+    @JsExport.Ignore
+    fun getSessionBlocking(
         request: AuthRequest
     ): Response<ServerGetSessionResponse>
 
     /**
      * Refresh an authentication session.
      */
-    fun refreshSession(
+    suspend fun refreshSession(
+        request: AuthRequest
+    ): Response<ServerRefreshSessionResponse>
+
+    @JsExport.Ignore
+    fun refreshSessionBlocking(
         request: AuthRequest
     ): Response<ServerRefreshSessionResponse>
 

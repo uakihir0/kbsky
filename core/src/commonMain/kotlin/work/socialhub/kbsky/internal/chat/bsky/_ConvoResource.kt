@@ -1,6 +1,5 @@
 package work.socialhub.kbsky.internal.chat.bsky
 
-import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
@@ -33,17 +32,18 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
+import work.socialhub.kbsky.util.toBlocking
 
 class _ConvoResource(
     private val config: ATProtocolConfig
 ) : ConvoResource {
 
-    override fun getConvo(
+    override suspend fun getConvo(
         request: ConvoGetConvoRequest
     ): Response<ConvoGetConvoResponse> {
 
@@ -54,7 +54,10 @@ class _ConvoResource(
         )
     }
 
-    override fun getConvoForMembers(
+    override fun getConvoBlocking(request: ConvoGetConvoRequest): Response<ConvoGetConvoResponse> =
+        toBlocking { getConvo(request) }
+
+    override suspend fun getConvoForMembers(
         request: ConvoGetConvoForMembersRequest
     ): Response<ConvoGetConvoForMembersResponse> {
 
@@ -65,7 +68,10 @@ class _ConvoResource(
         )
     }
 
-    override fun getLog(
+    override fun getConvoForMembersBlocking(request: ConvoGetConvoForMembersRequest): Response<ConvoGetConvoForMembersResponse> =
+        toBlocking { getConvoForMembers(request) }
+
+    override suspend fun getLog(
         request: ConvoGetLogRequest
     ): Response<ConvoGetLogResponse> {
 
@@ -76,7 +82,10 @@ class _ConvoResource(
         )
     }
 
-    override fun getMessages(
+    override fun getLogBlocking(request: ConvoGetLogRequest): Response<ConvoGetLogResponse> =
+        toBlocking { getLog(request) }
+
+    override suspend fun getMessages(
         request: ConvoGetMessagesRequest
     ): Response<ConvoGetMessagesResponse> {
 
@@ -87,7 +96,10 @@ class _ConvoResource(
         )
     }
 
-    override fun getListConvos(
+    override fun getMessagesBlocking(request: ConvoGetMessagesRequest): Response<ConvoGetMessagesResponse> =
+        toBlocking { getMessages(request) }
+
+    override suspend fun getListConvos(
         request: ConvoGetListConvosRequest
     ): Response<ConvoGetListConvosResponse> {
 
@@ -98,7 +110,10 @@ class _ConvoResource(
         )
     }
 
-    override fun sendMessage(
+    override fun getListConvosBlocking(request: ConvoGetListConvosRequest): Response<ConvoGetListConvosResponse> =
+        toBlocking { getListConvos(request) }
+
+    override suspend fun sendMessage(
         request: ConvoSendMessageRequest
     ): Response<ConvoSendMessageResponse> {
 
@@ -109,7 +124,10 @@ class _ConvoResource(
         )
     }
 
-    override fun updateRead(
+    override fun sendMessageBlocking(request: ConvoSendMessageRequest): Response<ConvoSendMessageResponse> =
+        toBlocking { sendMessage(request) }
+
+    override suspend fun updateRead(
         request: ConvoUpdateReadRequest
     ): Response<ConvoUpdateReadResponse> {
 
@@ -120,7 +138,10 @@ class _ConvoResource(
         )
     }
 
-    override fun muteConvo(
+    override fun updateReadBlocking(request: ConvoUpdateReadRequest): Response<ConvoUpdateReadResponse> =
+        toBlocking { updateRead(request) }
+
+    override suspend fun muteConvo(
         request: ConvoMuteConvoRequest
     ): Response<ConvoMuteConvoResponse> {
 
@@ -131,7 +152,10 @@ class _ConvoResource(
         )
     }
 
-    override fun unmuteConvo(
+    override fun muteConvoBlocking(request: ConvoMuteConvoRequest): Response<ConvoMuteConvoResponse> =
+        toBlocking { muteConvo(request) }
+
+    override suspend fun unmuteConvo(
         request: ConvoUnmuteConvoRequest
     ): Response<ConvoUnmuteConvoResponse> {
 
@@ -142,7 +166,10 @@ class _ConvoResource(
         )
     }
 
-    override fun deleteMessageForSelf(
+    override fun unmuteConvoBlocking(request: ConvoUnmuteConvoRequest): Response<ConvoUnmuteConvoResponse> =
+        toBlocking { unmuteConvo(request) }
+
+    override suspend fun deleteMessageForSelf(
         request: ConvoDeleteMessageForSelfRequest
     ): Response<ConvoDeleteMessageForSelfResponse> {
 
@@ -153,7 +180,10 @@ class _ConvoResource(
         )
     }
 
-    override fun leaveConvo(
+    override fun deleteMessageForSelfBlocking(request: ConvoDeleteMessageForSelfRequest): Response<ConvoDeleteMessageForSelfResponse> =
+        toBlocking { deleteMessageForSelf(request) }
+
+    override suspend fun leaveConvo(
         request: ConvoLeaveConvoRequest
     ): Response<ConvoLeaveConvoResponse> {
 
@@ -164,7 +194,10 @@ class _ConvoResource(
         )
     }
 
-    override fun addReaction(
+    override fun leaveConvoBlocking(request: ConvoLeaveConvoRequest): Response<ConvoLeaveConvoResponse> =
+        toBlocking { leaveConvo(request) }
+
+    override suspend fun addReaction(
         request: ConvoAddReactionRequest
     ): Response<ConvoAddReactionResponse> {
 
@@ -175,7 +208,10 @@ class _ConvoResource(
         )
     }
 
-    override fun removeReaction(
+    override fun addReactionBlocking(request: ConvoAddReactionRequest): Response<ConvoAddReactionResponse> =
+        toBlocking { addReaction(request) }
+
+    override suspend fun removeReaction(
         request: ConvoRemoveReactionRequest
     ): Response<ConvoRemoveReactionResponse> {
 
@@ -186,37 +222,36 @@ class _ConvoResource(
         )
     }
 
-    private inline fun <reified T> proceedGet(
+    override fun removeReactionBlocking(request: ConvoRemoveReactionRequest): Response<ConvoRemoveReactionResponse> =
+        toBlocking { removeReaction(request) }
+
+    private suspend inline fun <reified T> proceedGet(
         id: String,
         queries: Map<String, Any>,
         auth: AuthProvider,
     ): Response<T> {
         return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(xrpc(config, id))
-                    .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
-                    .accept(MediaType.JSON)
-                    .queries(queries)
-                    .getWithAuth(auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, id))
+                .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
+                .accept(MediaType.JSON)
+                .queries(queries)
+                .getWithAuth(auth)
         }
     }
 
-    private inline fun <reified T> proceedPost(
+    private suspend inline fun <reified T> proceedPost(
         id: String,
         requestJson: String,
         auth: AuthProvider,
     ): Response<T> {
         return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(xrpc(config, id))
-                    .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
-                    .accept(MediaType.JSON)
-                    .json(requestJson)
-                    .postWithAuth(auth)
-            }
+            httpRequest(config)
+                .url(xrpc(config, id))
+                .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
+                .accept(MediaType.JSON)
+                .json(requestJson)
+                .postWithAuth(auth)
         }
     }
 }

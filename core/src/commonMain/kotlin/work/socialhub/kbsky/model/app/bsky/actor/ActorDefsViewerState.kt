@@ -1,8 +1,11 @@
 package work.socialhub.kbsky.model.app.bsky.actor
 
+
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class ActorDefsViewerState(
     var muted: Boolean? = null,
     var blockedBy: Boolean? = null,

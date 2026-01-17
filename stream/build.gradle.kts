@@ -10,6 +10,21 @@ kotlin {
     jvmToolchain(11)
     jvm()
 
+    js(IR) {
+        nodejs()
+        browser()
+
+        compilerOptions {
+            target.set("es2015")
+        }
+
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions { target.set("es2015") }
+            }
+        }
+    }
+
     if (HostManager.hostIsMac) {
         iosX64()
         iosArm64()
@@ -21,7 +36,17 @@ kotlin {
     mingwX64()
     // linuxX64()
 
+    compilerOptions {
+        freeCompilerArgs.add("-Xenable-suspend-function-exporting")
+    }
+
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
+
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(libs.ktor.core)

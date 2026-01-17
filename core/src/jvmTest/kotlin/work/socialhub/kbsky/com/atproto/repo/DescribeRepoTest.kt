@@ -1,18 +1,17 @@
 package work.socialhub.kbsky.com.atproto.repo
 
-import work.socialhub.kbsky.ATProtocolFactory
+import kotlinx.coroutines.test.runTest
+import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDescribeRepoRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
-class DescribeRepoTest() {
+class DescribeRepoTest() : AbstractTest() {
 
     @Test
-    fun testDescribeRepo() {
+    fun testDescribeRepo() = runTest {
         val repo = "did:plc:bwdof2anluuf5wmfy2upgulw"
 
-        val response = ATProtocolFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .repo()
             .describeRepo(
                 RepoDescribeRepoRequest(

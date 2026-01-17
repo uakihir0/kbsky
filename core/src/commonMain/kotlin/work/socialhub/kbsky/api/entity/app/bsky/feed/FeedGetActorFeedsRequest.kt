@@ -1,9 +1,12 @@
 package work.socialhub.kbsky.api.entity.app.bsky.feed
 
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
+import kotlin.js.JsExport
 
+@JsExport
 data class FeedGetActorFeedsRequest(
     override val auth: AuthProvider,
     var actor: String? = null,

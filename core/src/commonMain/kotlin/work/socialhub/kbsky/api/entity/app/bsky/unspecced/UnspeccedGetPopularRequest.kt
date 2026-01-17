@@ -1,9 +1,12 @@
 package work.socialhub.kbsky.api.entity.app.bsky.unspecced
 
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
+import kotlin.js.JsExport
 
+@JsExport
 data class UnspeccedGetPopularRequest(
     override val auth: AuthProvider,
     var includeNsfw: Boolean? = null,

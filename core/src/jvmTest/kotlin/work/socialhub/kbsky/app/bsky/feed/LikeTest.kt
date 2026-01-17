@@ -1,23 +1,21 @@
 package work.socialhub.kbsky.app.bsky.feed
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeleteLikeRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import kotlin.test.Test
 
 class LikeTest : AbstractTest() {
 
     @Test
-    fun testLike() {
+    fun testLike() = runTest {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b"
         val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
         val ref = RepoStrongRef(uri, cid)
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .like(
                 FeedLikeRequest(auth()).also {
@@ -29,13 +27,12 @@ class LikeTest : AbstractTest() {
     }
 
     @Test
-    fun deleteLike() {
+    fun deleteLike() = runTest {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b"
         val cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu"
 
         val ref = RepoStrongRef(uri, cid)
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .like(
                 FeedLikeRequest(auth()).also {
@@ -45,8 +42,7 @@ class LikeTest : AbstractTest() {
 
         println(response.data.uri)
 
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .feed()
             .deleteLike(
                 FeedDeleteLikeRequest(auth()).also {

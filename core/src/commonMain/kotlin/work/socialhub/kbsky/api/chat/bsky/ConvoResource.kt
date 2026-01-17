@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.api.chat.bsky
 
+
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfRequest
@@ -27,102 +28,169 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnmuteConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import kotlin.js.JsExport
 
 /**
  * Chat/Bluesky/Convo
  *
  * [Reference](https://github.com/bluesky-social/atproto/tree/main/lexicons/chat/bsky/convo)
  */
+@JsExport
 interface ConvoResource {
 
     /**
      * chat.bsky.convo.getConvo
      */
-    fun getConvo(
+    suspend fun getConvo(
+        request: ConvoGetConvoRequest
+    ): Response<ConvoGetConvoResponse>
+
+    @JsExport.Ignore
+    fun getConvoBlocking(
         request: ConvoGetConvoRequest
     ): Response<ConvoGetConvoResponse>
 
     /**
      * chat.bsky.convo.getConvoForMembers
      */
-    fun getConvoForMembers(
+    suspend fun getConvoForMembers(
+        request: ConvoGetConvoForMembersRequest
+    ): Response<ConvoGetConvoForMembersResponse>
+
+    @JsExport.Ignore
+    fun getConvoForMembersBlocking(
         request: ConvoGetConvoForMembersRequest
     ): Response<ConvoGetConvoForMembersResponse>
 
     /**
      * chat.bsky.convo.getLog
      */
-    fun getLog(
+    suspend fun getLog(
+        request: ConvoGetLogRequest
+    ): Response<ConvoGetLogResponse>
+
+    @JsExport.Ignore
+    fun getLogBlocking(
         request: ConvoGetLogRequest
     ): Response<ConvoGetLogResponse>
 
     /**
      * chat.bsky.convo.getMessages
      */
-    fun getMessages(
+    suspend fun getMessages(
+        request: ConvoGetMessagesRequest
+    ): Response<ConvoGetMessagesResponse>
+
+    @JsExport.Ignore
+    fun getMessagesBlocking(
         request: ConvoGetMessagesRequest
     ): Response<ConvoGetMessagesResponse>
 
     /**
      * chat.bsky.convo.listConvos
      */
-    fun getListConvos(
+    suspend fun getListConvos(
+        request: ConvoGetListConvosRequest
+    ): Response<ConvoGetListConvosResponse>
+
+    @JsExport.Ignore
+    fun getListConvosBlocking(
         request: ConvoGetListConvosRequest
     ): Response<ConvoGetListConvosResponse>
 
     /**
      * chat.bsky.convo.sendMessage
      */
-    fun sendMessage(
+    suspend fun sendMessage(
+        request: ConvoSendMessageRequest
+    ): Response<ConvoSendMessageResponse>
+
+    @JsExport.Ignore
+    fun sendMessageBlocking(
         request: ConvoSendMessageRequest
     ): Response<ConvoSendMessageResponse>
 
     /**
      * chat.bsky.convo.updateRead
      */
-    fun updateRead(
+    suspend fun updateRead(
+        request: ConvoUpdateReadRequest
+    ): Response<ConvoUpdateReadResponse>
+
+    @JsExport.Ignore
+    fun updateReadBlocking(
         request: ConvoUpdateReadRequest
     ): Response<ConvoUpdateReadResponse>
 
     /**
      * chat.bsky.convo.muteConvo
      */
-    fun muteConvo(
+    suspend fun muteConvo(
+        request: ConvoMuteConvoRequest
+    ): Response<ConvoMuteConvoResponse>
+
+    @JsExport.Ignore
+    fun muteConvoBlocking(
         request: ConvoMuteConvoRequest
     ): Response<ConvoMuteConvoResponse>
 
     /**
      * chat.bsky.convo.unmuteConvo
      */
-    fun unmuteConvo(
+    suspend fun unmuteConvo(
+        request: ConvoUnmuteConvoRequest
+    ): Response<ConvoUnmuteConvoResponse>
+
+    @JsExport.Ignore
+    fun unmuteConvoBlocking(
         request: ConvoUnmuteConvoRequest
     ): Response<ConvoUnmuteConvoResponse>
 
     /**
      * chat.bsky.convo.deleteMessageForSelf
      */
-    fun deleteMessageForSelf(
+    suspend fun deleteMessageForSelf(
+        request: ConvoDeleteMessageForSelfRequest
+    ): Response<ConvoDeleteMessageForSelfResponse>
+
+    @JsExport.Ignore
+    fun deleteMessageForSelfBlocking(
         request: ConvoDeleteMessageForSelfRequest
     ): Response<ConvoDeleteMessageForSelfResponse>
 
     /**
      * chat.bsky.convo.leaveConvo
      */
-    fun leaveConvo(
+    suspend fun leaveConvo(
+        request: ConvoLeaveConvoRequest
+    ): Response<ConvoLeaveConvoResponse>
+
+    @JsExport.Ignore
+    fun leaveConvoBlocking(
         request: ConvoLeaveConvoRequest
     ): Response<ConvoLeaveConvoResponse>
 
     /**
      * chat.bsky.convo.addReaction
      */
-    fun addReaction(
+    suspend fun addReaction(
+        request: ConvoAddReactionRequest
+    ): Response<ConvoAddReactionResponse>
+
+    @JsExport.Ignore
+    fun addReactionBlocking(
         request: ConvoAddReactionRequest
     ): Response<ConvoAddReactionResponse>
 
     /**
      * chat.bsky.convo.removeReaction
      */
-    fun removeReaction(
+    suspend fun removeReaction(
+        request: ConvoRemoveReactionRequest
+    ): Response<ConvoRemoveReactionResponse>
+
+    @JsExport.Ignore
+    fun removeReactionBlocking(
         request: ConvoRemoveReactionRequest
     ): Response<ConvoRemoveReactionResponse>
 }

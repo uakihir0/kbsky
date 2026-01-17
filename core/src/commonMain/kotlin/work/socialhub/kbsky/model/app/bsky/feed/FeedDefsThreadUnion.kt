@@ -1,14 +1,17 @@
 package work.socialhub.kbsky.model.app.bsky.feed
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.util.json.FeedDefsThreadPolymorphicSerializer
+import kotlin.js.JsExport
 
 /**
  * @see FeedDefsThreadViewPost
  * @see FeedDefsNotFoundPost
  */
 @Serializable(with = FeedDefsThreadPolymorphicSerializer::class)
+@JsExport
 abstract class FeedDefsThreadUnion {
     @SerialName("\$type")
     abstract var type: String

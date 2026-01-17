@@ -1,8 +1,11 @@
 package work.socialhub.kbsky.model.plc
 
+
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class DIDLog(
     var sig: String? = null,
     var prev: String? = null,

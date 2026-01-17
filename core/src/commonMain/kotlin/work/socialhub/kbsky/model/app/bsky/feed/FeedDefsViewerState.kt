@@ -1,8 +1,11 @@
 package work.socialhub.kbsky.model.app.bsky.feed
 
+
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class FeedDefsViewerState(
     var repost: String? = null,
     var like: String? = null,

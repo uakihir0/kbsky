@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.model.app.bsky.feed
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
@@ -7,8 +8,10 @@ import work.socialhub.kbsky.model.app.bsky.embed.EmbedUnion
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
 import work.socialhub.kbsky.model.share.RecordUnion
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class FeedPost(
     @SerialName("\$type")
     override var type: String = TYPE,

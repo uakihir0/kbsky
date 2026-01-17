@@ -1,12 +1,15 @@
 package work.socialhub.kbsky.model.app.bsky.actor
 
+
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
+import kotlin.js.JsExport
 
 /**
  * A reference to an actor in the network.
  */
 @Serializable
+@JsExport
 data class ActorDefsProfileViewBasic(
     var did: String = "",
     // required but some implementations may not provide it (e.g. post.reply.root.author.handle)

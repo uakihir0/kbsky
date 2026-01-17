@@ -1,29 +1,28 @@
 package work.socialhub.kbsky.com.atproto.repo
 
-import work.socialhub.kbsky.ATProtocolFactory
-import work.socialhub.kbsky.BlueskyFactory
+import kotlinx.coroutines.test.runTest
+
+import work.socialhub.kbsky.AbstractTest
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
 import work.socialhub.kbsky.BlueskyTypes.GraphBlock
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoListRecordsRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
-class ListRecordsTest() {
+class ListRecordsTest() : AbstractTest() {
 
     companion object {
         const val handle = "uakihir0.com"
     }
 
     @Test
-    fun testListRecords() {
+    fun testListRecords() = runTest {
 
-        val response = ATProtocolFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .repo()
             .listRecords(
                 RepoListRecordsRequest(
-                    repo = handle,
+                    repo = ListRecordsTest.handle,
                     collection = FeedPost,
                 ).also {
                     it.reverse = true
@@ -37,14 +36,13 @@ class ListRecordsTest() {
     }
 
     @Test
-    fun testListRecordBlocks() {
+    fun testListRecordBlocks() = runTest {
 
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .repo()
             .listRecords(
                 RepoListRecordsRequest(
-                    repo = handle,
+                    repo = ListRecordsTest.handle,
                     collection = GraphBlock,
                 )
             )
@@ -55,14 +53,13 @@ class ListRecordsTest() {
     }
 
     @Test
-    fun testListRecordLikes() {
+    fun testListRecordLikes() = runTest {
 
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .repo()
             .listRecords(
                 RepoListRecordsRequest(
-                    repo = handle,
+                    repo = ListRecordsTest.handle,
                     collection = FeedLike,
                 )
             )

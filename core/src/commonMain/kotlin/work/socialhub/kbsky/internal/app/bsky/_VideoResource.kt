@@ -1,7 +1,6 @@
 package work.socialhub.kbsky.internal.app.bsky
 
 import io.ktor.http.URLBuilder
-import kotlinx.coroutines.runBlocking
 import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.ATProtocolTypes
 import work.socialhub.kbsky.BlueskyConfig
@@ -21,16 +20,17 @@ import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.auth.BearerTokenAuthProvider
 import work.socialhub.kbsky.internal.com.atproto._ServerResource
 import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
+import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share._InternalUtility.proceed
 import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
-import work.socialhub.khttpclient.HttpRequest
+import work.socialhub.kbsky.util.toBlocking
 
 class _VideoResource(
     private val config: BlueskyConfig
 ) : VideoResource {
 
-    override fun getJobStatus(
+    override suspend fun getJobStatus(
         request: VideoGetJobStatusRequest
     ): Response<VideoGetJobStatusResponse> {
 
@@ -43,18 +43,20 @@ class _VideoResource(
         )
 
         return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(xrpc(config.videoServiceUri, VideoGetJobStatus))
-                    .header("Authorization", videoToken)
-                    .accept(MediaType.JSON)
-                    .queries(request.toMap())
-                    .get()
-            }
+            httpRequest(config)
+                .url(xrpc(config.videoServiceUri, VideoGetJobStatus))
+                .header("Authorization", videoToken)
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .get()
         }
     }
 
-    override fun getUploadLimits(
+    override fun getJobStatusBlocking(
+        request: VideoGetJobStatusRequest
+    ): Response<VideoGetJobStatusResponse> = toBlocking { getJobStatus(request) }
+
+    override suspend fun getUploadLimits(
         request: VideoGetUploadLimitsRequest
     ): Response<VideoGetUploadLimitsResponse> {
 
@@ -67,17 +69,19 @@ class _VideoResource(
         )
 
         return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(xrpc(config.videoServiceUri, VideoGetUploadLimits))
-                    .header("Authorization", videoToken)
-                    .accept(MediaType.JSON)
-                    .get()
-            }
+            httpRequest(config)
+                .url(xrpc(config.videoServiceUri, VideoGetUploadLimits))
+                .header("Authorization", videoToken)
+                .accept(MediaType.JSON)
+                .get()
         }
     }
 
-    override fun uploadVideo(
+    override fun getUploadLimitsBlocking(
+        request: VideoGetUploadLimitsRequest
+    ): Response<VideoGetUploadLimitsResponse> = toBlocking { getUploadLimits(request) }
+
+    override suspend fun uploadVideo(
         request: VideoUploadVideoRequest
     ): Response<VideoUploadVideoResponse> {
 
@@ -93,26 +97,24 @@ class _VideoResource(
 
         try {
             return proceed {
-                runBlocking {
-                    HttpRequest()
-                        .url(
-                            URLBuilder(xrpc(config.videoServiceUri, VideoUploadVideo))
-                                .also {
-                                    it.parameters.append("did", request.auth.did)
-                                    it.parameters.append("name", request.name)
-                                }
-                                .buildString()
-                        )
-                        .header("Authorization", videoToken)
-                        .header("Content-Type", request.contentType)
-                        .accept(MediaType.JSON)
-                        .file(
-                            key = "file",
-                            fileName = request.name,
-                            fileBody = request.bytes
-                        )
-                        .post()
-                }
+                httpRequest(config)
+                    .url(
+                        URLBuilder(xrpc(config.videoServiceUri, VideoUploadVideo))
+                            .also {
+                                it.parameters.append("did", request.auth.did)
+                                it.parameters.append("name", request.name)
+                            }
+                            .buildString()
+                    )
+                    .header("Authorization", videoToken)
+                    .header("Content-Type", request.contentType)
+                    .accept(MediaType.JSON)
+                    .file(
+                        key = "file",
+                        fileName = request.name,
+                        fileBody = request.bytes
+                    )
+                    .post()
             }
         } catch (e: ATProtocolException) {
 
@@ -125,7 +127,11 @@ class _VideoResource(
         }
     }
 
-    private fun getVideoTokenFromPds(
+    override fun uploadVideoBlocking(
+        request: VideoUploadVideoRequest
+    ): Response<VideoUploadVideoResponse> = toBlocking { uploadVideo(request) }
+
+    private suspend fun getVideoTokenFromPds(
         config: BlueskyConfig,
         auth: AuthProvider,
         aud: String,

@@ -1,13 +1,16 @@
 package work.socialhub.kbsky.model.app.bsky.actor
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.share.Blob
 import work.socialhub.kbsky.model.share.RecordUnion
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class ActorProfile(
     @SerialName("\$type")
     override var type: String = TYPE,
@@ -21,7 +24,4 @@ data class ActorProfile(
     companion object {
         const val TYPE = BlueskyTypes.ActorProfile
     }
-
-    @Deprecated("use primary constructor", level = DeprecationLevel.HIDDEN)
-    constructor() : this(TYPE, null, null, null, null, null)
 }

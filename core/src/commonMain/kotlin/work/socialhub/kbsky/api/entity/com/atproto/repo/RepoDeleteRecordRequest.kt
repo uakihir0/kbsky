@@ -1,9 +1,12 @@
 package work.socialhub.kbsky.api.entity.com.atproto.repo
 
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
+import kotlin.js.JsExport
 
+@JsExport
 data class RepoDeleteRecordRequest(
     override val auth: AuthProvider,
     /** The handle or DID of the repo. */

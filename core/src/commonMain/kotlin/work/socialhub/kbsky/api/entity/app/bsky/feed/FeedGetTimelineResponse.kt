@@ -1,8 +1,11 @@
 package work.socialhub.kbsky.api.entity.app.bsky.feed
 
+
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class FeedGetTimelineResponse(
     var cursor: String? = null,
     var feed: List<work.socialhub.kbsky.model.app.bsky.feed.FeedDefsFeedViewPost> = emptyList(),

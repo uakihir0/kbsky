@@ -22,5 +22,6 @@ if (osName.contains("mac")) {
 }
 
 plugins {
+    // To obtain an appropriate JVM environment in CI environments, etc.
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }

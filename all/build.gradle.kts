@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -11,6 +12,18 @@ plugins {
 kotlin {
     jvmToolchain(11)
     jvm()
+
+    js(IR) {
+        nodejs()
+        browser()
+
+        binaries.library()
+
+        compilerOptions {
+            target.set("es2015")
+            generateTypeScriptDefinitions()
+        }
+    }
 
     val xcf = XCFramework("kbsky")
     listOf(
@@ -39,6 +52,11 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
         commonMain.dependencies {
             api(project(":core"))
             api(project(":stream"))
@@ -68,5 +86,14 @@ tasks.podPublishXCFramework {
             executable = "sh"
             args = listOf(project.projectDir.path + "/../tool/rename_podfile.sh")
         }.standardOutput.asText.get()
+    }
+}
+
+afterEvaluate {
+    tasks.withType<Kotlin2JsCompile>().configureEach {
+        compilerOptions {
+            target.set("es2015")
+            freeCompilerArgs.add("-Xes-long-as-bigint")
+        }
     }
 }

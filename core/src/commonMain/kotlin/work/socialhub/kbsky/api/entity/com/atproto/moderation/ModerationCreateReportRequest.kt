@@ -1,10 +1,13 @@
 package work.socialhub.kbsky.api.entity.com.atproto.moderation
 
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.model.com.atproto.moderation.ModerationSubjectUnion
+import kotlin.js.JsExport
 
+@JsExport
 data class ModerationCreateReportRequest(
     val reasonType: String,
     val reason: String? = null,

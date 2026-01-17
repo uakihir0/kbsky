@@ -1,17 +1,15 @@
 package work.socialhub.kbsky.app.bsky.graph
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphMuteActorRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class MuteTest : AbstractTest() {
 
     @Test
-    fun testMute() {
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+    fun testMute() = runTest {
+        client()
             .graph()
             .muteActor(
                 GraphMuteActorRequest(auth()).also {
@@ -21,9 +19,8 @@ class MuteTest : AbstractTest() {
     }
 
     @Test
-    fun testMuteByDID() {
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+    fun testMuteByDID() = runTest {
+        client()
             .graph()
             .muteActor(
                 GraphMuteActorRequest(auth()).also {

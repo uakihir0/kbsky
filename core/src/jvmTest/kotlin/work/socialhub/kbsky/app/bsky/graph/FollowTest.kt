@@ -1,22 +1,21 @@
 package work.socialhub.kbsky.app.bsky.graph
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphDeleteFollowRequest
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphFollowRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class FollowTest : AbstractTest() {
 
     @Test
-    fun testFollow() {
+    fun testFollow() = runTest {
         val did = "did:plc:oc6vwdlmk2kqyida5i74d3p5"
 
         // Follow
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
-            .graph().follow(
+        val response = client()
+            .graph()
+            .follow(
                 GraphFollowRequest(auth()).also {
                     it.subject = did
                 }
@@ -26,8 +25,7 @@ class FollowTest : AbstractTest() {
         println(uri)
 
         // DeleteFollow
-        BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        client()
             .graph()
             .deleteFollow(
                 GraphDeleteFollowRequest(auth()).also {

@@ -1,8 +1,11 @@
 package work.socialhub.kbsky.api.entity.com.atproto.repo
 
+
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.auth.AuthProvider
+import kotlin.js.JsExport
 
+@JsExport
 data class RepoUploadBlobRequest(
     override val auth: AuthProvider,
     var bytes: ByteArray,

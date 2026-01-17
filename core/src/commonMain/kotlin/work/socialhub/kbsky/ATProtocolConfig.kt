@@ -1,7 +1,10 @@
 package work.socialhub.kbsky
 
-import work.socialhub.kbsky.domain.Service
 
+import work.socialhub.kbsky.domain.Service
+import kotlin.js.JsExport
+
+@JsExport
 open class ATProtocolConfig {
 
     /**
@@ -14,4 +17,9 @@ open class ATProtocolConfig {
      * (If you use the Chat feature, you will need to change the URI to the PDS you belong to if you turn it off)
      */
     var updatePdsUri: Boolean = true
+
+    /**
+     * Skip SSL Validation (Kotlin/JVM Only)
+     */
+    var skipSSLValidation: Boolean = false
 }

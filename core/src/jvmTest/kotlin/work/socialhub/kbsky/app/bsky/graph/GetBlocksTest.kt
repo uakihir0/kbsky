@@ -1,17 +1,15 @@
 package work.socialhub.kbsky.app.bsky.graph
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetBlocksRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class GetBlocksTest : AbstractTest() {
 
     @Test
-    fun testGetBlocks() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+    fun testGetBlocks() = runTest {
+        val response = client()
             .graph()
             .getBlocks(
                 GraphGetBlocksRequest(auth())

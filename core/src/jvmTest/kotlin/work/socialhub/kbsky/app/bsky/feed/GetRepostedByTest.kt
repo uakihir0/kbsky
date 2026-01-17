@@ -1,19 +1,17 @@
 package work.socialhub.kbsky.app.bsky.feed
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class GetRepostedByTest : AbstractTest() {
 
     @Test
-    fun testGetRepostedBy() {
+    fun testGetRepostedBy() = runTest {
         val uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jr7b5svzuc2q"
 
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .feed()
             .getRepostedBy(
                 FeedGetRepostedByRequest(auth()).also {

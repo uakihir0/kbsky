@@ -1,11 +1,14 @@
 package work.socialhub.kbsky.model.app.bsky.actor
 
+
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 /**
  * An individual verification for an associated subject.
  */
 @Serializable
+@JsExport
 data class ActorDefsVerificationView(
     /**
      * The user who issued this verification.

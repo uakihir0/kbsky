@@ -10,6 +10,7 @@ import work.socialhub.kbsky.ATProtocolException
 import work.socialhub.kbsky.NetworkConfig
 import work.socialhub.kbsky.api.entity.share.ErrorResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.util.DateFormatter
 import work.socialhub.kbsky.util.json.AnySerializer
@@ -43,11 +44,11 @@ object _InternalUtility {
         timezone = TimeZone.UTC,
     )
 
-    fun proceedUnit(function: () -> HttpResponse): Response<Unit> {
+    suspend fun proceedUnit(function: suspend () -> HttpResponse): ResponseUnit {
         try {
             val response: HttpResponse = function()
             if (response.status in 200..299) {
-                return Response(Unit, "")
+                return ResponseUnit("")
             }
 
             throw handleError(
@@ -60,7 +61,7 @@ object _InternalUtility {
         }
     }
 
-    inline fun <reified T> proceed(function: () -> HttpResponse): Response<T> {
+    suspend inline fun <reified T> proceed(crossinline function: suspend () -> HttpResponse): Response<T> {
         try {
             val response: HttpResponse = function()
             if (response.status in 200..299) {
@@ -119,6 +120,12 @@ object _InternalUtility {
         }
 
         return ATProtocolException(exception)
+    }
+
+    fun httpRequest(config: ATProtocolConfig): HttpRequest {
+        return HttpRequest().also {
+            it.skipSSLValidation(config.skipSSLValidation)
+        }
     }
 
     suspend fun HttpRequest.getWithAuth(

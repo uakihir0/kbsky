@@ -1,9 +1,12 @@
 package work.socialhub.kbsky.api.entity.share
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class ErrorResponse(
     var message: String = "",
     var error: String,

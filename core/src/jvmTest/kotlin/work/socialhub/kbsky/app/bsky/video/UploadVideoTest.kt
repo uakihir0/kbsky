@@ -1,28 +1,26 @@
 package work.socialhub.kbsky.app.bsky.video
 
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetJobStatusRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoGetUploadLimitsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.video.VideoUploadVideoRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedVideo
 import work.socialhub.kbsky.model.share.Blob
 
 class UploadVideoTest : AbstractTest() {
 
     @Test
-    fun testPostVideoTest() {
+    fun testPostVideoTest() = runTest {
 
         // val stream = javaClass.getResourceAsStream("/video/heavy.mp4")
         val stream = javaClass.getResourceAsStream("/video/light.mp4")
         checkNotNull(stream)
 
         // Upload Video
-        val uploadResponse = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val uploadResponse = client()
             .video()
             .uploadVideo(
                 VideoUploadVideoRequest(
@@ -35,8 +33,7 @@ class UploadVideoTest : AbstractTest() {
         var blob: Blob? = null
         for (i in 0 until 60) {
 
-            val statusResponse = BlueskyFactory
-                .instance(BSKY_SOCIAL.uri)
+            val statusResponse = client()
                 .video()
                 .getJobStatus(
                     VideoGetJobStatusRequest(
@@ -67,8 +64,7 @@ class UploadVideoTest : AbstractTest() {
         video.video = blob
 
         // Post With Video
-        val response2 = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response2 = client()
             .feed()
             .post(
                 FeedPostRequest(auth()).also {
@@ -82,10 +78,9 @@ class UploadVideoTest : AbstractTest() {
 
 
     @Test
-    fun testGetUploadLimit() {
+    fun testGetUploadLimit() = runTest {
 
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+        val response = client()
             .video()
             .getUploadLimits(
                 VideoGetUploadLimitsRequest(auth())

@@ -1,9 +1,8 @@
 package work.socialhub.kbsky.app.bsky.graph
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kbsky.AbstractTest
-import work.socialhub.kbsky.BlueskyFactory
 import work.socialhub.kbsky.api.entity.app.bsky.graph.GraphGetStarterPacksRequest
-import work.socialhub.kbsky.domain.Service.BSKY_SOCIAL
 import kotlin.test.Test
 
 class GetGraphStarterPacksTest : AbstractTest() {
@@ -13,9 +12,8 @@ class GetGraphStarterPacksTest : AbstractTest() {
     )
 
     @Test
-    fun testGetStarterPacks() {
-        val response = BlueskyFactory
-            .instance(BSKY_SOCIAL.uri)
+    fun testGetStarterPacks() = runTest {
+        val response = client()
             .graph()
             .getStarterPacks(
                 GraphGetStarterPacksRequest(auth()).also {

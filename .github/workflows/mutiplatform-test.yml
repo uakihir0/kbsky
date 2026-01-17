@@ -29,7 +29,7 @@ jobs:
       - name: Run get request tests
         shell: bash
         run: |
-          ./gradlew core:${{ matrix.target }} --tests "work.socialhub.kbsky.com.atproto.identity.ResolveHandleTest.testResolveHandle"
+          ./gradlew core:${{ matrix.target }} --tests "work.socialhub.kbsky.com.atproto.identity.ATProtoNativeTest.testResolveHandle"
 
       - name: Upload get test results
         if: always()

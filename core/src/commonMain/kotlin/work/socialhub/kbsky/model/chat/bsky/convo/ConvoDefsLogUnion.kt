@@ -1,8 +1,10 @@
 package work.socialhub.kbsky.model.chat.bsky.convo
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.util.json.ChatConvoDefsLogUnionSerializer
+import kotlin.js.JsExport
 
 /**
  * @see ConvoDefsLogBeginConvo
@@ -14,6 +16,7 @@ import work.socialhub.kbsky.util.json.ChatConvoDefsLogUnionSerializer
  * @see ConvoDefsLogRemoveReaction
  */
 @Serializable(with = ChatConvoDefsLogUnionSerializer::class)
+@JsExport
 abstract class ConvoDefsLogUnion {
     @SerialName("\$type")
     abstract val type: String

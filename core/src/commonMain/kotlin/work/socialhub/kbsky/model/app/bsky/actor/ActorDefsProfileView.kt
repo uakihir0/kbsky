@@ -1,9 +1,12 @@
 package work.socialhub.kbsky.model.app.bsky.actor
 
+
 import kotlinx.serialization.Serializable
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsLabel
+import kotlin.js.JsExport
 
 @Serializable
+@JsExport
 data class ActorDefsProfileView(
     var did: String = "",
     var handle: String = "",
