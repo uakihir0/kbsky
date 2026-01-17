@@ -108,7 +108,7 @@ class _GraphResource(
                 auth = request.auth,
                 repo = request.auth.did,
                 collection = GraphFollow,
-                rkey = request.rkey!!,
+                rkey = request.rkey() ?: throw IllegalArgumentException("rkey is required"),
             )
 
             httpRequest(config)
@@ -258,7 +258,7 @@ class _GraphResource(
                 auth = request.auth,
                 repo = request.auth.did,
                 collection = GraphBlock,
-                rkey = request.rkey!!,
+                rkey = request.rkey() ?: throw IllegalArgumentException("rkey is required"),
             )
 
             httpRequest(config)
@@ -444,7 +444,7 @@ class _GraphResource(
                 auth = request.auth,
                 repo = request.auth.did,
                 collection = GraphListItem,
-                rkey = request.rkey!!,
+                rkey = request.rkey() ?: throw IllegalArgumentException("rkey is required"),
             )
 
             httpRequest(config)

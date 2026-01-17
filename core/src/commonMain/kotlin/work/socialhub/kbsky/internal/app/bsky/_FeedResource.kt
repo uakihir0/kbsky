@@ -428,7 +428,7 @@ class _FeedResource(
                 auth = request.auth,
                 repo = request.auth.did,
                 collection = FeedLike,
-                rkey = request.rkey()!!,
+                rkey = request.rkey() ?: throw IllegalArgumentException("rkey is required"),
             )
 
             httpRequest(config)
@@ -484,7 +484,7 @@ class _FeedResource(
                 auth = request.auth,
                 repo = request.auth.did,
                 collection = FeedPost,
-                rkey = request.rkey()!!,
+                rkey = request.rkey() ?: throw IllegalArgumentException("rkey is required"),
             )
 
             httpRequest(config)
@@ -540,7 +540,7 @@ class _FeedResource(
                 auth = request.auth,
                 repo = request.auth.did,
                 collection = FeedRepost,
-                rkey = request.rkey()!!,
+                rkey = request.rkey() ?: throw IllegalArgumentException("rkey is required"),
             )
 
             httpRequest(config)
