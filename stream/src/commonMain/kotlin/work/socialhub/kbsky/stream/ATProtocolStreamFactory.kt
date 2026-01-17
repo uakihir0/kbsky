@@ -1,7 +1,9 @@
 package work.socialhub.kbsky.stream
 
 import work.socialhub.kbsky.stream.internal.com.atproto._ATProtocolStream
+import kotlin.js.JsExport
 
+@JsExport
 object ATProtocolStreamFactory {
 
     fun instance(

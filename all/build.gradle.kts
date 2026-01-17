@@ -16,8 +16,15 @@ kotlin {
         nodejs()
         browser()
         binaries.library()
+
         compilerOptions {
             generateTypeScriptDefinitions()
+        }
+
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions { target.set("es2015") }
+            }
         }
     }
 

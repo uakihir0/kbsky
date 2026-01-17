@@ -11,7 +11,9 @@ import work.socialhub.kbsky.stream.entity.callback.OpenedCallback
 import work.socialhub.kbsky.stream.entity.com.atproto.callback.SyncEventCallback
 import work.socialhub.kbsky.stream.entity.com.atproto.model.StreamRoot
 import work.socialhub.khttpclient.websocket.WebsocketRequest
+import kotlin.js.JsExport
 
+@JsExport
 class SyncStreamClient(
     val atproto: ATProtocol,
     val uri: String,

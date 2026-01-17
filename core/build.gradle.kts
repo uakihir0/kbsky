@@ -13,6 +13,12 @@ kotlin {
     js(IR) {
         nodejs()
         browser()
+
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions { target.set("es2015") }
+            }
+        }
     }
 
     if (HostManager.hostIsMac) {
