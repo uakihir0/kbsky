@@ -23,7 +23,7 @@ class SyncStreamClient(
     var client = WebsocketRequest()
     var isOpen: Boolean = false
 
-    var eventCallback: SyncEventCallback? = null
+    private var eventCallback: SyncEventCallback? = null
     private var openedCallback: OpenedCallback? = null
     private var closedCallback: ClosedCallback? = null
     private var errorCallback: ErrorCallback? = null
