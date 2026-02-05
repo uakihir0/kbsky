@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.compile.JavaCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 
@@ -10,8 +12,11 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(11)
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 
     js(IR) {
         nodejs()
@@ -87,6 +92,10 @@ tasks.podPublishXCFramework {
             args = listOf(project.projectDir.path + "/../tool/rename_podfile.sh")
         }.standardOutput.asText.get()
     }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.release.set(11)
 }
 
 afterEvaluate {
