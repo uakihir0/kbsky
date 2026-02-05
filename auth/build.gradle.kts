@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.compile.JavaCompile
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.konan.target.HostManager
 
 plugins {
@@ -7,8 +9,11 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(11)
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 
     if (HostManager.hostIsMac) {
         iosX64()
@@ -50,4 +55,8 @@ kotlin {
 
 tasks.named<Test>("jvmTest") {
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.release.set(11)
 }
