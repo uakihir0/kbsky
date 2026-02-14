@@ -41,9 +41,9 @@ open class AbstractTest {
         if (handle == null || password == null) {
             try {
                 // Get account handle and password.
-                readTestProps()?.let {
-                    handle = checkNotNull(it["handle"])
-                    password = checkNotNull(it["password"])
+                readTestProps()?.get("bluesky")?.let {
+                    handle = checkNotNull(it["ATP_HANDLE"])
+                    password = checkNotNull(it["ATP_PASSWORD"])
                 }
             } catch (_: Exception) {
             }
@@ -100,10 +100,10 @@ open class AbstractTest {
     /**
      * Read Test Properties
      */
-    private fun readTestProps(): Map<String, String>? {
+    private fun readTestProps(): Map<String, Map<String, String>>? {
         return try {
             val jsonStr = File("../secrets.json").readText()
-            json.decodeFromString<Map<String, String>>(jsonStr)
+            json.decodeFromString<Map<String, Map<String, String>>>(jsonStr)
         } catch (e: Exception) {
             null
         }
