@@ -11,4 +11,5 @@ oauth.json
 secrets.json
 jwt.txt
 jwt.json
+kotlin-js-store
 /local.properties
