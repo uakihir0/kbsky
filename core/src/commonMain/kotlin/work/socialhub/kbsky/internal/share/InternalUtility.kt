@@ -20,7 +20,7 @@ import work.socialhub.khttpclient.HttpResponse
 /**
  * @author uakihir0
  */
-object _InternalUtility {
+object InternalUtility {
 
     val json = Json {
         explicitNulls = false

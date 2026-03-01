@@ -5,7 +5,7 @@ import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.api.entity.share.RecordRequest
 import work.socialhub.kbsky.auth.AuthProvider
-import work.socialhub.kbsky.internal.share._InternalUtility.toJson
+import work.socialhub.kbsky.internal.share.InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.feed.FeedRepost
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import kotlin.js.JsExport

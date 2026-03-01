@@ -1,11 +1,11 @@
 package work.socialhub.kbsky.auth
 
-import work.socialhub.kbsky.auth.internal._Auth
+import work.socialhub.kbsky.auth.internal.AuthImpl
 
 object AuthFactory {
 
     fun instance(config: AuthConfig): Auth {
-        return _Auth(config)
+        return AuthImpl(config)
     }
 
     fun instance(pdsUri: String): Auth {

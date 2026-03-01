@@ -1,6 +1,6 @@
 package work.socialhub.kbsky.stream
 
-import work.socialhub.kbsky.stream.internal.com.atproto._ATProtocolStream
+import work.socialhub.kbsky.stream.internal.com.atproto.ATProtocolStreamImpl
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -12,7 +12,7 @@ object ATProtocolStreamFactory {
         pdsUri: String,
         firehoseUri: String,
     ): ATProtocolStream {
-        return _ATProtocolStream(
+        return ATProtocolStreamImpl(
             ATProtocolStreamConfig().also {
                 it.pdsUri = pdsUri
                 it.firehoseUri = firehoseUri
@@ -23,6 +23,6 @@ object ATProtocolStreamFactory {
     fun instance(
         config: ATProtocolStreamConfig = ATProtocolStreamConfig(),
     ): ATProtocolStream {
-        return _ATProtocolStream(config)
+        return ATProtocolStreamImpl(config)
     }
 }

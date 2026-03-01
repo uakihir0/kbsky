@@ -1,7 +1,7 @@
 package work.socialhub.kbsky
 
 
-import work.socialhub.kbsky.internal._PLCDirectory
+import work.socialhub.kbsky.internal.PLCDirectoryImpl
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -9,11 +9,11 @@ import kotlin.js.JsName
 object PLCDirectoryFactory {
     @JsName("instance")
     fun instance(): PLCDirectory {
-        return _PLCDirectory("https://plc.directory/")
+        return PLCDirectoryImpl("https://plc.directory/")
     }
 
     @JsName("instanceFromUri")
     fun instance(uri: String): PLCDirectory {
-        return _PLCDirectory(uri)
+        return PLCDirectoryImpl(uri)
     }
 }

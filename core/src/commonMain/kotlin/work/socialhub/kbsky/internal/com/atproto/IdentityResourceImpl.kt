@@ -6,13 +6,13 @@ import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleRequest
 import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleResponse
 import work.socialhub.kbsky.api.entity.share.Response
-import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
+import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 
-class _IdentityResource(
+class IdentityResourceImpl(
     private val config: ATProtocolConfig
 ) : IdentityResource {
 

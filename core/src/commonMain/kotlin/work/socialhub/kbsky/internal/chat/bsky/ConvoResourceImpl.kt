@@ -31,15 +31,15 @@ import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUpdateReadResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.AuthProvider
-import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
-import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
-import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.internal.share.InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
+import work.socialhub.kbsky.internal.share.InternalUtility.postWithAuth
+import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 
-class _ConvoResource(
+class ConvoResourceImpl(
     private val config: ATProtocolConfig
 ) : ConvoResource {
 

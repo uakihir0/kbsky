@@ -1,7 +1,7 @@
 package work.socialhub.kbsky.api.entity.share
 
 
-import work.socialhub.kbsky.internal.share._InternalUtility
+import work.socialhub.kbsky.internal.share.InternalUtility
 import kotlin.js.JsExport
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -14,6 +14,6 @@ interface RecordRequest {
     @JsExport.Ignore
 
     fun createdAt(): String {
-        return createdAt ?: _InternalUtility.dateFormat.format(Clock.System.now())
+        return createdAt ?: InternalUtility.dateFormat.format(Clock.System.now())
     }
 }

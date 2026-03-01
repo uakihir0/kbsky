@@ -9,7 +9,7 @@ import work.socialhub.kbsky.stream.api.app.bsky.JetStreamResource
 import work.socialhub.kbsky.stream.api.entity.app.bsky.JetStreamSubscribeRequest
 import work.socialhub.kbsky.stream.entity.app.bsky.JetStreamClient
 
-class _JetStreamResource(
+class JetStreamResourceImpl(
     private val bluesky: Bluesky,
     private val config: BlueskyStreamConfig
 ) : JetStreamResource {
