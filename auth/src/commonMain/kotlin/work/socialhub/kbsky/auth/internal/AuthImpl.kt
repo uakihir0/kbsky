@@ -5,12 +5,12 @@ import work.socialhub.kbsky.auth.AuthConfig
 import work.socialhub.kbsky.auth.api.OAuthResource
 import work.socialhub.kbsky.auth.api.WellKnownResource
 
-class _Auth(
+class AuthImpl(
     val config: AuthConfig
 ) : Auth {
 
-    var wellKnown: WellKnownResource = _WellKnownResource(config)
-    var oauth: OAuthResource = _OAuthResource(config)
+    var wellKnown: WellKnownResource = WellKnownResourceImpl(config)
+    var oauth: OAuthResource = OAuthResourceImpl(config)
 
     override fun wellKnown() = wellKnown
     override fun oauth() = oauth

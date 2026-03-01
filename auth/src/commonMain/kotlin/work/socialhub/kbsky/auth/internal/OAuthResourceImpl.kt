@@ -21,8 +21,8 @@ import work.socialhub.kbsky.auth.helper.OAuthHelper
 import work.socialhub.kbsky.auth.helper.OAuthHelper.extractDPoPNonce
 import work.socialhub.kbsky.auth.helper.OAuthHelper.makeClientAssertion
 import work.socialhub.kbsky.auth.helper.RandomHelper
-import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.internal.share._InternalUtility.setTimeouts
+import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.setTimeouts
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 import work.socialhub.khttpclient.HttpRequest
@@ -30,7 +30,7 @@ import work.socialhub.khttpclient.HttpResponse
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-class _OAuthResource(
+class OAuthResourceImpl(
     private val config: AuthConfig
 ) : OAuthResource {
 

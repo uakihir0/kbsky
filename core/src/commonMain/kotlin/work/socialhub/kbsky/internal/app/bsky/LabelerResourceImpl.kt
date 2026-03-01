@@ -6,14 +6,14 @@ import work.socialhub.kbsky.api.app.bsky.LabelerResource
 import work.socialhub.kbsky.api.entity.app.bsky.labeler.LabelerGetServicesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.labeler.LabelerGetServicesResponse
 import work.socialhub.kbsky.api.entity.share.Response
-import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
-import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.internal.share.InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
+import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 
-class _LabelerResource(
+class LabelerResourceImpl(
     private val config: BlueskyConfig
 ) : LabelerResource {
 

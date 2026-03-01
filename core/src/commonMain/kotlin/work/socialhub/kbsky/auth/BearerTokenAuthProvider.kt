@@ -1,7 +1,7 @@
 package work.socialhub.kbsky.auth
 
 import kotlinx.serialization.Serializable
-import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
+import work.socialhub.kbsky.internal.share.InternalUtility.fromJson
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 import kotlin.io.encoding.Base64

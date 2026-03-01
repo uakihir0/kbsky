@@ -1,14 +1,14 @@
 package work.socialhub.kbsky.stream
 
 import io.ktor.http.Url
-import work.socialhub.kbsky.stream.internal.app.bsky._BlueskyStream
+import work.socialhub.kbsky.stream.internal.app.bsky.BlueskyStreamImpl
 
 object BlueskyStreamFactory {
 
     fun instance(
         jetStreamUri: String,
     ): BlueskyStream {
-        return _BlueskyStream(
+        return BlueskyStreamImpl(
             BlueskyStreamConfig().also {
                 it.jetStreamHost = Url(jetStreamUri).host
             })
@@ -17,6 +17,6 @@ object BlueskyStreamFactory {
     fun instance(
         config: BlueskyStreamConfig = BlueskyStreamConfig(),
     ): BlueskyStream {
-        return _BlueskyStream(config)
+        return BlueskyStreamImpl(config)
     }
 }

@@ -4,7 +4,7 @@ package work.socialhub.kbsky.api.entity.app.bsky.notification
 import work.socialhub.kbsky.api.entity.share.AuthRequest
 import work.socialhub.kbsky.api.entity.share.MapRequest
 import work.socialhub.kbsky.auth.AuthProvider
-import work.socialhub.kbsky.internal.share._InternalUtility
+import work.socialhub.kbsky.internal.share.InternalUtility
 import kotlin.js.JsExport
 import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
@@ -25,6 +25,6 @@ data class NotificationUpdateSeenRequest(
     @JsExport.Ignore
 
     fun seenAt(): String {
-        return seenAt ?: _InternalUtility.dateFormat.format(Clock.System.now())
+        return seenAt ?: InternalUtility.dateFormat.format(Clock.System.now())
     }
 }

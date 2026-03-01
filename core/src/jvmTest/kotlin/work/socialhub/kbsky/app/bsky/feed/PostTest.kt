@@ -6,7 +6,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedDeletePostRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedPostRequest
 import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandleRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.toJson
+import work.socialhub.kbsky.internal.share.InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedDefsAspectRatio
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesImage

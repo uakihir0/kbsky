@@ -18,15 +18,15 @@ import work.socialhub.kbsky.api.entity.com.atproto.server.ServerGetServiceAuthRe
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.auth.AuthProvider
 import work.socialhub.kbsky.auth.BearerTokenAuthProvider
-import work.socialhub.kbsky.internal.com.atproto._ServerResource
-import work.socialhub.kbsky.internal.share._InternalUtility.fromJson
-import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.internal.com.atproto.ServerResourceImpl
+import work.socialhub.kbsky.internal.share.InternalUtility.fromJson
+import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
+import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 
-class _VideoResource(
+class VideoResourceImpl(
     private val config: BlueskyConfig
 ) : VideoResource {
 
@@ -139,7 +139,7 @@ class _VideoResource(
     ): String {
 
         val videoTokenResponse =
-            _ServerResource(config)
+            ServerResourceImpl(config)
                 .getServiceAuth(
                     ServerGetServiceAuthRequest(
                         auth = auth,

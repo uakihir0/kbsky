@@ -6,14 +6,14 @@ import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularRequest
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularResponse
 import work.socialhub.kbsky.api.entity.share.Response
-import work.socialhub.kbsky.internal.share._InternalUtility.getWithAuth
-import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.internal.share.InternalUtility.getWithAuth
+import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
+import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 
-class _UnspeccedResource(
+class UnspeccedResourceImpl(
     private val config: BlueskyConfig
 ) : UnspeccedResource {
 

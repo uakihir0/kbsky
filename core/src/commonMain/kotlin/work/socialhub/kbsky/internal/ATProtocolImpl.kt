@@ -6,19 +6,19 @@ import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.com.atproto.ModerationResource
 import work.socialhub.kbsky.api.com.atproto.RepoResource
 import work.socialhub.kbsky.api.com.atproto.ServerResource
-import work.socialhub.kbsky.internal.com.atproto._IdentityResource
-import work.socialhub.kbsky.internal.com.atproto._ModerationResource
-import work.socialhub.kbsky.internal.com.atproto._RepoResource
-import work.socialhub.kbsky.internal.com.atproto._ServerResource
+import work.socialhub.kbsky.internal.com.atproto.IdentityResourceImpl
+import work.socialhub.kbsky.internal.com.atproto.ModerationResourceImpl
+import work.socialhub.kbsky.internal.com.atproto.RepoResourceImpl
+import work.socialhub.kbsky.internal.com.atproto.ServerResourceImpl
 
-open class _ATProtocol(
+open class ATProtocolImpl(
     config: ATProtocolConfig
 ) : ATProtocol {
 
-    protected val identity: IdentityResource = _IdentityResource(config)
-    protected val server: ServerResource = _ServerResource(config)
-    protected val repo: RepoResource = _RepoResource(config)
-    protected val moderation: ModerationResource = _ModerationResource(config)
+    protected val identity: IdentityResource = IdentityResourceImpl(config)
+    protected val server: ServerResource = ServerResourceImpl(config)
+    protected val repo: RepoResource = RepoResourceImpl(config)
+    protected val moderation: ModerationResource = ModerationResourceImpl(config)
 
     /**
      * {@inheritDoc}

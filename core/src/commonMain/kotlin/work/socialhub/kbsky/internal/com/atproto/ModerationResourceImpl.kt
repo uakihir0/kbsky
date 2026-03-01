@@ -6,14 +6,14 @@ import work.socialhub.kbsky.api.com.atproto.ModerationResource
 import work.socialhub.kbsky.api.entity.com.atproto.moderation.ModerationCreateReportRequest
 import work.socialhub.kbsky.api.entity.com.atproto.moderation.ModerationCreateReportResponse
 import work.socialhub.kbsky.api.entity.share.Response
-import work.socialhub.kbsky.internal.share._InternalUtility.httpRequest
-import work.socialhub.kbsky.internal.share._InternalUtility.postWithAuth
-import work.socialhub.kbsky.internal.share._InternalUtility.proceed
-import work.socialhub.kbsky.internal.share._InternalUtility.xrpc
+import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
+import work.socialhub.kbsky.internal.share.InternalUtility.postWithAuth
+import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 
-class _ModerationResource(
+class ModerationResourceImpl(
     private val config: ATProtocolConfig
 ) : ModerationResource {
 

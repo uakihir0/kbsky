@@ -10,27 +10,27 @@ import work.socialhub.kbsky.api.app.bsky.NotificationResource
 import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
 import work.socialhub.kbsky.api.app.bsky.VideoResource
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
-import work.socialhub.kbsky.internal.app.bsky._ActorResource
-import work.socialhub.kbsky.internal.app.bsky._FeedResource
-import work.socialhub.kbsky.internal.app.bsky._GraphResource
-import work.socialhub.kbsky.internal.app.bsky._LabelerResource
-import work.socialhub.kbsky.internal.app.bsky._NotificationResource
-import work.socialhub.kbsky.internal.app.bsky._UnspeccedResource
-import work.socialhub.kbsky.internal.app.bsky._VideoResource
-import work.socialhub.kbsky.internal.chat.bsky._ConvoResource
+import work.socialhub.kbsky.internal.app.bsky.ActorResourceImpl
+import work.socialhub.kbsky.internal.app.bsky.FeedResourceImpl
+import work.socialhub.kbsky.internal.app.bsky.GraphResourceImpl
+import work.socialhub.kbsky.internal.app.bsky.LabelerResourceImpl
+import work.socialhub.kbsky.internal.app.bsky.NotificationResourceImpl
+import work.socialhub.kbsky.internal.app.bsky.UnspeccedResourceImpl
+import work.socialhub.kbsky.internal.app.bsky.VideoResourceImpl
+import work.socialhub.kbsky.internal.chat.bsky.ConvoResourceImpl
 
-class _Bluesky(
+class BlueskyImpl(
     config: BlueskyConfig
-) : _ATProtocol(config), Bluesky {
+) : ATProtocolImpl(config), Bluesky {
 
-    protected val actor: ActorResource = _ActorResource(config)
-    protected val feed: FeedResource = _FeedResource(config)
-    protected val graph: GraphResource = _GraphResource(config)
-    protected val labeler: LabelerResource = _LabelerResource(config)
-    protected val notification: NotificationResource = _NotificationResource(config)
-    protected val undoc: UnspeccedResource = _UnspeccedResource(config)
-    protected val video: VideoResource = _VideoResource(config)
-    protected val convo: ConvoResource = _ConvoResource(config)
+    protected val actor: ActorResource = ActorResourceImpl(config)
+    protected val feed: FeedResource = FeedResourceImpl(config)
+    protected val graph: GraphResource = GraphResourceImpl(config)
+    protected val labeler: LabelerResource = LabelerResourceImpl(config)
+    protected val notification: NotificationResource = NotificationResourceImpl(config)
+    protected val undoc: UnspeccedResource = UnspeccedResourceImpl(config)
+    protected val video: VideoResource = VideoResourceImpl(config)
+    protected val convo: ConvoResource = ConvoResourceImpl(config)
 
     /**
      * {@inheritDoc}

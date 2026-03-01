@@ -3,7 +3,7 @@ package work.socialhub.kbsky.stream.entity.app.bsky
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import work.socialhub.kbsky.internal.share._InternalUtility
+import work.socialhub.kbsky.internal.share.InternalUtility
 import work.socialhub.kbsky.stream.entity.app.bsky.callback.JetStreamEventCallback
 import work.socialhub.kbsky.stream.entity.app.bsky.model.Event
 import work.socialhub.kbsky.stream.entity.callback.ClosedCallback
@@ -63,7 +63,7 @@ class JetStreamClient(
     private fun onMessage(text: String) {
         try {
             eventCallback?.let {
-                val event = _InternalUtility.fromJson<Event>(text)
+                val event = InternalUtility.fromJson<Event>(text)
                 it.onEvent(event)
             }
         } catch (e: Exception) {
