@@ -25,6 +25,8 @@ data class FeedPost(
     var via: String? = null,
     @SerialName("uk.skyblur.post.uri")
     var skyblurPostUri: String? = null,
+    var bridgyOriginalText: String? = null,
+    var bridgyOriginalUrl: String? = null,
 ) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.FeedPost
