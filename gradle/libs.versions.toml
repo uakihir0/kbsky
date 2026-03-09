@@ -7,7 +7,7 @@ coroutines = "1.10.2"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.8"
-ktor-core = "io.ktor:ktor-client-core:3.4.0"
+ktor-core = "io.ktor:ktor-client-core:3.4.1"
 datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1-0.6.x-compat"
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
