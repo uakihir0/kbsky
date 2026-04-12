@@ -19,6 +19,11 @@ data class EmbedRecordViewRecord(
     var author: ActorDefsProfileViewBasic? = null,
     var value: RecordUnion? = null,
     var labels: List<LabelDefsLabel>? = null,
+    var replyCount: Int? = null,
+    var repostCount: Int? = null,
+    var likeCount: Int? = null,
+    var bookmarkCount: Int? = null,
+    var quoteCount: Int? = null,
     var embeds: List<EmbedViewUnion>? = null,
     var indexedAt: String? = null,
 ) : EmbedRecordViewUnion() {
