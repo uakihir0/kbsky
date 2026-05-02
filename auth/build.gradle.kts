@@ -46,6 +46,7 @@ kotlin {
         // for test (kotlin/jvm)
         jvmTest.dependencies {
             implementation(kotlin("test"))
+            implementation(libs.coroutines.test)
             implementation(libs.cryptography.jdk)
             implementation(libs.slf4j.simple)
         }
