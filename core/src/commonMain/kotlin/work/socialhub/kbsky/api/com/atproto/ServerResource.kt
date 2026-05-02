@@ -34,6 +34,7 @@ interface ServerResource {
     /**
      * Create an authentication session.
      */
+    @JsExport.Ignore
     suspend fun createSession(
         request: ServerCreateSessionRequest
     ): Response<ServerCreateSessionResponse>
@@ -52,6 +53,7 @@ interface ServerResource {
     /**
      * Delete the current session.
      */
+    @JsExport.Ignore
     suspend fun deleteSession(
         request: AuthRequest
     ): ResponseUnit
@@ -71,6 +73,7 @@ interface ServerResource {
      *
      * [Reference](https://github.com/bluesky-social/atproto/blob/main/lexicons/com/atproto/server/getServiceAuth.json)
      */
+    @JsExport.Ignore
     suspend fun getServiceAuth(
         request: ServerGetServiceAuthRequest
     ): Response<ServerGetServiceAuthResponse>
@@ -84,6 +87,7 @@ interface ServerResource {
      * TODO:
      * Get information about the current session.
      */
+    @JsExport.Ignore
     suspend fun getSession(
         request: AuthRequest
     ): Response<ServerGetSessionResponse>
@@ -96,6 +100,7 @@ interface ServerResource {
     /**
      * Refresh an authentication session.
      */
+    @JsExport.Ignore
     suspend fun refreshSession(
         request: AuthRequest
     ): Response<ServerRefreshSessionResponse>

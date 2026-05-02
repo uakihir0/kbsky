@@ -13,6 +13,7 @@ interface UnspeccedResource {
     /**
      * DEPRECATED: will be removed soon. Use a feed generator alternative.
      */
+    @JsExport.Ignore
     suspend fun getPopular(
         request: UnspeccedGetPopularRequest
     ): Response<UnspeccedGetPopularResponse>

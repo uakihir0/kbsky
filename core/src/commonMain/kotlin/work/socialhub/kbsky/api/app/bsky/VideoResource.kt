@@ -19,6 +19,7 @@ interface VideoResource {
     /**
      * Get status details for a video processing job.
      */
+    @JsExport.Ignore
     suspend fun getJobStatus(
         request: VideoGetJobStatusRequest
     ): Response<VideoGetJobStatusResponse>
@@ -31,6 +32,7 @@ interface VideoResource {
     /**
      * Get video upload limits for the authenticated user.
      */
+    @JsExport.Ignore
     suspend fun getUploadLimits(
         request: VideoGetUploadLimitsRequest
     ): Response<VideoGetUploadLimitsResponse>
@@ -43,6 +45,7 @@ interface VideoResource {
     /**
      * Upload a video to be processed then stored on the PDS.
      */
+    @JsExport.Ignore
     suspend fun uploadVideo(
         request: VideoUploadVideoRequest
     ): Response<VideoUploadVideoResponse>

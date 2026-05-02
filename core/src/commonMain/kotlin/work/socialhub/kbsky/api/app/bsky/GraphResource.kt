@@ -50,6 +50,7 @@ interface GraphResource {
      * Follow operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun follow(
         request: GraphFollowRequest
     ): Response<GraphFollowResponse>
@@ -63,6 +64,7 @@ interface GraphResource {
      * Delete Follow operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun deleteFollow(
         request: GraphDeleteFollowRequest
     ): ResponseUnit
@@ -75,6 +77,7 @@ interface GraphResource {
     /**
      * Who is following an actor?
      */
+    @JsExport.Ignore
     suspend fun getFollowers(
         request: GraphGetFollowersRequest
     ): Response<GraphGetFollowersResponse>
@@ -87,6 +90,7 @@ interface GraphResource {
     /**
      * Who is an actor following?
      */
+    @JsExport.Ignore
     suspend fun getFollows(
         request: GraphGetFollowsRequest
     ): Response<GraphGetFollowsResponse>
@@ -99,6 +103,7 @@ interface GraphResource {
     /**
      * Enumerates accounts which follow a specified account (actor) and are followed by the viewer.
      */
+    @JsExport.Ignore
     suspend fun getKnownFollowers(
         request: GraphGetKnownFollowersRequest
     ): Response<GraphGetKnownFollowersResponse>
@@ -111,6 +116,7 @@ interface GraphResource {
     /**
      * Who does the viewer mute?
      */
+    @JsExport.Ignore
     suspend fun getMutes(
         request: GraphGetMutesRequest
     ): Response<GraphGetMutesResponse>
@@ -123,6 +129,7 @@ interface GraphResource {
     /**
      * Mute an actor by did or handle.
      */
+    @JsExport.Ignore
     suspend fun muteActor(
         request: GraphMuteActorRequest
     ): ResponseUnit
@@ -135,6 +142,7 @@ interface GraphResource {
     /**
      * Unmute an actor by did or handle.
      */
+    @JsExport.Ignore
     suspend fun unmuteActor(
         request: GraphUnmuteActorRequest
     ): ResponseUnit
@@ -148,6 +156,7 @@ interface GraphResource {
      * Block operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun block(
         request: GraphBlockRequest
     ): Response<GraphBlockResponse>
@@ -161,6 +170,7 @@ interface GraphResource {
      * Delete Block operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun deleteBlock(
         request: GraphDeleteBlockRequest
     ): ResponseUnit
@@ -173,6 +183,7 @@ interface GraphResource {
     /**
      * Who does the viewer mute?
      */
+    @JsExport.Ignore
     suspend fun getBlocks(
         request: GraphGetBlocksRequest
     ): Response<GraphGetBlocksResponse>
@@ -186,6 +197,7 @@ interface GraphResource {
      * Create a list.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun createList(
         request: GraphCreateListRequest
     ): Response<GraphCreateListResponse>
@@ -199,6 +211,7 @@ interface GraphResource {
      * Edit a list.
      * (ATProtocol/Repo getRecord and putRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun editList(
         request: GraphEditListRequest
     ): Response<GraphEditListResponse>
@@ -212,6 +225,7 @@ interface GraphResource {
      * Delete a list.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun deleteList(
         request: GraphDeleteListRequest
     ): ResponseUnit
@@ -224,6 +238,7 @@ interface GraphResource {
     /**
      * Gets a 'view' (with additional context) of a specified list.
      */
+    @JsExport.Ignore
     suspend fun getList(
         request: GraphGetListRequest
     ): Response<GraphGetListResponse>
@@ -236,6 +251,7 @@ interface GraphResource {
     /**
      * Enumerates the lists created by a specified account (actor).
      */
+    @JsExport.Ignore
     suspend fun getLists(
         request: GraphGetListsRequest
     ): Response<GraphGetListsResponse>
@@ -249,6 +265,7 @@ interface GraphResource {
      * Add a user to a list.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun addUserToList(
         request: GraphAddUserToListRequest
     ): Response<GraphAddUserToListResponse>
@@ -262,6 +279,7 @@ interface GraphResource {
      * Remove a user from a list.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun removeUserFromList(
         request: GraphRemoveUserFromListRequest
     ): ResponseUnit
@@ -274,6 +292,7 @@ interface GraphResource {
     /**
      * Gets a view of a starter pack.
      */
+    @JsExport.Ignore
     suspend fun getStarterPack(
         request: GraphGetStarterPackRequest
     ): Response<GraphGetStarterPackResponse>
@@ -286,6 +305,7 @@ interface GraphResource {
     /**
      * Gets a view of a starter pack.
      */
+    @JsExport.Ignore
     suspend fun getStarterPacks(
         request: GraphGetStarterPacksRequest
     ): Response<GraphGetStarterPacksResponse>

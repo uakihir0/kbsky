@@ -21,6 +21,7 @@ interface NotificationResource {
     /**
      * Get the number of unread notifications.
      */
+    @JsExport.Ignore
     suspend fun getUnreadCount(
         request: NotificationGetUnreadCountRequest
     ): Response<NotificationGetUnreadCountResponse>
@@ -33,6 +34,7 @@ interface NotificationResource {
     /**
      * List notifications.
      */
+    @JsExport.Ignore
     suspend fun listNotifications(
         request: NotificationListNotificationsRequest
     ): Response<NotificationListNotificationsResponse>
@@ -45,6 +47,7 @@ interface NotificationResource {
     /**
      * Notify server that the user has seen notifications.
      */
+    @JsExport.Ignore
     suspend fun updateSeen(
         request: NotificationUpdateSeenRequest
     ): ResponseUnit

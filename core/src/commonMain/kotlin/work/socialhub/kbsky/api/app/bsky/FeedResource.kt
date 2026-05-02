@@ -60,6 +60,7 @@ interface FeedResource {
     /**
      * A view of a user's feed.
      */
+    @JsExport.Ignore
     suspend fun getAuthorFeed(
         request: FeedGetAuthorFeedRequest
     ): Response<FeedGetAuthorFeedResponse>
@@ -72,6 +73,7 @@ interface FeedResource {
     /**
      *
      */
+    @JsExport.Ignore
     suspend fun getLikes(
         request: FeedGetLikesRequest
     ): Response<FeedGetLikesResponse>
@@ -84,6 +86,7 @@ interface FeedResource {
     /**
      *
      */
+    @JsExport.Ignore
     suspend fun getPostThread(
         request: FeedGetPostThreadRequest
     ): Response<FeedGetPostThreadResponse>
@@ -96,6 +99,7 @@ interface FeedResource {
     /**
      * A view of an actor's feed.
      */
+    @JsExport.Ignore
     suspend fun getPosts(
         request: FeedGetPostsRequest
     ): Response<FeedGetPostsResponse>
@@ -108,6 +112,7 @@ interface FeedResource {
     /**
      * Get a list of quotes for a given post.
      */
+    @JsExport.Ignore
     suspend fun getQuotes(
         request: FeedGetQuotesRequest
     ): Response<FeedGetQuotesResponse>
@@ -120,6 +125,7 @@ interface FeedResource {
     /**
      * Get a list of reposts for a given post.
      */
+    @JsExport.Ignore
     suspend fun getRepostedBy(
         request: FeedGetRepostedByRequest
     ): Response<FeedGetRepostedByResponse>
@@ -132,6 +138,7 @@ interface FeedResource {
     /**
      * A view of the user's home timeline.
      */
+    @JsExport.Ignore
     suspend fun getTimeline(
         request: FeedGetTimelineRequest
     ): Response<FeedGetTimelineResponse>
@@ -144,6 +151,7 @@ interface FeedResource {
     /**
      * Compose and hydrate a feed from a user's selected feed generator.
      */
+    @JsExport.Ignore
     suspend fun getFeed(
         request: FeedGetFeedRequest
     ): Response<FeedGetFeedResponse>
@@ -156,6 +164,7 @@ interface FeedResource {
     /**
      * Get a feed of recent posts from a list (posts and reposts from any actors on the list). Does not require auth.
      */
+    @JsExport.Ignore
     suspend fun getListFeed(
         request: FeedGetListFeedRequest
     ): Response<FeedGetListFeedResponse>
@@ -168,6 +177,7 @@ interface FeedResource {
     /**
      * Retrieve a list of feeds created by a given actor
      */
+    @JsExport.Ignore
     suspend fun getActorFeeds(
         request: FeedGetActorFeedsRequest
     ): Response<FeedGetActorFeedsResponse>
@@ -180,6 +190,7 @@ interface FeedResource {
     /**
      * Get a list of posts liked by an actor.
      */
+    @JsExport.Ignore
     suspend fun getActorLikes(
         request: FeedGetActorLikesRequest
     ): Response<FeedGetActorLikesResponse>
@@ -192,6 +203,7 @@ interface FeedResource {
     /**
      * Find posts matching search criteria.
      */
+    @JsExport.Ignore
     suspend fun searchPosts(
         request: FeedSearchPostsRequest
     ): Response<FeedSearchPostsResponse>
@@ -204,6 +216,7 @@ interface FeedResource {
     /**
      * Get information about a specific feed offered by a feed generator, such as its online status.
      */
+    @JsExport.Ignore
     suspend fun getFeedGenerator(
         request: FeedGetFeedGeneratorRequest
     ): Response<FeedGetFeedGeneratorResponse>
@@ -216,6 +229,7 @@ interface FeedResource {
     /**
      * Get information about a list of feed generators.
      */
+    @JsExport.Ignore
     suspend fun getFeedGenerators(
         request: FeedGetFeedGeneratorsRequest
     ): Response<FeedGetFeedGeneratorsResponse>
@@ -229,6 +243,7 @@ interface FeedResource {
      * Like feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun like(
         request: FeedLikeRequest
     ): Response<FeedLikeResponse>
@@ -242,6 +257,7 @@ interface FeedResource {
      * Delete Like operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun deleteLike(
         request: FeedDeleteLikeRequest
     ): ResponseUnit
@@ -255,6 +271,7 @@ interface FeedResource {
      * Post feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun post(
         request: FeedPostRequest
     ): Response<FeedPostResponse>
@@ -268,6 +285,7 @@ interface FeedResource {
      * Delete Feed operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun deletePost(
         request: FeedDeletePostRequest
     ): ResponseUnit
@@ -281,6 +299,7 @@ interface FeedResource {
      * Repost feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun repost(
         request: FeedRepostRequest
     ): Response<FeedRepostResponse>
@@ -294,6 +313,7 @@ interface FeedResource {
      * Delete Repost operation.
      * (ATProtocol/Repo deleteRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun deleteRepost(
         request: FeedDeleteRepostRequest
     ): ResponseUnit
@@ -307,6 +327,7 @@ interface FeedResource {
      * Threadgate feed operation.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun threadgate(
         request: FeedThreadgateRequest
     ): Response<FeedThreadgateResponse>
@@ -320,6 +341,7 @@ interface FeedResource {
      * Record defining interaction rules for a post.
      * (ATProtocol/Repo createRecord wrapper)
      */
+    @JsExport.Ignore
     suspend fun postgate(
         request: FeedPostgateRequest
     ): Response<FeedPostgateResponse>
@@ -332,6 +354,7 @@ interface FeedResource {
     /**
      * Creates a private bookmark for the specified record.
      */
+    @JsExport.Ignore
     suspend fun createBookmark(
         request: FeedCreateBookmarkRequest
     ): ResponseUnit
@@ -344,6 +367,7 @@ interface FeedResource {
     /**
      * Deletes a private bookmark for the specified record.
      */
+    @JsExport.Ignore
     suspend fun deleteBookmark(
         request: FeedDeleteBookmarkRequest
     ): ResponseUnit
@@ -356,6 +380,7 @@ interface FeedResource {
     /**
      * Gets views of records bookmarked by the authenticated user.
      */
+    @JsExport.Ignore
     suspend fun getBookmarks(
         request: FeedGetBookmarksRequest
     ): Response<FeedGetBookmarksResponse>

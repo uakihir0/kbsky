@@ -22,6 +22,7 @@ interface ActorResource {
     /**
      * Find actors matching search criteria.
      */
+    @JsExport.Ignore
     suspend fun searchActors(
         request: ActorSearchActorsRequest
     ): Response<ActorSearchActorsResponse>
@@ -34,6 +35,7 @@ interface ActorResource {
     /**
      * Find actor suggestions for a prefix search term.
      */
+    @JsExport.Ignore
     suspend fun searchActorsTypeahead(
         request: ActorSearchActorsTypeaheadRequest
     ): Response<ActorSearchActorsTypeaheadResponse>
@@ -46,6 +48,7 @@ interface ActorResource {
     /**
      * Get detailed profile view of an actor.
      */
+    @JsExport.Ignore
     suspend fun getProfile(
         request: ActorGetProfileRequest
     ): Response<ActorGetProfileResponse>
@@ -58,6 +61,7 @@ interface ActorResource {
     /**
      * Update the profile of the actor.
      */
+    @JsExport.Ignore
     suspend fun updateProfile(
         request: ActorUpdateProfileRequest
     ): Response<ActorUpdateProfileResponse>
@@ -70,6 +74,7 @@ interface ActorResource {
     /**
      * Get detailed profile views of multiple actors.
      */
+    @JsExport.Ignore
     suspend fun getProfiles(
         request: ActorGetProfilesRequest
     ): Response<ActorGetProfilesResponse>
@@ -82,6 +87,7 @@ interface ActorResource {
     /**
      * Get private preferences attached to the account.
      */
+    @JsExport.Ignore
     suspend fun getPreferences(
         request: ActorGetPreferencesRequest
     ): Response<ActorGetPreferencesResponse>

@@ -16,6 +16,7 @@ interface LabelerResource {
     /**
      * Get information about a list of labeler services.
      */
+    @JsExport.Ignore
     suspend fun getServices(
         request: LabelerGetServicesRequest
     ): Response<LabelerGetServicesResponse>

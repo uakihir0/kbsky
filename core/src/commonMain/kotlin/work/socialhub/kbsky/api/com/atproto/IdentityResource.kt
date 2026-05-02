@@ -16,6 +16,7 @@ interface IdentityResource {
     /**
      * Provides the DID of a repo.
      */
+    @JsExport.Ignore
     suspend fun resolveHandle(
         request: IdentityResolveHandleRequest
     ): Response<IdentityResolveHandleResponse>

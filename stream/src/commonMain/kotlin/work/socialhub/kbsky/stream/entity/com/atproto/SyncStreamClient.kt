@@ -48,6 +48,7 @@ class SyncStreamClient(
         }
     }
 
+    @JsExport.Ignore
     suspend fun open() {
         client.open()
     }

@@ -9,11 +9,13 @@ import kotlin.js.JsExport
 @JsExport
 interface PLCDirectory {
 
+    @JsExport.Ignore
     suspend fun DIDDetails(did: String): Response<DIDDetails>
 
     @JsExport.Ignore
     fun DIDDetailsBlocking(did: String): Response<DIDDetails>
 
+    @JsExport.Ignore
     suspend fun DIDLogs(did: String): Response<List<DIDLog>>
 
     @JsExport.Ignore

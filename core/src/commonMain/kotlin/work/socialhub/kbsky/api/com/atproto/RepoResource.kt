@@ -34,6 +34,7 @@ interface RepoResource {
     /**
      * Create a new record.
      */
+    @JsExport.Ignore
     suspend fun createRecord(
         request: RepoCreateRecordRequest
     ): Response<RepoCreateRecordResponse>
@@ -46,6 +47,7 @@ interface RepoResource {
     /**
      * Delete a record, or ensure it doesn't exist.
      */
+    @JsExport.Ignore
     suspend fun deleteRecord(
         request: RepoDeleteRecordRequest
     ): ResponseUnit
@@ -58,6 +60,7 @@ interface RepoResource {
     /**
      * Get information about an account and repository, including the list of collections. Does not require auth.
      */
+    @JsExport.Ignore
     suspend fun describeRepo(
         request: RepoDescribeRepoRequest
     ): Response<RepoDescribeRepoResponse>
@@ -70,6 +73,7 @@ interface RepoResource {
     /**
      * Get a record.
      */
+    @JsExport.Ignore
     suspend fun getRecord(
         request: RepoGetRecordRequest
     ): Response<RepoGetRecordResponse>
@@ -82,6 +86,7 @@ interface RepoResource {
     /**
      * List a range of records in a collection.
      */
+    @JsExport.Ignore
     suspend fun listRecords(
         request: RepoListRecordsRequest
     ): Response<RepoListRecordsResponse>
@@ -94,6 +99,7 @@ interface RepoResource {
     /**
      * Write a record, creating or updating it as needed.
      */
+    @JsExport.Ignore
     suspend fun putRecord(
         request: RepoPutRecordRequest
     ): Response<RepoPutRecordResponse>
@@ -106,6 +112,7 @@ interface RepoResource {
     /**
      * Upload a new blob to be added to repo in a later request.
      */
+    @JsExport.Ignore
     suspend fun uploadBlob(
         request: RepoUploadBlobRequest
     ): Response<RepoUploadBlobResponse>

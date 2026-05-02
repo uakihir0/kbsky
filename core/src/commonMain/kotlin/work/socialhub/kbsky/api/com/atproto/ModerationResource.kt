@@ -16,6 +16,7 @@ interface ModerationResource {
     /**
      * レポートを作成する
      */
+    @JsExport.Ignore
     suspend fun createReport(
         request: ModerationCreateReportRequest
     ): Response<ModerationCreateReportResponse>

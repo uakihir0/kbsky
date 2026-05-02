@@ -41,6 +41,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.getConvo
      */
+    @JsExport.Ignore
     suspend fun getConvo(
         request: ConvoGetConvoRequest
     ): Response<ConvoGetConvoResponse>
@@ -53,6 +54,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.getConvoForMembers
      */
+    @JsExport.Ignore
     suspend fun getConvoForMembers(
         request: ConvoGetConvoForMembersRequest
     ): Response<ConvoGetConvoForMembersResponse>
@@ -65,6 +67,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.getLog
      */
+    @JsExport.Ignore
     suspend fun getLog(
         request: ConvoGetLogRequest
     ): Response<ConvoGetLogResponse>
@@ -77,6 +80,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.getMessages
      */
+    @JsExport.Ignore
     suspend fun getMessages(
         request: ConvoGetMessagesRequest
     ): Response<ConvoGetMessagesResponse>
@@ -89,6 +93,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.listConvos
      */
+    @JsExport.Ignore
     suspend fun getListConvos(
         request: ConvoGetListConvosRequest
     ): Response<ConvoGetListConvosResponse>
@@ -101,6 +106,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.sendMessage
      */
+    @JsExport.Ignore
     suspend fun sendMessage(
         request: ConvoSendMessageRequest
     ): Response<ConvoSendMessageResponse>
@@ -113,6 +119,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.updateRead
      */
+    @JsExport.Ignore
     suspend fun updateRead(
         request: ConvoUpdateReadRequest
     ): Response<ConvoUpdateReadResponse>
@@ -125,6 +132,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.muteConvo
      */
+    @JsExport.Ignore
     suspend fun muteConvo(
         request: ConvoMuteConvoRequest
     ): Response<ConvoMuteConvoResponse>
@@ -137,6 +145,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.unmuteConvo
      */
+    @JsExport.Ignore
     suspend fun unmuteConvo(
         request: ConvoUnmuteConvoRequest
     ): Response<ConvoUnmuteConvoResponse>
@@ -149,6 +158,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.deleteMessageForSelf
      */
+    @JsExport.Ignore
     suspend fun deleteMessageForSelf(
         request: ConvoDeleteMessageForSelfRequest
     ): Response<ConvoDeleteMessageForSelfResponse>
@@ -161,6 +171,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.leaveConvo
      */
+    @JsExport.Ignore
     suspend fun leaveConvo(
         request: ConvoLeaveConvoRequest
     ): Response<ConvoLeaveConvoResponse>
@@ -173,6 +184,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.addReaction
      */
+    @JsExport.Ignore
     suspend fun addReaction(
         request: ConvoAddReactionRequest
     ): Response<ConvoAddReactionResponse>
@@ -185,6 +197,7 @@ interface ConvoResource {
     /**
      * chat.bsky.convo.removeReaction
      */
+    @JsExport.Ignore
     suspend fun removeReaction(
         request: ConvoRemoveReactionRequest
     ): Response<ConvoRemoveReactionResponse>
