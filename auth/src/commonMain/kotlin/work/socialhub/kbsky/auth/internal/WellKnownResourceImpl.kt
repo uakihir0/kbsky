@@ -19,7 +19,9 @@ class WellKnownResourceImpl(
         return toBlocking {
             proceed<WellKnownOAuthProtectedResourceResponse> {
                 HttpRequest()
-                    .url("${config.pdsServer}/.well-known/oauth-protected-resource")
+                    // Trim trailing slash before concatenation
+                    // (e.g. prevent "https://example.com/" + "/.well-known/..." → "//.well-known/...")
+                    .url("${config.pdsServer.trimEnd('/')}/.well-known/oauth-protected-resource")
                     .accept(MediaType.JSON)
                     .get()
             }.also {
@@ -37,7 +39,10 @@ class WellKnownResourceImpl(
         return toBlocking {
             proceed<WellKnownOAuthAuthorizationServerResponse> {
                 HttpRequest()
-                    .url("${config.authorizationServer}/.well-known/oauth-authorization-server")
+                    // Trim trailing slash before concatenation
+                    // (oAuthProtectedResource appends a trailing "/" to authorizationServer in its
+                    //  response handling, so without trimEnd here a "//.well-known/..." double slash occurs)
+                    .url("${config.authorizationServer.trimEnd('/')}/.well-known/oauth-authorization-server")
                     .accept(MediaType.JSON)
                     .get()
             }.also {
