@@ -3,7 +3,7 @@ package work.socialhub.kbsky.auth.helper
 import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.algorithms.SHA256
 import io.ktor.utils.io.core.toByteArray
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import work.socialhub.kbsky.auth.OAuthSession
