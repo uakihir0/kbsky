@@ -2,7 +2,10 @@ package work.socialhub.kbsky.internal.app.bsky
 
 import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes.UnspeccedGetPopular
+import work.socialhub.kbsky.BlueskyTypes.UnspeccedGetPopularFeedGenerators
 import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
+import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularFeedGeneratorsRequest
+import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularFeedGeneratorsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularRequest
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularResponse
 import work.socialhub.kbsky.api.entity.share.Response
@@ -33,4 +36,21 @@ class UnspeccedResourceImpl(
     override fun getPopularBlocking(
         request: UnspeccedGetPopularRequest
     ): Response<UnspeccedGetPopularResponse> = toBlocking { getPopular(request) }
+
+    override suspend fun getPopularFeedGenerators(
+        request: UnspeccedGetPopularFeedGeneratorsRequest
+    ): Response<UnspeccedGetPopularFeedGeneratorsResponse> {
+
+        return proceed {
+            httpRequest(config)
+                .url(xrpc(config, UnspeccedGetPopularFeedGenerators))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
+        }
+    }
+
+    override fun getPopularFeedGeneratorsBlocking(
+        request: UnspeccedGetPopularFeedGeneratorsRequest
+    ): Response<UnspeccedGetPopularFeedGeneratorsResponse> = toBlocking { getPopularFeedGenerators(request) }
 }

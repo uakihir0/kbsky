@@ -87,6 +87,7 @@ object BlueskyTypes {
 
     // Unspecced
     const val UnspeccedGetPopular = "app.bsky.unspecced.getPopular"
+    const val UnspeccedGetPopularFeedGenerators = "app.bsky.unspecced.getPopularFeedGenerators"
 
     // Video
     const val VideoGetJobStatus = "app.bsky.video.getJobStatus"

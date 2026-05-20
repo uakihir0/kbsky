@@ -1,6 +1,8 @@
 package work.socialhub.kbsky.api.app.bsky
 
 
+import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularFeedGeneratorsRequest
+import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularFeedGeneratorsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularRequest
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularResponse
 import work.socialhub.kbsky.api.entity.share.Response
@@ -21,4 +23,17 @@ interface UnspeccedResource {
     fun getPopularBlocking(
         request: UnspeccedGetPopularRequest
     ): Response<UnspeccedGetPopularResponse>
+
+    /**
+     * An unspecced view of globally popular feed generators.
+     */
+    @JsExport.Ignore
+    suspend fun getPopularFeedGenerators(
+        request: UnspeccedGetPopularFeedGeneratorsRequest
+    ): Response<UnspeccedGetPopularFeedGeneratorsResponse>
+
+    @JsExport.Ignore
+    fun getPopularFeedGeneratorsBlocking(
+        request: UnspeccedGetPopularFeedGeneratorsRequest
+    ): Response<UnspeccedGetPopularFeedGeneratorsResponse>
 }
