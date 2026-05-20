@@ -46,6 +46,7 @@ object BlueskyTypes {
     const val FeedGetFeedSearchPosts = "app.bsky.feed.searchPosts"
     const val FeedGetFeedGenerator = "app.bsky.feed.getFeedGenerator"
     const val FeedGetFeedGenerators = "app.bsky.feed.getFeedGenerators"
+    const val FeedGetSuggestedFeeds = "app.bsky.feed.getSuggestedFeeds"
     const val FeedCreateBookmark = "app.bsky.bookmark.createBookmark"
     const val FeedDeleteBookmark = "app.bsky.bookmark.deleteBookmark"
     const val FeedGetBookmarks = "app.bsky.bookmark.getBookmarks"
