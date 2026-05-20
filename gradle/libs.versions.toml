@@ -3,11 +3,11 @@ kotlin = "2.3.21"
 dokka = "2.2.0"
 maven-publish = "0.36.0"
 serialization = "1.11.0"
-coroutines = "1.10.2"
+coroutines = "1.11.0"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.8"
-ktor-core = "io.ktor:ktor-client-core:3.4.3"
+ktor-core = "io.ktor:ktor-client-core:3.5.0"
 datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.8.0"
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
@@ -20,7 +20,7 @@ cryptography-bom = "dev.whyoleg.cryptography:cryptography-bom:0.6.0"
 cryptography-core = { module = "dev.whyoleg.cryptography:cryptography-core" }
 cryptography-openssl = { module = "dev.whyoleg.cryptography:cryptography-provider-openssl3-prebuilt" }
 cryptography-jdk = { module = "dev.whyoleg.cryptography:cryptography-provider-jdk" }
-slf4j-simple = "org.slf4j:slf4j-simple:2.0.17"
+slf4j-simple = "org.slf4j:slf4j-simple:2.0.18"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
