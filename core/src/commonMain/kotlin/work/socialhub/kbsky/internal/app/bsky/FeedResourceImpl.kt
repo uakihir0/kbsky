@@ -19,6 +19,7 @@ import work.socialhub.kbsky.BlueskyTypes.FeedGetPostThread
 import work.socialhub.kbsky.BlueskyTypes.FeedGetPosts
 import work.socialhub.kbsky.BlueskyTypes.FeedGetQuotes
 import work.socialhub.kbsky.BlueskyTypes.FeedGetRepostedBy
+import work.socialhub.kbsky.BlueskyTypes.FeedGetSuggestedFeeds
 import work.socialhub.kbsky.BlueskyTypes.FeedGetTimeline
 import work.socialhub.kbsky.BlueskyTypes.FeedLike
 import work.socialhub.kbsky.BlueskyTypes.FeedPost
@@ -57,6 +58,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetSuggestedFeedsRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetSuggestedFeedsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeRequest
@@ -388,6 +391,27 @@ class FeedResourceImpl(
     ): Response<FeedGetFeedGeneratorsResponse> {
         return toBlocking {
             getFeedGenerators(request)
+        }
+    }
+
+    override suspend fun getSuggestedFeeds(
+        request: FeedGetSuggestedFeedsRequest
+    ): Response<FeedGetSuggestedFeedsResponse> {
+
+        return proceed {
+            httpRequest(config)
+                .url(xrpc(config, FeedGetSuggestedFeeds))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
+        }
+    }
+
+    override fun getSuggestedFeedsBlocking(
+        request: FeedGetSuggestedFeedsRequest
+    ): Response<FeedGetSuggestedFeedsResponse> {
+        return toBlocking {
+            getSuggestedFeeds(request)
         }
     }
 

@@ -32,6 +32,8 @@ import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetQuotesResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetRepostedByResponse
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetSuggestedFeedsRequest
+import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetSuggestedFeedsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineRequest
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedGetTimelineResponse
 import work.socialhub.kbsky.api.entity.app.bsky.feed.FeedLikeRequest
@@ -224,6 +226,19 @@ interface FeedResource {
     fun getFeedGeneratorsBlocking(
         request: FeedGetFeedGeneratorsRequest
     ): Response<FeedGetFeedGeneratorsResponse>
+
+    /**
+     * Get a list of suggested feeds (feed generators) for the requesting account.
+     */
+    @JsExport.Ignore
+    suspend fun getSuggestedFeeds(
+        request: FeedGetSuggestedFeedsRequest
+    ): Response<FeedGetSuggestedFeedsResponse>
+
+    @JsExport.Ignore
+    fun getSuggestedFeedsBlocking(
+        request: FeedGetSuggestedFeedsRequest
+    ): Response<FeedGetSuggestedFeedsResponse>
 
     /**
      * Like feed operation.
