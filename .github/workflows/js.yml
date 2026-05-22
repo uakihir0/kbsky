@@ -25,8 +25,9 @@ jobs:
           project_version=$(./gradlew version --no-daemon --console=plain -q)
           echo "PROJECT_VERSION=$project_version" >> $GITHUB_ENV
 
-      - name: Copy Docs to Npm Package
+      - name: Copy Artifacts to Npm Package
         run: |
+          cp ./LICENSE ./all/build/dist/js/productionLibrary/LICENSE
           cp ./docs/js/README.md ./all/build/dist/js/productionLibrary/README.md
           cp ./docs/js/README_ja.md ./all/build/dist/js/productionLibrary/README_ja.md
 
