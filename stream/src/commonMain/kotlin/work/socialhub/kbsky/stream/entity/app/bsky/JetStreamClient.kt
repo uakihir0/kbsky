@@ -6,6 +6,8 @@ import kotlinx.coroutines.launch
 import work.socialhub.kbsky.internal.share.InternalUtility
 import work.socialhub.kbsky.stream.entity.app.bsky.callback.JetStreamEventCallback
 import work.socialhub.kbsky.stream.entity.app.bsky.model.Event
+import work.socialhub.kbsky.stream.entity.app.bsky.model.SubscriberOptionsPayload
+import work.socialhub.kbsky.stream.entity.app.bsky.model.SubscriberOptionsUpdate
 import work.socialhub.kbsky.stream.entity.callback.ClosedCallback
 import work.socialhub.kbsky.stream.entity.callback.ErrorCallback
 import work.socialhub.kbsky.stream.entity.callback.OpenedCallback
@@ -16,6 +18,7 @@ class JetStreamClient(
 ) {
     var client = WebsocketRequest()
     var isOpen: Boolean = false
+    var deferredOptionsUpdate: DeferredOptionsUpdate? = null
 
     var eventCallback: JetStreamEventCallback? = null
     private var openedCallback: OpenedCallback? = null
@@ -37,6 +40,7 @@ class JetStreamClient(
         }
         this.client.onOpenListener = {
             this.isOpen = true
+            this.sendDeferredOptionsUpdate()
             this.openedCallback?.onOpened()
         }
         this.client.onCloseListener = {
@@ -53,6 +57,23 @@ class JetStreamClient(
     fun openAsync() {
         GlobalScope.launch {
             client.open()
+        }
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun sendDeferredOptionsUpdate() {
+        deferredOptionsUpdate?.let { deferred ->
+            GlobalScope.launch {
+                try {
+                    updateOptions(
+                        wantedCollections = deferred.wantedCollections,
+                        wantedDids = deferred.wantedDids,
+                        maxMessageSizeBytes = deferred.maxMessageSizeBytes,
+                    )
+                } catch (e: Exception) {
+                    errorCallback?.onError(e)
+                }
+            }
         }
     }
 
@@ -73,5 +94,20 @@ class JetStreamClient(
 
     private fun onMessage(data: ByteArray) {
         // TODO: zstd の場合はこちらで処理することになる
+    }
+
+    suspend fun updateOptions(
+        wantedCollections: List<String> = listOf(),
+        wantedDids: List<String> = listOf(),
+        maxMessageSizeBytes: Long? = null,
+    ) {
+        val message = SubscriberOptionsUpdate(
+            payload = SubscriberOptionsPayload(
+                wantedCollections = wantedCollections,
+                wantedDids = wantedDids,
+                maxMessageSizeBytes = maxMessageSizeBytes,
+            )
+        )
+        client.sendText(InternalUtility.toJson(message))
     }
 }

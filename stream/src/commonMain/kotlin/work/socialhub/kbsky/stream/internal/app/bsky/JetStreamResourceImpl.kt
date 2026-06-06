@@ -7,6 +7,7 @@ import work.socialhub.kbsky.Bluesky
 import work.socialhub.kbsky.stream.BlueskyStreamConfig
 import work.socialhub.kbsky.stream.api.app.bsky.JetStreamResource
 import work.socialhub.kbsky.stream.api.entity.app.bsky.JetStreamSubscribeRequest
+import work.socialhub.kbsky.stream.entity.app.bsky.DeferredOptionsUpdate
 import work.socialhub.kbsky.stream.entity.app.bsky.JetStreamClient
 
 class JetStreamResourceImpl(
@@ -14,9 +15,15 @@ class JetStreamResourceImpl(
     private val config: BlueskyStreamConfig
 ) : JetStreamResource {
 
+    companion object {
+        const val MAX_URL_DIDS = 50
+    }
+
     override fun subscribe(
         request: JetStreamSubscribeRequest
     ): JetStreamClient {
+
+        val useOptionsUpdate = request.wantedDids.size > MAX_URL_DIDS
 
         val builder = URLBuilder().also { b ->
 
@@ -29,7 +36,7 @@ class JetStreamResourceImpl(
                     b.parameters.append("wantedCollections", wantedCollection)
                 }
             }
-            if (request.wantedDids.isNotEmpty()) {
+            if (!useOptionsUpdate && request.wantedDids.isNotEmpty()) {
                 for (wantedDid in request.wantedDids) {
                     b.parameters.append("wantedDids", wantedDid)
                 }
@@ -40,12 +47,26 @@ class JetStreamResourceImpl(
             request.maxMessageSizeBytes?.let {
                 b.parameters.append("maxMessageSizeBytes", it.toString())
             }
-            request.requireHello?.let {
-                b.parameters.append("requireHello", it.toString())
+            if (useOptionsUpdate) {
+                b.parameters.append("requireHello", "true")
+            } else {
+                request.requireHello?.let {
+                    b.parameters.append("requireHello", it.toString())
+                }
             }
             b.path("subscribe")
         }
 
-        return JetStreamClient(builder.buildString())
+        val client = JetStreamClient(builder.buildString())
+
+        if (useOptionsUpdate) {
+            client.deferredOptionsUpdate = DeferredOptionsUpdate(
+                wantedCollections = request.wantedCollections,
+                wantedDids = request.wantedDids,
+                maxMessageSizeBytes = request.maxMessageSizeBytes,
+            )
+        }
+
+        return client
     }
 }
