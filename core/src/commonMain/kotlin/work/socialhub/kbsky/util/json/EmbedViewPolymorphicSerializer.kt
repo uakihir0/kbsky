@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedExternalView
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedGalleryView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordView
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordWithMediaView
@@ -24,6 +25,7 @@ object EmbedViewPolymorphicSerializer :
             EmbedExternalView.TYPE -> EmbedExternalView.serializer()
             EmbedImagesView.TYPE -> EmbedImagesView.serializer()
             EmbedVideoView.TYPE -> EmbedVideoView.serializer()
+            EmbedGalleryView.TYPE -> EmbedGalleryView.serializer()
             EmbedRecordView.TYPE -> EmbedRecordView.serializer()
             EmbedRecordWithMediaView.TYPE -> EmbedRecordWithMediaView.serializer()
             else -> {
