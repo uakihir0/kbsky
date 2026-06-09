@@ -8,15 +8,13 @@ import kotlin.js.JsExport
 
 @Serializable
 @JsExport
-data class EmbedRecordWithMediaView(
+data class EmbedGalleryView(
     @SerialName("\$type")
     override var type: String = TYPE,
-    var record: EmbedRecordView? = null,
-    /** only external, images, gallery and video  */
-    var media: EmbedViewUnion? = null,
+    var items: List<EmbedGalleryViewImage>? = null,
 ) : EmbedViewUnion() {
 
     companion object {
-        const val TYPE = BlueskyTypes.EmbedRecordWithMedia + "#view"
+        const val TYPE = BlueskyTypes.EmbedGallery + "#view"
     }
 }
