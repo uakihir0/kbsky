@@ -10,6 +10,7 @@ import kotlin.js.JsExport
  * @see EmbedExternal
  * @see EmbedImages
  * @see EmbedVideo
+ * @see EmbedGallery
  * @see EmbedRecord
  * @see EmbedRecordWithMedia
  */
@@ -22,6 +23,7 @@ abstract class EmbedUnion {
     val asExternal get() = this as? EmbedExternal
     val asImages get() = this as? EmbedImages
     val asVideo get() = this as? EmbedVideo
+    val asGallery get() = this as? EmbedGallery
     val asRecord get() = this as? EmbedRecord
     val asRecordWithMedia get() = this as? EmbedRecordWithMedia
 }

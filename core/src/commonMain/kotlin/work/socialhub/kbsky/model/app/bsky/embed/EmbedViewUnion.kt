@@ -10,6 +10,7 @@ import kotlin.js.JsExport
  * @see EmbedExternalView
  * @see EmbedImagesView
  * @see EmbedVideoView
+ * @see EmbedGalleryView
  * @see EmbedRecordView
  * @see EmbedRecordWithMediaView
  */
@@ -22,6 +23,7 @@ abstract class EmbedViewUnion {
     val asExternal get() = this as? EmbedExternalView
     val asImages get() = this as? EmbedImagesView
     val asVideo get() = this as? EmbedVideoView
+    val asGallery get() = this as? EmbedGalleryView
     val asRecord get() = this as? EmbedRecordView
     val asRecordWithMedia get() = this as? EmbedRecordWithMediaView
 }
