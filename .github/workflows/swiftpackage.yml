@@ -1,4 +1,7 @@
 name: Make SwiftPackage
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 on: [push]
 
 jobs:
