@@ -25,6 +25,7 @@ object BlueskyTypes {
     const val EmbedImages = "app.bsky.embed.images"
     const val EmbedVideo = "app.bsky.embed.video"
     const val EmbedRecord = "app.bsky.embed.record"
+    const val EmbedGallery = "app.bsky.embed.gallery"
     const val EmbedRecordWithMedia = "app.bsky.embed.recordWithMedia"
 
     // Feed
