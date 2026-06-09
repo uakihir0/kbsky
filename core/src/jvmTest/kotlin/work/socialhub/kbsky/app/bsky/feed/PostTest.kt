@@ -8,6 +8,8 @@ import work.socialhub.kbsky.api.entity.com.atproto.identity.IdentityResolveHandl
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoUploadBlobRequest
 import work.socialhub.kbsky.internal.share.InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedDefsAspectRatio
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedGallery
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedGalleryImage
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImagesImage
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
@@ -79,6 +81,57 @@ class PostTest : AbstractTest() {
                 FeedPostRequest(auth()).also {
                     it.text = "画像投稿テスト"
                     it.embed = imagesMain
+                }
+            )
+
+        println(response2.data.uri)
+    }
+
+    @Test
+    fun testFeedPostWithGallery() = runTest {
+        // Gallery post test for 5 or more images (up to 10).
+        // from https://placehold.jp/
+        val stream = javaClass.getResourceAsStream("/image/200x100.png")
+        checkNotNull(stream)
+        val bytes = stream.readBytes()
+
+        // Setup Gallery (5 images)
+        val galleryMain = EmbedGallery()
+        run {
+            val items = mutableListOf<EmbedGalleryImage>()
+            galleryMain.items = items
+
+            repeat(5) { i ->
+                // Upload Image
+                val response = client()
+                    .repo()
+                    .uploadBlob(
+                        RepoUploadBlobRequest(
+                            auth = auth(),
+                            name = "icon$i.png",
+                            bytes = bytes,
+                            contentType = "image/png"
+                        )
+                    )
+
+                val image = EmbedGalleryImage()
+                image.image = response.data.blob
+                image.alt = "gallery image $i"
+                image.aspectRatio = EmbedDefsAspectRatio(200, 100)
+
+                items.add(image)
+            }
+        }
+
+        println(toJson(galleryMain))
+
+        // Post With Gallery
+        val response2 = client()
+            .feed()
+            .post(
+                FeedPostRequest(auth()).also {
+                    it.text = "Gallery post test (5 images)"
+                    it.embed = galleryMain
                 }
             )
 
