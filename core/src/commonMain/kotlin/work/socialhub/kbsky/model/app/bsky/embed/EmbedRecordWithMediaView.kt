@@ -12,7 +12,7 @@ data class EmbedRecordWithMediaView(
     @SerialName("\$type")
     override var type: String = TYPE,
     var record: EmbedRecordView? = null,
-    /** only external and images  */
+    /** only external, images, video, and gallery */
     var media: EmbedViewUnion? = null,
 ) : EmbedViewUnion() {
 
