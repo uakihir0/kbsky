@@ -15,7 +15,7 @@ import kotlin.js.JsExport
 @JsExport
 data class EmbedGalleryImage(
     @SerialName("\$type")
-    var type: String = TYPE,
+    val type: String = TYPE,
     var image: Blob? = null,
     var alt: String? = null,
     var aspectRatio: EmbedDefsAspectRatio? = null,
