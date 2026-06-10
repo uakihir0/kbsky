@@ -6,6 +6,7 @@ import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedExternal
+import work.socialhub.kbsky.model.app.bsky.embed.EmbedGallery
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedImages
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecord
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedRecordWithMedia
@@ -23,6 +24,7 @@ object EmbedPolymorphicSerializer :
     ): DeserializationStrategy<EmbedUnion> {
         return when (val type = element.type()) {
             BlueskyTypes.EmbedImages -> EmbedImages.serializer()
+            BlueskyTypes.EmbedGallery -> EmbedGallery.serializer()
             BlueskyTypes.EmbedVideo -> EmbedVideo.serializer()
             BlueskyTypes.EmbedExternal -> EmbedExternal.serializer()
             BlueskyTypes.EmbedRecord -> EmbedRecord.serializer()
