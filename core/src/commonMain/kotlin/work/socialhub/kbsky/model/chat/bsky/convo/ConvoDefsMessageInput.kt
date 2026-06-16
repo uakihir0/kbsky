@@ -12,4 +12,6 @@ data class ConvoDefsMessageInput(
     var text: String,
     var facets: List<RichtextFacet>? = null,
     var embed: EmbedUnion? = null,
+    // Reference to the message being replied to
+    var replyRef: ConvoDefsReplyRef? = null,
 )
