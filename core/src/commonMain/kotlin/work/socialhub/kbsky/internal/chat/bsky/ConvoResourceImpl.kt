@@ -3,14 +3,24 @@ package work.socialhub.kbsky.internal.chat.bsky
 import work.socialhub.kbsky.ATProtocolConfig
 import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAcceptConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAcceptConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoAvailabilityRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoAvailabilityResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoMembersRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoMembersResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLockConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLockConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnlockConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnlockConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetLogRequest
@@ -224,6 +234,76 @@ class ConvoResourceImpl(
 
     override fun removeReactionBlocking(request: ConvoRemoveReactionRequest): Response<ConvoRemoveReactionResponse> =
         toBlocking { removeReaction(request) }
+
+    override suspend fun acceptConvo(
+        request: ConvoAcceptConvoRequest
+    ): Response<ConvoAcceptConvoResponse> {
+
+        return proceedPost(
+            BlueskyTypes.ConvoAcceptConvo,
+            request.toMappedJson(),
+            request.auth,
+        )
+    }
+
+    override fun acceptConvoBlocking(request: ConvoAcceptConvoRequest): Response<ConvoAcceptConvoResponse> =
+        toBlocking { acceptConvo(request) }
+
+    override suspend fun lockConvo(
+        request: ConvoLockConvoRequest
+    ): Response<ConvoLockConvoResponse> {
+
+        return proceedPost(
+            BlueskyTypes.ConvoLockConvo,
+            request.toMappedJson(),
+            request.auth,
+        )
+    }
+
+    override fun lockConvoBlocking(request: ConvoLockConvoRequest): Response<ConvoLockConvoResponse> =
+        toBlocking { lockConvo(request) }
+
+    override suspend fun unlockConvo(
+        request: ConvoUnlockConvoRequest
+    ): Response<ConvoUnlockConvoResponse> {
+
+        return proceedPost(
+            BlueskyTypes.ConvoUnlockConvo,
+            request.toMappedJson(),
+            request.auth,
+        )
+    }
+
+    override fun unlockConvoBlocking(request: ConvoUnlockConvoRequest): Response<ConvoUnlockConvoResponse> =
+        toBlocking { unlockConvo(request) }
+
+    override suspend fun getConvoMembers(
+        request: ConvoGetConvoMembersRequest
+    ): Response<ConvoGetConvoMembersResponse> {
+
+        return proceedGet(
+            BlueskyTypes.ConvoGetConvoMembers,
+            request.toMap(),
+            request.auth,
+        )
+    }
+
+    override fun getConvoMembersBlocking(request: ConvoGetConvoMembersRequest): Response<ConvoGetConvoMembersResponse> =
+        toBlocking { getConvoMembers(request) }
+
+    override suspend fun getConvoAvailability(
+        request: ConvoGetConvoAvailabilityRequest
+    ): Response<ConvoGetConvoAvailabilityResponse> {
+
+        return proceedGet(
+            BlueskyTypes.ConvoGetConvoAvailability,
+            request.toMap(),
+            request.auth,
+        )
+    }
+
+    override fun getConvoAvailabilityBlocking(request: ConvoGetConvoAvailabilityRequest): Response<ConvoGetConvoAvailabilityResponse> =
+        toBlocking { getConvoAvailability(request) }
 
     private suspend inline fun <reified T> proceedGet(
         id: String,

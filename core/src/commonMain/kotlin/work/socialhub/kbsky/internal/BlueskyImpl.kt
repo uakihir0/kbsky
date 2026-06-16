@@ -10,6 +10,7 @@ import work.socialhub.kbsky.api.app.bsky.NotificationResource
 import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
 import work.socialhub.kbsky.api.app.bsky.VideoResource
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
+import work.socialhub.kbsky.api.chat.bsky.GroupResource
 import work.socialhub.kbsky.internal.app.bsky.ActorResourceImpl
 import work.socialhub.kbsky.internal.app.bsky.FeedResourceImpl
 import work.socialhub.kbsky.internal.app.bsky.GraphResourceImpl
@@ -18,6 +19,7 @@ import work.socialhub.kbsky.internal.app.bsky.NotificationResourceImpl
 import work.socialhub.kbsky.internal.app.bsky.UnspeccedResourceImpl
 import work.socialhub.kbsky.internal.app.bsky.VideoResourceImpl
 import work.socialhub.kbsky.internal.chat.bsky.ConvoResourceImpl
+import work.socialhub.kbsky.internal.chat.bsky.GroupResourceImpl
 
 class BlueskyImpl(
     config: BlueskyConfig
@@ -31,6 +33,7 @@ class BlueskyImpl(
     protected val undoc: UnspeccedResource = UnspeccedResourceImpl(config)
     protected val video: VideoResource = VideoResourceImpl(config)
     protected val convo: ConvoResource = ConvoResourceImpl(config)
+    protected val group: GroupResource = GroupResourceImpl(config)
 
     /**
      * {@inheritDoc}
@@ -71,4 +74,9 @@ class BlueskyImpl(
      * {@inheritDoc}
      */
     override fun convo() = convo
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun group() = group
 }

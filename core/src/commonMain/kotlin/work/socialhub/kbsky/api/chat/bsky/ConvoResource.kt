@@ -1,14 +1,24 @@
 package work.socialhub.kbsky.api.chat.bsky
 
 
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAcceptConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAcceptConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoAddReactionResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoDeleteMessageForSelfResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoAvailabilityRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoAvailabilityResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoForMembersResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoMembersRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoMembersResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLockConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoLockConvoResponse
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnlockConvoRequest
+import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoUnlockConvoResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosRequest
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetListConvosResponse
 import work.socialhub.kbsky.api.entity.chat.bsky.convo.ConvoGetLogRequest
@@ -193,4 +203,64 @@ interface ConvoResource {
     fun removeReactionBlocking(
         request: ConvoRemoveReactionRequest
     ): Response<ConvoRemoveReactionResponse>
+
+    /**
+     * chat.bsky.convo.acceptConvo
+     */
+    suspend fun acceptConvo(
+        request: ConvoAcceptConvoRequest
+    ): Response<ConvoAcceptConvoResponse>
+
+    @JsExport.Ignore
+    fun acceptConvoBlocking(
+        request: ConvoAcceptConvoRequest
+    ): Response<ConvoAcceptConvoResponse>
+
+    /**
+     * chat.bsky.convo.lockConvo
+     */
+    suspend fun lockConvo(
+        request: ConvoLockConvoRequest
+    ): Response<ConvoLockConvoResponse>
+
+    @JsExport.Ignore
+    fun lockConvoBlocking(
+        request: ConvoLockConvoRequest
+    ): Response<ConvoLockConvoResponse>
+
+    /**
+     * chat.bsky.convo.unlockConvo
+     */
+    suspend fun unlockConvo(
+        request: ConvoUnlockConvoRequest
+    ): Response<ConvoUnlockConvoResponse>
+
+    @JsExport.Ignore
+    fun unlockConvoBlocking(
+        request: ConvoUnlockConvoRequest
+    ): Response<ConvoUnlockConvoResponse>
+
+    /**
+     * chat.bsky.convo.getConvoMembers
+     */
+    suspend fun getConvoMembers(
+        request: ConvoGetConvoMembersRequest
+    ): Response<ConvoGetConvoMembersResponse>
+
+    @JsExport.Ignore
+    fun getConvoMembersBlocking(
+        request: ConvoGetConvoMembersRequest
+    ): Response<ConvoGetConvoMembersResponse>
+
+    /**
+     * chat.bsky.convo.getConvoAvailability
+     */
+    suspend fun getConvoAvailability(
+        request: ConvoGetConvoAvailabilityRequest
+    ): Response<ConvoGetConvoAvailabilityResponse>
+
+    @JsExport.Ignore
+    fun getConvoAvailabilityBlocking(
+        request: ConvoGetConvoAvailabilityRequest
+    ): Response<ConvoGetConvoAvailabilityResponse>
 }
