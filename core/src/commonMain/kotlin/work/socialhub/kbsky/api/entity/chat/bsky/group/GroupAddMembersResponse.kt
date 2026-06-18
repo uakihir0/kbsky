@@ -10,5 +10,5 @@ import kotlin.js.JsExport
 @JsExport
 data class GroupAddMembersResponse(
     var convo: ConvoDefsConvoView,
-    var addedMembers: List<ActorDefsProfileViewBasic>
+    var addedMembers: List<ActorDefsProfileViewBasic>? = null,
 )
