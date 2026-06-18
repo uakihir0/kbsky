@@ -248,11 +248,17 @@ class GroupResourceImpl(
         request: GroupGetJoinLinkPreviewsRequest
     ): Response<GroupGetJoinLinkPreviewsResponse> {
 
-        return proceedGet(
-            BlueskyTypes.GroupGetJoinLinkPreviews,
-            request.toMap(),
-            request.auth,
-        )
+        // `codes` is an array parameter and must be expanded as codes=v1&codes=v2.
+        // khttpclient's queries(Map) calls toString() on List values, producing "[v1,v2]",
+        // so we take a dedicated path that calls query() for each element.
+        return proceed {
+            val req = httpRequest(config)
+                .url(xrpc(config, BlueskyTypes.GroupGetJoinLinkPreviews))
+                .header("Atproto-Proxy", "did:web:api.bsky.chat#bsky_chat")
+                .accept(MediaType.JSON)
+            request.codes.forEach { req.query("codes", it) }
+            req.getWithAuth(request.auth)
+        }
     }
 
     override fun getJoinLinkPreviewsBlocking(request: GroupGetJoinLinkPreviewsRequest): Response<GroupGetJoinLinkPreviewsResponse> =
