@@ -106,7 +106,7 @@ object AnySerializer : KSerializer<Any> {
             // Each element is serialized recursively with AnySerializer.
             is List<*> -> encoder.encodeSerializableValue(
                 ListSerializer(AnySerializer),
-                value.map { it as Any },
+                value.filterNotNull(),
             )
 
             else -> {
