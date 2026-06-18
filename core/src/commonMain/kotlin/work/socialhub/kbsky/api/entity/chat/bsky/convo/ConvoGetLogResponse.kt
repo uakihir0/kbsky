@@ -8,5 +8,6 @@ import kotlin.js.JsExport
 @Serializable
 @JsExport
 data class ConvoGetLogResponse(
-    var logs: List<ConvoDefsLogUnion>
+    var cursor: String? = null,
+    var logs: List<ConvoDefsLogUnion>,
 )
