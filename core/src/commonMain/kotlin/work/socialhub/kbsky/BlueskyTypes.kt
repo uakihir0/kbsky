@@ -99,20 +99,48 @@ object BlueskyTypes {
     /// CHAT.BSKY
     /// ----------------------------------------------------------------------- ///
 
+    // Actor
+    const val ChatActorDefs = "chat.bsky.actor.defs"
+
     // Convo
+    const val ConvoAcceptConvo = "chat.bsky.convo.acceptConvo"
     const val ConvoAddReaction = "chat.bsky.convo.addReaction"
     const val ConvoDefs = "chat.bsky.convo.defs"
     const val ConvoDeleteMessageForSelf = "chat.bsky.convo.deleteMessageForSelf"
     const val ConvoGetConvo = "chat.bsky.convo.getConvo"
+    const val ConvoGetConvoAvailability = "chat.bsky.convo.getConvoAvailability"
     const val ConvoGetConvoForMembers = "chat.bsky.convo.getConvoForMembers"
+    const val ConvoGetConvoMembers = "chat.bsky.convo.getConvoMembers"
     const val ConvoGetLog = "chat.bsky.convo.getLog"
     const val ConvoGetMessages = "chat.bsky.convo.getMessages"
     const val ConvoLeaveConvo = "chat.bsky.convo.leaveConvo"
+    const val ConvoListConvoRequests = "chat.bsky.convo.listConvoRequests"
     const val ConvoListConvos = "chat.bsky.convo.listConvos"
+    const val ConvoLockConvo = "chat.bsky.convo.lockConvo"
     const val ConvoMuteConvo = "chat.bsky.convo.muteConvo"
     const val ConvoRemoveReaction = "chat.bsky.convo.removeReaction"
     const val ConvoSendMessage = "chat.bsky.convo.sendMessage"
     const val ConvoSendMessageBatch = "chat.bsky.convo.sendMessageBatch"
+    const val ConvoUnlockConvo = "chat.bsky.convo.unlockConvo"
     const val ConvoUnmuteConvo = "chat.bsky.convo.unmuteConvo"
     const val ConvoUpdateRead = "chat.bsky.convo.updateRead"
+
+    // Group
+    const val GroupDefs = "chat.bsky.group.defs"
+    const val GroupAddMembers = "chat.bsky.group.addMembers"
+    const val GroupApproveJoinRequest = "chat.bsky.group.approveJoinRequest"
+    const val GroupCreateGroup = "chat.bsky.group.createGroup"
+    const val GroupCreateJoinLink = "chat.bsky.group.createJoinLink"
+    const val GroupDisableJoinLink = "chat.bsky.group.disableJoinLink"
+    const val GroupEditGroup = "chat.bsky.group.editGroup"
+    const val GroupEditJoinLink = "chat.bsky.group.editJoinLink"
+    const val GroupEnableJoinLink = "chat.bsky.group.enableJoinLink"
+    const val GroupGetJoinLinkPreviews = "chat.bsky.group.getJoinLinkPreviews"
+    const val GroupListJoinRequests = "chat.bsky.group.listJoinRequests"
+    const val GroupListMutualGroups = "chat.bsky.group.listMutualGroups"
+    const val GroupRejectJoinRequest = "chat.bsky.group.rejectJoinRequest"
+    const val GroupRemoveMembers = "chat.bsky.group.removeMembers"
+    const val GroupRequestJoin = "chat.bsky.group.requestJoin"
+    const val GroupUpdateJoinRequestsRead = "chat.bsky.group.updateJoinRequestsRead"
+    const val GroupWithdrawJoinRequest = "chat.bsky.group.withdrawJoinRequest"
 }

@@ -21,6 +21,8 @@ data class ConvoDefsMessageView(
     val reactions: List<ConvoDefsReactionView> = emptyList(),
     val sender: ConvoDefsMessageViewSender,
     val sentAt: String,
+    // The message being replied to (expanded one level only). union [messageView, deletedMessageView]
+    val replyTo: ConvoDefsMessageUnion? = null,
 ) : ConvoDefsMessageUnion() {
 
     companion object {

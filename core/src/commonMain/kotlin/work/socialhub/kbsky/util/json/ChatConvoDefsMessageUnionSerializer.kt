@@ -7,6 +7,7 @@ import kotlinx.serialization.json.JsonElement
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsDeletedMessageView
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageUnion
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageView
+import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsSystemMessageView
 import work.socialhub.kbsky.util.json.JsonElementUtil.type
 
 object ChatConvoDefsMessageUnionSerializer :
@@ -20,6 +21,7 @@ object ChatConvoDefsMessageUnionSerializer :
         return when (val type = element.type()) {
             ConvoDefsMessageView.TYPE -> ConvoDefsMessageView.serializer()
             ConvoDefsDeletedMessageView.TYPE -> ConvoDefsDeletedMessageView.serializer()
+            ConvoDefsSystemMessageView.TYPE -> ConvoDefsSystemMessageView.serializer()
             else -> {
                 println("[Warning] Unknown Item type: $type (ChatConvoDefsMessageUnion)")
                 Unknown.serializer()

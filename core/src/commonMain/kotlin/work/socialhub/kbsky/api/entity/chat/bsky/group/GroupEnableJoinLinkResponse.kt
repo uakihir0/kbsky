@@ -1,0 +1,12 @@
+package work.socialhub.kbsky.api.entity.chat.bsky.group
+
+
+import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.model.chat.bsky.group.GroupDefsJoinLinkView
+import kotlin.js.JsExport
+
+@Serializable
+@JsExport
+data class GroupEnableJoinLinkResponse(
+    var joinLink: GroupDefsJoinLinkView
+)

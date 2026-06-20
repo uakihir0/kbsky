@@ -12,4 +12,7 @@ data class ConvoDefsMessageInput(
     var text: String,
     var facets: List<RichtextFacet>? = null,
     var embed: EmbedUnion? = null,
+    // Reference to the message being replied to.
+    // lexicon field name is "replyTo" (the referenced type is chat.bsky.convo.defs#replyRef).
+    var replyTo: ConvoDefsReplyRef? = null,
 )

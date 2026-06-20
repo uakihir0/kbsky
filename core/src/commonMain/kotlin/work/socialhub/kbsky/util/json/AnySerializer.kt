@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.util.json
 
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
@@ -100,6 +101,13 @@ object AnySerializer : KSerializer<Any> {
 
             is RepoRef -> encoder.encodeSerializableValue(RepoRef.serializer(), value)
             is RepoStrongRef -> encoder.encodeSerializableValue(RepoStrongRef.serializer(), value)
+
+            // List values. Used for things like members (an array of dids) in createGroup/addMembers.
+            // Each element is serialized recursively with AnySerializer.
+            is List<*> -> encoder.encodeSerializableValue(
+                ListSerializer(AnySerializer),
+                value.filterNotNull(),
+            )
 
             else -> {
                 println("Can't serialize unknown type: ${value::class}")

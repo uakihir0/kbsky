@@ -9,6 +9,7 @@ import work.socialhub.kbsky.api.app.bsky.NotificationResource
 import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
 import work.socialhub.kbsky.api.app.bsky.VideoResource
 import work.socialhub.kbsky.api.chat.bsky.ConvoResource
+import work.socialhub.kbsky.api.chat.bsky.GroupResource
 import kotlin.js.JsExport
 
 @JsExport
@@ -21,4 +22,5 @@ interface Bluesky : ATProtocol {
     fun unspecced(): UnspeccedResource
     fun video(): VideoResource
     fun convo(): ConvoResource
+    fun group(): GroupResource
 }

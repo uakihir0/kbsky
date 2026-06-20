@@ -25,4 +25,6 @@ data class ActorDefsProfileViewBasic(
     var labels: List<LabelDefsLabel>? = null,
     var chatDisabled: Boolean = false,
     var verification: ActorDefsVerificationState? = null,
+    // Member kind in a conversation (direct / group / past-group)
+    var kind: ActorDefsProfileViewBasicKindUnion? = null,
 )

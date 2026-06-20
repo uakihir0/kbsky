@@ -9,6 +9,7 @@ import kotlin.js.JsExport
 /**
  * @see ConvoDefsMessageView
  * @see ConvoDefsDeletedMessageView
+ * @see ConvoDefsSystemMessageView
  */
 @Serializable(with = ChatConvoDefsMessageUnionSerializer::class)
 @JsExport
@@ -18,4 +19,5 @@ abstract class ConvoDefsMessageUnion {
 
     val asMessageView get() = this as? ConvoDefsMessageView
     val asDeletedMessageView get() = this as? ConvoDefsDeletedMessageView
+    val asSystemMessageView get() = this as? ConvoDefsSystemMessageView
 }
