@@ -20,6 +20,9 @@ data class EmbedVideo(
     // var captions: List<EmbedVideoCaption>? = null
     var alt: String? = null,
     var aspectRatio: EmbedDefsAspectRatio? = null,
+    // A hint to the client about how to present the video.
+    // knownValues: "default", "gif"
+    var presentation: String? = null,
 ) : EmbedUnion() {
 
     companion object {
