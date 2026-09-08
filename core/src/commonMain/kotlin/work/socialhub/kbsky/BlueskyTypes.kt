@@ -88,8 +88,10 @@ object BlueskyTypes {
     const val RichtextFacet = "app.bsky.richtext.facet"
 
     // Unspecced
+    const val UnspeccedDefs = "app.bsky.unspecced.defs"
     const val UnspeccedGetPopular = "app.bsky.unspecced.getPopular"
     const val UnspeccedGetPopularFeedGenerators = "app.bsky.unspecced.getPopularFeedGenerators"
+    const val UnspeccedGetPostThreadV2 = "app.bsky.unspecced.getPostThreadV2"
 
     // Video
     const val VideoGetJobStatus = "app.bsky.video.getJobStatus"

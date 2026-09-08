@@ -3,11 +3,14 @@ package work.socialhub.kbsky.internal.app.bsky
 import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes.UnspeccedGetPopular
 import work.socialhub.kbsky.BlueskyTypes.UnspeccedGetPopularFeedGenerators
+import work.socialhub.kbsky.BlueskyTypes.UnspeccedGetPostThreadV2
 import work.socialhub.kbsky.api.app.bsky.UnspeccedResource
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularFeedGeneratorsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularFeedGeneratorsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularRequest
 import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPopularResponse
+import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPostThreadV2Request
+import work.socialhub.kbsky.api.entity.app.bsky.unspecced.UnspeccedGetPostThreadV2Response
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.share.InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
@@ -53,4 +56,21 @@ class UnspeccedResourceImpl(
     override fun getPopularFeedGeneratorsBlocking(
         request: UnspeccedGetPopularFeedGeneratorsRequest
     ): Response<UnspeccedGetPopularFeedGeneratorsResponse> = toBlocking { getPopularFeedGenerators(request) }
+
+    override suspend fun getPostThreadV2(
+        request: UnspeccedGetPostThreadV2Request
+    ): Response<UnspeccedGetPostThreadV2Response> {
+
+        return proceed {
+            httpRequest(config)
+                .url(xrpc(config, UnspeccedGetPostThreadV2))
+                .accept(MediaType.JSON)
+                .queries(request.toMap())
+                .getWithAuth(request.auth)
+        }
+    }
+
+    override fun getPostThreadV2Blocking(
+        request: UnspeccedGetPostThreadV2Request
+    ): Response<UnspeccedGetPostThreadV2Response> = toBlocking { getPostThreadV2(request) }
 }
