@@ -21,4 +21,5 @@ data class ActorDefsProfileViewBasic(
     var labels: List<LabelDefsLabel>? = null,
     var createdAt: String? = null,
     var verification: ActorDefsVerificationState? = null,
+    var status: ActorDefsStatusView? = null,
 )
