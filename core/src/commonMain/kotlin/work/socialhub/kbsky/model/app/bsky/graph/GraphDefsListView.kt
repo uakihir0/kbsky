@@ -27,6 +27,7 @@ data class GraphDefsListView(
     var avatar: String? = null,
     var viewer: GraphDefsListViewerState? = null,
     var indexedAt: String? = null,
+    var listItemCount: Int? = null,
 ) : EmbedRecordViewUnion() {
     companion object {
         const val TYPE = BlueskyTypes.GraphDefs + "#listView"

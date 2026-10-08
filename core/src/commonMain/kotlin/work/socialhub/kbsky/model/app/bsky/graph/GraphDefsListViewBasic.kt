@@ -21,6 +21,7 @@ data class GraphDefsListViewBasic(
     var avatar: String? = null,
     var viewer: GraphDefsListViewerState? = null,
     var indexedAt: String? = null,
+    var listItemCount: Int? = null,
 ) {
     companion object {
         const val TYPE = BlueskyTypes.GraphDefs + "#listViewBasic"
