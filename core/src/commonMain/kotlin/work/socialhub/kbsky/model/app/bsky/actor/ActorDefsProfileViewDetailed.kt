@@ -34,4 +34,6 @@ open class ActorDefsProfileViewDetailed {
     var pinnedPost: RepoStrongRef? = null
 
     var verification: ActorDefsVerificationState? = null
+
+    var status: ActorDefsStatusView? = null
 }

@@ -13,6 +13,7 @@ object BlueskyTypes {
     // Actor
     const val ActorDefs = "app.bsky.actor.defs"
     const val ActorProfile = "app.bsky.actor.profile"
+    const val ActorStatus = "app.bsky.actor.status"
     const val ActorGetProfile = "app.bsky.actor.getProfile"
     const val ActorGetProfiles = "app.bsky.actor.getProfiles"
     const val ActorGetPreferences = "app.bsky.actor.getPreferences"
