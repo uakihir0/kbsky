@@ -1,13 +1,20 @@
 package work.socialhub.kbsky.app.bsky.graph
 
-import work.socialhub.kbsky.AbstractTest
+import work.socialhub.kbsky.internal.share.InternalUtility.fromJson
+import work.socialhub.kbsky.internal.share.InternalUtility.toJson
 import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListView
 import work.socialhub.kbsky.model.app.bsky.graph.GraphDefsListViewBasic
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
-class GraphDefsListViewTest : AbstractTest() {
+/**
+ * Serialization/deserialization tests for listItemCount on
+ * app.bsky.graph.defs#listView / #listViewBasic.
+ * No network required.
+ */
+class GraphDefsListViewTest {
 
     @Test
     fun testListViewListItemCount() {
@@ -28,9 +35,16 @@ class GraphDefsListViewTest : AbstractTest() {
         }
         """.trimIndent()
 
-        val list = json.decodeFromString<GraphDefsListView>(jsonString)
+        val list = fromJson<GraphDefsListView>(jsonString)
         assertEquals("Community Showcase", list.name)
         assertEquals(21, list.listItemCount)
+        assertEquals("did:plc:example", list.creator?.did)
+        assertEquals("desc", list.description)
+        assertEquals("2025-08-06T03:43:31.609Z", list.indexedAt)
+
+        // Round trip: listItemCount is emitted and every mapped field survives.
+        assertTrue(toJson(list).contains("\"listItemCount\":21"))
+        assertEquals(list, fromJson<GraphDefsListView>(toJson(list)))
     }
 
     @Test
@@ -46,8 +60,12 @@ class GraphDefsListViewTest : AbstractTest() {
         }
         """.trimIndent()
 
-        val list = json.decodeFromString<GraphDefsListViewBasic>(jsonString)
+        val list = fromJson<GraphDefsListViewBasic>(jsonString)
         assertEquals(0, list.listItemCount)
+
+        // Round trip: 0 must not be dropped by serialization.
+        assertTrue(toJson(list).contains("\"listItemCount\":0"))
+        assertEquals(list, fromJson<GraphDefsListViewBasic>(toJson(list)))
     }
 
     @Test
@@ -62,7 +80,7 @@ class GraphDefsListViewTest : AbstractTest() {
         }
         """.trimIndent()
 
-        assertNull(json.decodeFromString<GraphDefsListView>(jsonString).listItemCount)
-        assertNull(json.decodeFromString<GraphDefsListViewBasic>(jsonString).listItemCount)
+        assertNull(fromJson<GraphDefsListView>(jsonString).listItemCount)
+        assertNull(fromJson<GraphDefsListViewBasic>(jsonString).listItemCount)
     }
 }
