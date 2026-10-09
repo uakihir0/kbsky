@@ -34,7 +34,16 @@ class EmbedExternalStandardSiteTest {
             "description": "Lab Notes 037",
             "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:btxrwcaeyodrap5mnjw2fvmz/bafkreicombnbkzakblorwdvynwbp55pr34ekwqn3nfidyacxsgxf7ty4ra",
             "createdAt": "2026-09-25T19:05:46.382Z",
+            "updatedAt": "2026-09-26T08:30:00.000Z",
             "readingTime": 4,
+            "labels": [
+              {
+                "src": "did:plc:labeler",
+                "uri": "https://lab.leaflet.pub/3mwehnrqsf22g",
+                "val": "news",
+                "cts": "2026-09-25T19:05:46.382Z"
+              }
+            ],
             "source": {
               "uri": "https://lab.leaflet.pub",
               "icon": "https://cdn.bsky.app/img/avatar/plain/did:plc:btxrwcaeyodrap5mnjw2fvmz/bafkreicchgde2juzzjey4opdbbh7h26mmi4c4pcbg7pc3muhmixb6mrm3u",
@@ -80,8 +89,9 @@ class EmbedExternalStandardSiteTest {
         assertEquals("https://lab.leaflet.pub/3mwehnrqsf22g", external.uri)
         assertEquals("Back to School — Leaflet for Learning", external.title)
         assertEquals("2026-09-25T19:05:46.382Z", external.createdAt)
-        assertNull(external.updatedAt)
+        assertEquals("2026-09-26T08:30:00.000Z", external.updatedAt)
         assertEquals(4, external.readingTime)
+        assertEquals("news", external.labels?.firstOrNull()?.`val`)
 
         val source = assertNotNull(external.source)
         assertEquals("https://lab.leaflet.pub", source.uri)
@@ -90,10 +100,14 @@ class EmbedExternalStandardSiteTest {
         assertTrue(source.icon!!.startsWith("https://cdn.bsky.app/img/avatar/"))
 
         val theme = assertNotNull(source.theme)
+        assertEquals(255, theme.backgroundRGB?.r)
+        assertEquals(255, theme.backgroundRGB?.g)
+        assertEquals(255, theme.backgroundRGB?.b)
+        assertEquals(0, theme.foregroundRGB?.r)
         assertEquals(116, theme.accentRGB?.r)
         assertEquals(145, theme.accentRGB?.g)
         assertEquals(0, theme.accentRGB?.b)
-        assertEquals(255, theme.backgroundRGB?.r)
+        assertEquals(255, theme.accentForegroundRGB?.r)
 
         val profiles = assertNotNull(external.associatedProfiles)
         assertEquals(1, profiles.size)
@@ -105,6 +119,9 @@ class EmbedExternalStandardSiteTest {
         assertEquals("at://did:plc:btxrwcaeyodrap5mnjw2fvmz/site.standard.document/3mwehnrqsf22g", refs[0].uri)
         assertEquals("bafyreiekojmzfmqtxsszcqkt5dc6ujkgnkptxchbbg776osq5tuidgopim", refs[0].cid)
         assertEquals("at://did:plc:btxrwcaeyodrap5mnjw2fvmz/site.standard.publication/3lppk75kw7k26", refs[1].uri)
+
+        // Round trip: the hydrated view survives re-encoding.
+        assertEquals(view, fromJson<EmbedExternalView>(toJson(view)))
     }
 
     @Test
