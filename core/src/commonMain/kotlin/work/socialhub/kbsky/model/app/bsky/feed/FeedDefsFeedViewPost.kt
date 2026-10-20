@@ -10,4 +10,6 @@ data class FeedDefsFeedViewPost(
     var post: FeedDefsPostView = FeedDefsPostView(),
     var reply: FeedDefsReplyRef? = null,
     var reason: FeedDefsReasonUnion? = null,
+    var opThreadPostIndex: Int? = null,
+    var opThreadPostCount: Int? = null,
 )

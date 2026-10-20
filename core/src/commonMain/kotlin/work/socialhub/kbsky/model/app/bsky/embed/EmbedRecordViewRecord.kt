@@ -26,6 +26,8 @@ data class EmbedRecordViewRecord(
     var quoteCount: Int? = null,
     var embeds: List<EmbedViewUnion>? = null,
     var indexedAt: String? = null,
+    var opThreadPostIndex: Int? = null,
+    var opThreadPostCount: Int? = null,
 ) : EmbedRecordViewUnion() {
 
     companion object {
