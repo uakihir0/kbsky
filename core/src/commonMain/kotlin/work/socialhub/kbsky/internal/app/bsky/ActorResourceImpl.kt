@@ -1,5 +1,11 @@
 package work.socialhub.kbsky.internal.app.bsky
 
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.put
+import work.socialhub.kbsky.ATProtocolTypes.RepoPutRecord
 import work.socialhub.kbsky.BlueskyConfig
 import work.socialhub.kbsky.BlueskyTypes.ActorGetPreferences
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfile
@@ -21,14 +27,17 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeahead
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
-import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordResponse
 import work.socialhub.kbsky.api.entity.share.Response
 import work.socialhub.kbsky.internal.com.atproto.RepoResourceImpl
 import work.socialhub.kbsky.internal.share.InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
+import work.socialhub.kbsky.internal.share.InternalUtility.json
+import work.socialhub.kbsky.internal.share.InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share.InternalUtility.proceed
 import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
-import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
+import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
+import work.socialhub.kbsky.model.share.Blob
 import work.socialhub.kbsky.util.MediaType
 import work.socialhub.kbsky.util.toBlocking
 
@@ -112,30 +121,30 @@ class ActorResourceImpl(
             )
         )
 
-        val originalActorProfile = original.data.value.asActorProfile
-            ?: throw IllegalStateException("response data is not ActorProfile(type=${original.data.value.type}")
-
-        val modifiedActorProfileRecord = ActorProfile().also {
-            it.displayName = request.displayName ?: originalActorProfile.displayName
-            it.description = request.description ?: originalActorProfile.description
-            it.avatar = request.avatar ?: originalActorProfile.avatar
-
-            it.banner = if (request.clearBanner) null
-            else request.banner ?: originalActorProfile.banner
-
-            it.pinnedPost = if (request.clearPinnedPost) null
-            else request.pinnedPost ?: originalActorProfile.pinnedPost
+        if (original.data.value.asActorProfile == null) {
+            throw IllegalStateException("response data is not ActorProfile(type=${original.data.value.type}")
         }
 
-        val r = repoResource.putRecord(
-            RepoPutRecordRequest(
-                auth = request.auth,
-                repo = request.auth.did,
-                rkey = "self",
-                collection = ActorProfile,
-                record = modifiedActorProfileRecord
-            )
-        )
+        // Keep the original record as raw JSON and overwrite only the requested fields,
+        // so that fields unknown to ActorProfile (links, pronouns, website, labels, etc.)
+        // written by other clients are not dropped.
+        val originalRecord = json.parseToJsonElement(original.json)
+            .jsonObject["value"]?.jsonObject
+            ?: throw IllegalStateException("response data has no record value")
+        val modifiedRecord = mergeProfileRecord(originalRecord, request)
+
+        val r = proceed<RepoPutRecordResponse> {
+            httpRequest(config)
+                .url(xrpc(config, RepoPutRecord))
+                .accept(MediaType.JSON)
+                .json(buildJsonObject {
+                    put("repo", request.auth.did)
+                    put("collection", ActorProfile)
+                    put("rkey", "self")
+                    put("record", modifiedRecord)
+                }.toString())
+                .postWithAuth(request.auth)
+        }
 
         return Response(ActorUpdateProfileResponse().also {
             it.uri = r.data.uri
@@ -194,6 +203,40 @@ class ActorResourceImpl(
     ): Response<ActorGetPreferencesResponse> {
         return toBlocking {
             getPreferences(request)
+        }
+    }
+
+    companion object {
+
+        /**
+         * Returns a copy of the original profile record with only the requested fields replaced.
+         * Fields not handled by [ActorUpdateProfileRequest] are kept as they are.
+         */
+        internal fun mergeProfileRecord(
+            original: JsonObject,
+            request: ActorUpdateProfileRequest,
+        ): JsonObject {
+            val record = original.toMutableMap()
+
+            request.displayName?.let { record["displayName"] = JsonPrimitive(it) }
+            request.description?.let { record["description"] = JsonPrimitive(it) }
+            request.avatar?.let { record["avatar"] = json.encodeToJsonElement(Blob.serializer(), it) }
+
+            if (request.clearBanner) {
+                record.remove("banner")
+            } else {
+                request.banner?.let { record["banner"] = json.encodeToJsonElement(Blob.serializer(), it) }
+            }
+
+            if (request.clearPinnedPost) {
+                record.remove("pinnedPost")
+            } else {
+                request.pinnedPost?.let {
+                    record["pinnedPost"] = json.encodeToJsonElement(RepoStrongRef.serializer(), it)
+                }
+            }
+
+            return JsonObject(record)
         }
     }
 }
