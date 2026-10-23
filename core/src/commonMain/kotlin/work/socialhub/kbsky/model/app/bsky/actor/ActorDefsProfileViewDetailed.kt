@@ -33,6 +33,12 @@ open class ActorDefsProfileViewDetailed {
     @Serializable(with = PinnedPostSerializer::class)
     var pinnedPost: RepoStrongRef? = null
 
+    /**
+     * The profile's links, in display order.
+     * Links that were taken down or don't resolve are left out.
+     */
+    var links: List<ActorDefsProfileLinkView>? = null
+
     var verification: ActorDefsVerificationState? = null
 
     var status: ActorDefsStatusView? = null
