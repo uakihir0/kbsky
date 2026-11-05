@@ -11,6 +11,7 @@ import work.socialhub.kbsky.BlueskyTypes.ActorGetPreferences
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfile
 import work.socialhub.kbsky.BlueskyTypes.ActorGetProfiles
 import work.socialhub.kbsky.BlueskyTypes.ActorProfile
+import work.socialhub.kbsky.BlueskyTypes.ActorPutPreferences
 import work.socialhub.kbsky.BlueskyTypes.ActorSearchActors
 import work.socialhub.kbsky.BlueskyTypes.ActorSearchActorsTypeahead
 import work.socialhub.kbsky.api.app.bsky.ActorResource
@@ -20,6 +21,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorPutPreferencesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeaheadRequest
@@ -29,12 +31,14 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoGetRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoPutRecordResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import work.socialhub.kbsky.internal.com.atproto.RepoResourceImpl
 import work.socialhub.kbsky.internal.share.InternalUtility.getWithAuth
 import work.socialhub.kbsky.internal.share.InternalUtility.httpRequest
 import work.socialhub.kbsky.internal.share.InternalUtility.json
 import work.socialhub.kbsky.internal.share.InternalUtility.postWithAuth
 import work.socialhub.kbsky.internal.share.InternalUtility.proceed
+import work.socialhub.kbsky.internal.share.InternalUtility.proceedUnit
 import work.socialhub.kbsky.internal.share.InternalUtility.xrpc
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.share.Blob
@@ -203,6 +207,27 @@ class ActorResourceImpl(
     ): Response<ActorGetPreferencesResponse> {
         return toBlocking {
             getPreferences(request)
+        }
+    }
+
+    override suspend fun putPreferences(
+        request: ActorPutPreferencesRequest
+    ): ResponseUnit {
+
+        return proceedUnit {
+            httpRequest(config)
+                .url(xrpc(config, ActorPutPreferences))
+                .accept(MediaType.JSON)
+                .json(request.toJson())
+                .postWithAuth(request.auth)
+        }
+    }
+
+    override fun putPreferencesBlocking(
+        request: ActorPutPreferencesRequest
+    ): ResponseUnit {
+        return toBlocking {
+            putPreferences(request)
         }
     }
 

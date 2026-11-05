@@ -7,6 +7,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfileResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorGetProfilesResponse
+import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorPutPreferencesRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsResponse
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeaheadRequest
@@ -14,6 +15,7 @@ import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorSearchActorsTypeahead
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileRequest
 import work.socialhub.kbsky.api.entity.app.bsky.actor.ActorUpdateProfileResponse
 import work.socialhub.kbsky.api.entity.share.Response
+import work.socialhub.kbsky.api.entity.share.ResponseUnit
 import kotlin.js.JsExport
 
 @JsExport
@@ -90,4 +92,17 @@ interface ActorResource {
     fun getPreferencesBlocking(
         request: ActorGetPreferencesRequest
     ): Response<ActorGetPreferencesResponse>
+
+    /**
+     * Set the private preferences attached to the account.
+     * The given preferences replace the whole preferences of the account.
+     */
+    suspend fun putPreferences(
+        request: ActorPutPreferencesRequest
+    ): ResponseUnit
+
+    @JsExport.Ignore
+    fun putPreferencesBlocking(
+        request: ActorPutPreferencesRequest
+    ): ResponseUnit
 }
