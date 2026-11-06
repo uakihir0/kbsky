@@ -42,4 +42,9 @@ open class ActorDefsProfileViewDetailed {
     var verification: ActorDefsVerificationState? = null
 
     var status: ActorDefsStatusView? = null
+
+    /** Free-form pronouns text. */
+    var pronouns: String? = null
+
+    var website: String? = null
 }

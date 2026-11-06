@@ -20,4 +20,5 @@ data class ActorDefsProfileView(
     var labels: List<LabelDefsLabel>? = null,
     var verification: ActorDefsVerificationState? = null,
     var status: ActorDefsStatusView? = null,
+    var pronouns: String? = null,
 )
