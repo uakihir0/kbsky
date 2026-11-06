@@ -236,6 +236,14 @@ class ActorResourceImpl(
                 }
             }
 
+            request.pronouns?.let {
+                if (it.isEmpty()) {
+                    record.remove("pronouns")
+                } else {
+                    record["pronouns"] = JsonPrimitive(it)
+                }
+            }
+
             return JsonObject(record)
         }
     }

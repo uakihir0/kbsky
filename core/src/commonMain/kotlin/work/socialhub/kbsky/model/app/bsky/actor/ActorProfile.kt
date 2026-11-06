@@ -19,6 +19,9 @@ data class ActorProfile(
     var avatar: Blob? = null,
     var banner: Blob? = null,
     var pinnedPost: RepoStrongRef? = null,
+    /** Free-form pronouns text. */
+    var pronouns: String? = null,
+    var website: String? = null,
 ) : RecordUnion() {
 
     companion object {

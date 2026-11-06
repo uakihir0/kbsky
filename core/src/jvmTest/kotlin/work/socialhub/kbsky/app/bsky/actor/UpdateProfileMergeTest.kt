@@ -94,4 +94,26 @@ class UpdateProfileMergeTest {
         assertEquals("bafyreinew", pinnedPost["cid"]?.jsonPrimitive?.content)
         assertEquals(originalRecord["links"], merged["links"])
     }
+
+    @Test
+    fun testReplacePronouns() {
+        val merged = ActorResourceImpl.mergeProfileRecord(
+            originalRecord,
+            ActorUpdateProfileRequest(auth = auth, pronouns = "she/her"),
+        )
+
+        assertEquals("she/her", merged["pronouns"]?.jsonPrimitive?.content)
+        assertEquals(originalRecord["website"], merged["website"])
+    }
+
+    @Test
+    fun testClearPronouns() {
+        val merged = ActorResourceImpl.mergeProfileRecord(
+            originalRecord,
+            ActorUpdateProfileRequest(auth = auth, pronouns = ""),
+        )
+
+        assertFalse(merged.containsKey("pronouns"))
+        assertEquals(originalRecord["website"], merged["website"])
+    }
 }
