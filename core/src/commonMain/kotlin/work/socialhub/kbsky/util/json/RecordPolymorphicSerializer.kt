@@ -4,6 +4,7 @@ import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement
+import work.socialhub.kbsky.model.app.bsky.actor.ActorLink
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
@@ -29,6 +30,7 @@ object RecordPolymorphicSerializer :
         return when (val type = element.type()) {
 
             ActorProfile.TYPE -> ActorProfile.serializer()
+            ActorLink.TYPE -> ActorLink.serializer()
             GraphFollow.TYPE -> GraphFollow.serializer()
             GraphBlock.TYPE -> GraphBlock.serializer()
             FeedLike.TYPE -> FeedLike.serializer()

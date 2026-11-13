@@ -94,4 +94,61 @@ class UpdateProfileMergeTest {
         assertEquals("bafyreinew", pinnedPost["cid"]?.jsonPrimitive?.content)
         assertEquals(originalRecord["links"], merged["links"])
     }
+
+    @Test
+    fun testReplacePronouns() {
+        val merged = ActorResourceImpl.mergeProfileRecord(
+            originalRecord,
+            ActorUpdateProfileRequest(auth = auth, pronouns = "she/her"),
+        )
+
+        assertEquals("she/her", merged["pronouns"]?.jsonPrimitive?.content)
+        assertEquals(originalRecord["website"], merged["website"])
+    }
+
+    @Test
+    fun testClearPronouns() {
+        val merged = ActorResourceImpl.mergeProfileRecord(
+            originalRecord,
+            ActorUpdateProfileRequest(auth = auth, pronouns = ""),
+        )
+
+        assertFalse(merged.containsKey("pronouns"))
+        assertEquals(originalRecord["website"], merged["website"])
+    }
+
+    @Test
+    fun testLinksAreReplaced() {
+        val merged = ActorResourceImpl.mergeProfileRecord(
+            originalRecord,
+            ActorUpdateProfileRequest(
+                auth = auth,
+                links = listOf(
+                    RepoStrongRef("at://did:plc:example/app.bsky.actor.link/3llink2", "bafyreilink2"),
+                    RepoStrongRef("at://did:plc:example/app.bsky.actor.link/3llink1", "bafyreilink1"),
+                ),
+            ),
+        )
+
+        val links = merged["links"]?.jsonArray
+        assertNotNull(links)
+        assertEquals(2, links.size)
+        assertEquals("at://did:plc:example/app.bsky.actor.link/3llink2", links[0].jsonObject["uri"]?.jsonPrimitive?.content)
+        assertEquals("bafyreilink2", links[0].jsonObject["cid"]?.jsonPrimitive?.content)
+        assertEquals("at://did:plc:example/app.bsky.actor.link/3llink1", links[1].jsonObject["uri"]?.jsonPrimitive?.content)
+        // other fields are kept
+        assertEquals(originalRecord["displayName"], merged["displayName"])
+        assertEquals(originalRecord["pronouns"], merged["pronouns"])
+    }
+
+    @Test
+    fun testLinksAreRemovedWithEmptyList() {
+        val merged = ActorResourceImpl.mergeProfileRecord(
+            originalRecord,
+            ActorUpdateProfileRequest(auth = auth, links = emptyList()),
+        )
+
+        assertFalse(merged.containsKey("links"))
+        assertEquals(originalRecord["displayName"], merged["displayName"])
+    }
 }

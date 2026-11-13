@@ -22,4 +22,5 @@ data class ActorDefsProfileViewBasic(
     var createdAt: String? = null,
     var verification: ActorDefsVerificationState? = null,
     var status: ActorDefsStatusView? = null,
+    var pronouns: String? = null,
 )
