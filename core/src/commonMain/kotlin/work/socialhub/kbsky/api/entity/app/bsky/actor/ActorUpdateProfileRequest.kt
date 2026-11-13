@@ -21,4 +21,7 @@ data class ActorUpdateProfileRequest(
     val clearPinnedPost: Boolean = false,
     // free-form pronouns text. null keeps the current value, empty string removes it
     val pronouns: String? = null,
+    // links shown on the profile, in display order (refs to app.bsky.actor.link records).
+    // null keeps the current value, empty list removes it
+    val links: List<RepoStrongRef>? = null,
 ) : AuthRequest(auth)

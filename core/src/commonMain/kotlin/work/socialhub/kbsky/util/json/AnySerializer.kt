@@ -21,6 +21,7 @@ import kotlinx.serialization.json.int
 import kotlinx.serialization.json.intOrNull
 import kotlinx.serialization.json.long
 import kotlinx.serialization.json.longOrNull
+import work.socialhub.kbsky.model.app.bsky.actor.ActorLink
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
@@ -85,6 +86,7 @@ object AnySerializer : KSerializer<Any> {
             // ここでこのライブラリで必要なクラスをひたすら列挙
             // 標準ライブラリはどうやってアノテーションを見ている？
             is ActorProfile -> encoder.encodeSerializableValue(ActorProfile.serializer(), value)
+            is ActorLink -> encoder.encodeSerializableValue(ActorLink.serializer(), value)
             is GraphFollow -> encoder.encodeSerializableValue(GraphFollow.serializer(), value)
             is GraphListItem -> encoder.encodeSerializableValue(GraphListItem.serializer(), value)
             is GraphList -> encoder.encodeSerializableValue(GraphList.serializer(), value)

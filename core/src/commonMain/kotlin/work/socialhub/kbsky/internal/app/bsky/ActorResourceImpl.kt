@@ -1,5 +1,6 @@
 package work.socialhub.kbsky.internal.app.bsky
 
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
@@ -241,6 +242,14 @@ class ActorResourceImpl(
                     record.remove("pronouns")
                 } else {
                     record["pronouns"] = JsonPrimitive(it)
+                }
+            }
+
+            request.links?.let {
+                if (it.isEmpty()) {
+                    record.remove("links")
+                } else {
+                    record["links"] = json.encodeToJsonElement(ListSerializer(RepoStrongRef.serializer()), it)
                 }
             }
 

@@ -22,6 +22,8 @@ data class ActorProfile(
     /** Free-form pronouns text. */
     var pronouns: String? = null,
     var website: String? = null,
+    /** Links shown on the profile, in display order. Each ref points to an app.bsky.actor.link record. */
+    var links: List<RepoStrongRef>? = null,
 ) : RecordUnion() {
 
     companion object {
