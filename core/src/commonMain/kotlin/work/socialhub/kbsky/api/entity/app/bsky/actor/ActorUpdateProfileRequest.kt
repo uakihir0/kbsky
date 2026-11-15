@@ -19,4 +19,6 @@ data class ActorUpdateProfileRequest(
     val pinnedPost: RepoStrongRef? = null,
     // set true if you want to clear the pinned post
     val clearPinnedPost: Boolean = false,
+    // free-form pronouns text. null keeps the current value, empty string removes it
+    val pronouns: String? = null,
 ) : AuthRequest(auth)
