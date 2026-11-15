@@ -2,6 +2,7 @@ package work.socialhub.kbsky.internal
 
 import work.socialhub.kbsky.ATProtocol
 import work.socialhub.kbsky.ATProtocolConfig
+import work.socialhub.kbsky.api.XrpcResource
 import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.com.atproto.ModerationResource
 import work.socialhub.kbsky.api.com.atproto.RepoResource
@@ -19,6 +20,7 @@ open class ATProtocolImpl(
     protected val server: ServerResource = ServerResourceImpl(config)
     protected val repo: RepoResource = RepoResourceImpl(config)
     protected val moderation: ModerationResource = ModerationResourceImpl(config)
+    protected val xrpc: XrpcResource = XrpcResourceImpl(config)
 
     /**
      * {@inheritDoc}
@@ -39,4 +41,9 @@ open class ATProtocolImpl(
      * {@inheritDoc}
      */
     override fun moderation() = moderation
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun xrpc() = xrpc
 }

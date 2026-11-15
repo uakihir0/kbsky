@@ -1,6 +1,7 @@
 package work.socialhub.kbsky
 
 
+import work.socialhub.kbsky.api.XrpcResource
 import work.socialhub.kbsky.api.com.atproto.IdentityResource
 import work.socialhub.kbsky.api.com.atproto.ModerationResource
 import work.socialhub.kbsky.api.com.atproto.RepoResource
@@ -13,4 +14,5 @@ interface ATProtocol {
     fun server(): ServerResource
     fun repo(): RepoResource
     fun moderation(): ModerationResource
+    fun xrpc(): XrpcResource
 }
