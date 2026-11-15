@@ -13,6 +13,8 @@ data class FeedGetQuotesRequest(
     var cid: String? = null,
     var limit: Int? = null,
     var cursor: String? = null,
+    /** Ordering of results. "latest" (default when unset) or "top" (by like count). */
+    var sort: String? = null,
 ) : AuthRequest(auth), MapRequest {
 
     override fun toMap(): Map<String, Any> {
@@ -21,6 +23,7 @@ data class FeedGetQuotesRequest(
             it.addParam("cid", cid)
             it.addParam("limit", limit)
             it.addParam("cursor", cursor)
+            it.addParam("sort", sort)
         }
     }
 }
