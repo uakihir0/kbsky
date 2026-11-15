@@ -17,6 +17,7 @@ object BlueskyTypes {
     const val ActorGetProfile = "app.bsky.actor.getProfile"
     const val ActorGetProfiles = "app.bsky.actor.getProfiles"
     const val ActorGetPreferences = "app.bsky.actor.getPreferences"
+    const val ActorPutPreferences = "app.bsky.actor.putPreferences"
     const val ActorGetSuggestions = "app.bsky.actor.getSuggestions"
     const val ActorSearchActors = "app.bsky.actor.searchActors"
     const val ActorSearchActorsTypeahead = "app.bsky.actor.searchActorsTypeahead"
