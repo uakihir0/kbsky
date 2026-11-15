@@ -32,6 +32,7 @@ import work.socialhub.kbsky.model.app.bsky.graph.GraphBlock
 import work.socialhub.kbsky.model.app.bsky.graph.GraphFollow
 import work.socialhub.kbsky.model.app.bsky.graph.GraphList
 import work.socialhub.kbsky.model.app.bsky.graph.GraphListItem
+import work.socialhub.kbsky.model.app.bsky.graph.GraphStarterPack
 import work.socialhub.kbsky.model.chat.bsky.convo.ConvoDefsMessageInput
 import work.socialhub.kbsky.model.com.atproto.repo.RepoRef
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
@@ -90,6 +91,7 @@ object AnySerializer : KSerializer<Any> {
             is GraphFollow -> encoder.encodeSerializableValue(GraphFollow.serializer(), value)
             is GraphListItem -> encoder.encodeSerializableValue(GraphListItem.serializer(), value)
             is GraphList -> encoder.encodeSerializableValue(GraphList.serializer(), value)
+            is GraphStarterPack -> encoder.encodeSerializableValue(GraphStarterPack.serializer(), value)
             is GraphBlock -> encoder.encodeSerializableValue(GraphBlock.serializer(), value)
             is FeedLike -> encoder.encodeSerializableValue(FeedLike.serializer(), value)
             is FeedPost -> encoder.encodeSerializableValue(FeedPost.serializer(), value)

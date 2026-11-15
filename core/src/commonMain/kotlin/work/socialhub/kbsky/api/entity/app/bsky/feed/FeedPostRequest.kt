@@ -11,6 +11,7 @@ import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostReplyRef
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
+import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import kotlin.js.JsExport
 
 @JsExport
@@ -24,6 +25,8 @@ data class FeedPostRequest(
     var embed: EmbedUnion? = null,
     override var createdAt: String? = null,
     var via: String? = null,
+    /** Reference to the long-form article of mochott (site.mochott.longPost). */
+    var mochottLongPost: RepoStrongRef? = null,
 ) : AuthRequest(auth), MapRequest, RecordRequest {
 
     override fun toMap(): Map<String, Any> {
@@ -36,6 +39,7 @@ data class FeedPostRequest(
             it.addParam("embed", toJson(embed))
             it.addParam("createdAt", createdAt())
             it.addParam("via", via)
+            it.addParam("site.mochott.longPost", mochottLongPost)
         }
     }
 
@@ -49,6 +53,7 @@ data class FeedPostRequest(
         post.embed = embed
         post.createdAt = createdAt()
         post.via = via
+        post.mochottLongPost = mochottLongPost
         return post
     }
 }

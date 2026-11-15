@@ -1,6 +1,7 @@
 package work.socialhub.kbsky.internal.com.atproto
 
 import work.socialhub.kbsky.ATProtocolConfig
+import work.socialhub.kbsky.ATProtocolTypes.RepoApplyWrites
 import work.socialhub.kbsky.ATProtocolTypes.RepoCreateRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDeleteRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoDescribeRepo
@@ -9,6 +10,8 @@ import work.socialhub.kbsky.ATProtocolTypes.RepoListRecords
 import work.socialhub.kbsky.ATProtocolTypes.RepoPutRecord
 import work.socialhub.kbsky.ATProtocolTypes.RepoUploadBlob
 import work.socialhub.kbsky.api.com.atproto.RepoResource
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoApplyWritesRequest
+import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoApplyWritesResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordRequest
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoCreateRecordResponse
 import work.socialhub.kbsky.api.entity.com.atproto.repo.RepoDeleteRecordRequest
@@ -36,10 +39,22 @@ class RepoResourceImpl(
     private val config: ATProtocolConfig
 ) : RepoResource {
 
-    // TODO: implement
-    override fun applyWrites() {
-        throw IllegalStateException("not implemented.")
+    override suspend fun applyWrites(
+        request: RepoApplyWritesRequest
+    ): Response<RepoApplyWritesResponse> {
+
+        return proceed {
+            httpRequest(config)
+                .url(xrpc(config, RepoApplyWrites))
+                .accept(MediaType.JSON)
+                .json(request.toMappedJson())
+                .postWithAuth(request.auth)
+        }
     }
+
+    override fun applyWritesBlocking(
+        request: RepoApplyWritesRequest
+    ): Response<RepoApplyWritesResponse> = toBlocking { applyWrites(request) }
 
     override suspend fun createRecord(
         request: RepoCreateRecordRequest

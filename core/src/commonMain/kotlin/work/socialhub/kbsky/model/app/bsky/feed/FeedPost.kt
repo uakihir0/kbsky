@@ -7,6 +7,7 @@ import work.socialhub.kbsky.BlueskyTypes
 import work.socialhub.kbsky.model.app.bsky.embed.EmbedUnion
 import work.socialhub.kbsky.model.app.bsky.richtext.RichtextFacet
 import work.socialhub.kbsky.model.com.atproto.label.LabelDefsSelfLabels
+import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.model.share.RecordUnion
 import kotlin.js.JsExport
 
@@ -27,6 +28,9 @@ data class FeedPost(
     var skyblurPostUri: String? = null,
     var bridgyOriginalText: String? = null,
     var bridgyOriginalUrl: String? = null,
+    /** Reference to the long-form article of mochott (site.mochott.article). */
+    @SerialName("site.mochott.longPost")
+    var mochottLongPost: RepoStrongRef? = null,
 ) : RecordUnion() {
     companion object {
         const val TYPE = BlueskyTypes.FeedPost
