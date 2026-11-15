@@ -3,6 +3,7 @@ package work.socialhub.kbsky.model.share
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import work.socialhub.kbsky.model.app.bsky.actor.ActorLink
 import work.socialhub.kbsky.model.app.bsky.actor.ActorProfile
 import work.socialhub.kbsky.model.app.bsky.feed.FeedLike
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
@@ -17,6 +18,7 @@ import kotlin.js.JsExport
 
 /**
  * @see ActorProfile
+ * @see ActorLink
  * @see GraphFollow
  * @see GraphBlock
  * @see FeedLike
@@ -32,6 +34,7 @@ abstract class RecordUnion {
     abstract var type: String
 
     val asActorProfile get() = this as? ActorProfile
+    val asActorLink get() = this as? ActorLink
     val asGraphFollow get() = this as? GraphFollow
     val asGraphBlock get() = this as? GraphBlock
     val asFeedLike get() = this as? FeedLike
