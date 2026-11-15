@@ -50,6 +50,11 @@ class NotificationResourceImpl(
                 .url(xrpc(config, NotificationListNotifications))
                 .accept(MediaType.JSON)
                 .queries(request.toMap())
+                .also { req ->
+                    request.reasons?.forEach {
+                        req.query("reasons", it)
+                    }
+                }
                 .getWithAuth(request.auth)
         }
     }
