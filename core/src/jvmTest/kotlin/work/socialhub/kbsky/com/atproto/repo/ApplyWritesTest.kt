@@ -21,6 +21,7 @@ import work.socialhub.kbsky.internal.share.InternalUtility.json
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPost
 import work.socialhub.kbsky.model.app.bsky.feed.FeedPostgateDisableRule
 import work.socialhub.kbsky.model.app.bsky.feed.FeedThreadgateMentionRule
+import work.socialhub.kbsky.model.app.bsky.graph.GraphStarterPack
 import work.socialhub.kbsky.model.com.atproto.repo.RepoStrongRef
 import work.socialhub.kbsky.util.json.RecordJsonUtil
 import java.util.Base64
@@ -133,6 +134,34 @@ class ApplyWritesTest {
         )
         assertEquals("app.bsky.feed.post", write.value["\$type"]?.jsonPrimitive?.content)
         assertEquals("Hello", write.value["text"]?.jsonPrimitive?.content)
+    }
+
+    @Test
+    fun testStarterPackFromRecord() {
+        val starterPack = GraphStarterPack(
+            name = "My pack",
+            list = "at://did:plc:example/app.bsky.graph.list/3klist",
+            createdAt = "2026-11-15T00:00:00.000Z",
+        )
+
+        val create = RepoApplyWritesCreate.fromRecord(
+            collection = GraphStarterPack.TYPE,
+            record = starterPack,
+            rkey = "3kpack",
+        )
+        assertEquals("app.bsky.graph.starterpack", create.value["\$type"]?.jsonPrimitive?.content)
+        assertEquals("My pack", create.value["name"]?.jsonPrimitive?.content)
+        assertEquals(
+            "at://did:plc:example/app.bsky.graph.list/3klist",
+            create.value["list"]?.jsonPrimitive?.content,
+        )
+
+        val update = RepoApplyWritesUpdate.fromRecord(
+            collection = GraphStarterPack.TYPE,
+            rkey = "3kpack",
+            record = starterPack,
+        )
+        assertEquals(create.value, update.value)
     }
 
     @Test
