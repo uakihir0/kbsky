@@ -1,13 +1,13 @@
 [versions]
 kotlin = "2.4.21"
-dokka = "2.2.0"
+dokka = "2.3.0"
 maven-publish = "0.37.0"
-serialization = "1.11.0"
+serialization = "1.12.0"
 coroutines = "1.11.0"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.9"
-ktor-core = "io.ktor:ktor-client-core:3.6.0"
+ktor-core = "io.ktor:ktor-client-core:3.6.1"
 datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.8.0"
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
@@ -29,4 +29,4 @@ kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref =
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 swiftpackage = "io.github.luca992.multiplatform-swiftpackage:2.3.0"
-git-versioning = "me.qoomon.git-versioning:6.4.4"
+git-versioning = "me.qoomon.git-versioning:7.0.0"
