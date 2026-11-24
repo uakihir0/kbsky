@@ -25,6 +25,12 @@ data class FeedDefsPostView(
     var likeCount: Int? = null,
     var bookmarkCount: Int? = null,
     var quoteCount: Int? = null,
+    /**
+     * Approximate number of times the post has been viewed.
+     * Only included in authenticated responses to the post's author
+     * when eligible to see the count. Counts less than 100 are omitted.
+     */
+    var viewCount: Int? = null,
     var indexedAt: String? = null,
     var viewer: FeedDefsViewerState? = null,
     var labels: List<LabelDefsLabel>? = null,
